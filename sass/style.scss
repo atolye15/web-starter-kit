@@ -1,0 +1,23 @@
+@charset "UTF-8";
+/*!
+ * hsnayd Homepage theme
+ * Hasan Aydoğdu
+ * 22 Kasım 2013
+ * ie8, ff, opera, chrome, safari
+ */
+@import 'compass';
+//Normalize
+@import 'normalize';
+// İmport variables and mixins
+@import 'variables';
+@import 'mixins';
+// Defaults
+@import 'defaults';
+
+.bg1 { background-color:red;}
+.bg2 {background-color:blue;}
+.bg3 { background-color: green;}
+.bg4 { background-color: grey;}
+.bg1, .bg2, .bg3, .bg4 { display:block; height:100px}
+//Grid
+@import 'grid';
