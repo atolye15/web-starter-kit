@@ -6,13 +6,13 @@
 
 html { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
-body { background-color:$bgColor; font: $fontSize/#{$lineHeight} $font; color:$color; text-rendering: optimizelegibility;}
+body { background-color:$bgColor; font: $fontSize/#{$lineHeight} $font; color:$color; text-rendering: optimizelegibility; font-style: normal; letter-spacing: 0.03125em;}
 
 a { text-decoration: none; color:$linkColor;
     &:hover, &:active { color:$linkHoverColor; }
 }
 
-h1, h2, h3, h4, h5 { margin : 10px 0; }
+h1, h2, h3, h4, h5 { margin : 0.208333333em 0; }
 
 blockquote { padding: 0 0 0 15px; margin: 0 0 20px; border-left: 5px solid #eeeeee;}
 
@@ -21,7 +21,7 @@ blockquote { padding: 0 0 0 15px; margin: 0 0 20px; border-left: 5px solid #eeee
 
 .invisible { visibility: hidden; }
 
-.text-hide { font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0; }
+.circle { border-radius: 50%; }
 
 .affix { position: fixed; }
 
@@ -47,9 +47,10 @@ blockquote { padding: 0 0 0 15px; margin: 0 0 20px; border-left: 5px solid #eeee
 .text-right { text-align: right; }
 .text-center { text-align: center; }
 .text-hide { font: 0/0 a; color: transparent; text-shadow: none; background-color: transparent; border: 0; }
+.text-paragraph { text-indent:15px; }
 
 .list-inline { padding-left: 0; list-style: none;
-    > li { display: inline-block; padding-left: 5px; padding-right: 5px; }
+    > li { display: inline-block; }
 }
 .list-unstyled { list-style:none; }
 .list-unstyled-v2 { padding-left: 0; @extend .list-unstyled; }
