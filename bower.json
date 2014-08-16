@@ -1,0 +1,23 @@
+{
+  "name": "starter-kit",
+  "version": "1.0.0",
+  "authors": [
+    "Hasan Aydoğdu <hasan_aydogdu@windowslive.com>"
+  ],
+  "description": "Web Starter Kit",
+  "main": "css/style.css",
+  "license": "MIT",
+  "dependencies": {
+    "jquery-legacy": "jquery#1.x",
+    "jquery": "*",
+    "html5shiv": "*",
+    "classlist": "*"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
