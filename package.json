@@ -9,17 +9,20 @@
   },
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-contrib-sass": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-uglify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-template": "*",
+    "grunt-contrib-sass": "*",
     "grunt-autoprefixer": "*",
     "grunt-contrib-cssmin": "*",
+    "grunt-contrib-coffee": "*",
     "grunt-contrib-jshint": "*",
-    "grunt-template": "*",
-    "grunt-contrib-copy": "*",
     "grunt-contrib-concat": "*",
-    "grunt-contrib-clean": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-copy": "*",
     "grunt-contrib-imagemin": "*",
-    "grunt-npm2bower-sync": "*"
+    "grunt-newer": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-notify": "*"
   }
 }

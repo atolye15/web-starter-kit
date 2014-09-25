@@ -1,0 +1,45 @@
+
+//
+//  FORM ELEMENTS
+//  --------------------------------------------------
+
+$formBorderColor : #f0f0f0;
+
+.form fieldset {
+    padding: 50px 30px;
+    border-color: darken($formBorderColor, 10%);
+}
+
+.form-group {
+    @extend .clearfix;
+
+    position: relative;
+    margin-bottom: 10px;
+    button { margin-left: 0; }
+
+    > input[type="text"],
+    > input[type="password"],
+    > textarea {
+        width: 100%;
+        border: 1px solid $formBorderColor;
+        padding: 10px 15px;
+    }
+
+    label { line-height: 40px; }
+
+    > i {
+        position: absolute;
+        top: 12px;
+        right: 15px
+    }
+
+    input[disabled] {
+        @include opacity(0.5);
+    }
+
+    select { width: 100%; }
+}
+
+
+
+

@@ -1,0 +1,89 @@
+
+//
+// Utilities
+// --------------------------------------------------
+
+.circle { border-radius: 50%; }
+
+.table {
+    display: table;
+    border-collapse:collapse;
+}
+.table-row  { display:table-row; }
+.table-cell { display:table-cell; }
+
+.clear-margin { margin: 0; }
+
+.text-overflow {
+    @include text-overflow();
+}
+
+.transition-background { @include transition( background-color 200ms ease-in ); }
+.transition-color      { @include transition( color 200ms ease-in ); }
+.transition-opacity    { @include transition( opacity 200ms ease-in ); }
+.transition-transform  { @include transition( transform 300ms ease-in-out); }
+
+// element should be block or inline-block
+.vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+//
+//  Gap
+//
+.gapped     { margin: $gap; }
+.gap-bottom { margin-bottom: $gap; }
+.gap-right  { margin-right: $gap; }
+.gap-left   { margin-left: $gap }
+
+//
+// Gap Half
+//
+.half-gapped     { margin: ceil($gap/2); }
+.half-gap-bottom { margin-bottom: ceil($gap/2); }
+.half-gap-right  { margin-right: ceil($gap/2); }
+.half-gap-left   { margin-left: ceil($gap/2) }
+
+//
+// Gap Double
+//
+.double-gapped     { margin: $gap*2; }
+.double-gap-bottom { margin-bottom: $gap*2; }
+.double-gap-right  { margin-right: $gap*2; }
+.double-gap-left   { margin-left: $gap*2 }
+
+//
+//  Padded
+//
+.padded     { padding: $pad; }
+.pad-bottom { padding-bottom: $pad; }
+.pad-right  { padding-right: $pad; }
+.pad-left   { padding-left: $pad }
+
+//
+// Gap Half
+//
+.half-padded     { padding: ceil($pad/2); }
+.half-pad-bottom { padding-bottom: ceil($pad/2); }
+.half-pad-right  { padding-right: ceil($pad/2); }
+.half-pad-left   { padding-left: ceil($pad/2) }
+
+//
+// Gap Double
+//
+.double-padded     { padding: $pad*2; }
+.double-pad-bottom { padding-bottom: $pad*2; }
+.double-pad-right  { padding-right: $pad*2; }
+.double-pad-left   { padding-left: $pad*2 }
+
+//
+//  Font Sizing
+//
+.xsmall { font-size: 0.72em; }
+small,
+.small  { font-size: 0.857em; }
+.medium { font-size: 1em; }
+.large  { font-size: 1.142em; }
+.xlarge { font-size: 1.286em }

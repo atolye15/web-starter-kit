@@ -1,0 +1,42 @@
+
+//
+// Buttons
+// --------------------------------------------------
+
+
+//
+//  Html Yapısı
+//  --------------------------------------------------
+//
+//  <a href="#" class=button button--lage></a>
+//
+//
+
+.button {
+    //@extend .text-uppercase;
+    @extend .transition-background;
+
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: white;
+    font-size: 12px;
+    border: none; // Form Elemanları için sıfırlama
+
+    > i {
+        font-size: 16px;
+        vertical-align: text-bottom;
+        margin-right: 5px;
+    }
+
+    &--large {
+        padding: 20px 50px;
+        font-size: 16px;
+    }
+
+    &--warining {
+        &:hover {
+            color: red;
+        }
+    }
+}

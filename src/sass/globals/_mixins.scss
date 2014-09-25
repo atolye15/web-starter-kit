@@ -1,0 +1,27 @@
+
+//
+// Mixins
+// --------------------------------------------------
+
+
+//
+// Px to Em Mixin
+//
+
+@function em($px, $base: $font-size-base) {
+    @return ($px / $base) * 1em;
+}
+
+//
+// Font-Face Mixin
+// IE 9+
+//
+
+@mixin font-face($fontName, $fontFolder, $fontFileName, $fontWeight : normal, $fontStyle : normal){
+    @font-face {
+        font-family: $fontName;
+        src: url('fonts/#{$fontFolder}/#{$fontFileName}.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+             url('fonts/#{$fontFolder}/#{$fontFileName}.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+        font-weight: $fontWeight; font-style: $fontStyle;
+    }
+}
