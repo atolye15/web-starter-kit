@@ -118,14 +118,18 @@ $color-options-border: $color-select-border;
     select { display: none; }
 }
 
-.open > .selectbox-mask {
-    color: $color-select-text-active;
-    background-color: $color-select-background-active;
+.open {
+
+    > .selectbox-mask {
+        color: $color-select-text-active;
+        background-color: $color-select-background-active;
+    }
 
     &:before {
         top: 8px;
         border-color: transparent transparent $color-select-caret-active;
     }
 
-    & + .selectbox-options { display: block; }
+    > .selectbox-options { display: block; }
+
 }
