@@ -1,0 +1,129 @@
+
+//
+// BUTTONS
+// --------------------------------------------------
+
+
+$button-function-factor: -20% !default;
+$button-font-family: false;
+$button-bg-color: $primary-color;
+$button-bg-hover: scale-color( $button-bg-color, $lightness: $button-function-factor ) !default;
+$button-border-color: $button-bg-hover !default;
+$button-radius: 3px;
+$button-font-color: $white !default;
+$button-font-color-alt: $oil !default;
+$button-padding-vertical: 10px !default;
+$button-padding-horizontal: 20px !default;
+$button-border-width: 0 !default;
+
+@mixin button-block( $ease:true, $font:$button-font-family ) {
+
+    @if ( $ease ){ @extend .transition-background; }
+
+    position: relative;
+    display: inline-block;
+    padding: $button-padding-vertical $button-padding-horizontal;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: $button-border-width;
+    @if( $font ){ font-family: $button-font-family; }
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    &:hover,
+    &:focus { text-decoration: none; }
+}
+
+// @MIXIN
+//
+// We use this mixin to add button size styles
+//
+// $padding - Used to build padding for buttons Default: $button-med ||= rem-calc(12)
+// $full-width - We can set $full-width:true to remove side padding extend width - Default: false
+
+@mixin button-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false ) {
+
+  // We control which padding styles come through,
+  // these can be turned off by setting $padding:false
+  @if $padding-v {
+    @if $padding-h {
+      padding: $padding-v $padding-h;
+    } @else {
+      padding-top: $padding-v;
+      padding-bottom: $padding-v;
+    }
+  } @else {
+    padding-left: $padding-h;
+    padding-right: $padding-h;
+  }
+
+  @if $font-size {
+    font-size: $font-size;
+  }
+
+}
+
+
+// @MIXIN
+//
+// We use this mixin to add button color styles
+//
+// $bg - Primary color set in settings file. Default: $button-bg.
+// $radius - If true, set to button radius which is $global-radius || explicitly set radius amount in px (ex. $radius:10px). Default: true
+// $disabled - We can set $disabled:true to create a disabled transparent button. Default: false
+// $bg-hover - Button Hover Background Color. Default: $button-bg-hover
+// $border-color - Button Border Color. Default: $button-border-color
+
+@mixin button-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null ) {
+
+  // We control which background styles are used,
+  // these can be removed by setting $bg:false
+  @if $bg {
+
+    @if $bg-hover == null {
+      $bg-hover: if( $bg == $button-bg-color, $button-bg-hover, scale-color( $bg, $lightness: $button-function-factor ) );
+    }
+
+    @if $border-color == null {
+      $border-color: if( $bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
+    }
+
+    // This find the lightness percentage of the background color.
+    $bg-lightness: lightness($bg);
+    $bg-hover-lightness: lightness($bg-hover);
+
+    background-color: $bg;
+    border-color: $border-color;
+
+    @if not ( $border-width == $button-border-width ) {
+      border-width: $border-width;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $bg-hover;
+      color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
+    }
+
+    // We control the text color for you based on the background color.
+    color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
+  }
+
+  // We can set $disabled:true to create a disabled transparent button.
+  @if $disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+
+    &:hover,
+    &:focus { background-color: $bg; }
+  }
+
+  // We can control how much button radius is used.
+  @if $radius == true { border-radius: $button-radius; }
+  @else if $radius { border-radius: $radius; }
+
+}

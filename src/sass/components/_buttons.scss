@@ -10,33 +10,36 @@
 //
 //  <a href="#" class=button button--lage></a>
 //
+
 //
+//  Mixin Properties
+//
+//  @mixin button-block( $ease:true, $font:$button-font-family )
+//  @mixin button-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null )
+//  @mixin button-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal )
 
 .button {
-    //@extend .text-uppercase;
-    @extend .transition-background;
+    @include button-block();
 
-    padding: 10px 30px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    color: white;
-    font-size: 12px;
-    border: none; // Form Elemanları için sıfırlama
-
-    > i {
-        font-size: 16px;
-        vertical-align: text-bottom;
-        margin-right: 5px;
+    &--primary {
+        @include button-modifier();
     }
 
-    &--large {
-        padding: 20px 50px;
-        font-size: 16px;
+    &--secondary {
+        @include button-modifier( $bg:$secondary-color );
     }
-
-    &--warining {
-        &:hover {
-            color: red;
-        }
+    &--expanded {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    &--custom {
+        @include button-modifier( $bg:#74a446, $radius:10px, $bg-hover:#618a3c, $border-width:3px );
+    }
+    &--medium {
+        @include button-size( $padding-v:15px, $padding-h:50px, $font-size:1.1em );
+    }
+    &--tiny {
+        @include button-size( 5px, 10px, 10px );
     }
 }

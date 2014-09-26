@@ -3,6 +3,7 @@
 // Mixins
 // --------------------------------------------------
 
+@import 'mixins/buttons';
 
 //
 // Px to Em Mixin
@@ -11,6 +12,7 @@
 @function em($px, $base: $font-size-base) {
   @return ($px / $base) * 1em;
 }
+
 
 //
 // Font-Face Mixin
@@ -26,12 +28,14 @@
   }
 }
 
+
 // @mixins
 //
 // We use this to create isosceles triangles
 // $triangle-size - Used to set border-size. No default, set a px or em size.
 // $triangle-color - Used to set border-color which makes up triangle. No default
 // $triangle-direction - Used to determine which direction triangle points. Options: top, bottom, left, right
+
 @mixin css-triangle($triangle-size, $triangle-color, $triangle-direction) {
   content: "";
   display: block;

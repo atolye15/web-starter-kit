@@ -18,9 +18,9 @@
     @include text-overflow();
 }
 
-.transition-background { @include transition( background-color 200ms ease-in ); }
-.transition-color      { @include transition( color 200ms ease-in ); }
-.transition-opacity    { @include transition( opacity 200ms ease-in ); }
+.transition-background { @include transition( background-color 300ms ease-in ); }
+.transition-color      { @include transition( color 300ms ease-in ); }
+.transition-opacity    { @include transition( opacity 300ms ease-in ); }
 .transition-transform  { @include transition( transform 300ms ease-in-out); }
 
 // element should be block or inline-block
