@@ -9,7 +9,7 @@
 //
 
 @function em($px, $base: $font-size-base) {
-    @return ($px / $base) * 1em;
+  @return ($px / $base) * 1em;
 }
 
 //
@@ -18,10 +18,40 @@
 //
 
 @mixin font-face($fontName, $fontFolder, $fontFileName, $fontWeight : normal, $fontStyle : normal){
-    @font-face {
-        font-family: $fontName;
-        src: url('fonts/#{$fontFolder}/#{$fontFileName}.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-             url('fonts/#{$fontFolder}/#{$fontFileName}.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-        font-weight: $fontWeight; font-style: $fontStyle;
-    }
+  @font-face {
+    font-family: $fontName;
+    src: url('fonts/#{$fontFolder}/#{$fontFileName}.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+       url('fonts/#{$fontFolder}/#{$fontFileName}.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    font-weight: $fontWeight; font-style: $fontStyle;
+  }
+}
+
+// @mixins
+//
+// We use this to create isosceles triangles
+// $triangle-size - Used to set border-size. No default, set a px or em size.
+// $triangle-color - Used to set border-color which makes up triangle. No default
+// $triangle-direction - Used to determine which direction triangle points. Options: top, bottom, left, right
+@mixin css-triangle($triangle-size, $triangle-color, $triangle-direction) {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: inset $triangle-size;
+  @if ($triangle-direction == top) {
+    border-color: $triangle-color transparent transparent transparent;
+    border-top-style: solid;
+  }
+  @if ($triangle-direction == bottom) {
+    border-color: transparent transparent $triangle-color transparent;
+    border-bottom-style: solid;
+  }
+  @if ($triangle-direction == left) {
+    border-color: transparent transparent transparent $triangle-color;
+    border-left-style: solid;
+  }
+  @if ($triangle-direction == right) {
+    border-color: transparent $triangle-color transparent transparent;
+    border-right-style: solid;
+  }
 }
