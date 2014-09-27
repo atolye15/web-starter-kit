@@ -60,76 +60,76 @@ $color-options-border: $color-select-border;
 
 
 .selectbox {
+  position: relative;
+
+  &-options {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 9;
+    display: none;
+    width: 100%;
+    padding-left: 0;
+    border: 1px solid $color-options-border;
+    color: $color-options-text;
+    background-color: $color-options-background;
+    list-style: none;
+
+    > li {
+      width: 100%;
+      padding: 10px 15px;
+      border-bottom: 1px solid $color-options-border;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-options-text-hover;
+        background-color: $color-options-background-hover;
+      }
+
+      &:last-child { border-bottom: none; }
+    }
+  }
+
+  &-mask {
     position: relative;
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 10px 15px;
+    border: 1px solid $color-select-border;
+    color: $color-select-text;
+    background-color: $color-select-background;
+    cursor: pointer;
 
-    &-options {
-        position: absolute;
-        left: 0;
-        top: 40px;
-        z-index: 9;
-        display: none;
-        width: 100%;
-        padding-left: 0;
-        border: 1px solid $color-options-border;
-        color: $color-options-text;
-        background-color: $color-options-background;
-        list-style: none;
-
-        > li {
-            width: 100%;
-            padding: 10px 15px;
-            border-bottom: 1px solid $color-options-border;
-            cursor: pointer;
-
-            &:hover {
-                color: $color-options-text-hover;
-                background-color: $color-options-background-hover;
-            }
-
-            &:last-child { border-bottom: none; }
-        }
+    &:before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: block;
+      width: 0;
+      height: 0;
+      border-width: 6px;
+      border-style: solid;
+      border-color: $color-select-caret transparent transparent;
     }
+  }
 
-    &-mask {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 40px;
-        padding: 10px 15px;
-        border: 1px solid $color-select-border;
-        color: $color-select-text;
-        background-color: $color-select-background;
-        cursor: pointer;
-
-        &:before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            display: block;
-            width: 0;
-            height: 0;
-            border-width: 6px;
-            border-style: solid;
-            border-color: $color-select-caret transparent transparent;
-        }
-    }
-
-    select { display: none; }
+  select { display: none; }
 }
 
 .open {
 
-    > .selectbox-mask {
-        color: $color-select-text-active;
-        background-color: $color-select-background-active;
-    }
+  > .selectbox-mask {
+    color: $color-select-text-active;
+    background-color: $color-select-background-active;
+  }
 
-    &:before {
-        top: 8px;
-        border-color: transparent transparent $color-select-caret-active;
-    }
+  &:before {
+    top: 8px;
+    border-color: transparent transparent $color-select-caret-active;
+  }
 
-    > .selectbox-options { display: block; }
+  > .selectbox-options { display: block; }
 
 }

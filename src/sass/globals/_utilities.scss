@@ -6,8 +6,8 @@
 .circle { border-radius: 50%; }
 
 .table {
-    display: table;
-    border-collapse:collapse;
+  display: table;
+  border-collapse:collapse;
 }
 .table-row  { display:table-row; }
 .table-cell { display:table-cell; }
@@ -15,7 +15,7 @@
 .clear-margin { margin: 0; }
 
 .text-overflow {
-    @include text-overflow();
+  @include text-overflow();
 }
 
 .transition-background { @include transition( background-color 300ms ease-in ); }
@@ -25,9 +25,9 @@
 
 // element should be block or inline-block
 .vertical-center {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 //

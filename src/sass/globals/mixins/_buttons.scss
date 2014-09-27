@@ -16,7 +16,7 @@ $button-padding-vertical: 10px !default;
 $button-padding-horizontal: 20px !default;
 $button-border-width: 0 !default;
 
-@mixin button-block( $ease:true, $font:$button-font-family ) {
+@mixin btn-block( $ease:true, $font:$button-font-family ) {
 
     @if ( $ease ){ @extend .transition-background; }
 
@@ -44,7 +44,7 @@ $button-border-width: 0 !default;
 // $padding - Used to build padding for buttons Default: $button-med ||= rem-calc(12)
 // $full-width - We can set $full-width:true to remove side padding extend width - Default: false
 
-@mixin button-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false ) {
+@mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false ) {
 
   // We control which padding styles come through,
   // these can be turned off by setting $padding:false
@@ -77,7 +77,7 @@ $button-border-width: 0 !default;
 // $bg-hover - Button Hover Background Color. Default: $button-bg-hover
 // $border-color - Button Border Color. Default: $button-border-color
 
-@mixin button-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null ) {
+@mixin btn-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null ) {
 
   // We control which background styles are used,
   // these can be removed by setting $bg:false

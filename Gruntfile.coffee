@@ -12,7 +12,7 @@ module.exports = (grunt)->
       options:
         livereload: true
       sass:
-        files: ['src/scss/**/*.scss']
+        files: ['src/sass/**/*.scss']
         tasks: ['sass']
       coffee:
         files: ['src/coffee/**/*.coffee']

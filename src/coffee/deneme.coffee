@@ -2,10 +2,7 @@ $ ->
   'use strict'
 
   ###
-   * hsnLoadingStart
-   * Butonun loading efektini başlatır
-   * @param obj  {object} $ Element
+   * Function name
+   * Function Desc.
+   * @param obj  {object} $ param desc
   ###
-  hsnLoadingStart = ( $obj ) ->
-    $obj.attr('disabled', 'disabled').addClass 'btn-loading-active'
-  return
