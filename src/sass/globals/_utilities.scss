@@ -81,9 +81,9 @@
 //
 //  Font Sizing
 //
-.xsmall { font-size: 0.72em; }
+.xsmall { @include font-xsmall(); }
 small,
-.small  { font-size: 0.857em; }
-.medium { font-size: 1em; }
-.large  { font-size: 1.142em; }
-.xlarge { font-size: 1.286em }
+.small  { @include font-small(); }
+.medium { @include font-medium(); }
+.large  { @include font-large(); }
+.xlarge { @include font-xlarge(); }
