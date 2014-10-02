@@ -16,7 +16,7 @@ module.exports = (grunt)->
         tasks: ['sass']
       coffee:
         files: ['src/coffee/**/*.coffee']
-        tasks: ['coffee:product', 'concat:product']
+        tasks: ['coffee:product']
       vendor:
         files: [
           'src/js/lib/**/*.js'
@@ -32,7 +32,7 @@ module.exports = (grunt)->
           data:
             'cssDir': 'src/css'
             'jsDir': 'src/js'
-            'imgDir': 'assets/img'
+            'imgDir': 'src/img'
             'cssFileName': 'style'
             'jsFileName': 'main'
         files:
@@ -100,13 +100,8 @@ module.exports = (grunt)->
         seperator: ';\n'
         stripBanners: true,
         banner: '<%= banner %>\n'
-      vendor:
-        src: [
-          'src/js/vendor/libs/**/*.js'
-          ]
-        dest: 'assets/js/libs.js'
       product:
-        src: ['src/js/**/*.js', '!vendor/']
+        src: ['src/js/**/*.js', '!src/js/vendor/**']
         dest: 'assets/js/main.js'
       css:
         src: ['src/css/style.css']
@@ -150,7 +145,7 @@ module.exports = (grunt)->
       js:
         expand: true,
         cwd: 'src',
-        src: ['js/vendor/**', '!js/vendor/libs/**']
+        src: ['js/vendor/**']
         dest: 'assets/'
 
     connect:
