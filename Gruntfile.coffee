@@ -19,7 +19,6 @@ module.exports = (grunt)->
         tasks: ['coffee:product']
       vendor:
         files: [
-          'src/js/lib/**/*.js'
           'src/js/vendor/**/*.js'
           ]
       html:
@@ -111,9 +110,6 @@ module.exports = (grunt)->
       options:
         mangle: false
         banner: '<%= banner %>'
-      vendor:
-        files:
-          'assets/js/libs.min.js': 'assets/js/libs.js'
       product:
         files:
           'assets/js/main.min.js': 'assets/js/main.js'
@@ -133,7 +129,7 @@ module.exports = (grunt)->
       css: ['assets/css']
       js:  ['assets/js']
       img: ['assets/img']
-      all: ['assets']
+      dist: ['assets', '*.html', 'src/css/style.css', 'src/js/**/*.js', '!src/js/vendor/**']
 
     copy:
       fonts:
