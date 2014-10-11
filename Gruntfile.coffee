@@ -1,5 +1,6 @@
 module.exports = (grunt)->
   'use strict'
+  tplFiles = require './src/tpl/files.json'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
@@ -34,12 +35,7 @@ module.exports = (grunt)->
             'imgDir': 'src/img'
             'cssFileName': 'style'
             'jsFileName': 'main'
-        files:
-          'index.html': [
-            'src/tpl/header.tpl'
-            'src/tpl/sections/index.tpl'
-            'src/tpl/footer.tpl'
-          ]
+        files: tplFiles
       live:
         options:
           data:
@@ -48,8 +44,7 @@ module.exports = (grunt)->
             'imgDir': 'assets/img'
             'cssFileName': 'style.min'
             'jsFileName': 'main.min'
-        files:
-          'index.html': ['src/tpl/header.tpl', 'src/tpl/sections/index.tpl', 'src/tpl/footer.tpl']
+        files: tplFiles
 
     sass:
       product:
