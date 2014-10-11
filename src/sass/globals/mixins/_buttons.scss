@@ -9,7 +9,7 @@ $button-font-family: false;
 $button-bg-color: $primary-color;
 $button-bg-hover: scale-color( $button-bg-color, $lightness: $button-function-factor ) !default;
 $button-border-color: $button-bg-hover !default;
-$button-radius: 3px;
+$button-radius: 3px !default;
 $button-font-color: $white !default;
 $button-font-color-alt: $oil !default;
 $button-padding-vertical: 10px !default;
@@ -18,7 +18,7 @@ $button-border-width: 0 !default;
 
 @mixin btn-block( $ease:true, $font:$button-font-family ) {
 
-    @if ( $ease ){ @extend .transition-background; }
+    @if ( $ease == true ){ @extend .transition-background; }
 
     position: relative;
     display: inline-block;
@@ -26,7 +26,7 @@ $button-border-width: 0 !default;
     margin-bottom: 10px;
     border-style: solid;
     border-width: $button-border-width;
-    @if( $font ){ font-family: $button-font-family; }
+    @if( $font == true ){ font-family: $button-font-family; }
     font-size: 14px;
     line-height: normal;
     text-align: center;
