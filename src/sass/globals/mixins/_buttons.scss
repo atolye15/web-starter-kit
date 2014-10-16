@@ -4,17 +4,13 @@
 // --------------------------------------------------
 
 
-$button-function-factor: -20% !default;
-$button-font-family: false;
-$button-bg-color: $primary-color;
-$button-bg-hover: scale-color( $button-bg-color, $lightness: $button-function-factor ) !default;
-$button-border-color: $button-bg-hover !default;
-$button-radius: 3px !default;
-$button-font-color: $white !default;
-$button-font-color-alt: $oil !default;
-$button-padding-vertical: 10px !default;
-$button-padding-horizontal: 20px !default;
-$button-border-width: 0 !default;
+// @MIXIN btn-block
+//
+// Bu mixini butonun temel özelliklerini tanımlamak için tanımlıyoruz
+//
+// $ease - Button arkaplanına transition tanımlar,
+//   Transition için sass/global/_utilities.scss deki .transition-background classını extend eder
+// $font - Button font family değerini tanımlar
 
 @mixin btn-block( $ease:true, $font:$button-font-family ) {
 
@@ -26,7 +22,7 @@ $button-border-width: 0 !default;
     margin-bottom: 10px;
     border-style: solid;
     border-width: $button-border-width;
-    @if( $font == true ){ font-family: $button-font-family; }
+    @if not ( $font == false ){ font-family: $button-font-family; }
     font-size: 14px;
     line-height: normal;
     text-align: center;
@@ -37,12 +33,14 @@ $button-border-width: 0 !default;
     &:focus { text-decoration: none; }
 }
 
-// @MIXIN
+
+// @MIXIN btn-size
 //
-// We use this mixin to add button size styles
+// Bu mixini butonun boyut özelliklerini tanımlamak için kullanıyoruz
 //
-// $padding - Used to build padding for buttons Default: $button-med ||= rem-calc(12)
-// $full-width - We can set $full-width:true to remove side padding extend width - Default: false
+// $padding-v - Butona üst ve alttan verilecek padding değerini tanımlar
+// $padding-h - Butona sağ ve soldan verilecek padding değerini tanımlar
+// $font-size - Buton font size değerini tanımlar
 
 @mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false ) {
 
@@ -67,31 +65,35 @@ $button-border-width: 0 !default;
 }
 
 
-// @MIXIN
+// @MIXIN btn-modifier
 //
-// We use this mixin to add button color styles
+// Bu mixin butonun şekil özelliklerini tanımlamak için kullanıyoruz
 //
-// $bg - Primary color set in settings file. Default: $button-bg.
-// $radius - If true, set to button radius which is $global-radius || explicitly set radius amount in px (ex. $radius:10px). Default: true
-// $disabled - We can set $disabled:true to create a disabled transparent button. Default: false
-// $bg-hover - Button Hover Background Color. Default: $button-bg-hover
+// $bg - Butonun arkaplan rengini tanımlar
+// $radius - Butonun border-radius değerini tanımlar
+//  Default olarak false tanımlıdır, false iken border radius tanımlanmayacaktır
+// $disabled - Butona disable efekti vermek için kullanılır
+// $bg-hover - Butonun hover durumundaki arkaplan rengini tanımlar
 // $border-color - Button Border Color. Default: $button-border-color
+// $border-width - Butonun border with degerini tanımlar
+// $border-color - Button border color değerini tanımlar
 
 @mixin btn-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null ) {
 
-  // We control which background styles are used,
-  // these can be removed by setting $bg:false
+  // Burada arkaplan renginin var olup olmadığını kontrol ediyoruz
+  // Bu $bg:false diğerek bu özelliği kaldırabilirsiniz
   @if $bg {
 
+    // $bg-hover tanımlanmamışsa sass fonksiyonlarını kullanarak hover rengi taımlıyoruz
     @if $bg-hover == null {
       $bg-hover: if( $bg == $button-bg-color, $button-bg-hover, scale-color( $bg, $lightness: $button-function-factor ) );
     }
-
+    // $border-color tanımlanmamışsa sass fonksiyonlarını kullanarak border rengi taımlıyoruz
     @if $border-color == null {
       $border-color: if( $bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
     }
 
-    // This find the lightness percentage of the background color.
+    // Arkaplan renginin lightness oranı
     $bg-lightness: lightness($bg);
     $bg-hover-lightness: lightness($bg-hover);
 
@@ -108,11 +110,11 @@ $button-border-width: 0 !default;
       color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
     }
 
-    // We control the text color for you based on the background color.
+    // Bg rengine göre text rengi ayarlıyoruz
     color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
   }
 
-  // We can set $disabled:true to create a disabled transparent button.
+  // Eğer $disable:true ise Butonun disable durumunu ayarlıyoruz
   @if $disabled {
     cursor: not-allowed;
     opacity: 0.7;
@@ -122,7 +124,7 @@ $button-border-width: 0 !default;
     &:focus { background-color: $bg; }
   }
 
-  // We can control how much button radius is used.
+  // Butonun radius özelliklerini tanımlıyoruz
   @if $radius == true { border-radius: $button-radius; }
   @else if $radius { border-radius: $radius; }
 

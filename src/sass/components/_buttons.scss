@@ -14,9 +14,9 @@
 //
 //  Mixin Properties
 //
-//  @mixin button-block( $ease:true, $font:$button-font-family )
-//  @mixin button-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null )
-//  @mixin button-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal )
+//  @mixin btn-block( $ease:true, $font:$button-font-family )
+//  @mixin btn-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null )
+//  @mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false )
 
 .button {
   @include btn-block();

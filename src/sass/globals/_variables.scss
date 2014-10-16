@@ -9,3 +9,20 @@ $gap: 10px;
 // Padding
 $pad: 15px;
 
+
+//
+// BUTTONS VARIABLES
+// --------------------------------------------------
+
+$button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
+$button-font-family: false !default; // Butonun fontu
+$button-bg-color: $primary-color !default; // Buton default bg color
+$button-bg-hover: scale-color( $button-bg-color, $lightness: $button-function-factor ) !default; // Button default hover rengi
+$button-border-color: $button-bg-hover !default; // Button default border rengi
+$button-radius: 3px !default; // Button default border radius
+$button-font-color: $white !default; // Button default font rengi
+$button-font-color-alt: $oil !default; // Button default font rengi
+$button-padding-vertical: 10px !default; // Button dikey padding
+$button-padding-horizontal: 20px !default; // Button default yatay padding
+$button-border-width: 0 !default; // Button default border width
+
