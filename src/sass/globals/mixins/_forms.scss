@@ -1,0 +1,36 @@
+
+//
+// FORMS
+// --------------------------------------------------
+
+
+// @MIXIN form-control
+//
+// Bu mixini form kontrollerinin temel özelliklerini tanımlamak için kullanıyoruz
+
+@mixin form-control(){
+  display: block;
+  width: 100%;
+  height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  padding: $input-padding-vertical $input-padding-horizontal;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  color: $input-color;
+  @if not( $input-bg == inherit ) { background-color: $input-bg; }
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: $input-border-width solid $input-border;
+  @if $input-border-radius { border-radius: $input-border-radius; }
+
+  // Placeholder
+  @if $input-color-placeholder {
+    @include placeholder();
+  }
+
+  // Focus
+  @if $input-border-focus {
+    &:focus {
+      border-color: $input-border-focus;
+      outline: 0;
+    }
+  }
+}

@@ -32,7 +32,9 @@ $font-size-h5: $font-size-base !default;
 $font-size-h6: 0.857em;//ceil(($font-size-base * 0.85)) !default; // ~12px
 
 // Unit-less `line-height` for use in components like buttons.
-$line-height-base: 1.7 !default; // 20/14
+$line-height-base: 1.428571429 !default; // 20/14
+// Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed: floor(($font-size-base * $line-height-base)) !default; // ~20px
 
 // By default, this inherits from the `<body>`.
 $headings-font-family: inherit !default;
@@ -71,4 +73,22 @@ $button-font-color-alt: $oil !default; // Button default font rengi
 $button-padding-vertical: 10px !default; // Button dikey padding
 $button-padding-horizontal: 20px !default; // Button default yatay padding
 $button-border-width: 0 !default; // Button default border width
+
+
+//  FORMS CONTROL VARIABLES
+// -------------------------
+
+$input-bg:                 inherit !default; // `<input>` background color
+$input-bg-disabled:        $smoke !default; // `<input disabled>` background color
+$input-color:              $charcoal !default; // Text color for `<input>`s
+$input-color-placeholder:  $monsoon !default; // Placeholder text color
+$input-border:             $iron !default; // `<input>` border color
+$input-border-width:       1px !default; // `<input>` border width
+$input-border-radius:      false !default; // `<input>` border radius
+$input-border-focus:       false !default; // Border color for inputs on focus #66afe9
+$input-font-size:          $font-size-base !default;
+$input-line-height:        $line-height-computed !default;
+$input-padding-vertical:   6px;
+$input-padding-horizontal: 12px;
+$input-height-base:        ( $input-line-height + ( $input-padding-vertical * 2 ) + ( $input-border-width * 2 ) ) !default; // Default `.form-control` height
 
