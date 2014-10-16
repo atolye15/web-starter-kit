@@ -36,7 +36,7 @@ grunt watch
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
 ## Bower Kullanımı
-Projenizde kullanacağınız eklentileri yada kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz. Eklenti yada kütüphaneleri projenize dahil etmek için `bower.json` dosyasının içerisine eklenti/kütüphane ismini girmelisiniz, karşısına da eklenti/kütüphane nin hangi sürümünü indirmek istediğinizi girmelisiniz. (Eklenti/Kütüphanenin son sürümünü indirmek için genel olarak `*` kullanınız.)
+Projenizde kullanacağınız kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz. Kütüphaneleri projenize dahil etmek için `bower.json` dosyasının içerisine kütüphane ismini girmelisiniz(Kütüphaneleri [http://bower.io/search/](http://bower.io/search/) dan aratabilirsiniz), karşısına da eklenti/kütüphane nin hangi sürümünü indirmek istediğinizi girmelisiniz. (Eklenti/Kütüphanenin son sürümünü indirmek için genel olarak `*` kullanınız.)
 Daha sonra
 ```bash
 bower install
