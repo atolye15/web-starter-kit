@@ -30,60 +30,20 @@
   transform: translateY(-50%);
 }
 
-//
-//  Gap
-//
-.gapped     { margin: $gap; }
-.gap-bottom { margin-bottom: $gap; }
-.gap-right  { margin-right: $gap; }
-.gap-left   { margin-left: $gap }
+.horizontal-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-//
-// Gap Half
-//
-.half-gapped     { margin: ceil($gap/2); }
-.half-gap-bottom { margin-bottom: ceil($gap/2); }
-.half-gap-right  { margin-right: ceil($gap/2); }
-.half-gap-left   { margin-left: ceil($gap/2) }
-
-//
-// Gap Double
-//
-.double-gapped     { margin: $gap*2; }
-.double-gap-bottom { margin-bottom: $gap*2; }
-.double-gap-right  { margin-right: $gap*2; }
-.double-gap-left   { margin-left: $gap*2 }
-
-//
-//  Padded
-//
-.padded     { padding: $pad; }
-.pad-bottom { padding-bottom: $pad; }
-.pad-right  { padding-right: $pad; }
-.pad-left   { padding-left: $pad }
-
-//
-// Gap Half
-//
-.half-padded     { padding: ceil($pad/2); }
-.half-pad-bottom { padding-bottom: ceil($pad/2); }
-.half-pad-right  { padding-right: ceil($pad/2); }
-.half-pad-left   { padding-left: ceil($pad/2) }
-
-//
-// Gap Double
-//
-.double-padded     { padding: $pad*2; }
-.double-pad-bottom { padding-bottom: $pad*2; }
-.double-pad-right  { padding-right: $pad*2; }
-.double-pad-left   { padding-left: $pad*2 }
 
 //
 //  Font Sizing
 //
-.xsmall { @include font-xsmall(); }
+
+.font-xsmall { @include font-xsmall(); }
 small,
-.small  { @include font-small(); }
-.medium { @include font-medium(); }
-.large  { @include font-large(); }
-.xlarge { @include font-xlarge(); }
+.font-small  { @include font-small(); }
+.font-medium { @include font-medium(); }
+.font-large  { @include font-large(); }
+.font-xlarge { @include font-xlarge(); }

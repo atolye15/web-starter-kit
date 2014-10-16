@@ -3,16 +3,61 @@
 // Variables
 // --------------------------------------------------
 
-// Gap
-$gap: 10px;
 
-// Padding
-$pad: 15px;
+// SCAFFOLDING
+// -------------------------
+
+// `<body>` nin arkaplan rengi
+$body-bg:               #fff !default;
+//** `<body>` nin Global text rengi.
+$text-color:            $oil !default;
+// Global link rengi
+$link-color:            #428bca !default;
+// Global link hover rengi
+$link-hover-color:      darken($link-color, 15%) !default;
 
 
-//
-// BUTTONS VARIABLES
-// --------------------------------------------------
+//  TYPOGRAPHY
+// -------------------------
+
+$font-size-base: 14px !default;
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$font-size-h1: floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2: 2.143em;//floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3: 1.714em; //ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4: 1.286em;//ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5: $font-size-base !default;
+$font-size-h6: 0.857em;//ceil(($font-size-base * 0.85)) !default; // ~12px
+
+// Unit-less `line-height` for use in components like buttons.
+$line-height-base: 1.7 !default; // 20/14
+
+// By default, this inherits from the `<body>`.
+$headings-font-family: inherit !default;
+$headings-font-weight: 500 !default;
+$headings-line-height: 1.1 !default;
+$headings-color:       inherit !default;
+
+// Text muted color
+$text-muted: $monsoon !default;
+// Horizontal line color.
+$hr-border: $smoke !default;
+
+
+// FONT SIZING
+// -------------------------
+
+$font-size-small: $font-size-base - 2px;
+$font-size-xsmall: $font-size-base - 4px;
+$font-size-medium: $font-size-base + 2px;
+$font-size-large: $font-size-base + 4px;
+$font-size-xlarge: $font-size-base + 8px;
+
+
+//  BUTTONS VARIABLES
+// -------------------------
 
 $button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
 $button-font-family: false !default; // Butonun fontu
