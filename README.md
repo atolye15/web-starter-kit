@@ -15,7 +15,9 @@ git clone yaparak repoyu belirttiğiniz(`project-name`) klasöre clonlayabilirsi
 Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
 
 - [Node.js](http://nodejs.org/)
+- [Npm](https://www.npmjs.org/)
 - [Ruby](https://www.ruby-lang.org/)
+- [Git](http://git-scm.com/)
 
 kurulu olmalıdır.
 
@@ -32,3 +34,15 @@ Bağımlılıkları indirdikten sonra terminalinizde;
 grunt watch
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
+
+## Bower Kullanımı
+Projenizde kullanacağınız eklentileri yada kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz. Eklenti yada kütüphaneleri projenize dahil etmek için `bower.json` dosyasının içerisine eklenti/kütüphane ismini girmelisiniz, karşısına da eklenti/kütüphane nin hangi sürümünü indirmek istediğinizi girmelisiniz. (Eklenti/Kütüphanenin son sürümünü indirmek için genel olarak `*` kullanınız.)
+Daha sonra
+```bash
+bower install
+```
+yazarak belirttiğiniz kütüphaneleri indirebilirsiniz.
+
+[Bower](http://bower.io/) kullanımı hakkında daha detaylı bilgi için şu makaleyi inceleyebilirsiniz.
+[http://akademi.atolye15.com/post/73516641491/bower-nedir](http://akademi.atolye15.com/post/73516641491/bower-nedir)
+
