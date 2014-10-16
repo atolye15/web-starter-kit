@@ -19,11 +19,10 @@
     position: relative;
     display: inline-block;
     padding: $button-padding-vertical $button-padding-horizontal;
-    margin-bottom: 10px;
     border-style: solid;
     border-width: $button-border-width;
     @if not ( $font == false ){ font-family: $button-font-family; }
-    font-size: 14px;
+    font-size: $button-font-size;
     line-height: normal;
     text-align: center;
     text-decoration: none;
