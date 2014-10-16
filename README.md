@@ -3,10 +3,32 @@ Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başl
 
 ## Kurulum ?
 
-Web Starter kit'i [buradan](http://gitlab.atolye15.net/frontend/starter-kit/tags) indirebilirsini yada
+Web Starter Kit'i [buradan](http://gitlab.atolye15.net/frontend/starter-kit/tags) indirebilirsini yada
 
 ```bash
 git clone git@gitlab.atolye15.net:frontend/starter-kit.git project-name
 cd project-name
 ```
 git clone yaparak repoyu belirttiğiniz(`project-name`) klasöre clonlayabilirsiniz.
+
+## Başlangıç
+Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
+
+- [Node.js](http://nodejs.org/)
+- [Ruby](https://www.ruby-lang.org/)
+
+kurulu olmalıdır.
+
+Projenizde kullanacağınız bağımlılıkları
+
+```bash
+npm install
+```
+komutu ile kurabilirsiniz.
+
+Bağımlılıkları indirdikten sonra terminalinizde;
+
+```bash
+grunt watch
+```
+komutunu yazarak projenize başlayabilirsiniz.
