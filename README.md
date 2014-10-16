@@ -3,7 +3,7 @@ Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başl
 
 ## Kurulum ?
 
-Web Starter Kit'i [buradan](http://gitlab.atolye15.net/frontend/starter-kit/tags) indirebilirsini yada
+Web Starter Kit'i [buradan](http://gitlab.atolye15.net/frontend/starter-kit/tags) indirebilirsiniz yada
 
 ```bash
 git clone git@gitlab.atolye15.net:frontend/starter-kit.git project-name
@@ -31,4 +31,4 @@ Bağımlılıkları indirdikten sonra terminalinizde;
 ```bash
 grunt watch
 ```
-komutunu yazarak projenize başlayabilirsiniz.
+komutunu yazarak grunt izlemeyi başlatabilirsiniz.
