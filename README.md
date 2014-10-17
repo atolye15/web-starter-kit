@@ -43,17 +43,21 @@ Projenizi oluşturduktan SSH bölümünde yazan
 ```bash
 git@gitlab.atolye15.net:username/project-name.git
 ```
-repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin
-daha sonra projenizin remote adresini değiştirmek için
+repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
+
+Projenizin remote adresini değiştirmek için
 ```bash
 git remote set-url origin git@gitlab.atolye15.net:username/project-name.git
 ```
 kodunu girerek yeni remote adresinizi local projenize tanımlayın.
+
 Projenizdeki dosyaları remote a atmak için
 ```bash
 git push origin --all
 ```
-yazmanız yeterli olacaktır. Projenizde eğer tag oluşturmuşsanız veya mevcut tagları remote a yüklemek isterseniz
+yazmanız yeterli olacaktır.
+
+Projenizde eğer tag oluşturmuşsanız veya mevcut tagları remote a yüklemek isterseniz
 ```bash
 git push origin --tags
 ```
