@@ -37,7 +37,7 @@ komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
 ## Projeyi Gitlab a yüklemek
 
-[gitlab.atolye15.net](gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden `New Project` butonuna tıklayarak projenizi oluşturunuz.
+[gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden `New Project` butonuna tıklayarak projenizi oluşturunuz.
 Buradan projenizin gitlab ayarlarını yaparak `Create project` butonuna tıklayınız.
 Projenizi oluşturduktan SSH bölümünde yazan
 ```bash
