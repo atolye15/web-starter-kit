@@ -35,9 +35,33 @@ grunt watch
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
+## Projeyi Gitlab a yüklemek
+
+[gitlab.atolye15.net](gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden `New Project` butonuna tıklayarak projenizi oluşturunuz.
+Buradan projenizin gitlab ayarlarını yaparak `Create project` butonuna tıklayınız.
+Projenizi oluşturduktan SSH bölümünde yazan
+```bash
+git@gitlab.atolye15.net:username/project-name.git
+```
+repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin
+daha sonra projenizin remote adresini değiştirmek için
+```bash
+git remote set-url origin git@gitlab.atolye15.net:username/project-name.git
+```
+kodunu girerek yeni remote adresinizi local projenize tanımlayın.
+Projenizdeki dosyaları remote a atmak için
+```bash
+git push origin --all
+```
+yazmanız yeterli olacaktır. Projenizde eğer tag oluşturmuşsanız veya mevcut tagları remote a yüklemek isterseniz
+```bash
+git push origin --tags
+```
+komutu ile taglarınızı remote a atabilirsiniz.
+
 ## Bower Kullanımı
 Projenizde kullanacağınız kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz. Kütüphaneleri projenize dahil etmek için `bower.json` dosyasının içerisine kütüphane ismini girmelisiniz(Kütüphaneleri [http://bower.io/search/](http://bower.io/search/) dan aratabilirsiniz), karşısına da kütüphanenin hangi sürümünü indirmek istediğinizi girmelisiniz. (Kütüphanenin son sürümünü indirmek için genel olarak `*` kullanınız.)
-Daha sonra
+Daha sonra terminalinizde
 ```bash
 bower install
 ```
