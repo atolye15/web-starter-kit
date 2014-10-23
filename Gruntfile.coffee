@@ -17,7 +17,7 @@ module.exports = (grunt)->
         tasks: ['sass']
       coffee:
         files: ['src/coffee/**/*.coffee']
-        tasks: ['coffee:product']
+        tasks: ['coffee', 'concat:coffee']
       vendor:
         files: [
           'src/js/vendor/**/*.js'
@@ -81,7 +81,7 @@ module.exports = (grunt)->
         expand: true
         cwd: 'src/coffee/'
         src: ['*.coffee']
-        dest: 'src/js'
+        dest: 'src/coffee/output'
         ext: '.js'
 
     jshint:
@@ -94,9 +94,11 @@ module.exports = (grunt)->
         seperator: ';\n'
         stripBanners: true,
         banner: '<%= banner %>\n'
-      product:
-        src: ['src/js/**/*.js', '!src/js/vendor/**']
-        dest: 'assets/js/main.js'
+      coffee:
+        src: [
+          'src/coffee/output/*.js'
+        ]
+        dest: 'src/js/main.js'
       css:
         src: ['src/css/style.css']
         dest: 'assets/css/style.css'
@@ -124,7 +126,7 @@ module.exports = (grunt)->
       css: ['assets/css']
       js:  ['assets/js']
       img: ['assets/img']
-      dist: ['assets', '*.html', 'src/css/style.css', 'src/js/**/*.js', '!src/js/vendor/**']
+      dist: ['assets', '*.html', 'src/css/style.css', 'src/js/main.js', 'src/coffee/output/*.js']
 
     copy:
       fonts:
@@ -136,7 +138,7 @@ module.exports = (grunt)->
       js:
         expand: true,
         cwd: 'src',
-        src: ['js/vendor/**']
+        src: ['js/**']
         dest: 'assets/'
 
     connect:
@@ -163,8 +165,8 @@ module.exports = (grunt)->
     'cssmin'
     'coffee'
     'concat'
-    'uglify'
     'copy:js'
+    'uglify'
     'newer:imagemin'
     'copy:fonts'
   ]
