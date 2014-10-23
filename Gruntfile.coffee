@@ -9,6 +9,7 @@ module.exports = (grunt)->
             ' * <%= pkg.author.name %> < <%= pkg.author.email %> >\n' +
             ' * Version <%= pkg.version %> ( <%= grunt.template.today("dd-mm-yyyy") %> )\n'+
             ' */\n'
+    tplFiles : require './src/tpl/files.json'
     watch:
       options:
         livereload: true
