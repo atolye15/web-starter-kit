@@ -1,6 +1,5 @@
 module.exports = (grunt)->
   'use strict'
-  tplFiles = require './src/tpl/files.json'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
@@ -9,7 +8,8 @@ module.exports = (grunt)->
             ' * <%= pkg.author.name %> < <%= pkg.author.email %> >\n' +
             ' * Version <%= pkg.version %> ( <%= grunt.template.today("dd-mm-yyyy") %> )\n'+
             ' */\n'
-    tplFiles : require './src/tpl/files.json'
+    getTplFiles :
+      tplFiles = require './src/tpl/files.json'
     watch:
       options:
         livereload: true
