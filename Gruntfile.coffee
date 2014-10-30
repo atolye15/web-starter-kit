@@ -156,6 +156,15 @@ module.exports = (grunt)->
     'imagemin'
   ]
 
+  grunt.registerTask 'develop-mode',
+  [
+    'clean:dist'
+    'template:dev'
+    'sass'
+    'coffee'
+    'concat:coffee'
+  ]
+
   grunt.registerTask 'deploy',
   [
     'clean:css'
