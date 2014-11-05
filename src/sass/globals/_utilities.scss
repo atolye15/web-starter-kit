@@ -5,12 +5,12 @@
 
 .circle { border-radius: 50%; }
 
-.table {
+.display-table {
   display: table;
   border-collapse:collapse;
 }
-.table-row  { display:table-row; }
-.table-cell { display:table-cell; }
+.display-table-row  { display:table-row; }
+.display-table-cell { display:table-cell; }
 
 .clear-margin { margin: 0; }
 
@@ -41,9 +41,10 @@
 //  Font Sizing
 //
 
-.font-xsmall { @include font-xsmall(); }
+.font-xsmall  { @include font-xsmall(); }
 small,
-.font-small  { @include font-small(); }
-.font-medium { @include font-medium(); }
-.font-large  { @include font-large(); }
-.font-xlarge { @include font-xlarge(); }
+.font-small   { @include font-small(); }
+.font-regular { font-size: $font-size-base; }
+.font-medium  { @include font-medium(); }
+.font-large   { @include font-large(); }
+.font-xlarge  { @include font-xlarge(); }
