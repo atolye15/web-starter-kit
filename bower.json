@@ -6,6 +6,7 @@
     "jquery": "*",
     "html5shiv": "*",
     "bootstrap-sass-official": "*",
+    "classlist": "*"
   },
   "ignore": [
     "**/.*",
