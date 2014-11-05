@@ -1,5 +1,7 @@
 module.exports = (grunt)->
   'use strict'
+  srcPath = './src'
+  distPath = './assets'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
@@ -8,41 +10,43 @@ module.exports = (grunt)->
             ' * <%= pkg.author.name %> < <%= pkg.author.email %> >\n' +
             ' * Version <%= pkg.version %> ( <%= grunt.template.today("dd-mm-yyyy") %> )\n'+
             ' */\n'
+    distPath: distPath
+    srcPath: srcPath
     getTplFiles :
-      tplFiles = require './src/tpl/files.json'
+      tplFiles = require srcPath+'/tpl/files.json'
     watch:
       options:
         livereload: true
       sass:
-        files: ['src/sass/**/*.scss']
+        files: ['<%= srcPath %>/sass/**/*.scss']
         tasks: ['sass']
       coffee:
-        files: ['src/coffee/**/*.coffee']
+        files: ['<%= srcPath %>/coffee/**/*.coffee']
         tasks: ['coffee', 'concat:coffee']
       vendor:
         files: [
-          'src/js/vendor/**/*.js'
+          '<%= srcPath %>/js/vendor/**/*.js'
           ]
       html:
-        files: 'src/tpl/**/*.tpl'
+        files: '<%= srcPath %>/tpl/**/*.tpl'
         tasks: 'newer:template:dev'
 
     template:
       dev:
         options:
           data:
-            'cssDir': 'src/css'
-            'jsDir': 'src/js'
-            'imgDir': 'src/img'
+            'cssDir': '<%= srcPath %>/css'
+            'jsDir': '<%= srcPath %>/js'
+            'imgDir': '<%= srcPath %>/img'
             'cssFileName': 'style'
             'jsFileName': 'main'
         files: tplFiles
       live:
         options:
           data:
-            'cssDir': 'assets/css'
-            'jsDir': 'assets/js'
-            'imgDir': 'assets/img'
+            'cssDir': '<%= distPath %>/css'
+            'jsDir': '<%= distPath %>/js'
+            'imgDir': '<%= distPath %>/img'
             'cssFileName': 'style.min'
             'jsFileName': 'main.min'
         files: tplFiles
@@ -50,7 +54,7 @@ module.exports = (grunt)->
     sass:
       product:
         files:
-          'src/css/style.css': 'src/sass/style.scss'
+          '<%= srcPath %>/css/style.css': '<%= srcPath %>/sass/style.scss'
 
     autoprefixer:
       options:
@@ -65,28 +69,28 @@ module.exports = (grunt)->
           'Safari >= 6'
           ]
       prefix:
-        src: 'src/css/style.css'
-        dest: 'src/css/style.css'
+        src: '<%= srcPath %>/css/style.css'
+        dest: '<%= srcPath %>/css/style.css'
 
     cssmin:
       build:
         options:
           banner: '<%= banner %>'
         files:
-          'assets/css/style.min.css': 'src/css/style.css'
+          '<%= distPath %>/css/style.min.css': '<%= srcPath %>/css/style.css'
 
     coffee:
       product:
         options:
           bare: true
         expand: true
-        cwd: 'src/coffee/'
+        cwd: '<%= srcPath %>/coffee/'
         src: ['*.coffee']
-        dest: 'src/coffee/output'
+        dest: '<%= srcPath %>/coffee/output'
         ext: '.js'
 
     jshint:
-      files: ['src/js/*.js']
+      files: ['<%= srcPath %>/js/*.js']
       options:
         jshintrc: '.jshintrc'
 
@@ -97,12 +101,12 @@ module.exports = (grunt)->
         banner: '<%= banner %>\n'
       coffee:
         src: [
-          'src/coffee/output/*.js'
+          '<%= srcPath %>/coffee/output/*.js'
         ]
-        dest: 'src/js/main.js'
+        dest: '<%= srcPath %>/js/main.js'
       css:
-        src: ['src/css/style.css']
-        dest: 'assets/css/style.css'
+        src: ['<%= srcPath %>/css/style.css']
+        dest: '<%= distPath %>/css/style.css'
 
     uglify:
       options:
@@ -110,7 +114,7 @@ module.exports = (grunt)->
         banner: '<%= banner %>'
       product:
         files:
-          'assets/js/main.min.js': 'assets/js/main.js'
+          '<%= distPath %>/js/main.min.js': '<%= distPath %>/js/main.js'
 
     imagemin:
       dynamic:
@@ -118,29 +122,36 @@ module.exports = (grunt)->
           optimizationLevel: 7
         files: [
             expand: true
-            cwd: 'src/'
+            cwd: '<%= srcPath %>/'
             src: ['img/**/*.{png,jpg,gif}']
-            dest: 'assets/'
+            dest: '<%= distPath %>/'
           ]
 
     clean:
-      css: ['assets/css']
-      js:  ['assets/js']
-      img: ['assets/img']
-      dist: ['assets', '*.html', 'src/css/style.css', 'src/js/main.js', 'src/coffee/output/*.js']
+      css: ['<%= distPath %>/css']
+      js:  ['<%= distPath %>/js']
+      img: ['<%= distPath %>/img']
+      dist: [
+        '<%= distPath %>'
+        '*.html'
+        '<%= srcPath %>/css/style.css'
+        '<%= srcPath %>/css/style.css.map'
+        '<%= srcPath %>/js/main.js'
+        '<%= srcPath %>/coffee/output/*.js'
+      ]
 
     copy:
       fonts:
         expand: true,
-        cwd: 'src',
+        cwd: '<%= srcPath %>',
         src: ['css/fonts/**']
-        dest: 'assets/'
+        dest: '<%= distPath %>/'
 
       js:
         expand: true,
-        cwd: 'src',
+        cwd: '<%= srcPath %>',
         src: ['js/**']
-        dest: 'assets/'
+        dest: '<%= distPath %>/'
 
     connect:
       server:
@@ -190,7 +201,9 @@ module.exports = (grunt)->
     'cssmin'
     'coffee'
     'concat'
+    'copy:js'
     'uglify'
+    'newer:imagemin'
     'copy:fonts'
   ]
 

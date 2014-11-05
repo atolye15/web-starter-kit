@@ -8,7 +8,6 @@
     "url": "http://www.atolye15.com"
   },
   "devDependencies": {
-    "bower": "*",
     "grunt": "~0.4.5",
     "grunt-contrib-watch": "*",
     "grunt-contrib-clean": "*",
