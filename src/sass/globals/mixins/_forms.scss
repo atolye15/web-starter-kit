@@ -19,7 +19,7 @@
   @if not( $input-bg == inherit ) { background-color: $input-bg; }
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: $input-border-width solid $input-border;
-  @if $input-border-radius { border-radius: $input-border-radius; }
+  @if not( $input-border-radius == 0 ) { border-radius: $input-border-radius; }
 
   // Placeholder
   @if $input-color-placeholder {
@@ -27,7 +27,7 @@
   }
 
   // Focus
-  @if $input-border-focus {
+  @if $input-focus {
     &:focus {
       border-color: $input-border-focus;
       outline: 0;

@@ -84,8 +84,9 @@ $input-color:              $charcoal !default; // Text color for `<input>`s
 $input-color-placeholder:  $monsoon !default; // Placeholder text color
 $input-border:             $iron !default; // `<input>` border color
 $input-border-width:       1px !default; // `<input>` border width
-$input-border-radius:      false !default; // `<input>` border radius
-$input-border-focus:       false !default; // Border color for inputs on focus #66afe9
+$input-border-radius:      0 !default; // `<input>` border radius
+$input-focus:              false !default; // `<input>` focus style
+$input-border-focus:       #66afe9 !default; // Border color for inputs on focus #66afe9
 $input-font-size:          $font-size-base !default;
 $input-line-height:        $line-height-computed !default;
 $input-padding-vertical:   6px;
