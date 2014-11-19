@@ -3,19 +3,9 @@
 // Responsive
 // --------------------------------------------------
 
-// 360
-@media (max-width: 359px) {
 
-}
-
-// 479px
-@media (max-width: $screen-xs - 1) {
-
-
-}
-
-// 768px
-@media (max-width: $screen-sm - 1) {
+// 1199px
+@media (max-width: $screen-lg - 1) {
 
 }
 
@@ -25,7 +15,19 @@
 
 }
 
-// 1199px
-@media (max-width: $screen-lg - 1) {
+// 767px
+@media (max-width: $screen-sm - 1) {
 
 }
+
+// 479px
+@media (max-width: $screen-xs - 1) {
+
+
+}
+
+// 359
+@media (max-width: 359px) {
+
+}
+
