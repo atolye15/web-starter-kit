@@ -4,16 +4,15 @@ module.exports = (grunt)->
   distPath = 'assets'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
+    tplFiles: grunt.file.readJSON srcPath+'/tpl/files.json'
+    distPath: distPath
+    srcPath: srcPath
 
     banner: '/*!\n' +
             ' * <%= pkg.description %>\n' +
             ' * <%= pkg.author.name %> < <%= pkg.author.email %> >\n' +
             ' * Version <%= pkg.version %> ( <%= grunt.template.today("dd-mm-yyyy") %> )\n'+
             ' */\n'
-    distPath: distPath
-    srcPath: srcPath
-    getTplFiles :
-      tplFiles = grunt.file.readJSON srcPath+'/tpl/files.json'
     watch:
       options:
         livereload: true
@@ -38,7 +37,7 @@ module.exports = (grunt)->
             'imgDir': '<%= srcPath %>/img'
             'cssFileName': 'style'
             'jsFileName': 'main'
-        files: tplFiles
+        files: '<%= tplFiles %>'
       live:
         options:
           data:
@@ -47,7 +46,7 @@ module.exports = (grunt)->
             'imgDir': '<%= distPath %>/img'
             'cssFileName': 'style.min'
             'jsFileName': 'main.min'
-        files: tplFiles
+        files: '<%= tplFiles %>'
 
     sass:
       product:
