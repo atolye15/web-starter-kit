@@ -150,6 +150,12 @@ module.exports = (grunt)->
         cwd: '<%= srcPath %>',
         src: ['js/**']
         dest: '<%= distPath %>/'
+      # copy external css
+      css:
+        expand: true,
+        cwd: '<%= srcPath %>',
+        src: ['css/*.css', '!css/style.css']
+        dest: '<%= distPath %>/'
 
     connect:
       server:
@@ -188,6 +194,7 @@ module.exports = (grunt)->
     'uglify'
     'newer:imagemin'
     'copy:fonts'
+    'copy:css'
   ]
 
   grunt.registerTask 'build',
