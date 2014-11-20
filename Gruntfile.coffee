@@ -2,6 +2,7 @@ module.exports = (grunt)->
   'use strict'
   srcPath = './src'
   distPath = './assets'
+  tplFiles = grunt.file.readJSON srcPath+'/tpl/files.json'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
@@ -12,8 +13,6 @@ module.exports = (grunt)->
             ' */\n'
     distPath: distPath
     srcPath: srcPath
-    getTplFiles :
-      tplFiles = require srcPath+'/tpl/files.json'
     watch:
       options:
         livereload: true
