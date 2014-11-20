@@ -1,8 +1,7 @@
 module.exports = (grunt)->
   'use strict'
-  srcPath = './src'
-  distPath = './assets'
-  tplFiles = grunt.file.readJSON srcPath+'/tpl/files.json'
+  srcPath = 'src'
+  distPath = 'assets'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
@@ -13,6 +12,8 @@ module.exports = (grunt)->
             ' */\n'
     distPath: distPath
     srcPath: srcPath
+    getTplFiles :
+      tplFiles = grunt.file.readJSON srcPath+'/tpl/files.json'
     watch:
       options:
         livereload: true
@@ -23,9 +24,7 @@ module.exports = (grunt)->
         files: ['<%= srcPath %>/coffee/**/*.coffee']
         tasks: ['coffee', 'concat:coffee']
       vendor:
-        files: [
-          '<%= srcPath %>/js/vendor/**/*.js'
-          ]
+        files: ['<%= srcPath %>/js/vendor/**/*.js']
       html:
         files: '<%= srcPath %>/tpl/**/*.tpl'
         tasks: 'newer:template:dev'
