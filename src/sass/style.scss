@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-// Plugins
-@import 'plugins';
-
 // Colors
 @import 'globals/colors';
 
@@ -12,14 +9,17 @@
 // Mixins
 @import 'globals/mixins';
 
+// Normalize
+@import 'globals/normalize';
+
 // Fonts
 @import 'globals/fonts';
 
 // Icons
 @import 'globals/icons';
 
-// Normalize
-@import 'globals/normalize';
+// Plugins
+@import 'plugins';
 
 // Bootstrap
 @import 'bootstrap';
