@@ -8,8 +8,13 @@
   input[type="text"],
   input[type="password"],
   textarea,
-  .form-control {
+  &__control {
     @include form-control();
+  }
+
+  textarea {
+    height: auto;
+    @include resizable(none);
   }
 
   input[disabled] {
