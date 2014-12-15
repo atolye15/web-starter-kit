@@ -14,9 +14,7 @@
 
 .clear-margin { margin: 0; }
 
-.text-overflow {
-  @include text-overflow();
-}
+.text-overflow { @include text-overflow(); }
 
 .transition-background { @include transition( background-color 300ms ease-in ); }
 .transition-color      { @include transition( color 300ms ease-in ); }
@@ -36,6 +34,20 @@
   transform: translateX(-50%);
 }
 
+// Alignment
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }
+
+// Contextual colors
+.text-muted { color: $text-muted; }
 
 //
 //  Font Sizing

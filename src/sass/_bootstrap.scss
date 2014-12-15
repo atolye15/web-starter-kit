@@ -1,3 +1,8 @@
+
+//
+// scaffolding ve type daki gerekli özellikler globals/_base.scss içinde toplanmıştır.
+// Tekrardan import etmeyiniz !!!
+
 //
 // grid, responsive-utilities ve normalize style.scss de import ediliyor
 // Tekrardan import etmeyiniz !!!
@@ -5,8 +10,6 @@
 // Bootstrap
 @import 'bootstrap/variables';
 @import 'bootstrap/mixins';
-@import 'bootstrap/scaffolding';
-@import 'bootstrap/type';
 @import 'bootstrap/utilities';
 @import 'bootstrap/component-animations';
 //@import 'bootstrap/dropdowns';
