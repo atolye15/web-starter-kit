@@ -6,3 +6,7 @@ npm-debug.log
 .idea
 .idea_modules
 untracked/
+src/css/style.css
+src/css/style.css.map
+src/coffee/output/
+src/js/main.js
