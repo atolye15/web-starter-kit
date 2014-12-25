@@ -187,6 +187,23 @@ module.exports = (grunt)->
           hostname: 'localhost'
           keepalive: true
 
+    ftp_push:
+      deploy:
+        options:
+          authKey: 'key'
+          host: "hots-name",
+          dest: "/project-folder-name",
+          port: 21
+        files: [
+          expand: true
+          cwd: '.'
+          src: [
+            '*.html'
+            'assets/**'
+          ]
+        ]
+
+
   grunt.registerTask 'compressimg',
   [
     'clean:img'
@@ -248,3 +265,4 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-newer'
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-notify'
+  grunt.loadNpmTasks 'grunt-ftp-push'

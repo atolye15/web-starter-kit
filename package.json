@@ -23,6 +23,7 @@
     "grunt-contrib-imagemin": "*",
     "grunt-newer": "*",
     "grunt-contrib-connect": "*",
-    "grunt-notify": "*"
+    "grunt-notify": "*",
+    "grunt-ftp-push": "*"
   }
 }
