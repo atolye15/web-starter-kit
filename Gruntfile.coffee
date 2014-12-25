@@ -25,8 +25,8 @@ module.exports = (grunt)->
       vendor:
         files: ['<%= srcPath %>/js/vendor/**/*.js']
       html:
-        files: '<%= srcPath %>/tpl/**/*.tpl'
-        tasks: 'newer:template:dev'
+        files: [ '<%= srcPath %>/tpl/**/*.tpl', '!<%= srcPath %>/tpl/includes/**' ]
+        tasks: [ 'newer:template:dev', 'newer:replace' ]
 
     template:
       dev:
@@ -47,6 +47,23 @@ module.exports = (grunt)->
             'cssFileName': 'style.min'
             'jsFileName': 'main.min'
         files: '<%= tplFiles %>'
+
+    replace:
+      dist:
+        options:
+          patterns: [
+            # Moduls
+            {
+              match: 'exm-module',
+              replacement: '<%= grunt.file.read("'+srcPath+'/tpl/includes/module.tpl") %>'
+            }
+          ]
+        files: [
+          expand: true
+          flatten: true
+          src: ['*.html']
+          dest: ''
+        ]
 
     sass:
       product:
@@ -266,3 +283,4 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-ftp-push'
+  grunt.loadNpmTasks 'grunt-replace'

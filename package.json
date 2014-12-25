@@ -24,6 +24,7 @@
     "grunt-newer": "*",
     "grunt-contrib-connect": "*",
     "grunt-notify": "*",
-    "grunt-ftp-push": "*"
+    "grunt-ftp-push": "*",
+    "grunt-replace": "*"
   }
 }

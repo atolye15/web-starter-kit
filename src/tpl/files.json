@@ -1,7 +1,7 @@
 {
   "index.html": [
     "src/tpl/header.tpl",
-    "src/tpl/sections/index.tpl",
+    "src/tpl/layouts/index.tpl",
     "src/tpl/footer.tpl"
   ]
 }
