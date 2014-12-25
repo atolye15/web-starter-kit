@@ -155,6 +155,30 @@ module.exports = (grunt)->
         cwd: '<%= srcPath %>',
         src: ['css/*.css', '!css/style.css']
         dest: '<%= distPath %>/'
+      bowerComponents:
+        files: [
+          { ##! ClassList
+            src: [ 'bower_components/classlist/classList.min.js' ]
+            dest: 'src/js/vendor/classList.min.js'
+            filter: 'isFile'
+          }
+          { ##! html5shiv
+            src: [ 'bower_components/html5shiv/dist/html5shiv.min.js' ]
+            dest: 'src/js/vendor/html5shiv.min.js'
+            filter: 'isFile'
+          }
+          { ##! jQuery
+            src: [ 'bower_components/jquery/dist/jquery.min.js' ]
+            dest: 'src/js/vendor/jquery.min.js'
+            filter: 'isFile'
+          }
+          { ##! Bootstrap
+            expand: true
+            cwd: 'bower_components/bootstrap-sass-official/assets/stylesheets/'
+            src: [ 'bootstrap/**' ]
+            dest: 'src/sass/'
+          }
+        ]
 
     connect:
       server:
@@ -162,7 +186,6 @@ module.exports = (grunt)->
           port: 8000
           hostname: 'localhost'
           keepalive: true
-
 
   grunt.registerTask 'compressimg',
   [
