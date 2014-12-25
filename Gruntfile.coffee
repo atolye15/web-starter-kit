@@ -172,7 +172,6 @@ module.exports = (grunt)->
 
   grunt.registerTask 'develop-mode',
   [
-    'clean:dist'
     'template:dev'
     'sass'
     'coffee'
