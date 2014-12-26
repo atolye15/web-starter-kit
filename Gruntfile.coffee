@@ -1,12 +1,13 @@
 module.exports = (grunt)->
   'use strict'
-  srcPath = 'src'
-  distPath = 'assets'
+  grunt.config.set 'config', grunt.file.readJSON 'config.json'
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
-    tplFiles: grunt.file.readJSON srcPath+'/tpl/files.json'
-    distPath: distPath
-    srcPath: srcPath
+    distPath: grunt.config.get('config').distPath
+    srcPath: grunt.config.get('config').srcPath
+    tplFiles: grunt.config.get('config').tplFiles
+    modeOptions: ( if grunt.config.get('config').staging then grunt.config.get('config').live else grunt.config.get('config').dev )
+    assetsPath: ( if grunt.config.get('config').staging then grunt.config.get('config').distPath else grunt.config.get('config').srcPath )
 
     banner: '/*!\n' +
             ' * <%= pkg.description %>\n' +
@@ -26,36 +27,25 @@ module.exports = (grunt)->
         files: ['<%= srcPath %>/js/vendor/**/*.js']
       html:
         files: [ '<%= srcPath %>/tpl/**/*.tpl', '!<%= srcPath %>/tpl/includes/**' ]
-        tasks: [ 'newer:template:dev', 'newer:replace' ]
+        tasks: [ 'newer:template', 'newer:replace:includes']
 
     template:
-      dev:
+      build:
         options:
           data:
-            'cssDir': '<%= srcPath %>/css'
-            'jsDir': '<%= srcPath %>/js'
-            'imgDir': '<%= srcPath %>/img'
-            'cssFileName': 'style'
-            'jsFileName': 'main'
-        files: '<%= tplFiles %>'
-      live:
-        options:
-          data:
-            'cssDir': '<%= distPath %>/css'
-            'jsDir': '<%= distPath %>/js'
-            'imgDir': '<%= distPath %>/img'
-            'cssFileName': 'style.min'
-            'jsFileName': 'main.min'
+            'assetsPath': '<%= assetsPath %>'
+            'cssFileName': '<%= modeOptions.cssFileName %>'
+            'jsFileName': '<%= modeOptions.jsFileName %>'
         files: '<%= tplFiles %>'
 
     replace:
-      dist:
+      includes:
         options:
           patterns: [
             # Moduls
             {
               match: 'exm-module',
-              replacement: '<%= grunt.file.read("'+srcPath+'/tpl/includes/module.tpl") %>'
+              replacement: '<%= grunt.file.read("'+grunt.config.get('config').srcPath+'/tpl/includes/module.tpl") %>'
             }
           ]
         files: [
@@ -220,6 +210,33 @@ module.exports = (grunt)->
           ]
         ]
 
+  grunt.registerTask 'mode', ( mode )->
+    if mode == 'dev'
+      grunt.task.run 'updatejson:staging:false'
+      grunt.log.ok 'Develop mod aktifleştirildi.'
+    else if mode == 'live'
+      grunt.task.run 'updatejson:staging:true'
+      grunt.log.ok 'Live mod aktifleştirişdi.'
+    else
+      grunt.log.error 'Hatalı komut girdiniz.'
+
+  grunt.registerTask 'updatejson', (key, value)->
+
+    projectFile = 'config.json'
+
+    if !grunt.file.exists( projectFile )
+      grunt.log.error( 'File ' + projectFile + ' not found!');
+      return true # return false to abort the execution
+
+    project = grunt.file.readJSON projectFile # get file as json object
+
+    # Convert to boolen if value is true or false
+    value == 'true' && ( value = true )
+    value == 'false' && ( value = false )
+
+    project[key]= value # edit the value of json object, you can also use projec.key if you know what you are updating
+
+    grunt.file.write( projectFile, JSON.stringify( project, null, 2 ) ) # serialize it back to file
 
   grunt.registerTask 'compressimg',
   [
@@ -227,19 +244,11 @@ module.exports = (grunt)->
     'imagemin'
   ]
 
-  grunt.registerTask 'develop-mode',
-  [
-    'template:dev'
-    'sass'
-    'coffee'
-    'concat:coffee'
-  ]
-
   grunt.registerTask 'deploy',
   [
     'clean:css'
     'clean:js'
-    'template:live'
+    'template:build'
     'sass'
     'autoprefixer'
     'cssmin'
@@ -284,3 +293,4 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-ftp-push'
   grunt.loadNpmTasks 'grunt-replace'
+  grunt.loadNpmTasks 'grunt-modify-json'
