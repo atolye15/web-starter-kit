@@ -6,6 +6,7 @@ module.exports = (grunt)->
     distPath: grunt.config.get('config').distPath
     srcPath: grunt.config.get('config').srcPath
     tplFiles: grunt.config.get('config').tplFiles
+    staging: grunt.config.get('config').staging
     assetsPath: ( if grunt.config.get('config').staging then grunt.config.get('config').distPath else grunt.config.get('config').srcPath )
 
     banner: '/*!\n' +
@@ -239,6 +240,12 @@ module.exports = (grunt)->
     project[key]= value # edit the value of json object, you can also use projec.key if you know what you are updating
 
     grunt.file.write( projectFile, JSON.stringify( project, null, 2 ) ) # serialize it back to file
+
+  grunt.event.once 'watch',(event, listener) ->
+    if grunt.config.get 'staging'
+      throw new Error 'Develop modu aktifleştiriniz!'
+
+
 
   grunt.registerTask 'compressimg',
   [
