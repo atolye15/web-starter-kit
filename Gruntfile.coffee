@@ -6,7 +6,6 @@ module.exports = (grunt)->
     distPath: grunt.config.get('config').distPath
     srcPath: grunt.config.get('config').srcPath
     tplFiles: grunt.config.get('config').tplFiles
-    modeOptions: ( if grunt.config.get('config').staging then grunt.config.get('config').live else grunt.config.get('config').dev )
     assetsPath: ( if grunt.config.get('config').staging then grunt.config.get('config').distPath else grunt.config.get('config').srcPath )
 
     banner: '/*!\n' +
@@ -27,15 +26,15 @@ module.exports = (grunt)->
         files: ['<%= srcPath %>/js/vendor/**/*.js']
       html:
         files: [ '<%= srcPath %>/tpl/**/*.tpl', '!<%= srcPath %>/tpl/includes/**' ]
-        tasks: [ 'newer:template', 'newer:replace:includes']
+        tasks: [ 'newer:template:build', 'newer:replace:includes' ]
 
     template:
       build:
         options:
           data:
             'assetsPath': '<%= assetsPath %>'
-            'cssFileName': '<%= modeOptions.cssFileName %>'
-            'jsFileName': '<%= modeOptions.jsFileName %>'
+            'cssFileName': 'style'+( if grunt.config.get('config').staging then '.min' else '' )
+            'jsFileName': 'main'+( if grunt.config.get('config').staging then '.min' else '' )
         files: '<%= tplFiles %>'
 
     replace:
@@ -162,6 +161,7 @@ module.exports = (grunt)->
         cwd: '<%= srcPath %>',
         src: ['css/*.css', '!css/style.css']
         dest: '<%= distPath %>/'
+      # copy Bower Components
       bowerComponents:
         files: [
           { ##! ClassList
@@ -213,14 +213,16 @@ module.exports = (grunt)->
   grunt.registerTask 'mode', ( mode )->
     if mode == 'dev'
       grunt.task.run 'updatejson:staging:false'
+      grunt.config.set( 'assetsPath', grunt.config.get('srcPath') )
       grunt.log.ok 'Develop mod aktifleştirildi.'
     else if mode == 'live'
       grunt.task.run 'updatejson:staging:true'
+      grunt.config.set( 'assetsPath', grunt.config.get('distPath') )
       grunt.log.ok 'Live mod aktifleştirişdi.'
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
-  grunt.registerTask 'updatejson', (key, value)->
+  grunt.registerTask 'updatejson', ( key, value )->
 
     projectFile = 'config.json'
 
@@ -246,9 +248,11 @@ module.exports = (grunt)->
 
   grunt.registerTask 'deploy',
   [
+    'mode:live'
     'clean:css'
     'clean:js'
     'template:build'
+    'replace:includes'
     'sass'
     'autoprefixer'
     'cssmin'
@@ -263,6 +267,7 @@ module.exports = (grunt)->
 
   grunt.registerTask 'build',
   [
+    'mode:live'
     'clean:css'
     'clean:js'
     'sass'

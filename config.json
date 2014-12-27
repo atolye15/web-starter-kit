@@ -2,14 +2,6 @@
   "staging": false,
   "srcPath": "src",
   "distPath": "assets",
-  "dev": {
-    "cssFileName": "style",
-    "jsFileName": "main"
-  },
-  "live": {
-    "cssFileName": "style.min",
-    "jsFileName": "main.min"
-  },
   "tplFiles": {
     "index.html": [
       "src/tpl/header.tpl",
