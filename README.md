@@ -58,7 +58,13 @@ git@gitlab.atolye15.net:username/project-name.git
 ```
 repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
 
-Projenizin remote adresini değiştirmek için
+Projenizin remote adresini eklemek/değiştirmek için;
+
+Eğer shallow clone yapılıp, yada download edilerek .git yeniden init edildiyse,
+```bash
+git remote add origin git@gitlab.atolye15.net:username/project-name.git
+```
+normal clone yapıldıysa,
 ```bash
 git remote set-url origin git@gitlab.atolye15.net:username/project-name.git
 ```
