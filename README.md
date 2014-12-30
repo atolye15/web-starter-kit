@@ -54,7 +54,7 @@ komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 Buradan projenizin gitlab ayarlarını yaparak `Create project` butonuna tıklayınız.
 Projenizi oluşturduktan SSH bölümünde yazan
 ```bash
-git@gitlab.atolye15.net:username/project-name.git
+git@gitlab.atolye15.net:frontend/project-name.git
 ```
 repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
 
@@ -62,11 +62,11 @@ Projenizin remote adresini eklemek/değiştirmek için;
 
 Eğer shallow clone yapılıp, yada download edilerek .git yeniden init edildiyse,
 ```bash
-git remote add origin git@gitlab.atolye15.net:username/project-name.git
+git remote add origin git@gitlab.atolye15.net:frontend/project-name.git
 ```
 normal clone yapıldıysa,
 ```bash
-git remote set-url origin git@gitlab.atolye15.net:username/project-name.git
+git remote set-url origin git@gitlab.atolye15.net:frontend/project-name.git
 ```
 kodunu girerek yeni remote adresinizi local projenize tanımlayın.
 
