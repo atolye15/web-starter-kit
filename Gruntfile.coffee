@@ -216,6 +216,11 @@ module.exports = (grunt)->
       grunt.task.run 'updatejson:staging:false'
       grunt.config.set( 'assetsPath', grunt.config.get('srcPath') )
       grunt.log.ok 'Develop mod aktifleştirildi.'
+      grunt.task.run 'template:build'
+      grunt.task.run 'replace:includes'
+      grunt.task.run 'sass'
+      grunt.task.run 'coffee'
+      grunt.task.run 'concat:coffee'
     else if mode == 'live'
       grunt.task.run 'updatejson:staging:true'
       grunt.config.set( 'assetsPath', grunt.config.get('distPath') )
