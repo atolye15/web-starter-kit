@@ -76,8 +76,10 @@
 // $border-color - Button Border Color. Default: $button-border-color
 // $border-width - Butonun border with degerini tanımlar
 // $border-color - Button border color değerini tanımlar
+// $color: Button color
+// $hover-color: Button hover color
 
-@mixin btn-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null ) {
+@mixin btn-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null, $color:null, $hover-color:null ) {
 
   // Burada arkaplan renginin var olup olmadığını kontrol ediyoruz
   // Bu $bg:false diğerek bu özelliği kaldırabilirsiniz
@@ -106,11 +108,21 @@
     &:hover,
     &:focus {
       background-color: $bg-hover;
-      color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
+      @if( $color == null and $hover-color == null ) {
+        color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
+      }
+      @else if not ( $hover-color == null ) {
+        color: $hover-color;
+      }
     }
 
-    // Bg rengine göre text rengi ayarlıyoruz
-    color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
+    @if $color == null {
+      // Bg rengine göre text rengi ayarlıyoruz
+      color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
+    }
+    @else {
+      color: $color;
+    }
   }
 
   // Eğer $disable:true ise Butonun disable durumunu ayarlıyoruz
