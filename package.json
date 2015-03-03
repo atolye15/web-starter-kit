@@ -1,12 +1,4 @@
 {
-  "name": "Project-Name",
-  "version": "1.0.0",
-  "description": "Project Desc",
-  "author": {
-    "name": "Atolye 15",
-    "email": "hello@atolye15.com",
-    "url": "http://www.atolye15.com"
-  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-watch": "*",
@@ -26,6 +18,7 @@
     "grunt-notify": "*",
     "grunt-ftp-push": "*",
     "grunt-replace": "*",
-    "grunt-modify-json": "*"
+    "grunt-preprocess": "*",
+    "grunt-include-replace": "*"
   }
 }

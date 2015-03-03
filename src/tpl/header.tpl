@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Default Project</title>
-    <link rel=stylesheet href="<%- assetsPath %>/css/<%- cssFileName %>.css">
+    <!-- @if ENV='dev' -->
+    <link rel=stylesheet href="assets/css/main.css">
+    <!-- @endif -->
+    <!-- @if ENV='prod' -->
+    <link rel=stylesheet href="assets/css/main.min.css">
+    <!-- @endif -->
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <script>window.html5 || document.write('<script src="<%- assetsPath %>/vendor/html5shiv.min.js"><\/script>')</script>
     <![endif]-->
   </head>
   <body>

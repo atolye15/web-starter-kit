@@ -2,63 +2,59 @@ module.exports = (grunt)->
   'use strict'
   grunt.config.set 'config', grunt.file.readJSON 'config.json'
   grunt.initConfig
-    pkg: grunt.file.readJSON 'package.json'
-    distPath: grunt.config.get('config').distPath
+    info: grunt.config.get('config').info
     srcPath: grunt.config.get('config').srcPath
-    tplFiles: grunt.config.get('config').tplFiles
+    devPath: grunt.config.get('config').devPath
+    distPath: grunt.config.get('config').distPath
     staging: grunt.config.get('config').staging
-    assetsPath: ( if grunt.config.get('config').staging then grunt.config.get('config').distPath else grunt.config.get('config').srcPath )
+    env       : ( if grunt.config.get('config').staging then 'prod' else 'dev' )
+    envPath   : ( if grunt.config.get('config').staging then grunt.config.get('config').distPath else grunt.config.get('config').devPath )
 
     banner: '/*!\n' +
-            ' * <%= pkg.description %>\n' +
-            ' * <%= pkg.author.name %> < <%= pkg.author.email %> >\n' +
-            ' * Version <%= pkg.version %> ( <%= grunt.template.today("dd-mm-yyyy") %> )\n'+
+            ' * <%= info.description %>\n' +
+            ' * <%= info.author.name %> < <%= info.author.email %> >\n' +
+            ' * Version <%= info.version %> ( <%= grunt.template.today("dd-mm-yyyy") %> )\n'+
             ' */\n'
     watch:
       options:
         livereload: true
       sass:
         files: ['<%= srcPath %>/sass/**/*.scss']
-        tasks: ['sass']
+        tasks: ['sass', 'autoprefixer']
       coffee:
         files: ['<%= srcPath %>/coffee/**/*.coffee']
         tasks: ['coffee', 'concat:coffee']
       vendor:
         files: ['<%= srcPath %>/js/vendor/**/*.js']
+        tasks: ['concat:vendor']
+      img:
+        files: ['<%= srcPath %>/img/*.img']
+        tasks: ['newer:imagemin']
       html:
         files: [ '<%= srcPath %>/tpl/**/*.tpl', '!<%= srcPath %>/tpl/includes/**' ]
-        tasks: [ 'newer:template:build', 'newer:replace:includes' ]
+        tasks: [ 'newer:template:build', 'newer:includereplace:includes', 'newer:preprocess' ]
 
     template:
       build:
         options:
           data:
-            'assetsPath': '<%= assetsPath %>'
-            'cssFileName': 'style'+( if grunt.config.get('config').staging then '.min' else '' )
-            'jsFileName': 'main'+( if grunt.config.get('config').staging then '.min' else '' )
-        files: '<%= tplFiles %>'
+            'assetsPath': 'assets'
+        files: grunt.config.get('config').tplFiles
 
-    replace:
+    includereplace:
       includes:
-        options:
-          patterns: [
-            # Moduls
-            {
-              match: 'exm-module',
-              replacement: '<%= grunt.file.read("'+grunt.config.get('config').srcPath+'/tpl/includes/module.tpl") %>'
-            }
-          ]
+          #Task-specific options go here.
         files: [
           expand: true
           flatten: true
-          src: ['*.html']
-          dest: ''
+          src: ['preprocess/*.html']
+          dest: '<%= envPath %>'
         ]
 
     sass:
       product:
         files:
-          '<%= srcPath %>/css/style.css': '<%= srcPath %>/sass/style.scss'
+          'preprocess/css/main.css': '<%= srcPath %>/sass/main.scss'
 
     autoprefixer:
       options:
@@ -73,15 +69,15 @@ module.exports = (grunt)->
           'Safari >= 6'
           ]
       prefix:
-        src: '<%= srcPath %>/css/style.css'
-        dest: '<%= srcPath %>/css/style.css'
+        src: 'preprocess/css/main.css'
+        dest: '<%= envPath %>/assets/css/main.css'
 
     cssmin:
       build:
         options:
           banner: '<%= banner %>'
         files:
-          '<%= distPath %>/css/style.min.css': '<%= srcPath %>/css/style.css'
+          '<%= envPath %>/assets/css/main.min.css': '<%= envPath %>/assets/css/main.css'
 
     coffee:
       product:
@@ -90,11 +86,11 @@ module.exports = (grunt)->
         expand: true
         cwd: '<%= srcPath %>/coffee/'
         src: ['*.coffee']
-        dest: '<%= srcPath %>/coffee/output'
+        dest: 'preprocess/coffee-output'
         ext: '.js'
 
     jshint:
-      files: ['<%= srcPath %>/js/*.js']
+      files: ['<%= envPath %>/assets/js/*.js']
       options:
         jshintrc: '.jshintrc'
 
@@ -104,13 +100,14 @@ module.exports = (grunt)->
         stripBanners: true,
         banner: '<%= banner %>\n'
       coffee:
-        src: [
-          '<%= srcPath %>/coffee/output/*.js'
-        ]
-        dest: '<%= srcPath %>/js/main.js'
-      css:
-        src: ['<%= srcPath %>/css/style.css']
-        dest: '<%= distPath %>/css/style.css'
+        src: grunt.config.get('config').coffeeFiles
+        dest: '<%= envPath %>/assets/js/app.js'
+      vendors:
+        src: grunt.config.get('config').vendorFiles
+        dest: '<%= envPath %>/assets/js/vendors.js'
+      # css:
+      #   src: ['<%= srcPath %>/css/main.css']
+      #   dest: '<%= distPath %>/css/main.css'
 
     uglify:
       options:
@@ -118,7 +115,10 @@ module.exports = (grunt)->
         banner: '<%= banner %>'
       product:
         files:
-          '<%= distPath %>/js/main.min.js': '<%= distPath %>/js/main.js'
+          '<%= envPath %>/assets/js/app.min.js': [
+            '<%= envPath %>/assets/js/vendors.js'
+            '<%= envPath %>/assets/js/app.js'
+          ]
 
     imagemin:
       dynamic:
@@ -128,56 +128,59 @@ module.exports = (grunt)->
             expand: true
             cwd: '<%= srcPath %>/'
             src: ['img/**/*.{png,jpg,gif}']
-            dest: '<%= distPath %>/'
+            dest: '<%= envPath %>/'
           ]
 
     clean:
-      css: ['<%= distPath %>/css']
-      js:  ['<%= distPath %>/js']
-      img: ['<%= distPath %>/img']
-      dist: [
-        '<%= distPath %>'
-        '*.html'
-        '<%= srcPath %>/css/style.css'
-        '<%= srcPath %>/css/style.css.map'
-        '<%= srcPath %>/js/main.js'
-        '<%= srcPath %>/coffee/output/*.js'
-      ]
+      # css: ['<%= distPath %>/css']
+      # js:  ['<%= distPath %>/js']
+      # img: ['<%= distPath %>/img']
+      # dist: [
+      #   '<%= distPath %>'
+      #   '*.html'
+      #   '<%= srcPath %>/css/main.css'
+      #   '<%= srcPath %>/css/main.css.map'
+      #   '<%= srcPath %>/js/app.js'
+      #   '<%= srcPath %>/coffee/output/*.js'
+      # ]
+      dev: ['<%= devPath %>/']
+      dist: ['<%= distPath %>/']
+      preprocess: ['preprocess/']
 
     copy:
       fonts:
         expand: true,
         cwd: '<%= srcPath %>',
-        src: ['css/fonts/**']
-        dest: '<%= distPath %>/'
+        src: ['fonts/**']
+        dest: '<%= envPath %>/assets/css/'
 
-      js:
-        expand: true,
-        cwd: '<%= srcPath %>',
-        src: ['js/**']
-        dest: '<%= distPath %>/'
+      # js:
+      #   expand: true,
+      #   cwd: '<%= srcPath %>',
+      #   src: ['js/**']
+      #   dest: '<%= distPath %>/'
       # copy external css
-      css:
-        expand: true,
-        cwd: '<%= srcPath %>',
-        src: ['css/*.css', '!css/style.css']
-        dest: '<%= distPath %>/'
+      # css:
+      #   expand: true,
+      #   cwd: '<%= srcPath %>',
+      #   src: ['css/*.css', '!css/main.css']
+      #   dest: '<%= distPath %>/'
       # copy Bower Components
       bowerComponents:
         files: [
           { ##! ClassList
             src: [ 'bower_components/classlist/classList.min.js' ]
-            dest: 'src/js/vendor/classList.min.js'
+            dest: 'src/vendors/classList.min.js'
             filter: 'isFile'
           }
           { ##! html5shiv
             src: [ 'bower_components/html5shiv/dist/html5shiv.min.js' ]
-            dest: 'src/js/vendor/html5shiv.min.js'
+            dest: 'src/vendors/html5shiv.min.js'
             filter: 'isFile'
           }
           { ##! jQuery
             src: [ 'bower_components/jquery/dist/jquery.min.js' ]
-            dest: 'src/js/vendor/jquery.min.js'
+            dest: 'src/vendors/jquery.min.js'
             filter: 'isFile'
           }
           { ##! Bootstrap
@@ -185,6 +188,12 @@ module.exports = (grunt)->
             cwd: 'bower_components/bootstrap-sass-official/assets/stylesheets/'
             src: [ 'bootstrap/**' ]
             dest: 'src/sass/'
+          }
+          { ##! Bootstrap JS
+            expand: true
+            cwd: '/bower_components/bootstrap-sass-official/assets/javascripts/'
+            src: [ 'bootstrap.js' ]
+            dest: 'src/vendors/'
           }
         ]
 
@@ -206,25 +215,29 @@ module.exports = (grunt)->
           expand: true
           cwd: '.'
           src: [
-            '*.html'
-            'assets/**'
+            'prod/**'
           ]
         ]
+    preprocess:
+      html :
+        options :
+          context :
+            ENV : '<%= env %>'
+        files :
+          '<%= envPath %>/index.html' : '<%= envPath %>/index.html'
 
   grunt.registerTask 'mode', ( mode )->
     if mode == 'dev'
       grunt.task.run 'updatejson:staging:false'
-      grunt.config.set( 'assetsPath', grunt.config.get('srcPath') )
-      grunt.log.ok 'Develop mod aktifleştirildi.'
-      grunt.task.run 'template:build'
-      grunt.task.run 'replace:includes'
-      grunt.task.run 'sass'
-      grunt.task.run 'coffee'
-      grunt.task.run 'concat:coffee'
-    else if mode == 'live'
+      grunt.config.set( 'envPath', grunt.config.get('devPath') )
+      grunt.log.ok 'Development mod aktifleştirildi.'
+      grunt.task.run 'clean:dev', 'general'
+
+    else if mode == 'prod'
       grunt.task.run 'updatejson:staging:true'
-      grunt.config.set( 'assetsPath', grunt.config.get('distPath') )
-      grunt.log.ok 'Live mod aktifleştirişdi.'
+      grunt.config.set( 'envPath', grunt.config.get('distPath') )
+      grunt.log.ok 'Production mod aktifleştirildi.'
+      grunt.task.run 'clean:dist', 'general', 'uglify', 'cssmin'
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
@@ -250,31 +263,17 @@ module.exports = (grunt)->
     if grunt.config.get 'staging'
       throw new Error 'Develop modu aktifleştiriniz!'
 
-
-
-  grunt.registerTask 'compressimg',
+  grunt.registerTask 'general',
   [
-    'clean:img'
-    'imagemin'
-  ]
-
-  grunt.registerTask 'deploy',
-  [
-    'mode:live'
-    'clean:css'
-    'clean:js'
+    'clean:preprocess'
     'template:build'
-    'replace:includes'
+    'includereplace:includes'
     'sass'
     'autoprefixer'
-    'cssmin'
     'coffee'
     'concat'
-    'copy:js'
-    'uglify'
-    'newer:imagemin'
+    'imagemin'
     'copy:fonts'
-    'copy:css'
   ]
 
   grunt.registerTask 'build',
@@ -309,5 +308,5 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-ftp-push'
-  grunt.loadNpmTasks 'grunt-replace'
-  grunt.loadNpmTasks 'grunt-modify-json'
+  grunt.loadNpmTasks 'grunt-include-replace'
+  grunt.loadNpmTasks 'grunt-preprocess'

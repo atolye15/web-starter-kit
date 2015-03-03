@@ -1,12 +1,27 @@
 {
+  "info": {
+    "name": "Project-Name",
+    "version": "1.0.0",
+    "description": "Project Desc",
+    "author": {
+      "name": "Atolye 15",
+      "email": "hello@atolye15.com",
+      "url": "http://www.atolye15.com"
+    }
+  },
   "staging": false,
   "srcPath": "src",
-  "distPath": "assets",
+  "devPath": "dev",
+  "distPath": "dist",
   "tplFiles": {
-    "index.html": [
+    "preprocess/index.html": [
       "src/tpl/header.tpl",
       "src/tpl/layouts/index.tpl",
       "src/tpl/footer.tpl"
     ]
-  }
+  },
+  "coffeeFiles": [
+    "preprocess/coffee-output/app.js"
+  ],
+  "vendorFiles": []
 }
