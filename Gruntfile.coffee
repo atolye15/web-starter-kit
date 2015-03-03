@@ -65,11 +65,11 @@ module.exports = (grunt)->
         browsers: [
           'Android 2.3'
           'Android >= 4'
-          'Chrome >= 20'
-          'Firefox >= 24'
+          'Chrome >= 36'
+          'Firefox >= 33'
           'Explorer >= 9'
           'iOS >= 6'
-          'Opera >= 12'
+          'Opera >= 26'
           'Safari >= 6'
           ]
       prefix:
