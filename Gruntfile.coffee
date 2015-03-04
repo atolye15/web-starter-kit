@@ -268,6 +268,7 @@ module.exports = (grunt)->
     'clean:preprocess'
     'template:build'
     'includereplace:includes'
+    'preprocess'
     'sass'
     'autoprefixer'
     'coffee'
