@@ -27,9 +27,6 @@ module.exports = (grunt)->
       vendor:
         files: ['<%= srcPath %>/js/vendor/**/*.js']
         tasks: ['concat:vendor']
-      img:
-        files: ['<%= srcPath %>/img/*.img']
-        tasks: ['newer:imagemin']
       html:
         files: [ '<%= srcPath %>/tpl/**/*.tpl', '!<%= srcPath %>/tpl/includes/**' ]
         tasks: [ 'newer:template:build', 'newer:includereplace:includes', 'newer:preprocess' ]
@@ -77,7 +74,7 @@ module.exports = (grunt)->
         options:
           banner: '<%= banner %>'
         files:
-          '<%= envPath %>/assets/css/main.min.css': '<%= envPath %>/assets/css/main.css'
+          '<%= envPath %>/assets/css/main.min.css' : '<%= envPath %>/assets/css/main.css'
 
     coffee:
       product:
@@ -127,7 +124,7 @@ module.exports = (grunt)->
         files: [
             expand: true
             cwd: '<%= srcPath %>/'
-            src: ['img/**/*.{png,jpg,gif}']
+            src: ['img/**/*.{png,jpg,gif,svg}']
             dest: '<%= envPath %>/'
           ]
 
