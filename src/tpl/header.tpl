@@ -7,10 +7,10 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Default Project</title>
     <!-- @if ENV='dev' -->
-    <link rel=stylesheet href="assets/css/main.css">
+    <link rel=stylesheet href="css/main.css">
     <!-- @endif -->
     <!-- @if ENV='prod' -->
-    <link rel=stylesheet href="assets/css/main.min.css">
+    <link rel=stylesheet href="css/main.min.css">
     <!-- @endif -->
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>

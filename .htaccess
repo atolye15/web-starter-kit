@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteRule ^dev/css/fonts/(.*)$ src/fonts/$1 [NC,L]
+    RewriteRule ^dev/img/(.*)$ src/img/$1 [NC,L]
+
+</IfModule>

@@ -9,10 +9,10 @@
       "url": "http://www.atolye15.com"
     }
   },
-  "staging": false,
+  "staging": true,
   "srcPath": "src",
   "devPath": "dev",
-  "distPath": "dist",
+  "distPath": "prod",
   "tplFiles": {
     "preprocess/index.html": [
       "src/tpl/header.tpl",

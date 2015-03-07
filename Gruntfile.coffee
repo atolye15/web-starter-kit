@@ -42,10 +42,10 @@ module.exports = (grunt)->
       includes:
           #Task-specific options go here.
         files: [
-          expand: true
-          flatten: true
-          src: ['preprocess/*.html']
-          dest: '<%= envPath %>'
+          expand  : true
+          flatten : true
+          src     : ['preprocess/*.html']
+          dest    : '<%= envPath %>'
         ]
 
     sass:
@@ -66,15 +66,15 @@ module.exports = (grunt)->
           'Safari >= 6'
           ]
       prefix:
-        src: 'preprocess/css/main.css'
-        dest: '<%= envPath %>/assets/css/main.css'
+        src  : 'preprocess/css/main.css'
+        dest : '<%= envPath %>/css/main.css'
 
     cssmin:
       build:
         options:
           banner: '<%= banner %>'
         files:
-          '<%= envPath %>/assets/css/main.min.css' : '<%= envPath %>/assets/css/main.css'
+          '<%= envPath %>/css/main.min.css' : '<%= envPath %>/css/main.css'
 
     coffee:
       product:
@@ -87,7 +87,7 @@ module.exports = (grunt)->
         ext: '.js'
 
     jshint:
-      files: ['<%= envPath %>/assets/js/*.js']
+      files: ['<%= envPath %>/js/*.js']
       options:
         jshintrc: '.jshintrc'
 
@@ -98,10 +98,10 @@ module.exports = (grunt)->
         banner: '<%= banner %>\n'
       coffee:
         src: grunt.config.get('config').coffeeFiles
-        dest: '<%= envPath %>/assets/js/app.js'
+        dest: '<%= envPath %>/js/app.js'
       vendors:
         src: grunt.config.get('config').vendorFiles
-        dest: '<%= envPath %>/assets/js/vendors.js'
+        dest: '<%= envPath %>/js/vendors.js'
       # css:
       #   src: ['<%= srcPath %>/css/main.css']
       #   dest: '<%= distPath %>/css/main.css'
@@ -112,9 +112,9 @@ module.exports = (grunt)->
         banner: '<%= banner %>'
       product:
         files:
-          '<%= envPath %>/assets/js/app.min.js': [
-            '<%= envPath %>/assets/js/vendors.js'
-            '<%= envPath %>/assets/js/app.js'
+          '<%= envPath %>/js/app.min.js': [
+            '<%= envPath %>/js/vendors.js'
+            '<%= envPath %>/js/app.js'
           ]
 
     imagemin:
@@ -140,16 +140,17 @@ module.exports = (grunt)->
       #   '<%= srcPath %>/js/app.js'
       #   '<%= srcPath %>/coffee/output/*.js'
       # ]
-      dev: ['<%= devPath %>/']
-      dist: ['<%= distPath %>/']
-      preprocess: ['preprocess/']
+      dev        : ['<%= devPath %>/']
+      dist       : ['<%= distPath %>/']
+      preprocess : ['preprocess/']
+      all        : [ '<%= devPath %>/', '<%= distPath %>/', 'preprocess/' ]
 
     copy:
       fonts:
-        expand: true,
-        cwd: '<%= srcPath %>',
-        src: ['fonts/**']
-        dest: '<%= envPath %>/assets/css/'
+        expand : true,
+        cwd    : '<%= srcPath %>',
+        src    : ['fonts/**']
+        dest   : '<%= envPath %>/css/'
 
       # js:
       #   expand: true,
@@ -166,31 +167,31 @@ module.exports = (grunt)->
       bowerComponents:
         files: [
           { ##! ClassList
-            src: [ 'bower_components/classlist/classList.min.js' ]
-            dest: 'src/vendors/classList.min.js'
-            filter: 'isFile'
+            src    : [ 'bower_components/classlist/classList.min.js' ]
+            dest   : 'src/vendors/classList.min.js'
+            filter : 'isFile'
           }
           { ##! html5shiv
-            src: [ 'bower_components/html5shiv/dist/html5shiv.min.js' ]
-            dest: 'src/vendors/html5shiv.min.js'
-            filter: 'isFile'
+            src    : [ 'bower_components/html5shiv/dist/html5shiv.min.js' ]
+            dest   : 'src/vendors/html5shiv.min.js'
+            filter : 'isFile'
           }
           { ##! jQuery
-            src: [ 'bower_components/jquery/dist/jquery.min.js' ]
-            dest: 'src/vendors/jquery.min.js'
-            filter: 'isFile'
+            src    : [ 'bower_components/jquery/dist/jquery.min.js' ]
+            dest   : 'src/vendors/jquery.min.js'
+            filter : 'isFile'
           }
           { ##! Bootstrap
-            expand: true
-            cwd: 'bower_components/bootstrap-sass-official/assets/stylesheets/'
-            src: [ 'bootstrap/**' ]
-            dest: 'src/sass/'
+            expand : true
+            cwd    : 'bower_components/bootstrap-sass-official/assets/stylesheets/'
+            src    : [ 'bootstrap/**' ]
+            dest   : 'src/sass/'
           }
           { ##! Bootstrap JS
-            expand: true
-            cwd: '/bower_components/bootstrap-sass-official/assets/javascripts/'
-            src: [ 'bootstrap.js' ]
-            dest: 'src/vendors/'
+            expand : true
+            cwd    : '/bower_components/bootstrap-sass-official/assets/javascripts/'
+            src    : [ 'bootstrap.js' ]
+            dest   : 'src/vendors/'
           }
         ]
 
@@ -234,7 +235,7 @@ module.exports = (grunt)->
       grunt.task.run 'updatejson:staging:true'
       grunt.config.set( 'envPath', grunt.config.get('distPath') )
       grunt.log.ok 'Production mod aktifleştirildi.'
-      grunt.task.run 'clean:dist', 'general', 'uglify', 'cssmin'
+      grunt.task.run 'clean:dist', 'general', 'imagemin', 'copy:fonts', 'uglify', 'cssmin'
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
@@ -270,8 +271,6 @@ module.exports = (grunt)->
     'autoprefixer'
     'coffee'
     'concat'
-    'imagemin'
-    'copy:fonts'
   ]
 
   grunt.registerTask 'build',
