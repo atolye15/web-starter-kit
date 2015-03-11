@@ -73,6 +73,7 @@ module.exports = (grunt)->
       build:
         options:
           banner: '<%= banner %>'
+          rebase: false
         files:
           '<%= envPath %>/css/main.min.css' : '<%= envPath %>/css/main.css'
 
