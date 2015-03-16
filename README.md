@@ -3,7 +3,7 @@ Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başl
 
 ## Kurulum ?
 
-Web Starter Kit'in son versiyonunu [buradan](http://gitlab.atolye15.net/frontend/starter-kit/tags), güncel halini [buradan](http://gitlab.atolye15.net/frontend/starter-kit/repository/archive.zip?ref=master) indirebilirsiniz yada
+Web Starter Kit'in güncel halini [buradan](http://gitlab.atolye15.net/frontend/starter-kit/repository/archive.zip?ref=master) indirebilirsiniz yada
 
 ```bash
 git clone git@gitlab.atolye15.net:frontend/starter-kit.git project-name
@@ -23,6 +23,7 @@ git init
 git add -A
 git commit -m "İlk Commit"
 ```
+> Shallow clone da reponun tüm commit geçmişini almak yerine `--depth 1` diyerek, 1 commitlik geçmişi çeker.
 
 ## Başlangıç
 Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
@@ -31,6 +32,7 @@ Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
 - [Npm](https://www.npmjs.org/)
 - [Ruby](https://www.ruby-lang.org/)
 - [Git](http://git-scm.com/)
+- [Grunt](http://gruntjs.com/)
 
 kurulu olmalıdır.
 
