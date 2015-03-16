@@ -9,7 +9,7 @@
       "url": "http://www.atolye15.com"
     }
   },
-  "staging": true,
+  "staging": false,
   "srcPath": "src",
   "devPath": "dev",
   "distPath": "prod",

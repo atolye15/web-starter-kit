@@ -152,6 +152,11 @@ module.exports = (grunt)->
         cwd    : '<%= srcPath %>',
         src    : ['fonts/**']
         dest   : '<%= envPath %>/css/'
+      libs:
+        expand : true,
+        cwd    : '<%= srcPath %>',
+        src    : ['libs/**']
+        dest   : '<%= envPath %>/'
 
       # js:
       #   expand: true,
@@ -174,12 +179,12 @@ module.exports = (grunt)->
           }
           { ##! html5shiv
             src    : [ 'bower_components/html5shiv/dist/html5shiv.min.js' ]
-            dest   : 'src/vendors/html5shiv.min.js'
+            dest   : 'src/libs/html5shiv.min.js'
             filter : 'isFile'
           }
           { ##! jQuery
             src    : [ 'bower_components/jquery/dist/jquery.min.js' ]
-            dest   : 'src/vendors/jquery.min.js'
+            dest   : 'src/libs/jquery.min.js'
             filter : 'isFile'
           }
           { ##! Bootstrap
@@ -236,7 +241,7 @@ module.exports = (grunt)->
       grunt.task.run 'updatejson:staging:true'
       grunt.config.set( 'envPath', grunt.config.get('distPath') )
       grunt.log.ok 'Production mod aktifleştirildi.'
-      grunt.task.run 'clean:dist', 'general', 'imagemin', 'copy:fonts', 'uglify', 'cssmin'
+      grunt.task.run 'clean:dist', 'general', 'imagemin', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs'
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
@@ -288,6 +293,7 @@ module.exports = (grunt)->
     'uglify'
     'newer:imagemin'
     'copy:fonts'
+    'copy:libs'
   ]
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
