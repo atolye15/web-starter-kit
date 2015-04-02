@@ -3,17 +3,17 @@ Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başl
 
 ## Kurulum ?
 
-Web Starter Kit'in güncel halini [buradan](http://gitlab.atolye15.net/frontend/starter-kit/repository/archive.zip?ref=master) indirebilirsiniz yada
+Web Starter Kit'in güncel halini [buradan](http://gitlab.atolye15.net/frontend/web-starter-kit/repository/archive.zip?ref=master) indirebilirsiniz yada
 
 ```bash
-git clone git@gitlab.atolye15.net:frontend/starter-kit.git project-name
+git clone git@gitlab.atolye15.net:frontend/web-starter-kit.git project-name
 cd project-name
 ```
 git clone yaparak repoyu belirttiğiniz(`project-name`) klasöre clonlayabilirsiniz.
 
 Full clone yerine shallow clone yapmak isterseniz
 ```bash
-git clone --depth 1 git@gitlab.atolye15.net:frontend/starter-kit.git project-name
+git clone --depth 1 git@gitlab.atolye15.net:frontend/web-starter-kit.git project-name
 cd project-name
 # Repo shallow clone olduğu için eski giti silip yeni git reposu oluşturmamız gerekli
 # Aksi taktirde yeni remote a push edilemeyecektir.
