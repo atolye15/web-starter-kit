@@ -6,3 +6,4 @@ do ->
    * Function Desc.
    * @param obj  {object} $ param desc
   ###
+  return

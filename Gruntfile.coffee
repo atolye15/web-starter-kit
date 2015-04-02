@@ -88,7 +88,7 @@ module.exports = (grunt)->
         ext: '.js'
 
     jshint:
-      files: ['<%= envPath %>/js/*.js']
+      files: ['preprocess/coffee-output/*.js']
       options:
         jshintrc: '.jshintrc'
 
@@ -276,6 +276,7 @@ module.exports = (grunt)->
     'sass'
     'autoprefixer'
     'coffee'
+    'jshint'
     'concat'
   ]
 
