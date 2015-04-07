@@ -25,8 +25,8 @@ module.exports = (grunt)->
         files: ['<%= srcPath %>/coffee/**/*.coffee']
         tasks: ['coffee', 'concat:coffee']
       vendor:
-        files: ['<%= srcPath %>/js/vendor/**/*.js']
-        tasks: ['concat:vendor']
+        files: ['<%= srcPath %>/vendors/**/*.js']
+        tasks: ['concat:vendors']
       html:
         files: [ '<%= srcPath %>/tpl/**/*.tpl', '!<%= srcPath %>/tpl/includes/**' ]
         tasks: [ 'newer:template:build', 'newer:includereplace:includes', 'newer:preprocess' ]
