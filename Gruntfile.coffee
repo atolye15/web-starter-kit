@@ -20,7 +20,7 @@ module.exports = (grunt)->
         livereload: true
       sass:
         files: ['<%= srcPath %>/sass/**/*.scss']
-        tasks: ['sass', 'autoprefixer']
+        tasks: ['sass', 'autoprefixer', 'concat:css']
       coffee:
         files: ['<%= srcPath %>/coffee/**/*.coffee']
         tasks: ['coffee', 'concat:coffee']
@@ -72,7 +72,7 @@ module.exports = (grunt)->
     cssmin:
       build:
         options:
-          banner: '<%= banner %>'
+          keepSpecialComments: 1
           rebase: false
         files:
           '<%= envPath %>/css/main.min.css' : '<%= envPath %>/css/main.css'
@@ -103,9 +103,9 @@ module.exports = (grunt)->
       vendors:
         src: grunt.config.get('config').vendorFiles
         dest: '<%= envPath %>/js/vendors.js'
-      # css:
-      #   src: ['<%= srcPath %>/css/main.css']
-      #   dest: '<%= distPath %>/css/main.css'
+      css:
+        src: ['<%= envPath %>/css/main.css']
+        dest: '<%= envPath %>/css/main.css'
 
     uglify:
       options:
