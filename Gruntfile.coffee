@@ -62,6 +62,7 @@ module.exports = (grunt)->
 
     autoprefixer:
       options:
+        map: true
         browsers: [
           'Android 2.3'
           'Android >= 4'
