@@ -295,23 +295,6 @@ module.exports = (grunt)->
     'concat'
   ]
 
-  grunt.registerTask 'build',
-  [
-    'mode:live'
-    'clean:css'
-    'clean:js'
-    'sass'
-    'autoprefixer'
-    'cssmin'
-    'coffee'
-    'concat'
-    'copy:js'
-    'uglify'
-    'newer:imagemin'
-    'copy:fonts'
-    'copy:libs'
-  ]
-
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-template'
