@@ -19,6 +19,7 @@
     "grunt-ftp-push": "*",
     "grunt-replace": "*",
     "grunt-preprocess": "*",
-    "grunt-include-replace": "*"
+    "grunt-include-replace": "*",
+    "grunt-combine-media-queries": "*"
   }
 }

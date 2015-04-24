@@ -53,6 +53,13 @@ module.exports = (grunt)->
         files:
           'preprocess/css/main.css': '<%= srcPath %>/sass/main.scss'
 
+    cmq:
+      options:
+        log: false
+      main:
+        files:
+          'preprocess/css/main.css': ['preprocess/css/main.css']
+
     autoprefixer:
       options:
         browsers: [
@@ -274,6 +281,7 @@ module.exports = (grunt)->
     'includereplace:includes'
     'preprocess'
     'sass'
+    'cmq'
     'autoprefixer'
     'coffee'
     'jshint'
@@ -315,3 +323,4 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-ftp-push'
   grunt.loadNpmTasks 'grunt-include-replace'
   grunt.loadNpmTasks 'grunt-preprocess'
+  grunt.loadNpmTasks 'grunt-combine-media-queries'
