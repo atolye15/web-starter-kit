@@ -23,7 +23,7 @@ module.exports = (grunt)->
         tasks: ['sass', 'autoprefixer', 'concat:css']
       coffee:
         files: ['<%= srcPath %>/coffee/**/*.coffee']
-        tasks: ['coffee', 'concat:coffee']
+        tasks: ['coffee', 'jshint', 'concat:coffee' ]
       vendor:
         files: ['<%= srcPath %>/vendors/**/*.js']
         tasks: ['concat:vendors']
