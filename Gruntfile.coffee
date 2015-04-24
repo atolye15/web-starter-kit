@@ -89,6 +89,7 @@ module.exports = (grunt)->
       product:
         options:
           bare: true
+          sourceMap: true
         expand: true
         cwd: '<%= srcPath %>/coffee/'
         src: ['*.coffee']
@@ -106,9 +107,13 @@ module.exports = (grunt)->
         stripBanners: true,
         banner: '<%= banner %>\n'
       coffee:
+        options:
+          sourceMap: true
         src: grunt.config.get('config').coffeeFiles
         dest: '<%= envPath %>/js/app.js'
       vendors:
+        options:
+          sourceMap: true
         src: grunt.config.get('config').vendorFiles
         dest: '<%= envPath %>/js/vendors.js'
       css:
@@ -153,6 +158,7 @@ module.exports = (grunt)->
       dist       : ['<%= distPath %>/']
       preprocess : ['preprocess/']
       all        : [ '<%= devPath %>/', '<%= distPath %>/', 'preprocess/' ]
+      maps       : [ '<%= distPath %>/css/*.map', '<%= distPath %>/js/*.map']
 
     copy:
       fonts:
@@ -249,7 +255,7 @@ module.exports = (grunt)->
       grunt.task.run 'updatejson:staging:true'
       grunt.config.set( 'envPath', grunt.config.get('distPath') )
       grunt.log.ok 'Production mod aktifleştirildi.'
-      grunt.task.run 'clean:dist', 'general', 'imagemin', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs'
+      grunt.task.run 'clean:dist', 'general', 'imagemin', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs', 'clean:maps'
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
