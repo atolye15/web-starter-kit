@@ -209,7 +209,7 @@ module.exports = (grunt)->
           }
           { ##! Bootstrap JS
             expand : true
-            cwd    : '/bower_components/bootstrap-sass-official/assets/javascripts/'
+            cwd    : 'bower_components/bootstrap-sass-official/assets/javascripts/'
             src    : [ 'bootstrap.js' ]
             dest   : 'src/vendors/'
           }
