@@ -241,8 +241,14 @@ module.exports = (grunt)->
         options :
           context :
             ENV : '<%= env %>'
-        files :
-          '<%= envPath %>/index.html' : '<%= envPath %>/index.html'
+        files :[
+          {
+            expand: true
+            cwd: '<%= env %>/'
+            src: ['*.html']
+            dest: '<%= env %>/'
+          }
+        ]
 
   grunt.registerTask 'mode', ( mode )->
     if mode == 'dev'
