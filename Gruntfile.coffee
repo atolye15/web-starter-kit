@@ -136,11 +136,20 @@ module.exports = (grunt)->
         options:
           optimizationLevel: 7
         files: [
-            expand: true
-            cwd: '<%= srcPath %>/'
-            src: ['img/**/*.{png,jpg,gif,svg}']
-            dest: '<%= envPath %>/'
-          ]
+          expand: true
+          cwd: '<%= srcPath %>/'
+          src: ['img/**/*.{png,jpg,gif}']
+          dest: '<%= envPath %>/'
+        ]
+
+    svgmin:
+      dynamic:
+        files: [
+          expand: true
+          cwd: '<%= srcPath %>/'
+          src: ['img/**/*.svg']
+          dest: '<%= envPath %>/'
+        ]
 
     clean:
       # css: ['<%= distPath %>/css']
@@ -261,7 +270,7 @@ module.exports = (grunt)->
       grunt.task.run 'updatejson:staging:true'
       grunt.config.set( 'envPath', grunt.config.get('distPath') )
       grunt.log.ok 'Production mod aktifleştirildi.'
-      grunt.task.run 'clean:dist', 'general', 'imagemin', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs', 'clean:maps'
+      grunt.task.run 'clean:dist', 'general', 'imagemin', 'svgmin', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs', 'clean:maps'
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
@@ -320,3 +329,4 @@ module.exports = (grunt)->
   grunt.loadNpmTasks 'grunt-include-replace'
   grunt.loadNpmTasks 'grunt-preprocess'
   grunt.loadNpmTasks 'grunt-combine-media-queries'
+  grunt.loadNpmTasks 'grunt-svgmin'

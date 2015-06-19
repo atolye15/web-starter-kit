@@ -20,6 +20,7 @@
     "grunt-replace": "*",
     "grunt-preprocess": "*",
     "grunt-include-replace": "*",
-    "grunt-combine-media-queries": "*"
+    "grunt-combine-media-queries": "*",
+    "grunt-svgmin": "*"
   }
 }
