@@ -1,51 +1,52 @@
 # Atölye15 Web Starter Kit
 Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başlangıç paketidir. Temel amacı her proje başlangıçlarında yapılan rutin işlerden sizi kurtarmak ve Front-end geliştiriciler arasında senkronizasyonu sağlamaktır. [Atölye15 CSS Stil Rehberi](http://gitlab.atolye15.net/frontend/atolye15-style-guide/blob/master/css-style-guilde.md) kuralları çerçevesinde yazılmıştır.
 
+## İçerisinde neler mevcut ?
+ - HTML Template Sitemi
+ - Sass
+ - Autoprefixer
+ - CSS Minification
+ - Resimleri optimize etme
+ - Coffee Script
+ - JSHint
+
+## Sistem Gereksinimleri
+Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
+- [Node.js](http://nodejs.org/)
+- [Npm (Node Package Manager)](https://www.npmjs.org/)
+- [Ruby](https://www.ruby-lang.org/)
+- [Sass](http://sass-lang.com/install/)
+- [Git](http://git-scm.com/)
+- [Grunt](http://gruntjs.com/getting-started/)
+
 ## Kurulum ?
 
-Web Starter Kit'in güncel halini [buradan](http://gitlab.atolye15.net/frontend/web-starter-kit/repository/archive.zip?ref=master) indirebilirsiniz yada
-
+1. Web Starter Kit'in güncel halini [buradan](http://gitlab.atolye15.net/frontend/web-starter-kit/repository/archive.zip?ref=master) indirin yada
 ```bash
-git clone git@gitlab.atolye15.net:frontend/web-starter-kit.git project-name
-cd project-name
+git clone git@gitlab.atolye15.net:frontend/web-starter-kit.git proje-klasoru
 ```
-git clone yaparak repoyu belirttiğiniz(`project-name`) klasöre clonlayabilirsiniz.
+şeklinde klonlayın.
 
-Full clone yerine shallow clone yapmak isterseniz
+2. İndirdiğiniz/Klonladığınız klasöre girin. Terminal ile
 ```bash
-git clone --depth 1 git@gitlab.atolye15.net:frontend/web-starter-kit.git project-name
-cd project-name
-# Repo shallow clone olduğu için eski giti silip yeni git reposu oluşturmamız gerekli
-# Aksi taktirde yeni remote a push edilemeyecektir.
+cd Desktop/Dev/proje-klasoru
+# Projeye temiz bir git geçmişi ile başlamak için
+# clone repoyu silelim ve tekrar oluşturalım
 rm -rf .git
 git init
 # Dosyaları commitleyelim
 git add -A
 git commit -m "İlk Commit"
 ```
-> Shallow clone da reponun tüm commit geçmişini almak yerine `--depth 1` diyerek, 1 commitlik geçmişi çeker.
-
-## Başlangıç
-Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
-
-- [Node.js](http://nodejs.org/)
-- [Npm](https://www.npmjs.org/)
-- [Ruby](https://www.ruby-lang.org/)
-- [Git](http://git-scm.com/)
-- [Grunt](http://gruntjs.com/)
-
-kurulu olmalıdır.
-
-Projenizde kullanacağınız bağımlılıkları
-
+3. Projenizde kullanacağınız bağımlılıkları
 ```bash
 npm install
 ```
 komutu ile kurabilirsiniz.
 
-Bağımlılıkları indirdikten sonra terminalinizde;
-
+4. Bağımlılıkları indirdikten sonra terminalinizde;
 ```bash
+grunt mode:dev # Geliştirme ortamını develop moda hazırlar
 grunt watch
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
@@ -59,16 +60,9 @@ Projenizi oluşturduktan SSH bölümünde yazan
 git@gitlab.atolye15.net:frontend/project-name.git
 ```
 repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
-
 Projenizin remote adresini eklemek/değiştirmek için;
-
-Eğer shallow clone yapılıp, yada download edilerek .git yeniden init edildiyse,
 ```bash
 git remote add origin git@gitlab.atolye15.net:frontend/project-name.git
-```
-normal clone yapıldıysa,
-```bash
-git remote set-url origin git@gitlab.atolye15.net:frontend/project-name.git
 ```
 kodunu girerek yeni remote adresinizi local projenize tanımlayın.
 
@@ -84,6 +78,42 @@ git push origin --tags
 ```
 komutu ile taglarınızı remote a atabilirsiniz.
 
+## Klasör Yapısı
+```html
+root
+├── dev
+├── prod
+├── preprocess
+├── src
+│   ├── coffee
+│   ├── fonts
+│   ├── img
+│   ├── libs
+│   ├── sass
+│   ├── tpl
+│   └── vendors
+├── .gitignore
+├── .jshintrc
+├── bower.json
+├── config.json
+├── package.json
+└── Gruntfile.coffee
+```
+* `dev` Development modunda Grunt dosyaları bu klasör içerisine oluşturur. Geliştirme modunda `http://localhost/dev` adresinde proje çalıştırılır.
+* `prod` Production modunda Grunt dosyaları bu klasör içerisinde oluşturur. Geliştirme modunda `http://localhost/prod` adresinde proje çalıştırılır.
+* `preprocess` Ara işlemlerin yapıldığı klasördür. Bu klasör grunt tarafından kullanılmaktadır.
+* `src` Kaynak kodların bulunduğu klasördür
+* `src/coffee` CoffeeScript dosyalarının bulunduğu klasördür. Burada oluşturduğunu dosyalar **config.json** da **coffeeFiles** değişkeni içerisinde dosya yolları yazılarak sisteme dahil edilir.
+* `src/fonts` Font dosyaları bu klasör içerinde bulunur.
+* `src/img` Resim dosyaları bu klasör içerisinde bulunur.
+* `libs` Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur.
+* `sass` Scss dosyaları bu klasör içerisinde bulunur. Bu klasör içerisindeki klasörlerinde özelliklerine [Buradan](gitlab.atolye15.net/frontend/atolye15-style-guide/blob/master/css-style-guilde.md#dosya-yapisi) ulaşabilirsiniz.
+* `tpl` HTML Template dosyaları bu klasörde bulunur.
+* `vendors` Projeye dahil edilecek Javascript dosyaları.
+
+> Çalışma Mantığı Bölümünde yukarıdaki klasörler ve dosyalar hakkında detaylı bilgileri bulabilirsiniz.
+
+---
 
 ## Grunt Kullanımı
 Grunt Node.Js ile çalışan, terminal aracılığı ile konrol ettiğimiz bir görev çalıştırıcısıdır. Web geliştirme sürecinde elle yaptığımız rutin işleri üzerine alarak bu işleri otomatikleştirir ve Front-end geliştirme yükünü hafifletir.
