@@ -51,32 +51,6 @@ grunt watch
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
-## Projeyi Gitlab a yüklemek
-
-[gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden **New Project** butonuna tıklayarak projenizi oluşturunuz.
-Buradan projenizin gitlab ayarlarını yaparak **Create project** butonuna tıklayınız.
-Projenizi oluşturduktan SSH bölümünde yazan
-```bash
-git@gitlab.atolye15.net:frontend/project-name.git
-```
-repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
-Projenizin remote adresini eklemek için;
-```bash
-git remote add origin git@gitlab.atolye15.net:frontend/project-name.git
-```
-kodunu girerek yeni remote adresinizi local projenize tanımlayın.
-
-Projenizdeki dosyaları remote a atmak için
-```bash
-git push origin --all
-```
-yazmanız yeterli olacaktır.
-
-Projenizde eğer tag oluşturmuşsanız veya mevcut tagları remote a yüklemek isterseniz
-```bash
-git push origin --tags
-```
-komutu ile taglarınızı remote a atabilirsiniz.
 
 ## Klasör Yapısı
 ```html
@@ -112,6 +86,33 @@ root
 * `vendors` Projeye dahil edilecek Javascript dosyaları.
 
 > Çalışma Mantığı Bölümünde yukarıdaki klasörler ve dosyalar hakkında detaylı bilgileri bulabilirsiniz.
+
+## Projeyi Gitlab a yüklemek
+
+[gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden **New Project** butonuna tıklayarak projenizi oluşturunuz.
+Buradan projenizin gitlab ayarlarını yaparak **Create project** butonuna tıklayınız.
+Projenizi oluşturduktan SSH bölümünde yazan
+```bash
+git@gitlab.atolye15.net:frontend/project-name.git
+```
+repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
+Projenizin remote adresini eklemek için;
+```bash
+git remote add origin git@gitlab.atolye15.net:frontend/project-name.git
+```
+kodunu girerek yeni remote adresinizi local projenize tanımlayın.
+
+Projenizdeki dosyaları remote a atmak için
+```bash
+git push origin --all
+```
+yazmanız yeterli olacaktır.
+
+Projenizde eğer tag oluşturmuşsanız veya mevcut tagları remote a yüklemek isterseniz
+```bash
+git push origin --tags
+```
+komutu ile taglarınızı remote a atabilirsiniz.
 
 ---
 
