@@ -53,14 +53,14 @@ komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
 ## Projeyi Gitlab a yüklemek
 
-[gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden `New Project` butonuna tıklayarak projenizi oluşturunuz.
-Buradan projenizin gitlab ayarlarını yaparak `Create project` butonuna tıklayınız.
+[gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden **New Project** butonuna tıklayarak projenizi oluşturunuz.
+Buradan projenizin gitlab ayarlarını yaparak **Create project** butonuna tıklayınız.
 Projenizi oluşturduktan SSH bölümünde yazan
 ```bash
 git@gitlab.atolye15.net:frontend/project-name.git
 ```
 repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
-Projenizin remote adresini eklemek/değiştirmek için;
+Projenizin remote adresini eklemek için;
 ```bash
 git remote add origin git@gitlab.atolye15.net:frontend/project-name.git
 ```
