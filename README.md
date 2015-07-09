@@ -51,7 +51,6 @@ grunt watch
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
-
 ## Klasör Yapısı
 ```html
 root
@@ -86,9 +85,7 @@ root
 * `vendors` Projeye dahil edilecek Javascript dosyaları.
 
 > Çalışma Mantığı Bölümünde yukarıdaki klasörler ve dosyalar hakkında detaylı bilgileri bulabilirsiniz.
-
 ## Projeyi Gitlab a yüklemek
-
 [gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden **New Project** butonuna tıklayarak projenizi oluşturunuz.
 Buradan projenizin gitlab ayarlarını yaparak **Create project** butonuna tıklayınız.
 Projenizi oluşturduktan SSH bölümünde yazan
