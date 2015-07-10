@@ -8,11 +8,11 @@
 // -------------------------
 
 // `<body>` nin arkaplan rengi
-$body-bg:               #fff !default;
+$body-bg:               $global-bg-color !default;
 //** `<body>` nin Global text rengi.
-$text-color:            $color-oil !default;
+$text-color:            $global-text-color!default;
 // Global link rengi
-$link-color:            #428bca !default;
+$link-color:            $global-link-color !default;
 // Global link hover rengi
 $link-hover-color:      darken($link-color, 15%) !default;
 
@@ -40,12 +40,12 @@ $line-height-computed: floor(($font-size-base * $line-height-base)) !default; //
 $headings-font-family: inherit !default;
 $headings-font-weight: 500 !default;
 $headings-line-height: 1.1 !default;
-$headings-color:       inherit !default;
+$headings-color:       $global-title-color !default;
 
 // Text muted color
 $text-muted: $color-monsoon !default;
 // Horizontal line color.
-$hr-border: $color-smoke !default;
+$hr-border: $global-border-color !default;
 
 
 // FONT SIZING
