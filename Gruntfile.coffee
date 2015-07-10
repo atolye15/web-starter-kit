@@ -6,6 +6,7 @@ module.exports = (grunt)->
     srcPath: grunt.config.get('config').srcPath
     devPath: grunt.config.get('config').devPath
     distPath: grunt.config.get('config').distPath
+    deployPath: grunt.config.get('config').deployPath
     staging: grunt.config.get('config').staging
     env       : ( if grunt.config.get('config').staging then 'prod' else 'dev' )
     envPath   : ( if grunt.config.get('config').staging then grunt.config.get('config').distPath else grunt.config.get('config').devPath )
@@ -40,7 +41,7 @@ module.exports = (grunt)->
 
     includereplace:
       includes:
-          #Task-specific options go here.
+        # Task-specific options go here.
         files: [
           expand  : true
           flatten : true
@@ -152,22 +153,15 @@ module.exports = (grunt)->
         ]
 
     clean:
-      # css: ['<%= distPath %>/css']
-      # js:  ['<%= distPath %>/js']
-      # img: ['<%= distPath %>/img']
-      # dist: [
-      #   '<%= distPath %>'
-      #   '*.html'
-      #   '<%= srcPath %>/css/main.css'
-      #   '<%= srcPath %>/css/main.css.map'
-      #   '<%= srcPath %>/js/app.js'
-      #   '<%= srcPath %>/coffee/output/*.js'
-      # ]
       dev        : ['<%= devPath %>/']
       dist       : ['<%= distPath %>/']
       preprocess : ['preprocess/']
       all        : [ '<%= devPath %>/', '<%= distPath %>/', 'preprocess/' ]
       maps       : [ '<%= distPath %>/css/*.map', '<%= distPath %>/js/*.map']
+      deploy     :
+        options:
+          force: true
+        src: ['<%= deployPath %>/']
 
     copy:
       fonts:
@@ -180,6 +174,11 @@ module.exports = (grunt)->
         cwd    : '<%= srcPath %>',
         src    : ['libs/**']
         dest   : '<%= envPath %>/'
+      deploy:
+        expand: true
+        cwd    : '<%= distPath %>'
+        src    : ['**', '!*.html']
+        dest   : '<%= deployPath %>/'
 
       # js:
       #   expand: true,
@@ -271,6 +270,13 @@ module.exports = (grunt)->
       grunt.config.set( 'envPath', grunt.config.get('distPath') )
       grunt.log.ok 'Production mod aktifleştirildi.'
       grunt.task.run 'clean:dist', 'general', 'imagemin', 'svgmin', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs', 'clean:maps'
+
+    else if mode == 'prod-soft'
+      grunt.task.run 'updatejson:staging:true'
+      grunt.config.set( 'envPath', grunt.config.get('distPath') )
+      grunt.log.ok 'Production soft mod aktifleştirildi.'
+      grunt.task.run 'general', 'copy:fonts', 'uglify', 'cssmin', 'copy:libs', 'clean:maps'
+
     else
       grunt.log.error 'Hatalı komut girdiniz.'
 
@@ -308,6 +314,20 @@ module.exports = (grunt)->
     'coffee'
     'jshint'
     'concat'
+  ]
+
+  grunt.registerTask 'deploy',
+  [
+    'mode:prod'
+    'clean:deploy'
+    'copy:deploy'
+  ]
+
+  grunt.registerTask 'deploy-soft',
+  [
+    'mode:prod-soft'
+    'clean:deploy'
+    'copy:deploy'
   ]
 
   grunt.loadNpmTasks 'grunt-contrib-watch'

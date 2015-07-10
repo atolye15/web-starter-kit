@@ -13,6 +13,7 @@
   "srcPath": "src",
   "devPath": "dev",
   "distPath": "prod",
+  "deployPath": "../public",
   "tplFiles": {
     "preprocess/index.html": [
       "src/tpl/header.tpl",
