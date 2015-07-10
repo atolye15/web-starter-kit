@@ -41,6 +41,8 @@ git commit -m "İlk Commit"
 3. Projenizde kullanacağınız bağımlılıkları
 ```bash
 npm install
+# npm install da sorun yaşarsanız, bu komutu kullanın.
+sudo npm install
 ```
 komutu ile kurabilirsiniz.
 
