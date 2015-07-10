@@ -3,29 +3,37 @@
 //  Colors
 //  --------------------------------------------------
 
+//
+// Default Colors
+// -------------------------
+
+$color-white       : #fff;
+$color-ghost       : #fafafa;
+$color-snow        : #f9f9f9;
+$color-vapor       : #f6f6f6;
+$color-white-smoke : #f5f5f5;
+$color-silver      : #efefef;
+$color-smoke       : #eee;
+$color-gainsboro   : #ddd;
+$color-iron        : #ccc;
+$color-base        : #aaa;
+$color-aluminum    : #999;
+$color-jumbo       : #888;
+$color-monsoon     : #777;
+$color-steel       : #666;
+$color-charcoal    : #555;
+$color-tuatara     : #444;
+$color-oil         : #333;
+$color-jet         : #222;
+$color-black       : #000;
+
+//
+// Custom Colors
+// -------------------------
+
 $primary-color   : #008cba;
 $secondary-color : #e7e7e7;
 $alert-color     : #f04124;
 $success-color   : #43AC6A;
 $warning-color   : #f08a24;
 $info-color      : #a0d3e8;
-
-$white       : #fff;
-$ghost       : #fafafa;
-$snow        : #f9f9f9;
-$vapor       : #f6f6f6;
-$white-smoke : #f5f5f5;
-$silver      : #efefef;
-$smoke       : #eee;
-$gainsboro   : #ddd;
-$iron        : #ccc;
-$base        : #aaa;
-$aluminum    : #999;
-$jumbo       : #888;
-$monsoon     : #777;
-$steel       : #666;
-$charcoal    : #555;
-$tuatara     : #444;
-$oil         : #333;
-$jet         : #222;
-$black       : #000;

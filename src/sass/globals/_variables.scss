@@ -10,7 +10,7 @@
 // `<body>` nin arkaplan rengi
 $body-bg:               #fff !default;
 //** `<body>` nin Global text rengi.
-$text-color:            $oil !default;
+$text-color:            $color-oil !default;
 // Global link rengi
 $link-color:            #428bca !default;
 // Global link hover rengi
@@ -43,9 +43,9 @@ $headings-line-height: 1.1 !default;
 $headings-color:       inherit !default;
 
 // Text muted color
-$text-muted: $monsoon !default;
+$text-muted: $color-monsoon !default;
 // Horizontal line color.
-$hr-border: $smoke !default;
+$hr-border: $color-smoke !default;
 
 
 // FONT SIZING
@@ -68,8 +68,8 @@ $button-bg-hover: scale-color( $button-bg-color, $lightness: $button-function-fa
 $button-border-color: $button-bg-hover !default; // Button default border rengi
 $button-radius: 3px !default; // Button default border radius
 $button-font-size: 14px !default; // Button default font boyutu
-$button-font-color: $white !default; // Button default font rengi
-$button-font-color-alt: $oil !default; // Button default font rengi
+$button-font-color: $color-white !default; // Button default font rengi
+$button-font-color-alt: $color-oil !default; // Button default font rengi
 $button-padding-vertical: 10px !default; // Button dikey padding
 $button-padding-horizontal: 20px !default; // Button default yatay padding
 $button-border-width: 0 !default; // Button default border width
@@ -79,10 +79,10 @@ $button-border-width: 0 !default; // Button default border width
 // -------------------------
 
 $input-bg:                 inherit !default; // `<input>` background color
-$input-bg-disabled:        $smoke !default; // `<input disabled>` background color
-$input-color:              $charcoal !default; // Text color for `<input>`s
-$input-color-placeholder:  $monsoon !default; // Placeholder text color
-$input-border:             $iron !default; // `<input>` border color
+$input-bg-disabled:        $color-smoke !default; // `<input disabled>` background color
+$input-color:              $color-charcoal !default; // Text color for `<input>`s
+$input-color-placeholder:  $color-monsoon !default; // Placeholder text color
+$input-border:             $color-iron !default; // `<input>` border color
 $input-border-width:       1px !default; // `<input>` border width
 $input-border-radius:      0 !default; // `<input>` border radius
 $input-focus:              false !default; // `<input>` focus style
