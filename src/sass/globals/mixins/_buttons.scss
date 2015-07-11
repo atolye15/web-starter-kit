@@ -21,9 +21,9 @@
     padding: $button-padding-vertical $button-padding-horizontal;
     border-style: solid;
     border-width: $button-border-width;
-    @if not ( $font == false ){ font-family: $button-font-family; }
+    font-family: $button-font-family;
     font-size: $button-font-size;
-    line-height: normal;
+    line-height: $button-line-height;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -41,7 +41,7 @@
 // $padding-h - Butona sağ ve soldan verilecek padding değerini tanımlar
 // $font-size - Buton font size değerini tanımlar
 
-@mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false ) {
+@mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:null ) {
 
   // We control which padding styles come through,
   // these can be turned off by setting $padding:false
@@ -57,10 +57,7 @@
     padding-right: $padding-h;
   }
 
-  @if $font-size {
-    font-size: $font-size;
-  }
-
+  font-size: $font-size;
 }
 
 
@@ -69,74 +66,70 @@
 // Bu mixin butonun şekil özelliklerini tanımlamak için kullanıyoruz
 //
 // $bg - Butonun arkaplan rengini tanımlar
-// $radius - Butonun border-radius değerini tanımlar
-//  Default olarak false tanımlıdır, false iken border radius tanımlanmayacaktır
-// $disabled - Butona disable efekti vermek için kullanılır
 // $bg-hover - Butonun hover durumundaki arkaplan rengini tanımlar
-// $border-color - Button Border Color. Default: $button-border-color
-// $border-width - Butonun border with degerini tanımlar
-// $border-color - Button border color değerini tanımlar
 // $color: Button color
 // $hover-color: Button hover color
+// $border-color - Button border color değerini tanımlar
+// $border-width - Butonun border with degerini tanımlar
+// $radius - Butonun border-radius değerini tanımlar
+// $disabled - Butona disable efekti vermek için kullanılır
 
-@mixin btn-modifier( $bg:$button-bg-color, $radius:false, $disabled:false, $bg-hover:null, $border-width:$button-border-width, $border-color:null, $color:null, $hover-color:null ) {
+@mixin btn-modifier( $bg:$button-bg-color, $bg-hover:auto, $color:auto, $hover-color:auto, $border-width:null, $border-color:auto, $radius:$button-radius, $disabled:false ) {
 
-  // Burada arkaplan renginin var olup olmadığını kontrol ediyoruz
-  // Bu $bg:false diğerek bu özelliği kaldırabilirsiniz
-  @if $bg {
 
-    // $bg-hover tanımlanmamışsa sass fonksiyonlarını kullanarak hover rengi taımlıyoruz
-    @if $bg-hover == null {
-      $bg-hover: if( $bg == $button-bg-color, $button-bg-hover, scale-color( $bg, $lightness: $button-function-factor ) );
-    }
-    // $border-color tanımlanmamışsa sass fonksiyonlarını kullanarak border rengi taımlıyoruz
-    @if $border-color == null {
-      $border-color: if( $bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
-    }
+  // $bg-hover tanımlanmamışsa sass fonksiyonlarını kullanarak hover rengi taımlıyoruz
+  @if $bg-hover == auto {
+    $bg-hover: if( $bg == $button-bg-color, $button-bg-hover, scale-color( $bg, $lightness: $button-function-factor ) );
+  }
+  // $border-color tanımlanmamışsa sass fonksiyonlarını kullanarak border rengi taımlıyoruz
+  @if $border-color == auto {
+    $border-color: if( $bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
+  }
 
-    // Arkaplan renginin lightness oranı
+  $bg-lightness : 0;
+  $bg-hover-lightness: 0;
+
+  // Arkaplan renginin lightness oranı
+  @if not( $bg == null ) {
     $bg-lightness: lightness($bg);
+  }
+  @if not( $bg-hover == null ) {
     $bg-hover-lightness: lightness($bg-hover);
+  }
 
-    background-color: $bg;
-    border-color: $border-color;
+  @if $hover-color == auto {
+    $hover-color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
+  }
 
-    @if not ( $border-width == $button-border-width ) {
-      border-width: $border-width;
-    }
+  // Bg rengine göre text rengi ayarlıyoruz
+  @if $color == auto {
+    $color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
+  }
 
-    &:hover,
-    &:focus {
-      background-color: $bg-hover;
-      @if( $color == null and $hover-color == null ) {
-        color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
-      }
-      @else if not ( $hover-color == null ) {
-        color: $hover-color;
-      }
-    }
 
-    @if $color == null {
-      // Bg rengine göre text rengi ayarlıyoruz
-      color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
-    }
-    @else {
-      color: $color;
-    }
+  background-color: $bg;
+  border-color: $border-color;
+  border-width: $border-width;
+  color: $color;
+  border-radius: $button-radius;
+
+  &:hover,
+  &:focus {
+    background-color: $bg-hover;
+    color: $hover-color;
   }
 
   // Eğer $disable:true ise Butonun disable durumunu ayarlıyoruz
   @if $disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
-    box-shadow: none;
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+      box-shadow: none;
 
-    &:hover,
-    &:focus { background-color: $bg; }
+      &:hover,
+      &:focus { background-color: $bg; }
+    }
+
   }
-
-  // Butonun radius özelliklerini tanımlıyoruz
-  @if $radius == true { border-radius: $button-radius; }
-  @else if $radius { border-radius: $radius; }
 
 }
