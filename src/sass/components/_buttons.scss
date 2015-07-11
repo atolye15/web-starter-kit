@@ -23,6 +23,8 @@
 //  $border-width - Butonun border with degerini tanımlar
 //  $radius - Butonun border-radius değerini tanımlar
 //  $disabled - Butona disable efekti vermek için kullanılır
+// @mixin btn-block( $ease:true, $font:$button-font-family )
+// @mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false )
 
 .button {
   @include btn-block();
