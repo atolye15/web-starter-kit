@@ -68,6 +68,7 @@ $button-bg-hover: scale-color( $button-bg-color, $lightness: $button-function-fa
 $button-border-color: $button-bg-hover !default; // Button default border rengi
 $button-radius: 3px !default; // Button default border radius
 $button-font-size: 14px !default; // Button default font boyutu
+$button-line-height: null !default; // Button line-height
 $button-font-color: $color-white !default; // Button default font rengi
 $button-font-color-alt: $color-oil !default; // Button default font rengi
 $button-padding-vertical: 10px !default; // Button dikey padding
