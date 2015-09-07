@@ -21,6 +21,17 @@
 .transition-opacity    { @include transition( opacity 300ms ease-in ); }
 .transition-transform  { @include transition( transform 300ms ease-in-out); }
 
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 // element should be block or inline-block
 .vertical-center {
   position: relative;
