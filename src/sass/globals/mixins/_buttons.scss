@@ -82,7 +82,7 @@
     $bg-hover: if( $bg == $button-bg-color, $button-bg-hover, scale-color( $bg, $lightness: $button-function-factor ) );
   }
   // $border-color tanımlanmamışsa sass fonksiyonlarını kullanarak border rengi taımlıyoruz
-  @if $border-color == auto {
+  @if ($border-color == auto) and not( $bg == null ) {
     $border-color: if( $bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
   }
 
@@ -92,6 +92,9 @@
   // Arkaplan renginin lightness oranı
   @if not( $bg == null ) {
     $bg-lightness: lightness($bg);
+  }
+  @else {
+    $border-color: null
   }
   @if not( $bg-hover == null ) {
     $bg-hover-lightness: lightness($bg-hover);
