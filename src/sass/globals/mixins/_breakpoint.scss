@@ -37,6 +37,20 @@
     }
   }
 
+  // tablet-landscape ( > 768px, <= 1024px )
+  @else if $point == 'tablet-landscape' {
+    @media (min-width: 769px) and (max-width: 1024px) {
+      @content;
+    }
+  }
+
+  // tablet-portrait ( > 480px, =< 768px )
+  @else if $point == 'tablet-portrait' {
+    @media (min-width: 481px) and (max-width: 768px) {
+      @content;
+    }
+  }
+
   // tablet-landscape-below ( < 1024px )
   @else if $point == 'tablet-landscape-below' {
     @media (max-width: 1023px) {
