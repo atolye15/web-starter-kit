@@ -79,14 +79,13 @@ $button-border-width: 0 !default; // Button default border width
 //  FORMS CONTROL VARIABLES
 // -------------------------
 
-$input-bg:                 inherit !default; // `<input>` background color
-$input-bg-disabled:        $color-smoke !default; // `<input disabled>` background color
+$input-bg-color:           inherit !default; // `<input>` background color
+$input-bg-color-disabled:  $color-smoke !default; // `<input disabled>` background color
 $input-color:              $color-charcoal !default; // Text color for `<input>`s
 $input-color-placeholder:  $color-monsoon !default; // Placeholder text color
-$input-border:             $color-iron !default; // `<input>` border color
+$input-border-color:       $color-iron !default; // `<input>` border color
 $input-border-width:       1px !default; // `<input>` border width
-$input-border-radius:      0 !default; // `<input>` border radius
-$input-focus:              false !default; // `<input>` focus style
+$input-border-radius:      null !default; // `<input>` border radius
 $input-border-focus:       #66afe9 !default; // Border color for inputs on focus
 $input-font-size:          $font-size-base !default;
 $input-line-height:        $line-height-computed !default;
