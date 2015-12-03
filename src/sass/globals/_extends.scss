@@ -1,0 +1,64 @@
+
+//
+// GLOBAL EXTENDS
+//  --------------------------------------------------
+
+//
+// Clearfix
+// -------------------------
+
+%clearfix {
+  @include clearfix;
+}
+
+//
+// Flex
+// -------------------------
+
+%flex {
+  display: flex;
+}
+
+//
+// Flex Grow
+// -------------------------
+
+%flex-grow-full {
+  flex-grow: 1;
+}
+
+//
+// Img Responsive
+// -------------------------
+
+%img-responsive {
+  @include img-responsive( inline-block );
+}
+
+//
+// Text Overflow
+// -------------------------
+
+%text-overflow {
+  @include text-overflow();
+}
+
+//
+// Transitions
+// -------------------------
+
+%transition-background {
+  transition: background-color $global-transition-duration;
+}
+
+%transition-color {
+  transition: color $global-transition-duration;
+}
+
+%transition-opacity {
+  transition: opacity $global-transition-duration;
+}
+
+%transition-transform {
+  transition: transform $global-transition-duration;
+}

@@ -94,3 +94,14 @@ $input-padding-vertical:   6px;
 $input-padding-horizontal: 12px;
 $input-height-base:        ( $input-line-height + ( $input-padding-vertical * 2 ) + ( $input-border-width * 2 ) ) !default; // Default `.form-control` height
 
+//
+// Transition Duration
+// -------------------------
+
+$global-transition-duration : .4s;
+
+//
+// Z-index
+// Site genelinde kullanılan z-indexler burada tanımlanmalıdır
+// -------------------------
+

@@ -14,7 +14,7 @@
 
 @mixin btn-block( $ease:true, $font:$button-font-family ) {
 
-    @if ( $ease == true ){ @extend .transition-background; }
+    @if ( $ease == true ){ @extend %transition-background; }
 
     position: relative;
     display: inline-block;

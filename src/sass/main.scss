@@ -9,11 +9,17 @@
 // Mixins
 @import 'globals/mixins';
 
+// Bootstrap Mixins
+@import 'bootstrap/mixins';
+
 // Normalize
 @import 'globals/normalize';
 
 // Fonts
 @import 'globals/fonts';
+
+// Extends
+@import 'globals/extends';
 
 // Icons
 @import 'globals/icons';
@@ -24,6 +30,7 @@
 // Bootstrap
 @import 'bootstrap';
 
+// Base
 @import 'globals/base';
 
 // Globals

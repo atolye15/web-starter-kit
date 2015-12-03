@@ -77,17 +77,6 @@
 
 
 //
-//  Font Sizing
-//
-
-@mixin font-xsmall { font-size: $font-size-xsmall; }
-@mixin font-small  { font-size: $font-size-small; }
-@mixin font-medium { font-size: $font-size-medium; }
-@mixin font-large  { font-size: $font-size-large; }
-@mixin font-xlarge { font-size: $font-size-xlarge; }
-
-
-//
 // Retina Image
 //
 // $image2x - 2x Resim url adresi Örn 'img/logo-retina.png'
