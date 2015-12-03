@@ -8,9 +8,9 @@
 //
 // Bu mixini butonun temel özelliklerini tanımlamak için kullanıyoruz
 //
-// $ease - Button arkaplanına transition tanımlar,
+// @param $ease - Button arkaplanına transition tanımlar,
 //   Transition için sass/global/_utilities.scss deki .transition-background classını extend eder
-// $font - Button font family değerini tanımlar
+// @param $font - Button font family değerini tanımlar
 
 @mixin btn-block( $ease:true, $font:$button-font-family ) {
 
@@ -37,9 +37,9 @@
 //
 // Bu mixini butonun boyut özelliklerini tanımlamak için kullanıyoruz
 //
-// $padding-v - Butona üst ve alttan verilecek padding değerini tanımlar
-// $padding-h - Butona sağ ve soldan verilecek padding değerini tanımlar
-// $font-size - Buton font size değerini tanımlar
+// @param $padding-v - Butona üst ve alttan verilecek padding değerini tanımlar
+// @param $padding-h - Butona sağ ve soldan verilecek padding değerini tanımlar
+// @param $font-size - Buton font size değerini tanımlar
 
 @mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:null ) {
 
@@ -65,14 +65,14 @@
 //
 // Bu mixin butonun şekil özelliklerini tanımlamak için kullanıyoruz
 //
-// $bg - Butonun arkaplan rengini tanımlar
-// $bg-hover - Butonun hover durumundaki arkaplan rengini tanımlar
-// $color: Button color
-// $hover-color: Button hover color
-// $border-color - Button border color değerini tanımlar
-// $border-width - Butonun border with degerini tanımlar
-// $radius - Butonun border-radius değerini tanımlar
-// $disabled - Butona disable efekti vermek için kullanılır
+// @param $bg - Butonun arkaplan rengini tanımlar
+// @param $bg-hover - Butonun hover durumundaki arkaplan rengini tanımlar
+// @param $color: Button color
+// @param $hover-color: Button hover color
+// @param $border-color - Button border color değerini tanımlar
+// @param $border-width - Butonun border with degerini tanımlar
+// @param $radius - Butonun border-radius değerini tanımlar
+// @param $disabled - Butona disable efekti vermek için kullanılır
 
 @mixin btn-modifier( $bg:$button-bg-color, $bg-hover:auto, $color:auto, $hover-color:auto, $border-width:null, $border-color:auto, $radius:$button-radius, $disabled:false ) {
 
