@@ -10,6 +10,11 @@
     }
   },
   "staging": false,
+  "paths": {
+    "src": "src",
+    "dev": "dev",
+    "prod": "prod"
+  },
   "srcPath": "src",
   "devPath": "dev",
   "distPath": "prod",

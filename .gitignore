@@ -1,11 +1,10 @@
-.ftpauth
 .sass-cache
 .DS_Store*
 node_modules/
 bower_components/
 npm-debug.log
+.tmp
 .idea
 .idea_modules
 dev/
 prod/
-preprocess/
