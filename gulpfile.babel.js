@@ -18,8 +18,8 @@ import gulp from 'gulp';
 import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
-import minimist from 'minimist';
 import lazypipe from 'lazypipe';
+import pngquant from 'imagemin-pngquant';
 
 //import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
@@ -29,21 +29,25 @@ import configs from './configs.json';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
-/**
- * Bu kısım geliştirme ortamını tanımlamak için kullanılıyorr
- */
-const knownOptions = {
-  string: 'env',
-  default: { env: process.env.NODE_ENV || 'prod' }
-};
-const options = minimist( process.argv.slice(2), knownOptions );
+const isProduction = !$.util.env.dev;
+const envPath = isProduction ? configs.paths.prod : configs.paths.dev;
 
-const stylesMinChannel = lazypipe()
-  .pipe( $.minifyCss )
-  .pipe( $.rename, { suffix: '.min' });
+const today = $.util.date('dd-mm-yyyy HH:MM');
 
+const banner = [
+  '/*!',
+  ' * '+configs.info.description,
+  ' * '+configs.info.author.name+' < '+configs.info.author.email+' >',
+  ' * Version '+configs.info.version+' ( '+today+' )',
+  ' */\n\n'
+].join('\n')
+
+//
 // Sass dosyalarını derleme ve prefix ekleme
+//
+
 gulp.task('sass', () => {
+
   const AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
     'ie_mob >= 10',
@@ -56,43 +60,134 @@ gulp.task('sass', () => {
     'bb >= 10'
   ];
 
+  const stylesMinChannel = lazypipe()
+    .pipe($.minifyCss, { keepSpecialComments: 0 })
+    .pipe($.rename, { suffix: '.min' })
+    .pipe($.header, banner)
+    .pipe( gulp.dest, envPath+'/css' );
+
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
-    'src/sass/**/*.scss'
+    configs.paths.src+'/sass/**/*.scss'
   ])
-    .pipe($.newer('.tmp/styles'))
     .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      precision: 10
-    }).on('error', $.sass.logError))
-    .pipe($.mergeMediaQueries({ log: true }))
+    .pipe($.sass({ precision: 10 }).on('error', $.sass.logError))
+    .pipe(isProduction ? $.mergeMediaQueries({ log: true }) : $.util.noop())
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe($.if( options.env === 'dev', $.sourcemaps.write('./') ))
-    .pipe(gulp.dest('.tmp/styles'))
-    .pipe(gulp.dest(configs.paths[options.env]+'/styles'))
-    .pipe( $.if( (options.env === 'prod'), stylesMinChannel() ))
-    .pipe(gulp.dest(configs.paths[options.env]+'/styles'))
-    .pipe($.size({title: 'styles'}));
+    .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
+    .pipe($.header(banner))
+    .pipe(gulp.dest(envPath+'/css'))
+    .pipe(isProduction ? stylesMinChannel() : $.util.noop())
+    .pipe($.size({ title: 'Css' }));
 });
 
+/**!
+ * Javascript dosyalarının derleme işlemleri
+ */
+
+// Compile Babel
+gulp.task('scripts:babel', () => {
+  var babelFiles = []
+  if (configs.jsFiles.length !== 0) {
+    babelFiles = configs.jsFiles.map((path) => {
+      return configs.paths.src + '/js/' + path
+    });
+  }
+  return gulp.src(babelFiles)
+    .pipe($.newer('.tmp/babel'))
+    .pipe($.babel())
+    .pipe($.size({title: 'Babel'}))
+    .pipe(gulp.dest('.tmp/babel'))
+});
 
 // Lint JavaScript
-gulp.task('lint', () =>
-  gulp.src('src/scripts/**/*.js')
+gulp.task('scripts:lint', () => {
+  if (!configs.lint.scripts) return;
+  return gulp.src(configs.paths.src + '/js/**/*.js')
     .pipe($.eslint())
     .pipe($.eslint.format())
-    .pipe($.if(!browserSync.active, $.eslint.failOnError()))
+    .pipe(!browserSync.active ? $.eslint.failOnError() : $.util.noop())
+});
+
+// Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
+// to enables ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
+// `.babelrc` file.
+gulp.task('scripts:main', ['scripts:babel', 'scripts:lint'], () => {
+  var jsFiles = []
+  if (configs.jsFiles.length !== 0) {
+    jsFiles = configs.jsFiles.map((path) => {
+      return '.tmp/babel/'+path
+    });
+  }
+  return gulp.src(jsFiles)
+    .pipe($.sourcemaps.init())
+    .pipe($.concat('main.js'))
+    .pipe($.size({title: 'Js'}))
+    .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
+    .pipe($.header(banner))
+    .pipe(gulp.dest('.tmp/js'))
+    .pipe(!isProduction ? gulp.dest(envPath+'/js') : $.util.noop())
+});
+
+gulp.task('scripts:vendors', () => {
+  var vendorFiles = []
+  if (configs.vendorFiles.length !== 0) {
+    vendorFiles = configs.vendorFiles.map((path) => {
+      return configs.paths.src + '/vendors/' + path
+    });
+  }
+  return gulp.src(vendorFiles)
+    .pipe($.sourcemaps.init())
+    .pipe($.concat('vendors.js'))
+    .pipe($.size({title: 'Vendors'}))
+    .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
+    .pipe($.header(banner))
+    .pipe(gulp.dest('.tmp/js'))
+    .pipe(!isProduction ? gulp.dest(envPath+'/js') : $.util.noop())
+});
+
+gulp.task('scripts:combine', () => {
+  if (!isProduction) return;
+  return gulp.src([
+    '.tmp/js/vendors.js',
+    '.tmp/js/main.js'
+  ])
+    .pipe($.concat('app.min.js'))
+    .pipe($.uglify())
+    .pipe($.size({title: 'App Js'}))
+    .pipe($.header(banner))
+    .pipe(gulp.dest(envPath+'/js'))
+});
+
+gulp.task('scripts', cb =>
+  runSequence(
+    'scripts:vendors',
+    'scripts:main',
+    'scripts:combine',
+    cb
+  )
 );
 
 // Optimize images
-gulp.task('images', () =>
-  gulp.src('src/images/**/*')
-    .pipe($.cache($.imagemin({
+gulp.task('images:optimize', () => {
+  return gulp.src(configs.paths.src + '/img/**/*')
+    .pipe($.newer('.tmp/img'))
+    .pipe($.imagemin({
       progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
-    .pipe($.size({title: 'images'}))
+      interlaced: true,
+      svgoPlugins: [{
+        removeViewBox: false
+      }],
+      use: [pngquant()]
+    }))
+    .pipe($.size({title: 'Image Optimize'}))
+    .pipe(gulp.dest('.tmp/img'))
+});
+
+gulp.task('images', ['images:optimize'], () =>
+  gulp.src('.tmp/img/**/*')
+    .pipe(gulp.dest(envPath+'/img'))
+    .pipe($.size({title: 'Images'}))
 );
 
 // Copy all files at the root level (app)
@@ -109,29 +204,7 @@ gulp.task('copy', () =>
 
 
 
-// Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
-// to enables ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
-// `.babelrc` file.
-gulp.task('scripts', () =>
-    gulp.src([
-      // Note: Since we are not using useref in the scripts build pipeline,
-      //       you need to explicitly list your scripts here in the right order
-      //       to be correctly concatenated
-      './app/scripts/main.js'
-      // Other scripts
-    ])
-      .pipe($.newer('.tmp/scripts'))
-      .pipe($.sourcemaps.init())
-      .pipe($.babel())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/scripts'))
-      .pipe($.concat('main.min.js'))
-      .pipe($.uglify({preserveComments: 'some'}))
-      // Output files
-      .pipe($.size({title: 'scripts'}))
-      .pipe($.sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/scripts'))
-);
+
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {

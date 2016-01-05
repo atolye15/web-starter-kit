@@ -4,21 +4,19 @@
     "version": "1.0.0",
     "description": "Project Desc",
     "author": {
-      "name": "Atolye 15",
+      "name": "Atolye15",
       "email": "hello@atolye15.com",
       "url": "http://www.atolye15.com"
     }
   },
-  "staging": false,
+  "lint": {
+    "scripts" : true
+  },
   "paths": {
     "src": "src",
     "dev": "dev",
     "prod": "prod"
   },
-  "srcPath": "src",
-  "devPath": "dev",
-  "distPath": "prod",
-  "deployPath": "../public",
   "tplFiles": {
     "preprocess/index.html": [
       "src/tpl/header.tpl",
@@ -26,8 +24,9 @@
       "src/tpl/footer.tpl"
     ]
   },
-  "coffeeFiles": [
-    "preprocess/coffee-output/app.js"
+  "jsFiles": [
+    "main.js",
+    "deneme.js"
   ],
-  "vendorFiles": []
+  "vendorFiles": ["dene.js"]
 }
