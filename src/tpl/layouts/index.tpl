@@ -1,1 +1,0 @@
-@@include('../src/tpl/includes/module.html', {"name": "Joe Bloggs"})

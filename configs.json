@@ -17,16 +17,9 @@
     "dev": "dev",
     "prod": "prod"
   },
-  "tplFiles": {
-    "preprocess/index.html": [
-      "src/tpl/header.tpl",
-      "src/tpl/layouts/index.tpl",
-      "src/tpl/footer.tpl"
-    ]
-  },
   "jsFiles": [
     "main.js",
     "deneme.js"
   ],
-  "vendorFiles": ["dene.js"]
+  "vendorFiles": [ "dene.js" ]
 }

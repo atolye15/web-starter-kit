@@ -21,11 +21,12 @@ import browserSync from 'browser-sync';
 import lazypipe from 'lazypipe';
 import pngquant from 'imagemin-pngquant';
 
-//import swPrecache from 'sw-precache';
+
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
 import configs from './configs.json';
+import twigController from './src/twig/controller.js';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
@@ -190,6 +191,67 @@ gulp.task('images', ['images:optimize'], () =>
     .pipe($.size({title: 'Images'}))
 );
 
+gulp.task('html', () => {
+  /**
+   * 'production' değişkeni çalışma ortamının production olup olmadığı
+   * bilgisini depolar. Bu yüzden src/twig/data.json içerisinde production
+   * adında bir değişken tanımlamayın!
+   */
+  twigController.data.production = isProduction
+  return gulp.src(configs.paths.src + '/twig/pages/**/*.twig')
+    .pipe($.twig({
+      data: twigController.data,
+      functions: twigController.functions
+    }))
+    .pipe(gulp.dest(envPath));
+});
+
+gulp.task('fonts', () => {
+  gulp.src(configs.paths.src + '/fonts/*')
+    .pipe(gulp.dest(envPath+'/css/fonts'));
+});
+
+// Clean output directory
+gulp.task('clean:dist', cb => del([envPath+'/*'], {dot: true}));
+gulp.task('clean:imgCache', cb => del(['.tmp/img/*'], {dot: true}));
+gulp.task('clean:babelCache', cb => del(['.tmp/babel/*'], {dot: true}));
+gulp.task('clean:tempJs', cb => del(['.tmp/js/*'], {dot: true}));
+
+// Build production files, the default task
+gulp.task('default', cb =>
+  runSequence(
+    ['clean:dist', 'clean:tempJs'],
+    ['sass', 'scripts', 'html', 'images', 'fonts'],
+    cb
+  )
+
+);
+
+
+// Scan your HTML for assets & optimize them
+// gulp.task('html', () => {
+//   return gulp.src('app/**/*.html')
+//     .pipe($.useref({searchPath: '{.tmp,app}'}))
+//     // Remove any unused CSS
+//     .pipe($.if('*.css', $.uncss({
+//       html: [
+//         'app/index.html'
+//       ],
+//       // CSS Selectors for UnCSS to ignore
+//       ignore: []
+//     })))
+
+//     // Concatenate and minify styles
+//     // In case you are still using useref build blocks
+//     .pipe($.if('*.css', $.minifyCss()))
+
+//     // Minify any HTML
+//     .pipe($.if('*.html', $.minifyHtml()))
+//     // Output files
+//     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
+//     .pipe(gulp.dest('dist'));
+// });
+
 // Copy all files at the root level (app)
 gulp.task('copy', () =>
   gulp.src([
@@ -202,36 +264,6 @@ gulp.task('copy', () =>
     .pipe($.size({title: 'copy'}))
 );
 
-
-
-
-
-// Scan your HTML for assets & optimize them
-gulp.task('html', () => {
-  return gulp.src('app/**/*.html')
-    .pipe($.useref({searchPath: '{.tmp,app}'}))
-    // Remove any unused CSS
-    .pipe($.if('*.css', $.uncss({
-      html: [
-        'app/index.html'
-      ],
-      // CSS Selectors for UnCSS to ignore
-      ignore: []
-    })))
-
-    // Concatenate and minify styles
-    // In case you are still using useref build blocks
-    .pipe($.if('*.css', $.minifyCss()))
-
-    // Minify any HTML
-    .pipe($.if('*.html', $.minifyHtml()))
-    // Output files
-    .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
-    .pipe(gulp.dest('dist'));
-});
-
-// Clean output directory
-gulp.task('clean', cb => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
 gulp.task('serve', ['scripts', 'styles'], () => {
@@ -272,14 +304,14 @@ gulp.task('serve:dist', ['default'], () =>
 );
 
 // Build production files, the default task
-gulp.task('default', ['clean'], cb =>
-  runSequence(
-    'styles',
-    ['lint', 'html', 'scripts', 'images', 'copy'],
-    'generate-service-worker',
-    cb
-  )
-);
+// gulp.task('default', ['clean'], cb =>
+//   runSequence(
+//     'styles',
+//     ['lint', 'html', 'scripts', 'images', 'copy'],
+//     'generate-service-worker',
+//     cb
+//   )
+// );
 
 // Run PageSpeed Insights
 gulp.task('pagespeed', cb =>
