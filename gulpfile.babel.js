@@ -25,21 +25,21 @@ import pngquant from 'imagemin-pngquant';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
-import configs from './configs.json';
+import configs from './configs.js';
 import twigController from './src/twig/controller.js';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
-const isProduction = !$.util.env.dev;
-const envPath = isProduction ? configs.paths.prod : configs.paths.dev;
+const isProduction = $.util.env.prod;
+const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 const today = $.util.date('dd-mm-yyyy HH:MM');
 
 const banner = [
   '/*!',
-  ' * '+configs.info.description,
-  ' * '+configs.info.author.name+' < '+configs.info.author.email+' >',
-  ' * Version '+configs.info.version+' ( '+today+' )',
+  ' * ' + configs.info.description,
+  ' * ' + configs.info.author.name + ' < ' + configs.info.author.email + ' >',
+  ' * Version ' + configs.info.version + ' ( ' + today + ' )',
   ' */\n\n'
 ].join('\n')
 
@@ -47,7 +47,7 @@ const banner = [
 // Sass dosyalarını derleme ve prefix ekleme
 //
 
-gulp.task('sass', () => {
+gulp.task('styles', () => {
 
   const AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
@@ -65,11 +65,11 @@ gulp.task('sass', () => {
     .pipe($.minifyCss, { keepSpecialComments: 0 })
     .pipe($.rename, { suffix: '.min' })
     .pipe($.header, banner)
-    .pipe( gulp.dest, envPath+'/css' );
+    .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
 
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
-    configs.paths.src+'/sass/**/*.scss'
+    configs.paths.src + '/sass/**/*.scss'
   ])
     .pipe($.sourcemaps.init())
     .pipe($.sass({ precision: 10 }).on('error', $.sass.logError))
@@ -77,19 +77,19 @@ gulp.task('sass', () => {
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
     .pipe($.header(banner))
-    .pipe(gulp.dest(envPath+'/css'))
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.css))
     .pipe(isProduction ? stylesMinChannel() : $.util.noop())
     .pipe($.size({ title: 'Css' }));
 });
 
-/**!
+/**
  * Javascript dosyalarının derleme işlemleri
  */
 
 // Compile Babel
 gulp.task('scripts:babel', () => {
   var babelFiles = []
-  if (configs.jsFiles.length !== 0) {
+  if (configs.jsFiles.length) {
     babelFiles = configs.jsFiles.map((path) => {
       return configs.paths.src + '/js/' + path
     });
@@ -110,14 +110,22 @@ gulp.task('scripts:lint', () => {
     .pipe(!browserSync.active ? $.eslint.failOnError() : $.util.noop())
 });
 
-// Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
-// to enables ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
-// `.babelrc` file.
-gulp.task('scripts:main', ['scripts:babel', 'scripts:lint'], () => {
+gulp.task('scripts:sync', () => {
+  gulp.src('.tmp/babel/**/*')
+    .pipe( $.foreach( (stream, file) => {
+      if (!fs.existsSync(configs.paths.src + '/js/' + file.relative)) {
+        del('.tmp/babel/'+ file.relative);
+        $.util.log($.util.colors.red('[scripts:sync] ' + file.relative + ' deleted from tmp!'));
+      }
+      return stream;
+    }));
+});
+
+gulp.task('scripts:main', () => {
   var jsFiles = []
-  if (configs.jsFiles.length !== 0) {
+  if (configs.jsFiles.length) {
     jsFiles = configs.jsFiles.map((path) => {
-      return '.tmp/babel/'+path
+      return '.tmp/babel/' + path
     });
   }
   return gulp.src(jsFiles)
@@ -127,12 +135,12 @@ gulp.task('scripts:main', ['scripts:babel', 'scripts:lint'], () => {
     .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
     .pipe($.header(banner))
     .pipe(gulp.dest('.tmp/js'))
-    .pipe(!isProduction ? gulp.dest(envPath+'/js') : $.util.noop())
+    .pipe(!isProduction ? gulp.dest(envPath + '/' + configs.paths.assets.js) : $.util.noop())
 });
 
 gulp.task('scripts:vendors', () => {
   var vendorFiles = []
-  if (configs.vendorFiles.length !== 0) {
+  if (configs.vendorFiles.length) {
     vendorFiles = configs.vendorFiles.map((path) => {
       return configs.paths.src + '/vendors/' + path
     });
@@ -144,7 +152,7 @@ gulp.task('scripts:vendors', () => {
     .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
     .pipe($.header(banner))
     .pipe(gulp.dest('.tmp/js'))
-    .pipe(!isProduction ? gulp.dest(envPath+'/js') : $.util.noop())
+    .pipe(!isProduction ? gulp.dest(envPath + '/' + configs.paths.assets.js) : $.util.noop())
 });
 
 gulp.task('scripts:combine', () => {
@@ -157,12 +165,14 @@ gulp.task('scripts:combine', () => {
     .pipe($.uglify())
     .pipe($.size({title: 'App Js'}))
     .pipe($.header(banner))
-    .pipe(gulp.dest(envPath+'/js'))
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.js))
 });
 
 gulp.task('scripts', cb =>
   runSequence(
     'scripts:vendors',
+    ['scripts:babel', 'scripts:lint'],
+    'scripts:sync',
     'scripts:main',
     'scripts:combine',
     cb
@@ -185,10 +195,30 @@ gulp.task('images:optimize', () => {
     .pipe(gulp.dest('.tmp/img'))
 });
 
-gulp.task('images', ['images:optimize'], () =>
+gulp.task('images:sync', () => {
   gulp.src('.tmp/img/**/*')
-    .pipe(gulp.dest(envPath+'/img'))
+    .pipe( $.foreach( (stream, file) => {
+      if (!fs.existsSync(configs.paths.src + '/img/' + file.relative)) {
+        del('.tmp/img/'+ file.relative);
+        $.util.log($.util.colors.red('[images:sync] ' + file.relative + ' deleted from tmp!'));
+      }
+      return stream;
+    }));
+});
+
+gulp.task('images:deploy', () =>
+  gulp.src('.tmp/img/**/*')
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.img))
     .pipe($.size({title: 'Images'}))
+);
+
+gulp.task('images', cb =>
+  runSequence(
+    'images:optimize',
+    'images:sync',
+    'images:deploy',
+    cb
+  )
 );
 
 gulp.task('html', () => {
@@ -206,25 +236,31 @@ gulp.task('html', () => {
     .pipe(gulp.dest(envPath));
 });
 
-gulp.task('fonts', () => {
+gulp.task('copy:fonts', () => {
+  //TODO copy taskından önce distdeki klasörün temizlenmesi
   gulp.src(configs.paths.src + '/fonts/*')
-    .pipe(gulp.dest(envPath+'/css/fonts'));
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.fonts));
+});
+
+gulp.task('copy:libs', () => {
+  //TODO copy taskından önce distdeki klasörün temizlenmesi
+  gulp.src(configs.paths.src + '/libs/*')
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.libs ));
 });
 
 // Clean output directory
-gulp.task('clean:dist', cb => del([envPath+'/*'], {dot: true}));
+gulp.task('clean:dist', cb => del([envPath + '/*'], {dot: true}));
 gulp.task('clean:imgCache', cb => del(['.tmp/img/*'], {dot: true}));
 gulp.task('clean:babelCache', cb => del(['.tmp/babel/*'], {dot: true}));
 gulp.task('clean:tempJs', cb => del(['.tmp/js/*'], {dot: true}));
 
 // Build production files, the default task
-gulp.task('default', cb =>
+gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
-    ['sass', 'scripts', 'html', 'images', 'fonts'],
+    ['styles', 'scripts', 'html', 'images', 'copy:fonts', 'copy:libs'],
     cb
   )
-
 );
 
 
@@ -252,56 +288,50 @@ gulp.task('default', cb =>
 //     .pipe(gulp.dest('dist'));
 // });
 
-// Copy all files at the root level (app)
-gulp.task('copy', () =>
-  gulp.src([
-    'app/*',
-    '!app/*.html',
-    'node_modules/apache-server-configs/dist/.htaccess'
-  ], {
-    dot: true
-  }).pipe(gulp.dest('dist'))
-    .pipe($.size({title: 'copy'}))
-);
-
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles'], () => {
+gulp.task('serve', () => {
+
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
     logPrefix: 'WSK',
+    proxy: configs.proxyUrl,
+    open: false,
     // Allow scroll syncing across breakpoints
-    scrollElementMapping: ['main', '.mdl-layout'],
+    // scrollElementMapping: ['main', '.mdl-layout'],
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app'],
+    // server: [configs.paths.dev],
     port: 3000
   });
 
-  gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts']);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch([configs.paths.src + '/twig/**/*.twig'], ['html', reload]);
+  gulp.watch([configs.paths.src + '/sass/**/*.scss'], ['styles', reload]);
+  gulp.watch([configs.paths.src + '/fonts/**/*'], ['copy:fonts', reload]);
+  gulp.watch([configs.paths.src + '/js/**/*.js'], ['scripts:main', 'scripts:combine', reload]);
+  gulp.watch([configs.paths.src + '/libs/**/*'], ['copy:libs', reload]);
+  gulp.watch([configs.paths.src + '/vendors/**/*.js'], ['scripts:vendors', 'scripts:combine', reload]);
+  gulp.watch([configs.paths.src + '/img/**/*'], ['images', reload]);
 });
 
 // Build and serve the output from the dist build
-gulp.task('serve:dist', ['default'], () =>
-  browserSync({
-    notify: false,
-    logPrefix: 'WSK',
-    // Allow scroll syncing across breakpoints
-    scrollElementMapping: ['main', '.mdl-layout'],
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    server: 'dist',
-    port: 3001
-  })
-);
+// gulp.task('serve:dist', ['default'], () =>
+//   browserSync({
+//     notify: false,
+//     logPrefix: 'WSK',
+//     // Allow scroll syncing across breakpoints
+//     scrollElementMapping: ['main', '.mdl-layout'],
+//     // Run as an https by uncommenting 'https: true'
+//     // Note: this uses an unsigned certificate which on first access
+//     //       will present a certificate warning in the browser.
+//     // https: true,
+//     server: 'dist',
+//     port: 3001
+//   })
+// );
 
 // Build production files, the default task
 // gulp.task('default', ['clean'], cb =>
