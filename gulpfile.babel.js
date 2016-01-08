@@ -115,7 +115,7 @@ gulp.task('scripts:sync', ['scripts:babel', 'scripts:lint'], () => {
     .pipe( $.foreach( (stream, file) => {
       if (!fs.existsSync(configs.paths.src + '/js/' + file.relative)) {
         del('.tmp/babel/'+ file.relative);
-        $.util.log($.util.colors.red('[scripts:sync] ' + file.relative + ' deleted from tmp!'));
+        $.util.log($.util.colors.red('[scripts:sync] >> ' + file.relative + ' deleted from tmp!'));
       }
       return stream;
     }));
@@ -198,7 +198,7 @@ gulp.task('images:sync', () => {
     .pipe( $.foreach( (stream, file) => {
       if (!fs.existsSync(configs.paths.src + '/img/' + file.relative)) {
         del('.tmp/img/'+ file.relative);
-        $.util.log($.util.colors.red('[images:sync] ' + file.relative + ' deleted from tmp!'));
+        $.util.log($.util.colors.red('[images:sync] >>' + file.relative + ' deleted from tmp!'));
       }
       return stream;
     }));
