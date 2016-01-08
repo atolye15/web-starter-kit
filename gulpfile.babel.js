@@ -52,10 +52,10 @@ gulp.task('styles', () => {
   const AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
     'ie_mob >= 10',
-    'ff >= 30',
-    'chrome >= 34',
+    'ff >= 33',
+    'chrome >= 36',
     'safari >= 7',
-    'opera >= 23',
+    'opera >= 26',
     'ios >= 7',
     'android >= 4.4',
     'bb >= 10'
@@ -263,50 +263,10 @@ gulp.task('build', cb =>
   )
 );
 
-
-// Scan your HTML for assets & optimize them
-// gulp.task('html', () => {
-//   return gulp.src('app/**/*.html')
-//     .pipe($.useref({searchPath: '{.tmp,app}'}))
-//     // Remove any unused CSS
-//     .pipe($.if('*.css', $.uncss({
-//       html: [
-//         'app/index.html'
-//       ],
-//       // CSS Selectors for UnCSS to ignore
-//       ignore: []
-//     })))
-
-//     // Concatenate and minify styles
-//     // In case you are still using useref build blocks
-//     .pipe($.if('*.css', $.minifyCss()))
-
-//     // Minify any HTML
-//     .pipe($.if('*.html', $.minifyHtml()))
-//     // Output files
-//     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
-//     .pipe(gulp.dest('dist'));
-// });
-
-
 // Watch files for changes & reload
 gulp.task('serve', () => {
 
-  browserSync({
-    notify: false,
-    // Customize the Browsersync console logging prefix
-    logPrefix: 'WSK',
-    proxy: configs.proxyUrl,
-    open: false,
-    // Allow scroll syncing across breakpoints
-    // scrollElementMapping: ['main', '.mdl-layout'],
-    // Run as an https by uncommenting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    // https: true,
-    // server: [configs.paths.dev],
-    port: 3000
-  });
+  browserSync(configs.browserSync);
 
   gulp.watch([configs.paths.src + '/twig/**/*.twig'], ['html', reload]);
   gulp.watch([configs.paths.src + '/sass/**/*.scss'], ['styles', reload]);
@@ -317,31 +277,6 @@ gulp.task('serve', () => {
   gulp.watch([configs.paths.src + '/img/**/*'], ['images', reload]);
 });
 
-// Build and serve the output from the dist build
-// gulp.task('serve:dist', ['default'], () =>
-//   browserSync({
-//     notify: false,
-//     logPrefix: 'WSK',
-//     // Allow scroll syncing across breakpoints
-//     scrollElementMapping: ['main', '.mdl-layout'],
-//     // Run as an https by uncommenting 'https: true'
-//     // Note: this uses an unsigned certificate which on first access
-//     //       will present a certificate warning in the browser.
-//     // https: true,
-//     server: 'dist',
-//     port: 3001
-//   })
-// );
-
-// Build production files, the default task
-// gulp.task('default', ['clean'], cb =>
-//   runSequence(
-//     'styles',
-//     ['lint', 'html', 'scripts', 'images', 'copy'],
-//     'generate-service-worker',
-//     cb
-//   )
-// );
 
 // Run PageSpeed Insights
 gulp.task('pagespeed', cb =>
@@ -359,36 +294,3 @@ gulp.task('copy-sw-scripts', () => {
   return gulp.src(['node_modules/sw-toolbox/sw-toolbox.js', 'app/scripts/sw/runtime-caching.js'])
     .pipe(gulp.dest('dist/scripts/sw'));
 });
-
-// See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
-// an in-depth explanation of what service workers are and why you should care.
-// Generate a service worker file that will provide offline functionality for
-// local resources. This should only be done for the 'dist' directory, to allow
-// live reload to work as expected when serving from the 'app' directory.
-gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
-  const rootDir = 'dist';
-  const filepath = path.join(rootDir, 'service-worker.js');
-
-  return swPrecache.write(filepath, {
-    // Used to avoid cache conflicts when serving on localhost.
-    cacheId: pkg.name || 'web-starter-kit',
-    // sw-toolbox.js needs to be listed first. It sets up methods used in runtime-caching.js.
-    importScripts: [
-      'scripts/sw/sw-toolbox.js',
-      'scripts/sw/runtime-caching.js'
-    ],
-    staticFileGlobs: [
-      // Add/remove glob patterns to match your directory setup.
-      `${rootDir}/images/**/*`,
-      `${rootDir}/scripts/**/*.js`,
-      `${rootDir}/styles/**/*.css`,
-      `${rootDir}/*.{html,json}`
-    ],
-    // Translates a static file path to the relative URL that it's served from.
-    stripPrefix: path.join(rootDir, path.sep)
-  });
-});
-
-// Load custom tasks from the `tasks` directory
-// Run: `npm install --save-dev require-dir` from the command-line
-// try { require('require-dir')('tasks'); } catch (err) { console.error(err); }
