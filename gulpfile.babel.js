@@ -243,13 +243,11 @@ gulp.task('html', () => {
 });
 
 gulp.task('copy:fonts', () => {
-  //TODO copy taskından önce distdeki klasörün temizlenmesi
   gulp.src(configs.paths.src + '/fonts/*')
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.fonts));
 });
 
 gulp.task('copy:libs', () => {
-  //TODO copy taskından önce distdeki klasörün temizlenmesi
   gulp.src(configs.paths.src + '/libs/*')
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.libs ));
 });
