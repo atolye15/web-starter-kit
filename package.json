@@ -20,6 +20,8 @@
     "gulp-merge-media-queries": "^0.2.1",
     "gulp-minify-css": "^1.2.3",
     "gulp-newer": "^1.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "gulp-size": "^2.0.0",

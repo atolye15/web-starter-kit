@@ -71,6 +71,7 @@ gulp.task('styles', () => {
   return gulp.src([
     configs.paths.src + '/sass/**/*.scss'
   ])
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.sourcemaps.init())
     .pipe($.sass({ precision: 10 }).on('error', $.sass.logError))
     .pipe(isProduction ? $.mergeMediaQueries({ log: true }) : $.util.noop())
@@ -95,6 +96,7 @@ gulp.task('scripts:babel', () => {
     });
   }
   return gulp.src(babelFiles)
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.newer('.tmp/babel'))
     .pipe($.babel())
     .pipe($.size({title: 'Babel'}))
@@ -105,6 +107,7 @@ gulp.task('scripts:babel', () => {
 gulp.task('scripts:lint', () => {
   if (!configs.lint.scripts) return;
   return gulp.src(configs.paths.src + '/js/**/*.js')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe(!browserSync.active ? $.eslint.failOnError() : $.util.noop())
@@ -129,6 +132,7 @@ gulp.task('scripts:main', ['scripts:sync'], () => {
     });
   }
   return gulp.src(jsFiles)
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.sourcemaps.init())
     .pipe($.concat('main.js'))
     .pipe($.size({title: 'Js'}))
@@ -146,6 +150,7 @@ gulp.task('scripts:vendors', () => {
     });
   }
   return gulp.src(vendorFiles)
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.sourcemaps.init())
     .pipe($.concat('vendors.js'))
     .pipe($.size({title: 'Vendors'}))
@@ -161,6 +166,7 @@ gulp.task('scripts:combine', () => {
     '.tmp/js/vendors.js',
     '.tmp/js/main.js'
   ])
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.concat('app.min.js'))
     .pipe($.uglify())
     .pipe($.size({title: 'App Js'}))
@@ -180,6 +186,7 @@ gulp.task('scripts', cb =>
 // Optimize images
 gulp.task('images:optimize', () => {
   return gulp.src(configs.paths.src + '/img/**/*')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.newer('.tmp/img'))
     .pipe($.imagemin({
       progressive: true,
@@ -227,6 +234,7 @@ gulp.task('html', () => {
    */
   twigController.data.production = isProduction
   return gulp.src(configs.paths.src + '/twig/pages/**/*.twig')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.twig({
       data: twigController.data,
       functions: twigController.functions
@@ -252,11 +260,17 @@ gulp.task('clean:imgCache', cb => del(['.tmp/img/*'], {dot: true}));
 gulp.task('clean:babelCache', cb => del(['.tmp/babel/*'], {dot: true}));
 gulp.task('clean:tempJs', cb => del(['.tmp/js/*'], {dot: true}));
 
+gulp.task('notify:build', () => {
+  return gulp.src('')
+    .pipe($.notify('Build işlemi başarılı bir şekilde tamamlandı.'))
+});
+
 // Build production files, the default task
 gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
     ['styles', 'scripts', 'html', 'images', 'copy:fonts', 'copy:libs'],
+    'notify:build',
     cb
   )
 );
