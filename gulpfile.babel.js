@@ -110,7 +110,7 @@ gulp.task('scripts:lint', () => {
     .pipe(!browserSync.active ? $.eslint.failOnError() : $.util.noop())
 });
 
-gulp.task('scripts:sync', () => {
+gulp.task('scripts:sync', ['scripts:babel', 'scripts:lint'], () => {
   gulp.src('.tmp/babel/**/*')
     .pipe( $.foreach( (stream, file) => {
       if (!fs.existsSync(configs.paths.src + '/js/' + file.relative)) {
@@ -121,7 +121,7 @@ gulp.task('scripts:sync', () => {
     }));
 });
 
-gulp.task('scripts:main', () => {
+gulp.task('scripts:main', ['scripts:sync'], () => {
   var jsFiles = []
   if (configs.jsFiles.length) {
     jsFiles = configs.jsFiles.map((path) => {
@@ -171,8 +171,6 @@ gulp.task('scripts:combine', () => {
 gulp.task('scripts', cb =>
   runSequence(
     'scripts:vendors',
-    ['scripts:babel', 'scripts:lint'],
-    'scripts:sync',
     'scripts:main',
     'scripts:combine',
     cb
