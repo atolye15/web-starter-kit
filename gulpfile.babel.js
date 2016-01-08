@@ -265,7 +265,10 @@ gulp.task('notify:build', () => {
     .pipe($.notify('Build işlemi başarılı bir şekilde tamamlandı.'))
 });
 
-// Build production files, the default task
+/**
+ * Build işlemleri bu task çağırılarak yapılır
+ * Burada yapılan işlemlerin sırası önemlidir.
+ */
 gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
@@ -275,6 +278,50 @@ gulp.task('build', cb =>
   )
 );
 
+/**
+ * Bu task sadece watch aktifken çalışır.
+ * src deki font klasörü ile dist'deki font klasörünü eşitler.
+ * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
+ */
+gulp.task('sync:build-fonts', () => {
+  return gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.directorySync( configs.paths.src + '/css/fonts', envPath + '/css/fonts', { printSummary: true } ))
+});
+
+/**
+ * Bu task sadece watch aktifken çalışır.
+ * src deki resim klasörü ile dist'deki resim klasörünü eşitler.
+ * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
+ */
+gulp.task('sync:build-image', () => {
+  return gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.directorySync( configs.paths.src + '/img', envPath + '/img', { printSummary: true } ))
+});
+
+/**
+ * Bu task sadece watch aktifken çalışır.
+ * src deki libs klasörü ile dist'deki libs klasörünü eşitler.
+ * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
+ */
+gulp.task('sync:build-libs', () => {
+  return gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.directorySync( configs.paths.src + '/libs', envPath + '/libs', { printSummary: true } ))
+});
+
+/**
+ * Bu task sadece watch aktifken çalışır.
+ * src deki vendors klasörü ile dist'deki vendors klasörünü eşitler.
+ * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
+ */
+gulp.task('sync:build-vendors', () => {
+  return gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.directorySync( configs.paths.src + '/vendors', envPath + '/vendors', { printSummary: true } ))
+});
+
 // Watch files for changes & reload
 gulp.task('serve', () => {
 
@@ -282,11 +329,13 @@ gulp.task('serve', () => {
 
   gulp.watch([configs.paths.src + '/twig/**/*.twig'], ['html', reload]);
   gulp.watch([configs.paths.src + '/sass/**/*.scss'], ['styles', reload]);
-  gulp.watch([configs.paths.src + '/fonts/**/*'], ['copy:fonts', reload]);
-  gulp.watch([configs.paths.src + '/js/**/*.js'], ['scripts:main', 'scripts:combine', reload]);
-  gulp.watch([configs.paths.src + '/libs/**/*'], ['copy:libs', reload]);
-  gulp.watch([configs.paths.src + '/vendors/**/*.js'], ['scripts:vendors', 'scripts:combine', reload]);
-  gulp.watch([configs.paths.src + '/img/**/*'], ['images', reload]);
+  gulp.watch([configs.paths.src + '/fonts/**/*'], ['sync:build-fonts', reload]);
+  gulp.watch([configs.paths.src + '/js/**/*.js'], () => {
+    runSequence('scripts:main', 'scripts:combine', reload);
+  });
+  gulp.watch([configs.paths.src + '/libs/**/*'], ['sync:build-libs', reload]);
+  gulp.watch([configs.paths.src + '/vendors/**/*.js'], ['sync:build-vendors', reload]);
+  gulp.watch([configs.paths.src + '/img/**/*'], ['sync:build-image', reload]);
 });
 
 
