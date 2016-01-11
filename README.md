@@ -91,8 +91,6 @@ root
 * `tpl` HTML Template dosyaları bu klasörde bulunur.
 * `vendors` Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır. Genellikle kople kütüphane klasörlerini projeye eklemek için kullanılmalıdır. Eğer ekliyeceğiniz kütüphanenin sadece javascript ve css dosyası varsa, javascript dosyasını **libs** klasörüne, css dosyasını **sass/plugins** klasörüne (_plugin-name.scss dosya ismi ile) ekleyip. javascript dosyasını **config.js** de, css dosyasını **sass/plugins.scss** de import ederek sisteme dahil edin.
 
-> Çalışma Mantığı Bölümünde yukarıdaki klasörler ve dosyalar hakkında detaylı bilgileri bulabilirsiniz.
-
 ## Projeyi Gitlab a yüklemek
 [gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden **New Project** butonuna tıklayarak projenizi oluşturunuz.
 Buradan projenizin gitlab ayarlarını yaparak **Create project** butonuna tıklayınız.
