@@ -142,18 +142,18 @@ gulp.task('scripts:main', ['scripts:sync'], () => {
     .pipe(!isProduction ? gulp.dest(envPath + '/' + configs.paths.assets.js) : $.util.noop())
 });
 
-gulp.task('scripts:vendors', () => {
-  var vendorFiles = []
-  if (configs.vendorFiles.length) {
-    vendorFiles = configs.vendorFiles.map((path) => {
-      return configs.paths.src + '/vendors/' + path
+gulp.task('scripts:libs', () => {
+  var libFiles = []
+  if (configs.libFiles.length) {
+    libFiles = configs.libFiles.map((path) => {
+      return configs.paths.src + '/libs/' + path
     });
   }
-  return gulp.src(vendorFiles)
+  return gulp.src(libFiles)
     .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.sourcemaps.init())
-    .pipe($.concat('vendors.js'))
-    .pipe($.size({title: 'Vendors'}))
+    .pipe($.concat('libs.js'))
+    .pipe($.size({title: 'Libraries'}))
     .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
     .pipe($.header(banner))
     .pipe(gulp.dest('.tmp/js'))
@@ -163,7 +163,7 @@ gulp.task('scripts:vendors', () => {
 gulp.task('scripts:combine', () => {
   if (!isProduction) return;
   return gulp.src([
-    '.tmp/js/vendors.js',
+    '.tmp/js/libs.js',
     '.tmp/js/main.js'
   ])
     .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
@@ -176,7 +176,7 @@ gulp.task('scripts:combine', () => {
 
 gulp.task('scripts', cb =>
   runSequence(
-    'scripts:vendors',
+    'scripts:libs',
     'scripts:main',
     'scripts:combine',
     cb
@@ -247,9 +247,9 @@ gulp.task('copy:fonts', () => {
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.fonts));
 });
 
-gulp.task('copy:libs', () => {
-  gulp.src(configs.paths.src + '/libs/*')
-    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.libs ));
+gulp.task('copy:vendors', () => {
+  gulp.src(configs.paths.src + '/vendors/*')
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.vendors ));
 });
 
 // Clean output directory
@@ -270,7 +270,7 @@ gulp.task('notify:build', () => {
 gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
-    ['styles', 'scripts', 'html', 'images', 'copy:fonts', 'copy:libs'],
+    ['styles', 'scripts', 'html', 'images', 'copy:fonts', 'copy:vendors'],
     'notify:build',
     cb
   )
@@ -300,17 +300,6 @@ gulp.task('sync:build-image', () => {
 
 /**
  * Bu task sadece watch aktifken çalışır.
- * src deki libs klasörü ile dist'deki libs klasörünü eşitler.
- * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
- */
-gulp.task('sync:build-libs', () => {
-  return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync( configs.paths.src + '/libs', envPath + '/libs', { printSummary: true } ))
-});
-
-/**
- * Bu task sadece watch aktifken çalışır.
  * src deki vendors klasörü ile dist'deki vendors klasörünü eşitler.
  * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
  */
@@ -331,7 +320,9 @@ gulp.task('serve', () => {
   gulp.watch([configs.paths.src + '/js/**/*.js'], () => {
     runSequence('scripts:main', 'scripts:combine', reload);
   });
-  gulp.watch([configs.paths.src + '/libs/**/*'], ['sync:build-libs', reload]);
+  gulp.watch([configs.paths.src + '/libs/**/*.js'], () => {
+    runSequence('scripts:libs', 'scripts:combine', reload);
+  });
   gulp.watch([configs.paths.src + '/vendors/**/*.js'], ['sync:build-vendors', reload]);
   gulp.watch([configs.paths.src + '/img/**/*'], ['sync:build-image', reload]);
 });
@@ -347,9 +338,3 @@ gulp.task('pagespeed', cb =>
     // key: 'YOUR_API_KEY'
   }, cb)
 );
-
-// Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
-gulp.task('copy-sw-scripts', () => {
-  return gulp.src(['node_modules/sw-toolbox/sw-toolbox.js', 'app/scripts/sw/runtime-caching.js'])
-    .pipe(gulp.dest('dist/scripts/sw'));
-});

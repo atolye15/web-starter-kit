@@ -17,11 +17,11 @@ const configs = {
     dev: 'dev',
     dist: 'dist',
     assets: {
-      js     : 'js',
-      css    : 'css',
-      img    : 'img',
-      fonts  : 'css/fonts',
-      libs   : 'js/libs'
+      js      : 'js',
+      css     : 'css',
+      img     : 'img',
+      fonts   : 'css/fonts',
+      vendors : 'js/libs'
     }
   },
   browserSync: {
@@ -42,7 +42,7 @@ const configs = {
     port: 3000
   },
   jsFiles: ['main1.js', 'deneme.js'],
-  vendorFiles: ['dene.js']
+  libFiles: ['dene.js']
 }
 
 module.exports = configs
