@@ -240,6 +240,10 @@ gulp.task('html', () => {
       functions : twigController.functions,
       filters   : twigController.filters
     }))
+    .pipe($.rename((path) => {
+      path.basename = path.basename.replace(/(\.html)$/, '');
+      return path;
+    }))
     .pipe(gulp.dest(envPath));
 });
 
