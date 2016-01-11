@@ -2,22 +2,25 @@
 Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başlangıç paketidir. Temel amacı her proje başlangıçlarında yapılan rutin işlerden sizi kurtarmak ve Front-end geliştiriciler arasında senkronizasyonu sağlamaktır. [Atölye15 CSS Stil Rehberi](http://gitlab.atolye15.net/frontend/atolye15-style-guide/blob/master/css-style-guilde.md) kuralları çerçevesinde yazılmıştır.
 
 ## İçerisinde neler mevcut ?
- - HTML Template Sitemi
- - Sass
+ - Twig (HTML Template Sitemi)
+ - Sass (CSS extension language)
  - Autoprefixer
- - CSS Minification
+ - Css media queryleri gruplama
  - Resimleri optimize etme
- - Coffee Script
- - JSHint
+ - Babel ile ES2015 (JavaScript compiler)
+ - Eslint (Javascript Lint)
+ - Minifications
+ - Sourcemaps
+ - Responsive boilerplate
 
 ## Sistem Gereksinimleri
-Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda
+Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda aşağıda listelenen gereksinimler yüklü olmalıdır.
 - [Node.js](http://nodejs.org/)
 - [Npm (Node Package Manager)](https://www.npmjs.org/)
 - [Ruby](https://www.ruby-lang.org/)
 - [Sass](http://sass-lang.com/install/)
 - [Git](http://git-scm.com/)
-- [Grunt](http://gruntjs.com/getting-started/)
+- [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
 ## Kurulum ?
 
@@ -48,8 +51,8 @@ komutu ile kurabilirsiniz.
 
 4. Bağımlılıkları indirdikten sonra terminalinizde;
 ```bash
-grunt mode:dev # Geliştirme ortamını develop moda hazırlar
-grunt watch
+gulp build # Geliştirme ortamını develop moda hazırlar
+gulp serve # watch işlemlerini başlatır.
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 
@@ -57,34 +60,36 @@ komutunu yazarak grunt izlemeyi başlatabilirsiniz.
 ```html
 root
 ├── dev
-├── prod
-├── preprocess
+├── dist
+├── .tmp
 ├── src
-│   ├── coffee
 │   ├── fonts
 │   ├── img
+│   ├── js
 │   ├── libs
 │   ├── sass
-│   ├── tpl
+│   ├── twig
 │   └── vendors
+├── .babelrc
+├── .editorconfig
+├── .gitattributes
 ├── .gitignore
-├── .jshintrc
 ├── bower.json
-├── config.json
-├── package.json
-└── Gruntfile.coffee
+├── config.js
+├── gulpfile.babel.js
+└── package.json
 ```
-* `dev` Development modunda Grunt dosyaları bu klasör içerisine oluşturur. Geliştirme modunda `http://localhost/dev` adresinde proje çalıştırılır.
-* `prod` Production modunda Grunt dosyaları bu klasör içerisinde oluşturur. Geliştirme modunda `http://localhost/prod` adresinde proje çalıştırılır.
-* `preprocess` Ara işlemlerin yapıldığı klasördür. Bu klasör grunt tarafından kullanılmaktadır.
+* `dev` Development ortamında build işlemi dosyaları bu klasör içerisine oluşturur.
+* `prod` Production ortamında build işlemi dosyaları bu klasör içerisinde oluşturur.
+* `.tmp` Bu klasör minification ve compile işlemleri için yedekleme klasörüdür. Sistem tarafından kullanılır. Kaynak dosyalara yeni bir ekleme olduğunda sistem sadece yeni eklenmiş dosya üzerinde işlem yaparak bu dosyayı işlenmiş dosyaların içerisine atar. Bu sayede gereksiz yere tekrardan tüm dosyaların işlenmesinin önüne geçilmek amaçlanmıştır.
 * `src` Kaynak kodların bulunduğu klasördür
-* `src/coffee` CoffeeScript dosyalarının bulunduğu klasördür. Burada oluşturduğunu dosyalar **config.json** da **coffeeFiles** değişkeni içerisinde dosya yolları yazılarak sisteme dahil edilir.
+* `src/js` Javascript (babel) dosyalarının bulunduğu klasördür. Burada oluşturduğunuz dosyalar **config.js** da **jsFiles** değişkeni içerisinde **sadece dosya adları** yazılarak sisteme dahil edilir.
 * `src/fonts` Font dosyaları bu klasör içerinde bulunur.
 * `src/img` Resim dosyaları bu klasör içerisinde bulunur.
-* `libs` Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur.
+* `libs` Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosyaları içermelidir. Burada eklediğiniz dosyalar **config.js** da **libFiles** değişkeni içerisinde **sadece dosya adları** yazılarak sisteme dahil edilir.
 * `sass` Scss dosyaları bu klasör içerisinde bulunur. Bu klasör içerisindeki klasörlerinde özelliklerine [Buradan](gitlab.atolye15.net/frontend/atolye15-style-guide/blob/master/css-style-guilde.md#dosya-yapisi) ulaşabilirsiniz.
 * `tpl` HTML Template dosyaları bu klasörde bulunur.
-* `vendors` Projeye dahil edilecek Javascript dosyaları.
+* `vendors` Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır. Genellikle kople kütüphane klasörlerini projeye eklemek için kullanılmalıdır. Eğer ekliyeceğiniz kütüphanenin sadece javascript ve css dosyası varsa, javascript dosyasını **libs** klasörüne, css dosyasını **sass/plugins** klasörüne (_plugin-name.scss dosya ismi ile) ekleyip. javascript dosyasını **config.js** de, css dosyasını **sass/plugins.scss** de import ederek sisteme dahil edin.
 
 > Çalışma Mantığı Bölümünde yukarıdaki klasörler ve dosyalar hakkında detaylı bilgileri bulabilirsiniz.
 
@@ -116,85 +121,46 @@ komutu ile taglarınızı remote a atabilirsiniz.
 
 ---
 
-## Grunt Kullanımı
-Grunt Node.Js ile çalışan, terminal aracılığı ile konrol ettiğimiz bir görev çalıştırıcısıdır. Web geliştirme sürecinde elle yaptığımız rutin işleri üzerine alarak bu işleri otomatikleştirir ve Front-end geliştirme yükünü hafifletir.
+## Gulp Kullanımı
+Gulp Node.Js ile çalışan, terminal aracılığı ile konrol ettiğimiz bir görev çalıştırıcısıdır. Web geliştirme sürecinde elle yaptığımız rutin işleri üzerine alarak bu işleri otomatikleştirir ve Front-end geliştirme yükünü hafifletir.
 
-### Grunt Kurulumu
-Grunt kullabilmek için Node.Js kurulu olması gereklidir. Node.Js Kurulumunu yaptıktan sonra
+### Gulp Kurulumu
+Gulp kullabilmek için Node.Js kurulu olması gereklidir. Node.Js Kurulumunu yaptıktan sonra
 ```bash
-npm install -g grunt-cli
+npm install --global gulp
 ```
-komutu ile Grunt ı yükleyebilirsiniz.
+komutu ile Gulp'ı yükleyebilirsiniz.
 
-### Grunt Taskları
+### Gulp Taskları
 
-#### grunt deploy
-Bu görev projeyi sunuma hazırlar.  Ana dizinde bir assets klasörü oluşturur ve sunuma hazır haldeki css, js dosyalarını ve resimleri bu klasör içine kopyalar. Kök dizine de html sayfalarını oluştutur.
+#### gulp build
+Bu görev projeyi çalışma ortamına göre belirlenen hedef klasöre hazırlar.
+Eğer komutun sonuna `--prod` eklenirse çalışma ortamı production, hiç bir şey yazılmaz ise development olarak belirlenir.
 
-#### grunt build
-Bu görev de deploy ile aynı işlemleri yapar sadece html derlemelerini yapmaz.
+#### gulp serve
+Geliştirme modunda twig, sass, resim ve babel javascript dosyaların izleyerek, değişimleri halinde derleme işlemini gerçekleştirir.
 
-#### grunt compressimg
-Resim dosyalarını sıkıştırır ve assests/img klasörüne kopyalar.
+#### gulp clean:dist
+Çalışma ortamına göre belirlenen hedef klasörün içerisini temizler.
 
-#### grunt mode:dev, grunt mode:live
-Projenin hangi ortamda olduğunu belirlemek için kullanılır. Geliştirme modunu ektif etmek için;
-```bash
-grunt mode:dev
-```
-Sahne modunu etkinleştirmek için;
-```bash
-grunt mode:live
-```
-görevleri çalıştırılır.
+#### gulp clean:imgCache
+Minify edilip `.tmp/img` içerisine yedeklenmiş resim dosyalarını temizler.
 
-#### grunt watch
-Geliştirme modunda tpl, sass ve coffee script dosyaların izleyerek, değişimleri halinde derleme işlemini gerçekleştirir.
-> Bu görevi sadece geliştirme modu aktif iken kullanabilirsiniz.
-
-#### grunt ftp_push
-Dosyalarınızı ftp protokolünü kullanarak sunucuya atmanızı sağlar. Bu görevi kullanabilmek için Grunt dosyasında bazı ayarlamaları yapmanız gereklidir.
-ilk olarak kök dizine .ftpauth adında bir dosya oluşturup içerisine
-```json
-{
-  "key": {
-    "username": "username",
-    "password": "pass"
-  }
-}
-```
-şeklinde ftp kullanıcı adı ve şifremizi eklememiz gerekli. Daha sonra Grunt.coffee dosyasında
-```json
-authKey: 'key'
-host: "hots-name",
-dest: "/project-folder-name"
-```
-alanlarını düzenlememiz gereklidir.
-
-#### grunt copy:bowerComponents
-ClassList, html5shiv, jQuery, Bootstrap gibi kullanılan temel kütüphane dosyalarını bower klasöründen src/ klasörüne belirlediğimiz yollara kopyalar.
-> Bu görevi çalıştırmadan önce bower install yapıp kütüphaneleri indiriniz.
-
-#### grunt clean:dist
-Sunuma hazırlanmış dosya ve klasörleri temizler. Silinen dosya ve klasörler;
-
- - assets/
- - Kök dizindeki tüm html dosyaları
- - src/css/style.css
- - src/css/style.css.map
- - src/js/main.js
- - src/coffee/output/*.js
+#### gulp clean:babelCache
+Derlenip `.tmp/babel` içerisine yedeklenmiş javascript dosyalarını temizler.
 
 ## Bower Kullanımı
 
-Projenizde kullanacağınız kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz. Kütüphaneleri projenize dahil etmek için `bower.json` dosyasının içerisine kütüphane ismini girmelisiniz(Kütüphaneleri [http://bower.io/search/](http://bower.io/search/) dan aratabilirsiniz), karşısına da kütüphanenin hangi sürümünü indirmek istediğinizi girmelisiniz. (Kütüphanenin son sürümünü indirmek için genel olarak `*` kullanınız.)
-Daha sonra terminalinizde
+Projenizde kullanacağınız kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz.
+Komut satırına
+```bash
+bower install jquery --save
+```
+yazarak kütüphaneleri yükleyebilirsiniz. Eğer hazır bir bower.json dosyasına sahipseniz
 ```bash
 bower install
 ```
-yazarak belirttiğiniz kütüphaneleri indirebilirsiniz.
+komutunu çalıştırmanız yeterli olacaktır.
 
 [Bower](http://bower.io/) kullanımı hakkında daha detaylı bilgi için şu makaleyi inceleyebilirsiniz.
 [http://akademi.atolye15.com/post/73516641491/bower-nedir](http://akademi.atolye15.com/post/73516641491/bower-nedir)
-
-
