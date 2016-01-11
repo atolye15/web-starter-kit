@@ -236,8 +236,9 @@ gulp.task('html', () => {
   return gulp.src(configs.paths.src + '/twig/pages/**/*.twig')
     .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.twig({
-      data: twigController.data,
-      functions: twigController.functions
+      data      : twigController.data,
+      functions : twigController.functions,
+      filters   : twigController.filters
     }))
     .pipe(gulp.dest(envPath));
 });

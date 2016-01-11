@@ -18,7 +18,8 @@ var twigController = {
         return args;
       }
     }
-  ]
+  ],
+  filters: []
 }
 
 module.exports = twigController
