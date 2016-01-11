@@ -62,7 +62,7 @@ gulp.task('styles', () => {
   ];
 
   const stylesMinChannel = lazypipe()
-    .pipe($.minifyCss, { keepSpecialComments: 0 })
+    .pipe($.cssnano, {discardComments: {removeAll: true}})
     .pipe($.rename, { suffix: '.min' })
     .pipe($.header, banner)
     .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
