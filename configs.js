@@ -41,8 +41,8 @@ const configs = {
     // server: [configs.paths.dev],
     port: 3000
   },
-  jsFiles: ['main1.js', 'deneme.js'],
-  libFiles: ['dene.js']
+  jsFiles: ['main.js'],
+  libFiles: []
 }
 
 module.exports = configs
