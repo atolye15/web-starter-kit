@@ -20,6 +20,6 @@ var twigController = {
     }
   ],
   filters: []
-}
+};
 
-module.exports = twigController
+module.exports = twigController;
