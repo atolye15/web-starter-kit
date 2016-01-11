@@ -51,7 +51,7 @@ komutu ile kurabilirsiniz.
 
 4. Bağımlılıkları indirdikten sonra terminalinizde;
 ```bash
-gulp build # Geliştirme ortamını develop moda hazırlar
+gulp build # Geliştirme ortamını develop moda hazırlar. --prod yazarak çalışma ortamını production olarak belirleyebilirsiniz.
 gulp serve # watch işlemlerini başlatır.
 ```
 komutunu yazarak grunt izlemeyi başlatabilirsiniz.
