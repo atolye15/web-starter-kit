@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Project Description",
   "dependencies": {
-    "jquery": "*",
-    "html5shiv": "*",
-    "bootstrap-sass-official": "*",
-    "classlist": "*"
+    "jquery": "~2.2.0",
+    "html5shiv": "~3.7.3",
+    "classlist": "~2014.12.13",
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.6"
   },
   "ignore": [
     "**/.*",
