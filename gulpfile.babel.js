@@ -248,12 +248,12 @@ gulp.task('html', () => {
 });
 
 gulp.task('copy:fonts', () => {
-  gulp.src(configs.paths.src + '/fonts/*')
+  gulp.src(configs.paths.src + '/fonts/**/*')
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.fonts));
 });
 
 gulp.task('copy:vendors', () => {
-  gulp.src(configs.paths.src + '/vendors/*')
+  gulp.src(configs.paths.src + '/vendors/**/*')
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.vendors ));
 });
 
