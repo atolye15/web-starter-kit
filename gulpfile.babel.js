@@ -287,7 +287,7 @@ gulp.task('clean:dist', cb => del([envPath + '/*'], {dot: true}));
 gulp.task('clean:imgCache', cb => del(['.tmp/img/*'], {dot: true}));
 gulp.task('clean:babelCache', cb => del(['.tmp/babel/*'], {dot: true}));
 gulp.task('clean:tempJs', cb => del(['.tmp/js/*'], {dot: true}));
-gulp.task('clean:deployFolder', cb => del([configs.paths.deploy+'/*'], {dot: true}));
+gulp.task('clean:deployFolder', cb => del([configs.paths.deploy+'/*'], {dot: true, force:true}));
 
 /**
  * DEPLOY
