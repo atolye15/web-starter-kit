@@ -435,7 +435,7 @@ gulp.task('serve', () => {
   gulp.watch([configs.paths.src + '/libs/**/*.js'], () => {
     runSequence('scripts:libs', 'scripts:combine', 'sync:deploy-scripts', reload);
   });
-  gulp.watch([configs.paths.src + '/vendors/**/*.js'], () => {
+  gulp.watch([configs.paths.src + '/vendors/**'], () => {
     runSequence('sync:build-vendors', 'sync:deploy-vendors', reload);
   });
   gulp.watch([configs.paths.src + '/img/**/*'], () => {
