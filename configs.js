@@ -22,7 +22,7 @@ const configs = {
       css     : 'css',
       img     : 'img',
       fonts   : 'css/fonts',
-      vendors : 'js/libs'
+      vendors : 'js/vendors'
     }
   },
   browserSync: {
