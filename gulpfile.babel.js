@@ -100,7 +100,7 @@ gulp.task('scripts:babel', () => {
       return configs.paths.src + '/js/' + path
     });
   }
-  return gulp.src(babelFiles)
+  return gulp.src(babelFiles, {base: 'src/js'})
     .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
     .pipe($.newer('.tmp/babel'))
     .pipe($.babel())
