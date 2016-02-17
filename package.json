@@ -39,5 +39,8 @@
   "private": true,
   "eslintConfig": {
     "extends": "google"
+  },
+  "scripts": {
+    "node_modules-chmod": "sudo chmod -R 0777 node_modules"
   }
 }
