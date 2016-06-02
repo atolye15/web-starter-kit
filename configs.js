@@ -10,7 +10,7 @@ const configs = {
     }
   },
   lint: {
-    scripts : true
+    scripts: true
   },
   paths: {
     src: 'src',
@@ -18,11 +18,11 @@ const configs = {
     dist: 'dist',
     deploy: '../web/assets',
     assets: {
-      js      : 'js',
-      css     : 'css',
-      img     : 'img',
-      fonts   : 'css/fonts',
-      vendors : 'js/vendors'
+      js: 'js',
+      css: 'css',
+      img: 'img',
+      fonts: 'css/fonts',
+      vendors: 'js/vendors'
     }
   },
   browserSync: {
@@ -44,6 +44,6 @@ const configs = {
   },
   jsFiles: ['main.js'],
   libFiles: []
-}
+};
 
-module.exports = configs
+module.exports = configs;
