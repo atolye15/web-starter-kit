@@ -13,7 +13,7 @@
 // https://babeljs.io/docs/learn-es2015/
 
 import fs from 'fs';
-import path from 'path';
+// import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
 import runSequence from 'run-sequence';
@@ -21,10 +21,9 @@ import browserSync from 'browser-sync';
 import lazypipe from 'lazypipe';
 import pngquant from 'imagemin-pngquant';
 
-
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
-import pkg from './package.json';
+// import pkg from './package.json';
 import configs from './configs.js';
 import twigController from './src/twig/controller.js';
 const $ = gulpLoadPlugins();
@@ -42,8 +41,7 @@ const banner = [
   ' * ' + configs.info.author.name + ' < ' + configs.info.author.email + ' >',
   ' * Version ' + configs.info.version + ' ( ' + today + ' )',
   ' */\n\n'
-].join('\n')
-
+].join('\n');
 
 /**
  * STYLES
@@ -51,7 +49,6 @@ const banner = [
  */
 
 gulp.task('styles', () => {
-
   const AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
     'ie_mob >= 10',
@@ -66,7 +63,7 @@ gulp.task('styles', () => {
 
   const stylesMinChannel = lazypipe()
     .pipe($.cssnano, {discardComments: {removeAll: true}})
-    .pipe($.rename, { suffix: '.min' })
+    .pipe($.rename, {suffix: '.min'})
     .pipe($.header, banner)
     .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
 
@@ -74,18 +71,17 @@ gulp.task('styles', () => {
   return gulp.src([
     configs.paths.src + '/sass/**/*.scss'
   ])
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.sourcemaps.init())
-    .pipe($.sass({ precision: 10 }).on('error', $.sass.logError))
-    .pipe(isProduction ? $.mergeMediaQueries({ log: true }) : $.util.noop())
+    .pipe($.sass({precision: 10}).on('error', $.sass.logError))
+    .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.css))
     .pipe(isProduction ? stylesMinChannel() : $.util.noop())
-    .pipe($.size({ title: 'Css' }));
+    .pipe($.size({title: 'Css'}));
 });
-
 
 /**
  * SCRIPTS
@@ -94,35 +90,37 @@ gulp.task('styles', () => {
 
 // Compile Babel
 gulp.task('scripts:babel', () => {
-  var babelFiles = []
+  var babelFiles = [];
   if (configs.jsFiles.length) {
-    babelFiles = configs.jsFiles.map((path) => {
-      return configs.paths.src + '/js/' + path
+    babelFiles = configs.jsFiles.map(path => {
+      return configs.paths.src + '/js/' + path;
     });
   }
   return gulp.src(babelFiles, {base: 'src/js'})
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.newer('.tmp/babel'))
     .pipe($.babel())
     .pipe($.size({title: 'Babel'}))
-    .pipe(gulp.dest('.tmp/babel'))
+    .pipe(gulp.dest('.tmp/babel'));
 });
 
 // Lint JavaScript
 gulp.task('scripts:lint', () => {
-  if (!configs.lint.scripts) return;
-  return gulp.src(configs.paths.src + '/js/**/*.js')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+  if (!configs.lint.scripts) {
+    return;
+  }
+  gulp.src(configs.paths.src + '/js/**/*.js')
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.eslint())
     .pipe($.eslint.format())
-    .pipe(!browserSync.active ? $.eslint.failOnError() : $.util.noop())
+    .pipe(browserSync.active ? $.util.noop() : $.eslint.failOnError());
 });
 
 gulp.task('scripts:sync', ['scripts:babel', 'scripts:lint'], () => {
   gulp.src('.tmp/babel/**/*')
-    .pipe( $.foreach( (stream, file) => {
+    .pipe($.foreach((stream, file) => {
       if (!fs.existsSync(configs.paths.src + '/js/' + file.relative)) {
-        del('.tmp/babel/'+ file.relative);
+        del('.tmp/babel/' + file.relative);
         $.util.log($.util.colors.red('[scripts:sync] >> ' + file.relative + ' deleted from tmp!'));
       }
       return stream;
@@ -130,53 +128,55 @@ gulp.task('scripts:sync', ['scripts:babel', 'scripts:lint'], () => {
 });
 
 gulp.task('scripts:main', ['scripts:sync'], () => {
-  var jsFiles = []
+  var jsFiles = [];
   if (configs.jsFiles.length) {
-    jsFiles = configs.jsFiles.map((path) => {
-      return '.tmp/babel/' + path
+    jsFiles = configs.jsFiles.map(path => {
+      return '.tmp/babel/' + path;
     });
   }
   return gulp.src(jsFiles)
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.sourcemaps.init())
     .pipe($.concat('main.js'))
     .pipe($.size({title: 'Js'}))
-    .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
     .pipe(gulp.dest('.tmp/js'))
-    .pipe(!isProduction ? gulp.dest(envPath + '/' + configs.paths.assets.js) : $.util.noop())
+    .pipe(isProduction ? $.util.noop() : gulp.dest(envPath + '/' + configs.paths.assets.js));
 });
 
 gulp.task('scripts:libs', () => {
-  var libFiles = []
+  var libFiles = [];
   if (configs.libFiles.length) {
-    libFiles = configs.libFiles.map((path) => {
-      return configs.paths.src + '/libs/' + path
+    libFiles = configs.libFiles.map(path => {
+      return configs.paths.src + '/libs/' + path;
     });
   }
   return gulp.src(libFiles)
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.sourcemaps.init())
     .pipe($.concat('libs.js'))
     .pipe($.size({title: 'Libraries'}))
-    .pipe(!isProduction ? $.sourcemaps.write('./') : $.util.noop())
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
     .pipe(gulp.dest('.tmp/js'))
-    .pipe(!isProduction ? gulp.dest(envPath + '/' + configs.paths.assets.js) : $.util.noop())
+    .pipe(isProduction ? $.util.noop() : gulp.dest(envPath + '/' + configs.paths.assets.js));
 });
 
 gulp.task('scripts:combine', () => {
-  if (!isProduction) return;
-  return gulp.src([
+  if (!isProduction) {
+    return;
+  }
+  gulp.src([
     '.tmp/js/libs.js',
     '.tmp/js/main.js'
   ])
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.concat('app.min.js'))
     .pipe($.uglify())
     .pipe($.size({title: 'App Js'}))
     .pipe($.header(banner))
-    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.js))
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.js));
 });
 
 gulp.task('scripts', cb =>
@@ -196,7 +196,7 @@ gulp.task('scripts', cb =>
 // Optimize images
 gulp.task('images:optimize', () => {
   return gulp.src(configs.paths.src + '/img/**/*')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.newer('.tmp/img'))
     .pipe($.imagemin({
       progressive: true,
@@ -207,14 +207,14 @@ gulp.task('images:optimize', () => {
       use: [pngquant()]
     }))
     .pipe($.size({title: 'Image Optimize'}))
-    .pipe(gulp.dest('.tmp/img'))
+    .pipe(gulp.dest('.tmp/img'));
 });
 
 gulp.task('images:sync', () => {
   gulp.src('.tmp/img/**/*')
-    .pipe( $.foreach( (stream, file) => {
+    .pipe($.foreach((stream, file) => {
       if (!fs.existsSync(configs.paths.src + '/img/' + file.relative)) {
-        del('.tmp/img/'+ file.relative);
+        del('.tmp/img/' + file.relative);
         $.util.log($.util.colors.red('[images:sync] >> ' + file.relative + ' deleted from tmp!'));
       }
       return stream;
@@ -247,15 +247,15 @@ gulp.task('html', () => {
    * bilgisini depolar. Bu yüzden src/twig/data.json içerisinde production
    * adında bir değişken tanımlamayın!
    */
-  twigController.data.production = isProduction
+  twigController.data.production = isProduction;
   return gulp.src(configs.paths.src + '/twig/pages/**/*.twig')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.twig({
-      data      : twigController.data,
-      functions : twigController.functions,
-      filters   : twigController.filters
+      data: twigController.data,
+      functions: twigController.functions,
+      filters: twigController.filters
     }))
-    .pipe($.rename((path) => {
+    .pipe($.rename(path => {
       path.basename = path.basename.replace(/(\.html)$/, '');
       return path;
     }))
@@ -274,7 +274,7 @@ gulp.task('copy:fonts', () => {
 
 gulp.task('copy:vendors', () => {
   gulp.src(configs.paths.src + '/vendors/**/*')
-    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.vendors ));
+    .pipe(gulp.dest(envPath + '/' + configs.paths.assets.vendors));
 });
 
 /**
@@ -283,11 +283,11 @@ gulp.task('copy:vendors', () => {
  */
 
 // Clean output directory
-gulp.task('clean:dist', cb => del([envPath + '/*'], {dot: true}));
-gulp.task('clean:imgCache', cb => del(['.tmp/img/*'], {dot: true}));
-gulp.task('clean:babelCache', cb => del(['.tmp/babel/*'], {dot: true}));
-gulp.task('clean:tempJs', cb => del(['.tmp/js/*'], {dot: true}));
-gulp.task('clean:deployFolder', cb => del([configs.paths.deploy+'/*'], {dot: true, force:true}));
+gulp.task('clean:dist', () => del([envPath + '/*'], {dot: true}));
+gulp.task('clean:imgCache', () => del(['.tmp/img/*'], {dot: true}));
+gulp.task('clean:babelCache', () => del(['.tmp/babel/*'], {dot: true}));
+gulp.task('clean:tempJs', () => del(['.tmp/js/*'], {dot: true}));
+gulp.task('clean:deployFolder', () => del([configs.paths.deploy + '/*'], {dot: true, force: true}));
 
 /**
  * DEPLOY
@@ -296,32 +296,34 @@ gulp.task('clean:deployFolder', cb => del([configs.paths.deploy+'/*'], {dot: tru
  */
 
 gulp.task('deploy:styles', () => {
-  gulp.src(envPath + '/'+ configs.paths.assets.css +'/**/*')
-    .pipe(gulp.dest(configs.paths.deploy+'/'+configs.paths.assets.css));
+  gulp.src(envPath + '/' + configs.paths.assets.css + '/**/*')
+    .pipe(gulp.dest(configs.paths.deploy + '/' + configs.paths.assets.css));
 });
 
 gulp.task('deploy:scripts', () => {
-  gulp.src(envPath + '/'+ configs.paths.assets.js +'/**/*')
-    .pipe(gulp.dest(configs.paths.deploy+'/'+configs.paths.assets.js));
+  gulp.src(envPath + '/' + configs.paths.assets.js + '/**/*')
+    .pipe(gulp.dest(configs.paths.deploy + '/' + configs.paths.assets.js));
 });
 
 gulp.task('deploy:images', () => {
-  gulp.src(envPath + '/'+ configs.paths.assets.img +'/**/*')
-    .pipe(gulp.dest(configs.paths.deploy+'/'+configs.paths.assets.img));
+  gulp.src(envPath + '/' + configs.paths.assets.img + '/**/*')
+    .pipe(gulp.dest(configs.paths.deploy + '/' + configs.paths.assets.img));
 });
 
 gulp.task('deploy:vendors', () => {
-  gulp.src(envPath + '/'+ configs.paths.assets.vendors +'/**/*')
-    .pipe(gulp.dest(configs.paths.deploy+'/'+configs.paths.assets.vendors));
+  gulp.src(envPath + '/' + configs.paths.assets.vendors + '/**/*')
+    .pipe(gulp.dest(configs.paths.deploy + '/' + configs.paths.assets.vendors));
 });
 
 gulp.task('deploy', cb => {
-  if (!deploy) return;
+  if (!deploy) {
+    return;
+  }
   runSequence(
     ['clean:deployFolder'],
     ['deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'],
     cb
-  )
+  );
 });
 
 /**
@@ -331,9 +333,8 @@ gulp.task('deploy', cb => {
 
 gulp.task('notify:build', () => {
   return gulp.src('')
-    .pipe($.notify('Build işlemi başarılı bir şekilde tamamlandı.'))
+    .pipe($.notify('Build işlemi başarılı bir şekilde tamamlandı.'));
 });
-
 
 /**
  * BUILD
@@ -350,7 +351,6 @@ gulp.task('build', cb =>
   )
 );
 
-
 /**
  * SYNC
  * Klasörlerin eşitlenme işlemleri
@@ -361,57 +361,91 @@ gulp.task('build', cb =>
 // src deki font klasörü ile dist'deki font klasörünü eşitler.
 gulp.task('sync:build-fonts', () => {
   return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(configs.paths.src + '/fonts', envPath+'/'+configs.paths.assets.fonts, { printSummary: true }))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      configs.paths.src + '/fonts',
+      envPath + '/' + configs.paths.assets.fonts,
+      {printSummary: true}
+    ));
 });
-
 
 // src deki resim klasörü ile dist'deki resim klasörünü eşitler.
 gulp.task('sync:build-image', () => {
   return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(configs.paths.src + '/img', envPath+'/'+configs.paths.assets.img, { printSummary: true }))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      configs.paths.src + '/img',
+      envPath + '/' + configs.paths.assets.img,
+      {printSummary: true})
+    );
 });
 
 // src deki vendors klasörü ile dist'deki vendors klasörünü eşitler.
 gulp.task('sync:build-vendors', () => {
   return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(configs.paths.src + '/vendors', envPath+'/'+configs.paths.assets.vendors, { printSummary: true }))
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      configs.paths.src + '/vendors',
+      envPath + '/' + configs.paths.assets.vendors,
+      {printSummary: true})
+    );
 });
 
 // deploy pathdeki css klasörü ile dist'deki css klasörünü eşitler.
 gulp.task('sync:deploy-styles', () => {
-  if (!deploy) return;
-  return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(envPath + '/' + configs.paths.assets.css, configs.paths.deploy + '/' + configs.paths.assets.css, { printSummary: true }))
+  if (!deploy) {
+    return;
+  }
+  gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      envPath + '/' + configs.paths.assets.css,
+      configs.paths.deploy + '/' + configs.paths.assets.css,
+      {printSummary: true}
+    ));
 });
 
 // deploy pathdeki javascript klasörü ile dist'deki javascript klasörünü eşitler.
 gulp.task('sync:deploy-scripts', () => {
-  if (!deploy) return;
-  return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(envPath + '/' + configs.paths.assets.js, configs.paths.deploy + '/' + configs.paths.assets.js, { printSummary: true }))
+  if (!deploy) {
+    return;
+  }
+  gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      envPath + '/' + configs.paths.assets.js,
+      configs.paths.deploy + '/' + configs.paths.assets.js,
+      {printSummary: true}
+    ));
 });
 
 // deploy pathdeki image klasörü ile dist'deki image klasörünü eşitler.
 gulp.task('sync:deploy-images', () => {
-  if (!deploy) return;
-  return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(envPath + '/' + configs.paths.assets.img, configs.paths.deploy + '/' + configs.paths.assets.img, { printSummary: true }))
+  if (!deploy) {
+    return;
+  }
+  gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      envPath + '/' + configs.paths.assets.img,
+      configs.paths.deploy + '/' + configs.paths.assets.img,
+      {printSummary: true}
+    ));
 });
 
 // deploy pathdeki image klasörü ile dist'deki image klasörünü eşitler.
 gulp.task('sync:deploy-vendors', () => {
-  if (!deploy) return;
-  return gulp.src('')
-    .pipe($.plumber({errorHandler: $.notify.onError("Hata: <%= error.message %>")}))
-    .pipe($.directorySync(envPath + '/' + configs.paths.assets.vendors, configs.paths.deploy + '/' + configs.paths.assets.vendors, { printSummary: true }))
+  if (!deploy) {
+    return;
+  }
+  gulp.src('')
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.directorySync(
+      envPath + '/' + configs.paths.assets.vendors,
+      configs.paths.deploy + '/' + configs.paths.assets.vendors,
+      {printSummary: true}
+    ));
 });
-
 
 /**
  * WATCH
@@ -419,7 +453,6 @@ gulp.task('sync:deploy-vendors', () => {
  */
 
 gulp.task('serve', () => {
-
   browserSync(configs.browserSync);
 
   gulp.watch([configs.paths.src + '/twig/**/*.twig'], ['html', reload]);
