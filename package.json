@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "babel-core": "^6.3.26",
+    "babel-eslint": "^6.0.4",
     "babel-preset-es2015": "^6.3.13",
     "browser-sync": "^2.10.1",
     "del": "^2.2.0",
@@ -38,7 +39,15 @@
   },
   "private": true,
   "eslintConfig": {
-    "extends": "google"
+    "extends": "google",
+    "parser": "babel-eslint",
+    "rules": {
+      "strict": 0,
+      "max-len": [1, 100, 2, {
+        "ignoreUrls": true,
+        "ignoreComments": false
+      }]
+    }
   },
   "scripts": {
     "node_modules-chmod": "sudo chmod -R 0777 node_modules"
