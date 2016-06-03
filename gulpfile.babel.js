@@ -105,11 +105,11 @@ gulp.task('scripts:babel', () => {
 });
 
 // Lint JavaScript
-gulp.task('scripts:lint', () => {
+gulp.task('scripts:lint', cb => {
   if (!configs.lint.scripts) {
-    return;
+    return cb();
   }
-  gulp.src(configs.paths.src + '/js/**/*.js')
+  return gulp.src(configs.paths.src + '/js/**/*.js')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.eslint())
     .pipe($.eslint.format())
@@ -163,11 +163,11 @@ gulp.task('scripts:libs', () => {
     .pipe(isProduction ? $.util.noop() : gulp.dest(envPath + '/' + configs.paths.assets.js));
 });
 
-gulp.task('scripts:combine', () => {
+gulp.task('scripts:combine', cb => {
   if (!isProduction) {
-    return;
+    return cb();
   }
-  gulp.src([
+  return gulp.src([
     '.tmp/js/libs.js',
     '.tmp/js/main.js'
   ])
@@ -317,9 +317,9 @@ gulp.task('deploy:vendors', () => {
 
 gulp.task('deploy', cb => {
   if (!deploy) {
-    return;
+    return cb();
   }
-  runSequence(
+  return runSequence(
     ['clean:deployFolder'],
     ['deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'],
     cb
@@ -392,11 +392,11 @@ gulp.task('sync:build-vendors', () => {
 });
 
 // deploy pathdeki css klasörü ile dist'deki css klasörünü eşitler.
-gulp.task('sync:deploy-styles', () => {
+gulp.task('sync:deploy-styles', cb => {
   if (!deploy) {
-    return;
+    return cb();
   }
-  gulp.src('')
+  return gulp.src('')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.directorySync(
       envPath + '/' + configs.paths.assets.css,
@@ -406,11 +406,11 @@ gulp.task('sync:deploy-styles', () => {
 });
 
 // deploy pathdeki javascript klasörü ile dist'deki javascript klasörünü eşitler.
-gulp.task('sync:deploy-scripts', () => {
+gulp.task('sync:deploy-scripts', cb => {
   if (!deploy) {
-    return;
+    return cb();
   }
-  gulp.src('')
+  return gulp.src('')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.directorySync(
       envPath + '/' + configs.paths.assets.js,
@@ -420,11 +420,11 @@ gulp.task('sync:deploy-scripts', () => {
 });
 
 // deploy pathdeki image klasörü ile dist'deki image klasörünü eşitler.
-gulp.task('sync:deploy-images', () => {
+gulp.task('sync:deploy-images', cb => {
   if (!deploy) {
-    return;
+    return cb();
   }
-  gulp.src('')
+  return gulp.src('')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.directorySync(
       envPath + '/' + configs.paths.assets.img,
@@ -434,11 +434,11 @@ gulp.task('sync:deploy-images', () => {
 });
 
 // deploy pathdeki image klasörü ile dist'deki image klasörünü eşitler.
-gulp.task('sync:deploy-vendors', () => {
+gulp.task('sync:deploy-vendors', cb => {
   if (!deploy) {
-    return;
+    return cb();
   }
-  gulp.src('')
+  return gulp.src('')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.directorySync(
       envPath + '/' + configs.paths.assets.vendors,
