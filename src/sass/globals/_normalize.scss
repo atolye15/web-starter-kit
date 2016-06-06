@@ -6,6 +6,7 @@
 //    without disabling user zoom.
 //
 
+// scss-lint:disable VendorPrefix
 html {
   font-family: sans-serif; // 1
   -ms-text-size-adjust: 100%; // 2
@@ -141,7 +142,7 @@ h1 {
 //
 // Address styling not present in IE 8/9.
 //
-
+// scss-lint:disable ColorVariable
 mark {
   background: #ff0;
   color: #000;
@@ -436,13 +437,17 @@ th {
 //     http://clagnut.com/sandbox/css3/
 //
 
-body, input, textarea, select, button {
+body,
+input,
+textarea,
+select,
+button {
   text-rendering: optimizeLegibility; // 1 //
   -webkit-font-smoothing: antialiased; // 2 //
   -moz-osx-font-smoothing: grayscale; // 3 //
-  font-feature-settings: 'liga', 'kern'; // 4 //
-  -webkit-font-feature-settings: 'liga', 'kern';
-  -moz-font-feature-settings: 'liga', 'kern';
+  font-feature-settings: "liga", "kern"; // 4 //
+  -webkit-font-feature-settings: "liga", "kern";
+  -moz-font-feature-settings: "liga", "kern";
   font-kerning: normal; // 6 //
   -webkit-font-kerning: normal;
   -moz-font-kerning: normal;

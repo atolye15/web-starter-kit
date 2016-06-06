@@ -27,7 +27,9 @@
     @include resizable(none);
   }
 
-  select { width: 100%; }
+  select {
+    width: 100%;
+  }
 }
 
 

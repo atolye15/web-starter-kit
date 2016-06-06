@@ -31,15 +31,15 @@
 // @param $radius - Input border radius
 // @param $placeholder - Input placeholder color
 
-@mixin form-control-modifier( $color: $input-color, $bg-color: $input-bg-color, $border-color: $input-border-color, $radius: $input-border-radius, $placeholder: $input-color-placeholder ) {
+@mixin form-control-modifier($color: $input-color, $bg-color: $input-bg-color, $border-color: $input-border-color, $radius: $input-border-radius, $placeholder: $input-color-placeholder) {
   color: $color;
   background-color: $bg-color;
   border-color: $border-color;
   border-radius: $radius;
 
   // Placeholder
-  @if not( $placeholder == null ) {
-    @include placeholder( $placeholder );
+  @if not($placeholder == null) {
+    @include placeholder($placeholder);
   }
 
 }

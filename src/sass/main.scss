@@ -1,47 +1,47 @@
 @charset "UTF-8";
 
 // Colors
-@import 'globals/colors';
+@import "globals/colors";
 
 // Variables
-@import 'globals/variables';
+@import "globals/variables";
 
 // Mixins
-@import 'globals/mixins';
+@import "globals/mixins";
 
 // Bootstrap Mixins
-@import 'bootstrap/mixins';
+@import "bootstrap/mixins";
 
 // Normalize
-@import 'globals/normalize';
+@import "globals/normalize";
 
 // Fonts
-@import 'globals/fonts';
+@import "globals/fonts";
 
 // Extends
-@import 'globals/extends';
+@import "globals/extends";
 
 // Icons
-@import 'globals/icons';
+@import "globals/icons";
 
 // Plugins
-@import 'plugins';
+@import "plugins";
 
 // Bootstrap
-@import 'bootstrap';
+@import "bootstrap";
 
 // Base
-@import 'globals/base';
+@import "globals/base";
 
 // Globals
-@import 'globals/utilities';
+@import "globals/utilities";
 
 // Components
-@import 'components';
+@import "components";
 
 // Sections
-@import 'sections';
+@import "sections";
 
 //Grid
-@import 'bootstrap/grid';
-@import 'bootstrap/responsive-utilities';
+@import "bootstrap/grid";
+@import "bootstrap/responsive-utilities";

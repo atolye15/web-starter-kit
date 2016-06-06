@@ -3,9 +3,9 @@
 // Mixins
 // --------------------------------------------------
 
-@import 'mixins/buttons';
-@import 'mixins/forms';
-@import 'mixins/breakpoint';
+@import "mixins/buttons";
+@import "mixins/forms";
+@import "mixins/breakpoint";
 
 //
 // Px to Em Mixin
@@ -19,15 +19,15 @@
 // Font-Face Mixin
 //
 
-@mixin font-face($fontName, $fontFolder, $fontFileName, $fontWeight : normal, $fontStyle : normal){
-    @font-face {
-    font-family: $fontName;
-    src: url('fonts/#{$fontFolder}/#{$fontFileName}.eot');
-    src: url('fonts/#{$fontFolder}/#{$fontFileName}.eot?#iefix') format('embedded-opentype'),
-         url('fonts/#{$fontFolder}/#{$fontFileName}.woff') format('woff'),
-         url('fonts/#{$fontFolder}/#{$fontFileName}.ttf') format('truetype'),
-         url('fonts/#{$fontFolder}/#{$fontFileName}.svg##{$fontFileName}') format('svg');
-    font-weight: $fontWeight; font-style: $fontStyle;}
+@mixin font-face($font-name, $font-folder, $font-file-name, $font-weight : normal, $font-style : normal) {
+  @font-face {
+    font-family: $font-name;
+    src: url("fonts/#{$font-folder}/#{$font-file-name}.eot");
+    src: url("fonts/#{$font-folder}/#{$font-file-name}.eot?#iefix") format("embedded-opentype"),
+         url("fonts/#{$font-folder}/#{$font-file-name}.woff") format("woff"),
+         url("fonts/#{$font-folder}/#{$font-file-name}.ttf") format("truetype"),
+         url("fonts/#{$font-folder}/#{$font-file-name}.svg##{$font-file-name}") format("svg");
+    font-weight: $font-weight; font-style: $font-style;}
 }
 
 //
@@ -35,12 +35,12 @@
 // IE 9+
 //
 
-@mixin font-face-modern ($fontName, $fontFolder, $fontFileName, $fontWeight : normal, $fontStyle : normal){
+@mixin font-face-modern ($font-name, $font-folder, $font-file-name, $font-weight : normal, $font-style : normal) {
   @font-face {
-    font-family: $fontName;
-    src: url('fonts/#{$fontFolder}/#{$fontFileName}.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-         url('fonts/#{$fontFolder}/#{$fontFileName}.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-    font-weight: $fontWeight; font-style: $fontStyle;
+    font-family: $font-name;
+    src: url("fonts/#{$font-folder}/#{$font-file-name}.woff") format("woff"), // Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+         url("fonts/#{$font-folder}/#{$font-file-name}.ttf") format("truetype"); // Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    font-weight: $font-weight; font-style: $font-style;
   }
 }
 
@@ -58,11 +58,11 @@
   height: 0;
   border: inset $triangle-size;
   @if ($triangle-direction == top) {
-    border-color: $triangle-color transparent transparent transparent;
+    border-color: $triangle-color transparent transparent;
     border-top-style: solid;
   }
   @if ($triangle-direction == bottom) {
-    border-color: transparent transparent $triangle-color transparent;
+    border-color: transparent transparent $triangle-color;
     border-bottom-style: solid;
   }
   @if ($triangle-direction == left) {
@@ -87,11 +87,11 @@
 
   @media
   only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (   min--moz-device-pixel-ratio: 2),
-  only screen and (     -o-min-device-pixel-ratio: 2/1),
-  only screen and (        min-device-pixel-ratio: 2),
-  only screen and (                min-resolution: 192dpi),
-  only screen and (                min-resolution: 2dppx) {
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
     background-image: url($image2x);
     background-size: $width $height;
   }

@@ -34,20 +34,24 @@
   }
 
   &--secondary {
-    @include btn-modifier( $bg:$secondary-color );
+    @include btn-modifier($bg:$secondary-color);
   }
+
   &--expanded {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
   }
-  &--custom {
-    @include btn-modifier( $bg:#74a446, $radius:10px, $bg-hover:#618a3c, $border-width:3px );
-  }
+
+  // &--custom {
+  //   @include btn-modifier($bg:#74a446, $radius:10px, $bg-hover:#618a3c, $border-width:3px);
+  // }
+
   &--medium {
-    @include btn-size( $padding-v:15px, $padding-h:50px, $font-size:1.1em );
+    @include btn-size($padding-v:15px, $padding-h:50px, $font-size:1.1em);
   }
+
   &--tiny {
-    @include btn-size( 5px, 10px, 10px );
+    @include btn-size(5px, 10px, 10px);
   }
 }

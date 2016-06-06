@@ -12,24 +12,29 @@
 //   Transition için sass/global/_utilities.scss deki .transition-background classını extend eder
 // @param $font - Button font family değerini tanımlar
 
-@mixin btn-block( $ease:true, $font:$button-font-family ) {
+@mixin btn-block($ease:true, $font:$button-font-family) {
 
-    @if ( $ease == true ){ @extend %transition-background; }
+  @if ($ease == true){
+    @extend %transition-background;
+  }
 
-    position: relative;
-    display: inline-block;
-    padding: $button-padding-vertical $button-padding-horizontal;
-    border-style: solid;
-    border-width: $button-border-width;
-    font-family: $button-font-family;
-    font-size: $button-font-size;
-    line-height: $button-line-height;
-    text-align: center;
+  position: relative;
+  display: inline-block;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  border-style: solid;
+  border-width: $button-border-width;
+  font-family: $button-font-family;
+  font-size: $button-font-size;
+  line-height: $button-line-height;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+
+  &:hover,
+  &:focus {
     text-decoration: none;
-    cursor: pointer;
-    -webkit-appearance: none;
-    &:hover,
-    &:focus { text-decoration: none; }
+  }
 }
 
 
@@ -41,7 +46,7 @@
 // @param $padding-h - Butona sağ ve soldan verilecek padding değerini tanımlar
 // @param $font-size - Buton font size değerini tanımlar
 
-@mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:null ) {
+@mixin btn-size($padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:null) {
 
   // We control which padding styles come through,
   // these can be turned off by setting $padding:false
@@ -74,28 +79,28 @@
 // @param $radius - Butonun border-radius değerini tanımlar
 // @param $disabled - Butona disable efekti vermek için kullanılır
 
-@mixin btn-modifier( $bg:$button-bg-color, $bg-hover:auto, $color:auto, $hover-color:auto, $border-width:null, $border-color:auto, $radius:$button-radius, $disabled:false ) {
+@mixin btn-modifier($bg:$button-bg-color, $bg-hover:auto, $color:auto, $hover-color:auto, $border-width:null, $border-color:auto, $radius:$button-radius, $disabled:false) {
 
 
   // $bg-hover tanımlanmamışsa sass fonksiyonlarını kullanarak hover rengi taımlıyoruz
   @if $bg-hover == auto {
-    $bg-hover: if( $bg == $button-bg-color, $button-bg-hover, scale-color( $bg, $lightness: $button-function-factor ) );
+    $bg-hover: if($bg == $button-bg-color, $button-bg-hover, scale-color($bg, $lightness: $button-function-factor));
   }
   // $border-color tanımlanmamışsa sass fonksiyonlarını kullanarak border rengi taımlıyoruz
   @if ($border-color == auto) and not( $bg == null ) {
-    $border-color: if( $bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
+    $border-color: if($bg == $button-bg-color, $button-border-color, scale-color($bg, $lightness: $button-function-factor));
   }
 
-  $bg-lightness : 0;
+  $bg-lightness: 0;
   $bg-hover-lightness: 0;
 
   // Arkaplan renginin lightness oranı
   @if not( $bg == null ) {
     $bg-lightness: lightness($bg);
+  } @else {
+    $border-color: null;
   }
-  @else {
-    $border-color: null
-  }
+
   @if not( $bg-hover == null ) {
     $bg-hover-lightness: lightness($bg-hover);
   }
@@ -106,7 +111,7 @@
 
   // Bg rengine göre text rengi ayarlıyoruz
   @if $color == auto {
-    $color: if( $bg-lightness > 70%, $button-font-color-alt, $button-font-color );
+    $color: if($bg-lightness > 70%, $button-font-color-alt, $button-font-color);
   }
 
 
@@ -130,7 +135,9 @@
       box-shadow: none;
 
       &:hover,
-      &:focus { background-color: $bg; }
+      &:focus {
+        background-color: $bg;
+      }
     }
 
   }
