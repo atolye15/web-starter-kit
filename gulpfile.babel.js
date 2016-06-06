@@ -57,9 +57,7 @@ gulp.task('styles:lint', cb => {
     `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/bootstrap/**`
   ])
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
-    .pipe($.scssLint({
-      reporterOutput: 'Checkstyle'
-    }))
+    .pipe($.scssLint())
     .pipe(browserSync.active ? $.util.noop() : $.scssLint.failReporter('E'));
 });
 
