@@ -10,7 +10,8 @@ const configs = {
     }
   },
   lint: {
-    scripts: true
+    scripts: true,
+    styles: true
   },
   paths: {
     src: 'src',

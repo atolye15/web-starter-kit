@@ -48,7 +48,22 @@ const banner = [
  * Sass dosyalarını derleme ve prefix ekleme
  */
 
-gulp.task('styles', () => {
+// Lint styles
+gulp.task('styles:lint', cb => {
+  if (!configs.lint.styles) {
+    return cb();
+  }
+  return gulp.src([
+    `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/bootstrap/**`
+  ])
+    .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    .pipe($.scssLint({
+      reporterOutput: 'Checkstyle'
+    }))
+    .pipe(browserSync.active ? $.util.noop() : $.scssLint.failReporter('E'));
+});
+
+gulp.task('styles:main', () => {
   const AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
     'ie_mob >= 10',
@@ -82,6 +97,14 @@ gulp.task('styles', () => {
     .pipe(isProduction ? stylesMinChannel() : $.util.noop())
     .pipe($.size({title: 'Css'}));
 });
+
+gulp.task('styles', cb =>
+  runSequence(
+    'styles:lint',
+    'styles:main',
+    cb
+  )
+);
 
 /**
  * SCRIPTS
