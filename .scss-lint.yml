@@ -13,7 +13,7 @@ linters:
     enabled: false
 
   ExtendDirective:
-    enabled: true
+    enabled: false
 
   LeadingZero:
     enabled: false
