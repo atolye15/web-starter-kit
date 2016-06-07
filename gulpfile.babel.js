@@ -495,6 +495,7 @@ gulp.task('serve', () => {
   gulp.watch([configs.paths.src + '/img/**/*'], () => {
     runSequence('sync:build-image', 'sync:deploy-images', reload);
   });
+  gulp.watch(['configs.js'], ['build', reload]);
 });
 
 /**
