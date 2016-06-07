@@ -1,28 +1,28 @@
 @charset "UTF-8";
 
 // Colors
-@import "globals/colors";
+@import "abstracts/colors";
 
 // Variables
-@import "globals/variables";
+@import "abstracts/variables";
 
 // Mixins
-@import "globals/mixins";
+@import "abstracts/mixins";
 
 // Bootstrap Mixins
 @import "bootstrap/mixins";
 
 // Normalize
-@import "globals/normalize";
+@import "vendors/normalize";
 
 // Fonts
-@import "globals/fonts";
+@import "base/fonts";
 
 // Extends
-@import "globals/extends";
+@import "abstracts/extends";
 
 // Icons
-@import "globals/icons";
+@import "base/icons";
 
 // Plugins
 @import "plugins";
@@ -31,10 +31,10 @@
 @import "bootstrap";
 
 // Base
-@import "globals/base";
+@import "base/base";
 
 // Globals
-@import "globals/utilities";
+@import "base/utilities";
 
 // Components
 @import "components";
