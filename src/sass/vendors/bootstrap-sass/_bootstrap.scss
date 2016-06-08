@@ -4,8 +4,13 @@
 // Tekrardan import etmeyiniz !!!
 
 //
-// grid, responsive-utilities, mixins ve normalize main.scss de import ediliyor
+// mixins ve normalize main.scss de import ediliyor
 // Tekrardan import etmeyiniz !!!
+
+//
+// Zaten bootsrap 4'ün flex grid sistemini kullandığımız için
+// grid, responsive-utilities dosyalarını yüklemenenize gerek yoktur
+//
 
 // Bootstrap
 @import "bootstrap/variables";
