@@ -7,28 +7,30 @@
 @import "abstracts/variables";
 
 // Mixins
-@import "abstracts/mixins";
+@import "abstracts/mixins/index";
 
 // Bootstrap Mixins
-@import "bootstrap/mixins";
+@import "vendors/bootstrap-sass/bootstrap/mixins";
+
+// Placeholders
+@import "abstracts/placeholders";
 
 // Normalize
 @import "vendors/normalize";
 
+@import "base/reset";
+
 // Fonts
 @import "base/fonts";
-
-// Extends
-@import "abstracts/extends";
 
 // Icons
 @import "base/icons";
 
-// Plugins
-@import "plugins";
+// Vendors
+@import "vendors/index";
 
-// Bootstrap
-@import "bootstrap";
+// Vendors Extensions
+@import "vendors-extensions/index";
 
 // Base
 @import "base/base";
@@ -37,11 +39,17 @@
 @import "base/utilities";
 
 // Components
-@import "components";
+@import "components/index";
 
-// Sections
-@import "sections";
+// Layout
+@import "layout/index";
 
-//Grid
-@import "bootstrap/grid";
-@import "bootstrap/responsive-utilities";
+// Layout
+@import "pages/index";
+
+// Grid
+@import "vendors/bootstrap-sass/bootstrap/grid";
+@import "vendors/bootstrap-sass/bootstrap/responsive-utilities";
+
+// Responsive
+@import "base/responsive";

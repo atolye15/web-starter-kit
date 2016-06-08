@@ -1,5 +1,5 @@
 # Vendors
 
-Most projects will have a `vendors/` folder containing all the CSS files from external libraries and frameworks – Normalize, Bootstrap, jQueryUI, FancyCarouselSliderjQueryPowered, and so on. Putting those aside in the same folder is a good way to say “Hey, this is not from me, not my code, not my responsibility”.
+`vendors/` klasörü içerisinde dışarıdan yüklenen eklentilerin stil dosyalarını bulundurur. Eğer ekliyeceğiniz eklenti klasör halinde ise ve css, js ve resim dosyalarını aynı anda içeriyorsa ana dizindeki `./vendors` klasörüne eklemeniz gereklidir. Bu klasörde sadece stil dosyaları bulunmalıdır.
 
-If you have to override a section of any vendor, I recommend you have an 8th folder called `vendors-extensions/` in which you may have files named exactly after the vendors they overwrite. For instance, `vendors-extensions/_bootstrap.scss` is a file containing all CSS rules intended to re-declare some of Bootstrap’s default CSS. This is to avoid editing the vendor files themselves, which is generally not a good idea.
+Eğer bir eklentiyi override etmeniz gerekirse bu işlemi `vendors-extensions/` klasörü içerisinde yapmanız daha uygundur. Bu klasör içerisindeki eklenti dosyalarının orjinal hali bozulmamalıdır.
