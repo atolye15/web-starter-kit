@@ -223,7 +223,7 @@ gulp.task('images:optimize', () => {
       progressive: true,
       interlaced: true,
       svgoPlugins: [{
-        removeViewBox: false
+        removeDimensions: true
       }],
       use: [pngquant()]
     }))
