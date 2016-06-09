@@ -57,6 +57,38 @@ $font-size-medium: $font-size-base + 2px;
 $font-size-large: $font-size-base + 4px;
 $font-size-xlarge: $font-size-base + 8px;
 
+$g-base-gap: $line-height-computed;
+$g-gaps: (
+  normal: (
+    x: $g-base-gap,
+    y: ($g-base-gap / 2)
+  ),
+  small: (
+    x: ($g-base-gap / 2),
+    y: ($g-base-gap / 4)
+  ),
+  xsmall: (
+    x: ($g-base-gap / 4),
+    y: ($g-base-gap / 6)
+  ),
+  medium: (
+    x: ($g-base-gap * 1.5),
+    y: ($g-base-gap * 0.75)
+  ),
+  large: (
+    x: ($g-base-gap * 2),
+    y: $g-base-gap
+  )
+);
+
+$g-base-padding: 60px;
+$g-pads: (
+  normal: $g-base-padding,
+  small: ($g-base-padding / 2),
+  medium: ($g-base-padding * 1.5),
+  large: ($g-base-padding * 2)
+);
+
 
 //  BUTTONS VARIABLES
 // -------------------------
