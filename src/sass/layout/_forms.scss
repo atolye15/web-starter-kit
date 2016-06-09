@@ -1,0 +1,34 @@
+
+//
+//  FORM ELEMENTS
+//
+//  Primary modifier'ı projeye göre tanımlandıysa eklenmeli
+//
+//  @markup
+//  <form class="l-form">
+//    <input type="text" class="l-form__control l-form__control--primary" />
+//  </form>
+//  --------------------------------------------------
+
+//  @include form-control-modifier( $color, $bg-color, $border-color, $radius, $placeholder )
+
+.l-form {
+
+  &__control {
+    @include form-control-block();
+    @include form-control-modifier();
+
+    &[disabled] {
+      opacity: .5;
+    }
+
+    &--textarea {
+      height: auto;
+      @include resizable(none);
+    }
+  }
+}
+
+
+
+
