@@ -1,0 +1,64 @@
+//
+//  FLEX GRID
+//  Bootstrap v4 grid sistemi baz alınmıştır.
+//  --------------------------------------------------
+
+.container {
+  @include make-grid-container();
+  @include make-grid-container-max-widths();
+}
+
+.l-grid {
+  @include make-grid-row();
+
+  //
+  // Elements
+  // -------------------------
+
+  &__col {
+    position: relative;
+    min-height: 1px;
+    padding-right: ($grid-gutter-width / 2);
+    padding-left: ($grid-gutter-width / 2);
+
+    @include make-grid-columns();
+  }
+
+  //
+  // Modifiers
+  // -------------------------
+
+  &--vertical-center {
+    align-items: center;
+  }
+
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--justify-space-between {
+    justify-content: space-between;
+  }
+
+  &--justify-end {
+    justify-content: flex-end;
+  }
+
+  &--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &--no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+
+    > .l-grid__col {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &--direction-column {
+    flex-direction: column;
+  }
+}
