@@ -93,19 +93,19 @@ $g-pads: (
 //  BUTTONS VARIABLES
 // -------------------------
 
-$button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
-$button-font-family: false !default; // Butonun fontu
-$button-bg-color: $primary-color !default; // Buton default bg color
-$button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor) !default; // Button default hover rengi
-$button-border-color: $button-bg-hover !default; // Button default border rengi
-$button-radius: 3px !default; // Button default border radius
-$button-font-size: 14px !default; // Button default font boyutu
-$button-line-height: null !default; // Button line-height
-$button-font-color: $color-white !default; // Button default font rengi
-$button-font-color-alt: $color-oil !default; // Button default font rengi
-$button-padding-vertical: 10px !default; // Button dikey padding
-$button-padding-horizontal: 20px !default; // Button default yatay padding
-$button-border-width: 0 !default; // Button default border width
+$c-button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
+$c-button-font-family: false !default; // Butonun fontu
+$c-button-bg-color: $primary-color !default; // Buton default bg color
+$c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-function-factor) !default; // Button default hover rengi
+$c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
+$c-button-radius: 3px !default; // Button default border radius
+$c-button-font-size: 14px !default; // Button default font boyutu
+$c-button-line-height: null !default; // Button line-height
+$c-button-font-color: $color-white !default; // Button default font rengi
+$c-button-font-color-alt: $color-oil !default; // Button default font rengi
+$c-button-padding-vertical: 10px !default; // Button dikey padding
+$c-button-padding-horizontal: 20px !default; // Button default yatay padding
+$c-button-border-width: 0 !default; // Button default border width
 
 
 //  FORMS CONTROL VARIABLES
