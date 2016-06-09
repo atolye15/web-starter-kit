@@ -1,47 +1,55 @@
 @charset "UTF-8";
 
 // Colors
-@import "globals/colors";
+@import "abstracts/colors";
 
 // Variables
-@import "globals/variables";
+@import "abstracts/variables";
 
 // Mixins
-@import "globals/mixins";
+@import "abstracts/mixins/index";
 
 // Bootstrap Mixins
-@import "bootstrap/mixins";
+@import "vendors/bootstrap-sass/bootstrap/mixins";
+
+// Placeholders
+@import "abstracts/placeholders";
 
 // Normalize
-@import "globals/normalize";
+@import "vendors/normalize";
+
+@import "base/reset";
 
 // Fonts
-@import "globals/fonts";
-
-// Extends
-@import "globals/extends";
+@import "base/fonts";
 
 // Icons
-@import "globals/icons";
+@import "base/icons";
 
-// Plugins
-@import "plugins";
+// Vendors
+@import "vendors/index";
 
-// Bootstrap
-@import "bootstrap";
+// Vendors Extensions
+@import "vendors-extensions/index";
 
 // Base
-@import "globals/base";
+@import "base/base";
 
 // Globals
-@import "globals/utilities";
+@import "base/utilities";
 
 // Components
-@import "components";
+@import "components/index";
 
-// Sections
-@import "sections";
+// Layout
+@import "layout/index";
 
-//Grid
-@import "bootstrap/grid";
-@import "bootstrap/responsive-utilities";
+// Layout
+@import "pages/index";
+
+// Grid
+@import "vendors/bootstrap-sass/bootstrap/grid";
+@import "vendors/bootstrap-sass/bootstrap/responsive-utilities";
+
+// Responsive
+@import "base/responsive";

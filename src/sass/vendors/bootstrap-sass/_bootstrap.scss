@@ -1,0 +1,41 @@
+
+//
+// scaffolding ve type daki gerekli özellikler base/_base.scss içinde toplanmıştır.
+// Tekrardan import etmeyiniz !!!
+
+//
+// grid, responsive-utilities, mixins ve normalize main.scss de import ediliyor
+// Tekrardan import etmeyiniz !!!
+
+// Bootstrap
+@import "bootstrap/variables";
+// @import "bootstrap/utilities"; // Buradaki tüm classlar zaten base/utilities.scss de mevcut
+
+// Components
+@import "bootstrap/component-animations";
+// @import "bootstrap/dropdowns";
+// @import "bootstrap/button-groups";
+// @import "bootstrap/input-groups";
+// @import "bootstrap/navs";
+// @import "bootstrap/navbar";
+// @import "bootstrap/breadcrumbs";
+// @import "bootstrap/pagination";
+// @import "bootstrap/pager";
+// @import "bootstrap/labels";
+// @import "bootstrap/badges";
+// @import "bootstrap/jumbotron";
+// @import "bootstrap/thumbnails";
+// @import "bootstrap/alerts";
+// @import "bootstrap/progress-bars";
+// @import "bootstrap/media";
+// @import "bootstrap/list-group";
+// @import "bootstrap/panels";
+// @import "bootstrap/responsive-embed";
+// @import "bootstrap/wells";
+// @import "bootstrap/close";
+
+// Components w/ JavaScript
+// @import "bootstrap/modals";
+// @import "bootstrap/tooltip";
+// @import "bootstrap/popovers";
+// @import "bootstrap/carousel";

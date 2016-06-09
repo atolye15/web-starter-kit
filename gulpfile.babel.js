@@ -54,7 +54,7 @@ gulp.task('styles:lint', cb => {
     return cb();
   }
   return gulp.src([
-    `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/bootstrap/**`
+    `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/vendors/**`
   ])
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.scssLint())
