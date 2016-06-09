@@ -1,12 +1,12 @@
 //
-// CUSTOM CHECKBOX
+// CHECKBOX
 //
 // @markup
-// <div class="c-checkbox">
-//   <input class="c-checkbox__inp" type="checkbox" name="" id="cb1">
-//   <label class="c-checkbox__mask" for="cb1"></label>
-// </div>
-//
+// <label class="c-checkbox c-checkbox--modifier">
+//   <input class="c-checkbox__inp" type="checkbox">
+//   <span class="c-checkbox__mask"></span>
+//   <span>Optional Text</span>
+// </label>
 //  --------------------------------------------------
 
 // scss-lint:disable NestingDepth
