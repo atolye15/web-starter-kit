@@ -1,160 +1,93 @@
 
 //
 // BREAKPOINT
+// Bootstrap v4 den alınmıştır.
 // --------------------------------------------------
 
-
-// @MIXIN breakpoint
+// Breakpoint viewport sizes and media queries.
 //
-// Bu mixini media query tanımlamak içn kullanıyoruz
+// Breakpoints are defined as a map of (name: minimum width), order from small to large:
 //
-// $point - Media querynin çalışma aralığı
+//    (xs: 0, sm: 544px, md: 768px)
 //
-// @USAGE
-// @include breakpoint( "point" ) { ... }
+// The map defined in the `$grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
 
-// scss-lint:disable ElsePlacement
-@mixin breakpoint($point) {
-
-
-  //
-  // DESKTOP
-  // -------------------------
-
-  // desktop-and-above ( >= 1280px )
-  @if $point == "desktop-and-above" {
-    @media (min-width: 1280px) {
-      @content;
-    }
-  }
-
-  // desktop-below ( < 1280px )
-  @else if $point == "desktop-below" {
-    @media (max-width: 1279px) {
-      @content;
-    }
-  }
-
-
-  //
-  // TABLET
-  // -------------------------
-
-  // tablet-landscape-above ( > 1024px )
-  @else if $point == "tablet-landscape-above" {
-    @media (min-width: 1025px) {
-      @content;
-    }
-  }
-
-  // tablet-landscape-and-above ( >= 1024px )
-  @else if $point == "tablet-landscape-and-above" {
-    @media (min-width: 1024px) {
-      @content;
-    }
-  }
-
-  // tablet-landscape-and-below ( <= 1024px )
-  @else if $point == "tablet-landscape-and-below" {
-    @media (max-width: 1024px) {
-      @content;
-    }
-  }
-
-  // tablet-landscape ( > 768px, <= 1024px )
-  @else if $point == "tablet-landscape" {
-    @media (min-width: 769px) and (max-width: 1024px) {
-      @content;
-    }
-  }
-
-  // tablet-portrait ( > 480px, =< 768px )
-  @else if $point == "tablet-portrait" {
-    @media (min-width: 481px) and (max-width: 768px) {
-      @content;
-    }
-  }
-
-  // tablet-landscape-below ( < 1024px )
-  @else if $point == "tablet-landscape-below" {
-    @media (max-width: 1023px) {
-      @content;
-    }
-  }
-
-
-  //
-  // PHONE
-  // -------------------------
-
-  // only-tablet ( >= 768px, <= 1024px )
-  @else if $point == "only-tablet" {
-    @media (min-width: 768px) and (max-width: 1024px) {
-      @content;
-    }
-  }
-
-  // tablet-portrait-and-above ( >= 768px )
-  @else if $point == "tablet-portrait-and-above" {
-    @media (min-width: 768px) {
-      @content;
-    }
-  }
-
-  // tablet-portrait-and-below ( <= 768px )
-  @else if $point == "tablet-portrait-and-below" {
-    @media (max-width: 768px) {
-      @content;
-    }
-  }
-
-  // tablet-portrait-below ( < 768px )
-  @else if $point == "tablet-portrait-below" {
-    @media (max-width: 767px) {
-      @content;
-    }
-  }
-
-  // phone-landscape-and-above ( >= 480px )
-  @else if $point == "phone-landscape-and-above" {
-    @media (min-width: 480px) {
-      @content;
-    }
-  }
-
-  // phone-landscape-and-below ( <= 480px )
-  @else if $point == "phone-landscape-and-below" {
-    @media (max-width: 480px) {
-      @content;
-    }
-  }
-
-  // phone-landscape-below ( < 480px )
-  @else if $point == "phone-landscape-below" {
-    @media (max-width: 479px) {
-      @content;
-    }
-  }
-
-  // phone-portrait-and-above ( >= 360px )
-  @else if $point == "phone-portrait-and-above" {
-    @media (min-width: 360px) {
-      @content;
-    }
-  }
-
-  // phone-portrait-and-below ( <= 360px )
-  @else if $point == "phone-portrait-and-below" {
-    @media (max-width: 360px) {
-      @content;
-    }
-  }
-
-  // phone-portrait-small-screen ( < 360px )
-  @else if $point == "phone-portrait-small-screen" {
-    @media (max-width: 359px) {
-      @content;
-    }
-  }
-
+// Name of the next breakpoint, or null for the last breakpoint.
+//
+//    >> breakpoint-next(sm)
+//    md
+//    >> breakpoint-next(sm, (xs: 0, sm: 544px, md: 768px))
+//    md
+//    >> breakpoint-next(sm, $breakpoint-names: (xs sm md))
+//    md
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 544px, md: 768px))
+//    544px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+// Maximum breakpoint width. Null for the largest (last) breakpoint.
+// The maximum value is calculated as the minimum of the next one less 0.1.
+//
+//    >> breakpoint-max(sm, (xs: 0, sm: 544px, md: 768px))
+//    767px
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
+}
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-up($name, $breakpoints) {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
+  @include media-breakpoint-up($lower, $breakpoints) {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
