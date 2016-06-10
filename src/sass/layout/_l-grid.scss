@@ -5,12 +5,12 @@
 //  --------------------------------------------------
 
 .container {
-  @include make-grid-container();
-  @include make-grid-container-max-widths();
+  @include make-l-grid-container();
+  @include make-l-grid-container-max-widths();
 }
 
 .l-grid {
-  @include make-grid-row();
+  @include make-l-grid-row();
 
   //
   // Elements
@@ -22,7 +22,7 @@
     padding-right: ($grid-gutter-width / 2);
     padding-left: ($grid-gutter-width / 2);
 
-    @include make-grid-columns();
+    @include make-l-grid-columns();
   }
 
   //
