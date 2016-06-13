@@ -7,14 +7,14 @@
  */
 
 var twigController = {
-  data : {
-    locale: "tr",
-    title: "Hello, Boys!"
+  data: {
+    locale: 'tr',
+    title: 'Hello, Boys!'
   },
   functions: [
     {
       name: 'assets',
-      func: (args) => {
+      func: args => {
         return args;
       }
     }
