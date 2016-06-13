@@ -89,8 +89,8 @@ gulp.task('styles:main', () => {
     .pipe($.sass({precision: 10}).on('error', $.sass.logError))
     .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.css))
     .pipe(isProduction ? stylesMinChannel() : $.util.noop())
     .pipe($.size({title: 'Css'}));
@@ -160,8 +160,8 @@ gulp.task('scripts:main', ['scripts:sync'], () => {
     .pipe($.sourcemaps.init())
     .pipe($.concat('main.js'))
     .pipe($.size({title: 'Js'}))
-    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe(gulp.dest('.tmp/js'))
     .pipe(isProduction ? $.util.noop() : gulp.dest(envPath + '/' + configs.paths.assets.js));
 });
