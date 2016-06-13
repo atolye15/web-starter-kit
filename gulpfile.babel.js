@@ -19,7 +19,6 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import lazypipe from 'lazypipe';
-import pngquant from 'imagemin-pngquant';
 
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
@@ -219,14 +218,12 @@ gulp.task('images:optimize', () => {
   return gulp.src(configs.paths.src + '/img/**/*')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.newer('.tmp/img'))
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{
-        removeDimensions: true
-      }],
-      use: [pngquant()]
-    }))
+    .pipe($.imagemin([
+      $.imagemin.gifsicle({interlaced: true}),
+      $.imagemin.jpegtran({progressive: true}),
+      $.imagemin.optipng({optimizationLevel: 5}),
+      $.imagemin.svgo({plugins: [{removeDimensions: true}]})
+    ]))
     .pipe($.size({title: 'Image Optimize'}))
     .pipe(gulp.dest('.tmp/img'));
 });
