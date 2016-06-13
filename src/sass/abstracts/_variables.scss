@@ -94,7 +94,7 @@ $g-pads: (
 // -------------------------
 
 $c-button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
-$c-button-font-family: false !default; // Butonun fontu
+$c-button-font-family: null !default; // Butonun fontu
 $c-button-bg-color: $primary-color !default; // Buton default bg color
 $c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-function-factor) !default; // Button default hover rengi
 $c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
