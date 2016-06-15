@@ -1,12 +1,35 @@
-
 //
 // Buttons
 //
-// @markup
-//  <a href="#" class=c-button c-button--lage></a>
-//  yada
-//  <button type="button" class="c-button c-button--large"></button>
-// --------------------------------------------------
+// Button styles can be applied to anything with the `.btn` class applied.
+// However, typically you'll want to apply these to only `<a>` and `<button>` elements for the best rendering.
+//
+// Styleguide 1.1
+
+//
+// Base styles & states
+//
+// Markup:
+// <a href="#" class="c-button {{modifier_class}}">Link Button</a>
+// <button class="c-button {{modifier_class}}">Button</button>
+//
+// .c-button--primary - Primary
+// .c-button--secondary - Secondary
+//
+// Styleguide 1.1.1
+
+//
+// Sizes
+//
+// Fancy larger or smaller buttons? Add <code>.btn-lg</code>, <code>.btn-sm</code>, or <code>.btn-xs</code> for additional sizes.
+//
+// Markup:
+// <button class="c-button {{modifier_class}}">Button</button>
+//
+// .c-button--medium - Medium
+// .c-button--tiny - Tiny
+//
+// Styleguide 1.1.2
 
 //
 //  Mixin Properties
