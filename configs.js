@@ -55,7 +55,7 @@ const configs = {
     ],
     js: [],
     homepage: 'styleguide.md',
-    title: 'Style Guide'
+    template: 'styleguide/_config/templates/kss-node-template'
   },
   jsFiles: ['main.js'],
   libFiles: []
