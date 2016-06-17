@@ -147,6 +147,9 @@ Minify edilip `.tmp/img` içerisine yedeklenmiş resim dosyalarını temizler.
 #### gulp clean:babelCache
 Derlenip `.tmp/babel` içerisine yedeklenmiş javascript dosyalarını temizler.
 
+#### gulp styleguide
+Styleguide'ı oluşturur.
+
 ## Bower Kullanımı
 
 Projenizde kullanacağınız kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz.
