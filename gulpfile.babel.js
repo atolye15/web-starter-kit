@@ -19,6 +19,7 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import lazypipe from 'lazypipe';
+import kss from 'kss';
 
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
@@ -509,3 +510,7 @@ gulp.task('pagespeed', cb =>
     // key: 'YOUR_API_KEY'
   }, cb)
 );
+
+gulp.task('styleguide', cb => {
+  return kss(configs.styleGuide, cb);
+});
