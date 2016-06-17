@@ -3,7 +3,6 @@
 // Utilities
 // --------------------------------------------------
 
-
 .u-clearfix {
   @extend %clearfix;
 }
@@ -257,111 +256,12 @@ small,
   margin-bottom: 0;
 }
 
-.u-gap-bottom {
-  margin-bottom: $line-height-computed;
+.u-gap {
+  @include make-utility-gaps();
 }
 
-.u-gap-bottom-xsmall {
-  margin-bottom: $line-height-computed / 4;
-}
-
-.u-gap-bottom-small {
-  margin-bottom: $line-height-computed / 2;
-}
-
-.u-gap-bottom-medium {
-  margin-bottom: $line-height-computed * 1.5;
-}
-
-.u-gap-bottom-large {
-  margin-bottom: $line-height-computed * 2;
-}
-
-.u-gap-left {
-  margin-left: $line-height-computed / 2;
-}
-
-.u-gap-left-small {
-  margin-left: $line-height-computed / 4;
-}
-
-.u-gap-left-medium {
-  margin-left: $line-height-computed * 0.75;
-}
-
-.u-gap-right {
-  margin-right: $line-height-computed / 2;
-}
-
-.u-gap-right-small {
-  margin-right: $line-height-computed / 4;
-}
-
-.u-gap-right-medium {
-  margin-right: $line-height-computed * 0.75;
-}
-
-//
-// Padding
-//
-
-$base-padding: 60px;
-
-.u-pad-vertical-xsmall {
-  padding-top: $base-padding / 3;
-  padding-bottom: $base-padding / 3;
-}
-
-.u-pad-vertical-small {
-  padding-top: $base-padding / 2;
-  padding-bottom: $base-padding / 2;
-}
-
-.u-pad-vertical {
-  padding-top: $base-padding;
-  padding-bottom: $base-padding;
-}
-
-.u-pad-vertical-medium {
-  padding-top: $base-padding * 1.5;
-  padding-bottom: $base-padding * 1.5;
-}
-
-.u-pad-vertical-large {
-  padding-top: $base-padding * 2;
-  padding-bottom: $base-padding * 2;
-}
-
-.u-pad-top {
-  padding-top: $base-padding;
-}
-
-.u-pad-top-small {
-  padding-top: $base-padding / 2;
-}
-
-.u-pad-top-medium {
-  padding-top: $base-padding * 1.5;
-}
-
-.u-pad-top-large {
-  padding-top: $base-padding * 2;
-}
-
-.u-pad-bottom {
-  padding-bottom: $base-padding;
-}
-
-.u-pad-bottom-small {
-  padding-bottom: $base-padding / 2;
-}
-
-.u-pad-bottom-medium {
-  padding-bottom: $base-padding * 1.5;
-}
-
-.u-pad-bottom-large {
-  padding-bottom: $base-padding * 2;
+.u-pad {
+  @include make-utility-pads();
 }
 
 .u-hr-line {

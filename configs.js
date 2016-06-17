@@ -43,6 +43,20 @@ const configs = {
     // server: [configs.paths.dev],
     port: 3000
   },
+  styleGuide: {
+    source: [
+      'src/sass'
+    ],
+    destination: 'styleguide/',
+    // The css and js paths are URLs, like '/misc/jquery.js'.
+    // The following paths are relative to the generated style guide.
+    css: [
+      '../dev/css/main.css'
+    ],
+    js: [],
+    homepage: 'styleguide.md',
+    template: 'styleguide/_config/templates/kss-node-template'
+  },
   jsFiles: ['main.js'],
   libFiles: []
 };

@@ -19,7 +19,7 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import lazypipe from 'lazypipe';
-import pngquant from 'imagemin-pngquant';
+import kss from 'kss';
 
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
@@ -54,7 +54,7 @@ gulp.task('styles:lint', cb => {
     return cb();
   }
   return gulp.src([
-    `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/bootstrap/**`
+    `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/vendors/**`
   ])
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.scssLint())
@@ -89,8 +89,8 @@ gulp.task('styles:main', () => {
     .pipe($.sass({precision: 10}).on('error', $.sass.logError))
     .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe(gulp.dest(envPath + '/' + configs.paths.assets.css))
     .pipe(isProduction ? stylesMinChannel() : $.util.noop())
     .pipe($.size({title: 'Css'}));
@@ -160,8 +160,8 @@ gulp.task('scripts:main', ['scripts:sync'], () => {
     .pipe($.sourcemaps.init())
     .pipe($.concat('main.js'))
     .pipe($.size({title: 'Js'}))
-    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe($.header(banner))
+    .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
     .pipe(gulp.dest('.tmp/js'))
     .pipe(isProduction ? $.util.noop() : gulp.dest(envPath + '/' + configs.paths.assets.js));
 });
@@ -219,14 +219,12 @@ gulp.task('images:optimize', () => {
   return gulp.src(configs.paths.src + '/img/**/*')
     .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
     .pipe($.newer('.tmp/img'))
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{
-        removeViewBox: false
-      }],
-      use: [pngquant()]
-    }))
+    .pipe($.imagemin([
+      $.imagemin.gifsicle({interlaced: true}),
+      $.imagemin.jpegtran({progressive: true}),
+      $.imagemin.optipng({optimizationLevel: 5}),
+      $.imagemin.svgo({plugins: [{removeDimensions: true}]})
+    ]))
     .pipe($.size({title: 'Image Optimize'}))
     .pipe(gulp.dest('.tmp/img'));
 });
@@ -512,3 +510,7 @@ gulp.task('pagespeed', cb =>
     // key: 'YOUR_API_KEY'
   }, cb)
 );
+
+gulp.task('styleguide', cb => {
+  return kss(configs.styleGuide, cb);
+});

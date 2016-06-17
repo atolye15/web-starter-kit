@@ -1,15 +1,35 @@
-
 //
 // Buttons
-// --------------------------------------------------
+//
+// Button styles can be applied to anything with the `.btn` class applied.
+// However, typically you'll want to apply these to only `<a>` and `<button>` elements for the best rendering.
+//
+// Styleguide 1.1
 
+//
+// Base styles & states
+//
+// Markup:
+// <a href="#" class="c-button {{modifier_class}}">Link Button</a>
+// <button class="c-button {{modifier_class}}">Button</button>
+//
+// .c-button--primary - Primary
+// .c-button--secondary - Secondary
+//
+// Styleguide 1.1.1
 
 //
-//  Html Yapısı
-//  --------------------------------------------------
+// Sizes
 //
-//  <a href="#" class=button button--lage></a>
+// Fancy larger or smaller buttons? Add <code>.btn-lg</code>, <code>.btn-sm</code>, or <code>.btn-xs</code> for additional sizes.
 //
+// Markup:
+// <button class="c-button {{modifier_class}}">Button</button>
+//
+// .c-button--medium - Medium
+// .c-button--tiny - Tiny
+//
+// Styleguide 1.1.2
 
 //
 //  Mixin Properties
@@ -26,7 +46,7 @@
 // @mixin btn-block( $ease:true, $font:$button-font-family )
 // @mixin btn-size( $padding-v:$button-padding-vertical, $padding-h:$button-padding-horizontal, $font-size:false )
 
-.button {
+.c-button {
   @include btn-block();
 
   &--primary {
@@ -35,12 +55,6 @@
 
   &--secondary {
     @include btn-modifier($bg:$secondary-color);
-  }
-
-  &--expanded {
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   // &--custom {

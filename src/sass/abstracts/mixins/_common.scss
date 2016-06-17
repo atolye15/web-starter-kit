@@ -3,10 +3,6 @@
 // Mixins
 // --------------------------------------------------
 
-@import "mixins/buttons";
-@import "mixins/forms";
-@import "mixins/breakpoint";
-
 //
 // Px to Em Mixin
 //
@@ -94,5 +90,61 @@
   only screen and (min-resolution: 2dppx) {
     background-image: url($image2x);
     background-size: $width $height;
+  }
+}
+
+//
+// Gaps
+// -------------------------
+
+@mixin make-utility-gaps() {
+  @each $pos in map-keys($g-gaps) {
+    $gap: map-get($g-gaps, $pos);
+    $position: "";
+
+    @if not($pos == normal) {
+      $position: "-" + $pos;
+    }
+
+    &-bottom#{$position} {
+      margin-bottom: map-get($gap, x);
+    }
+
+    &-left#{$position} {
+      margin-left: map-get($gap, y);
+    }
+
+    &-right#{$position} {
+      margin-right: map-get($gap, y);
+    }
+  }
+}
+
+
+//
+// Pads
+// -------------------------
+
+@mixin make-utility-pads() {
+  @each $pos in map-keys($g-pads) {
+    $pad: map-get($g-pads, $pos);
+    $position: "";
+
+    @if not($pos == normal) {
+      $position: "-" + $pos;
+    }
+
+    &-ends#{$position} {
+      padding-top: $pad;
+      padding-bottom: $pad;
+    }
+
+    &-top#{$position} {
+      padding-top: $pad;
+    }
+
+    &-bottom#{$position} {
+      padding-bottom: $pad;
+    }
   }
 }

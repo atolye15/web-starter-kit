@@ -16,7 +16,7 @@
     "gulp-eslint": "^1.1.1",
     "gulp-foreach": "^0.1.0",
     "gulp-header": "^1.7.1",
-    "gulp-imagemin": "^2.4.0",
+    "gulp-imagemin": "^3.0.1",
     "gulp-load-plugins": "^1.1.0",
     "gulp-merge-media-queries": "^0.2.1",
     "gulp-newer": "^1.1.0",
@@ -30,7 +30,7 @@
     "gulp-twig": "^0.4.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
-    "imagemin-pngquant": "^4.2.0",
+    "kss": "^2.4.0",
     "lazypipe": "^1.0.1",
     "psi": "^2.0.2",
     "run-sequence": "^1.1.5"

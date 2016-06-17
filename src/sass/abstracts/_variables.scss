@@ -57,23 +57,55 @@ $font-size-medium: $font-size-base + 2px;
 $font-size-large: $font-size-base + 4px;
 $font-size-xlarge: $font-size-base + 8px;
 
+$g-base-gap: $line-height-computed;
+$g-gaps: (
+  normal: (
+    x: $g-base-gap,
+    y: ($g-base-gap / 2)
+  ),
+  small: (
+    x: ($g-base-gap / 2),
+    y: ($g-base-gap / 4)
+  ),
+  xsmall: (
+    x: ($g-base-gap / 4),
+    y: ($g-base-gap / 6)
+  ),
+  medium: (
+    x: ($g-base-gap * 1.5),
+    y: ($g-base-gap * 0.75)
+  ),
+  large: (
+    x: ($g-base-gap * 2),
+    y: $g-base-gap
+  )
+);
+
+$g-base-padding: 60px;
+$g-pads: (
+  normal: $g-base-padding,
+  small: ($g-base-padding / 2),
+  medium: ($g-base-padding * 1.5),
+  large: ($g-base-padding * 2)
+);
+
 
 //  BUTTONS VARIABLES
 // -------------------------
 
-$button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
-$button-font-family: false !default; // Butonun fontu
-$button-bg-color: $primary-color !default; // Buton default bg color
-$button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor) !default; // Button default hover rengi
-$button-border-color: $button-bg-hover !default; // Button default border rengi
-$button-radius: 3px !default; // Button default border radius
-$button-font-size: 14px !default; // Button default font boyutu
-$button-line-height: null !default; // Button line-height
-$button-font-color: $color-white !default; // Button default font rengi
-$button-font-color-alt: $color-oil !default; // Button default font rengi
-$button-padding-vertical: 10px !default; // Button dikey padding
-$button-padding-horizontal: 20px !default; // Button default yatay padding
-$button-border-width: 0 !default; // Button default border width
+$c-button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
+$c-button-font-family: null !default; // Butonun fontu
+$c-button-bg-color: $primary-color !default; // Buton default bg color
+$c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-function-factor) !default; // Button default hover rengi
+$c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
+$c-button-radius: 3px !default; // Button default border radius
+$c-button-font-size: 14px !default; // Button default font boyutu
+$c-button-line-height: null !default; // Button line-height
+$c-button-font-color: $color-white !default; // Button default font rengi
+$c-button-font-color-alt: $color-oil !default; // Button default font rengi
+$c-button-padding-vertical: 10px !default; // Button dikey padding
+$c-button-padding-horizontal: 20px !default; // Button default yatay padding
+$c-button-border-width: 0 !default; // Button default border width
 
 
 //  FORMS CONTROL VARIABLES
@@ -92,6 +124,37 @@ $input-line-height:        $line-height-computed !default;
 $input-padding-vertical:   6px;
 $input-padding-horizontal: 12px;
 $input-height-base:        ($input-line-height + ($input-padding-vertical * 2) + ($input-border-width * 2)) !default; // Default `.form-control` height
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 544px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1140px
+) !default;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:      12 !default;
+$grid-gutter-width: 30px !default;
 
 //
 // Transition Duration
