@@ -29,7 +29,7 @@ $c-selectbox-padding-right: ($c-selectbox-arrow-size + ($c-selectbox-arrow-gap *
   border-style: solid;
   color: $c-selectbox-color;
   background-color: $c-selectbox-bg-color;
-  border-color: $color-iron;
+  border-color: $c-selectbox-border-color;
   border-radius: $c-selectbox-border-radius;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTkuODc1IDEwLjQzOEwxNiAxNi41NjNsNi4xMjUtNi4xMjVMMjQgMTIuMzEzbC04IDgtOC04eiIvPjwvc3ZnPg==);
   background-size: $c-selectbox-arrow-size $c-selectbox-arrow-size;
