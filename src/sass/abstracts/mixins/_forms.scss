@@ -30,8 +30,9 @@
 // @param $border-color - Input border color
 // @param $radius - Input border radius
 // @param $placeholder - Input placeholder color
+// @param $focus-border-color - Focus border color
 
-@mixin form-control-modifier($color: $input-color, $bg-color: $input-bg-color, $border-color: $input-border-color, $radius: $input-border-radius, $placeholder: $input-color-placeholder) {
+@mixin form-control-modifier($color: $input-color, $bg-color: $input-bg-color, $border-color: $input-border-color, $radius: $input-border-radius, $placeholder: $input-color-placeholder, $focus-border-color: $input-border-focus) {
   color: $color;
   background-color: $bg-color;
   border-color: $border-color;
@@ -40,6 +41,12 @@
   // Placeholder
   @if not($placeholder == null) {
     @include placeholder($placeholder);
+  }
+
+  @if ($focus-border-color) {
+    &:focus {
+      border-color: $focus-border-color;
+    }
   }
 
 }

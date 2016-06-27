@@ -3,14 +3,14 @@
 // Colors
 @import "abstracts/colors";
 
-// Variables
-@import "abstracts/variables";
-
 // Mixins
 @import "abstracts/mixins/index";
 
 // Bootstrap Mixins
 @import "vendors/bootstrap-sass/bootstrap/mixins";
+
+// Variables
+@import "abstracts/variables";
 
 // Placeholders
 @import "abstracts/placeholders";
