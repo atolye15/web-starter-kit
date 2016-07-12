@@ -108,15 +108,15 @@
     }
 
     &-bottom#{$position} {
-      margin-bottom: map-get($gap, x);
+      margin-bottom: map-get($gap, y);
     }
 
     &-left#{$position} {
-      margin-left: map-get($gap, y);
+      margin-left: map-get($gap, x);
     }
 
     &-right#{$position} {
-      margin-right: map-get($gap, y);
+      margin-right: map-get($gap, x);
     }
   }
 }

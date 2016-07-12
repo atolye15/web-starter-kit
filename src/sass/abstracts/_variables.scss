@@ -60,24 +60,24 @@ $font-size-xlarge: $font-size-base + 8px;
 $g-base-gap: $line-height-computed;
 $g-gaps: (
   normal: (
-    x: $g-base-gap,
-    y: ($g-base-gap / 2)
+    x: round($g-base-gap / 2),
+    y: $g-base-gap
   ),
   small: (
-    x: ($g-base-gap / 2),
-    y: ($g-base-gap / 4)
+    x: round($g-base-gap / 4),
+    y: round($g-base-gap / 2)
   ),
   xsmall: (
-    x: ($g-base-gap / 4),
-    y: ($g-base-gap / 6)
+    x: round($g-base-gap / 6),
+    y: round($g-base-gap / 4)
   ),
   medium: (
-    x: ($g-base-gap * 1.5),
-    y: ($g-base-gap * 0.75)
+    x: round($g-base-gap * 0.75),
+    y: round($g-base-gap * 1.5)
   ),
   large: (
-    x: ($g-base-gap * 2),
-    y: $g-base-gap
+    x: $g-base-gap,
+    y: round($g-base-gap * 2)
   )
 );
 
