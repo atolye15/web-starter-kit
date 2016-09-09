@@ -36,7 +36,7 @@
     "run-sequence": "^1.2.2"
   },
   "engines": {
-    "node": ">=0.12"
+    "node": ">=5.2.0"
   },
   "private": true,
   "eslintConfig": {
