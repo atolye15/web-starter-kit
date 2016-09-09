@@ -10,9 +10,8 @@
 //
 // @param $ease - Button arkaplanına transition tanımlar,
 //   Transition için sass/global/_utilities.scss deki .transition-background classını extend eder
-// @param $font - Button font family değerini tanımlar
 
-@mixin btn-block($ease:true, $font:$c-button-font-family) {
+@mixin btn-block($ease:true) {
 
   @if ($ease == true){
     @extend %transition-background;

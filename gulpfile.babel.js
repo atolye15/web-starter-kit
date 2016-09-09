@@ -474,7 +474,7 @@ gulp.task('sync:deploy-vendors', cb => {
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([configs.paths.src + '/twig/**/*.twig'], ['html', reload]);
+  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'], ['html', reload]);
   gulp.watch([configs.paths.src + '/sass/**/*.scss'], () => {
     runSequence('styles', 'sync:deploy-styles', reload);
   });
