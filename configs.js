@@ -31,7 +31,7 @@ const configs = {
     // Customize the Browsersync console logging prefix
     logPrefix: 'WSK',
     // Proxy an EXISTING vhost. Browsersync will wrap your vhost with a proxy URL to view your site
-    proxy: 'localhost/web-starter-kit/',
+    // proxy: 'localhost/web-starter-kit/',
     // Disable open automatically when Browsersync starts.
     open: false,
     // Allow scroll syncing across breakpoints
@@ -40,7 +40,7 @@ const configs = {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    // server: [configs.paths.dev],
+    server: ['./'],
     port: 3000
   },
   styleGuide: {
