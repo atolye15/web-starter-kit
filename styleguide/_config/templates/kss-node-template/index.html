@@ -57,11 +57,13 @@
             </div>
             {{/if}}
             <div class="kss-modifier-block">
+              {{#unless hideoriginal }}
               <div class="kss-modifier kss-modifier-original">
                 <div class="kss-modifier-example">
                   {{{markup}}}
                 </div>
               </div>
+              {{/unless}}
               {{#eachModifier}}
               <div class="kss-modifier">
                 <div class="kss-modifier-head">
