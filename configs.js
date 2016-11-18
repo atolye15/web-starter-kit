@@ -26,6 +26,8 @@ const configs = {
       vendors: 'js/vendors'
     }
   },
+  jsFiles: ['main.js'],
+  libFiles: [],
   browserSync: {
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -60,8 +62,21 @@ const configs = {
     homepage: 'styleguide.md',
     template: 'styleguide/_config/templates/kss-node-template'
   },
-  jsFiles: ['main.js'],
-  libFiles: []
+  pagespeed: {
+    url: 'example.com',
+    strategy: 'mobile' // mobile | desktop
+  },
+  autoprefixerBrowsers: [
+    'ie >= 10',
+    'ie_mob >= 10',
+    'ff >= 33',
+    'chrome >= 36',
+    'safari >= 7',
+    'opera >= 26',
+    'ios >= 7',
+    'android >= 4.4',
+    'bb >= 10'
+  ]
 };
 
 module.exports = configs;
