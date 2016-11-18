@@ -51,8 +51,10 @@ const configs = {
     ],
     destination: 'styleguide/',
     custom: [
-      'HideOriginal'
+      'HideOriginal',
+      'Colors'
     ],
+    helpers: 'styleguide/_config/helpers',
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: [

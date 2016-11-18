@@ -775,3 +775,51 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     width: 1240px;
   }
 }
+
+.kss-colors {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.kss-colors__item {
+  overflow: hidden;
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 33%;
+}
+
+.kss-colors__demo {
+  float: left;
+  height: 100px;
+  width: 100px;
+  border: 1px solid #d5dbe0;
+  margin-bottom: .75em;
+  border-radius: 3px;
+}
+
+.kss-colors__info {
+  margin-left: 120px;
+}
+
+.kss-colors__name {
+  margin-top: 0;
+  margin-bottom: .75em;
+  font-weight: bold;
+  color: #2c2f33;
+}
+
+
+.kss-colors__hex,
+.kss-colors__rgb,
+.kss-colors__hsl {
+  font-size: .8em;
+  margin: 0;
+}
+
+.kss-colors__description {
+  color: #666666;
+}

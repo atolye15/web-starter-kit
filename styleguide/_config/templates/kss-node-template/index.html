@@ -87,6 +87,23 @@
               {{{description}}}
             </div>
             {{/if}}
+            {{#if colors}}
+            <ul class="kss-colors">
+              {{#kssColors colors}}
+                <li class="kss-colors__item">
+                  <div class="kss-colors__demo" style="background-color:{{color.hex}}"></div>
+                  <div class="kss-colors__info">
+                    <p class="kss-colors__name">{{color.name}}</p>
+                    <p class="kss-colors__hex">{{color.hex}}</p>
+                    <p class="kss-colors__rgb">rgb({{color.rgb.r}}, {{color.rgb.g}}, {{color.rgb.b}})</p>
+                    <p class="kss-colors__hsl">hsl({{color.hsl.h}}, {{color.hsl.s}}, {{color.hsl.l}})</p>
+                    <p class="kss-colors__description">{{{color.desc}}}</p>
+                  </div>
+                </li>
+              {{/kssColors}}
+            </ul>
+            {{/if}}
+
             {{/if}}
           </section>
           {{/eachSection}}
