@@ -13,6 +13,23 @@
     <![endif]-->
   </head>
   <body id="kss-node">
+    <script>
+     (function (doc) {
+       var scripts = doc.getElementsByTagName('script')
+       var script = scripts[scripts.length - 1]
+       var xhr = new XMLHttpRequest()
+       xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+          var div = doc.createElement('div')
+          div.innerHTML = this.responseText
+          div.style.display = 'none'
+          script.parentNode.insertBefore(div, script)
+        }
+       }
+       xhr.open('get', '../dev/img/sprite.svg', true)
+       xhr.send()
+     })(document)
+    </script>
     <div class="kss-wrapper">
       <div class="kss-sidebar">
         <div class="kss-sidebar-inner">
@@ -102,6 +119,25 @@
                 </li>
               {{/kssColors}}
             </ul>
+            {{/if}}
+
+            {{#if icons}}
+              <div class="kss-icons">
+                {{#kssIcons icons}}
+                <div class="kss-icons__item" title="{{icon.name}}">
+                  <svg class="icon kss-icons__demo">
+                    <use xlink:href="#icon-{{icon.name}}"></use>
+                  </svg>
+                  <span class="kss-icons__name">{{icon.name}}</span>
+                </div>
+                {{/kssIcons}}
+              </div>
+              <div class="kss-markup">
+<pre><code class="lang-html">&lt;svg class="icon"&gt;
+  &lt;use xlink:href="#icon-[name]"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+</code></pre>
+              </div>
             {{/if}}
 
             {{/if}}

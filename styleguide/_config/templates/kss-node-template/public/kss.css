@@ -823,3 +823,39 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .kss-colors__description {
   color: #666666;
 }
+
+
+.kss-icons {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #666666;
+  margin-right: -2px;
+  margin-left: -2px;
+}
+
+.kss-icons__item {
+  display: inline-block;
+  background: #e3e5e7;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 24px;
+  margin-right: 2px;
+  margin-left: 2px;
+  width: 88px;
+  text-align: center;
+}
+
+.kss-icons__demo {
+  display: inline-block;
+  font-size: 40px;
+  color:  #162a36;
+}
+
+.kss-icons__name {
+  display: block;
+  margin-left: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
