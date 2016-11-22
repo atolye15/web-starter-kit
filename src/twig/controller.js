@@ -11,14 +11,7 @@ var twigController = {
     locale: 'tr',
     title: 'Hello, Boys!'
   },
-  functions: [
-    {
-      name: 'assets',
-      func: args => {
-        return args;
-      }
-    }
-  ],
+  functions: [],
   filters: []
 };
 

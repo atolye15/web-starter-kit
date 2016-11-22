@@ -1,4 +1,21 @@
 
+import fs from 'fs';
+import path from 'path';
+
+const helperFunctions = [
+  {
+    name: 'assets',
+    func: args => {
+      return args;
+    }
+  },
+  {
+    name: 'isFileExists',
+    func: filePath =>
+      fs.existsSync(path.resolve(__dirname, '../../../src/twig', filePath))
+  }
+];
+
 module.exports = function({gulp, configs, $, twigController, isProduction, envPath}) {
   return function() {
     /**
@@ -11,7 +28,7 @@ module.exports = function({gulp, configs, $, twigController, isProduction, envPa
       .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
       .pipe($.twig({
         data: twigController.data,
-        functions: twigController.functions,
+        functions: helperFunctions.concat(twigController.functions),
         filters: twigController.filters
       }))
       .pipe($.rename(path => {
