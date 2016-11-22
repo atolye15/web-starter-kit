@@ -1,7 +1,9 @@
 
 module.exports = function({gulp, configs, $}) {
   return function() {
-    return gulp.src(configs.paths.src + '/img/**/*')
+    return gulp.src([
+      `${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`
+    ])
       .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
       .pipe($.newer('.tmp/img'))
       .pipe($.imagemin([

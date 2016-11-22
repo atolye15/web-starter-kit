@@ -113,6 +113,7 @@ gulp.task('scripts', cb =>
 gulp.task('images:optimize', tasks.images.optimize(globals));
 gulp.task('images:sync', tasks.images.sync(globals));
 gulp.task('images:deploy', tasks.images.deploy(globals));
+gulp.task('images:sprite', tasks.images.sprite(globals));
 
 gulp.task('images', cb =>
   runSequence(
@@ -127,7 +128,15 @@ gulp.task('images', cb =>
  * HTML
  * Html(Twig) derleme işlemleri
  */
-gulp.task('html', tasks.html(globals));
+gulp.task('html:main', tasks.html(globals));
+gulp.task('html', cb =>
+  runSequence(
+    'clean:sprite',
+    'images:sprite',
+    'html:main',
+    cb
+  )
+);
 
 /**
  * COPY
@@ -148,6 +157,7 @@ gulp.task('clean:imgCache', () => del(['.tmp/img/*'], {dot: true}));
 gulp.task('clean:babelCache', () => del(['.tmp/babel/*'], {dot: true}));
 gulp.task('clean:tempJs', () => del(['.tmp/js/*'], {dot: true}));
 gulp.task('clean:deployFolder', () => del([configs.paths.deploy + '/*'], {dot: true, force: true}));
+gulp.task('clean:sprite', () => del(['.tmp/img/sprite.svg'], {dot: true}));
 
 /**
  * DEPLOY
@@ -237,7 +247,8 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy(globals, 'vendors'));
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'], ['html', reload]);
+  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'], ['html:main', reload]);
+  gulp.watch([configs.paths.src + '/img/{icons,icons/**}'], ['html'], reload);
   gulp.watch([configs.paths.src + '/sass/**/*.scss'], () => {
     runSequence('styles', 'sync:deploy-styles', reload);
   });
@@ -253,7 +264,9 @@ gulp.task('serve', () => {
   gulp.watch([configs.paths.src + '/vendors/**'], () => {
     runSequence('sync:build-vendors', 'sync:deploy-vendors', reload);
   });
-  gulp.watch([configs.paths.src + '/img/**/*'], () => {
+  gulp.watch([
+    `${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`
+  ], () => {
     runSequence('sync:build-image', 'sync:deploy-images', reload);
   });
   gulp.watch(['configs.js'], ['build', reload]);

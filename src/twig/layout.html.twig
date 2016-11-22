@@ -12,6 +12,11 @@
     {% block headerJavascripts %}{% endblock %}
   </head>
   <body>
+  {% if isFileExists("../../.tmp/img/sprite.svg") %}
+  <div class="u-hidden">
+    {% include "../../.tmp/img/sprite.svg" %}
+  </div>
+  {% endif %}
   {% block body %}{% endblock %}
 
   <!-- Javascript Files -->
