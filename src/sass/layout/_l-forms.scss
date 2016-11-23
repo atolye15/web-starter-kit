@@ -24,7 +24,8 @@
 
     &--textarea {
       height: auto;
-      @include resizable(none);
+      resize: none; // Options: horizontal, vertical, both
+      overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
     }
   }
 }

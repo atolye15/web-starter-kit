@@ -40,7 +40,9 @@
 
   // Placeholder
   @if not($placeholder == null) {
-    @include placeholder($placeholder);
+    &::placeholder {
+      color: $placeholder;
+    }
   }
 
   @if ($focus-border-color) {

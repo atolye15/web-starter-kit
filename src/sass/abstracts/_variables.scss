@@ -15,6 +15,7 @@ $text-color:            $global-text-color !default;
 $link-color:            $global-link-color !default;
 // Global link hover rengi
 $link-hover-color:      darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
 
 
 //  TYPOGRAPHY
@@ -41,6 +42,7 @@ $headings-font-family: inherit !default;
 $headings-font-weight: 500 !default;
 $headings-line-height: 1.1 !default;
 $headings-color:       $global-title-color !default;
+$headings-small-color: $color-monsoon;
 
 // Text muted color
 $text-muted: $color-monsoon !default;
