@@ -139,19 +139,19 @@
 }
 
 // Alignment
-.u-text-left {
+.u-text-align-left {
   text-align: left;
 }
 
-.u-text-right {
+.u-text-align-right {
   text-align: right;
 }
 
-.u-text-center {
+.u-text-align-center {
   text-align: center;
 }
 
-.u-text-justify {
+.u-text-align-justify {
   text-align: justify;
 }
 
@@ -159,24 +159,24 @@
   vertical-align: initial;
 }
 
-.u-text-nowrap {
-  white-space: nowrap;
-}
-
-.u-align-top {
+.u-vert-align-top {
   vertical-align: top;
 }
 
-.u-align-bottom {
+.u-vert-align-bottom {
   vertical-align: bottom;
 }
 
-.u-align-middle {
+.u-vert-align-middle {
   vertical-align: middle;
 }
 
-.u-align-text-bottom {
+.u-vert-align-text-bottom {
   vertical-align: text-bottom;
+}
+
+.u-text-nowrap {
+  white-space: nowrap;
 }
 
 // Transformation
@@ -193,36 +193,36 @@
 }
 
 // Font Weights
-.u-text-light {
+.u-font-weight-light {
   font-weight: 300;
 }
 
-.u-text-regular {
+.u-font-weight-regular {
   font-weight: 400;
 }
 
-.u-text-bold {
+.u-font-weight-bold {
   font-weight: 700;
 }
 
 // Contextual colors
-.u-text-muted {
+.u-color-muted {
   color: $text-muted;
 }
 
-.u-text-primary {
+.u-color-primary {
   color: $primary-color;
 }
 
-.u-text-success {
+.u-color-success {
   color: $success-color;
 }
 
-.u-text-alert {
+.u-color-alert {
   color: $alert-color;
 }
 
-.u-text-warning {
+.u-color-warning {
   color: $warning-color;
 }
 
@@ -231,23 +231,23 @@
 //
 
 small,
-.u-font-small {
+.u-font-size-sm {
   font-size: $font-size-small;
 }
 
-.u-font-regular {
+.u-font-size-regular {
   font-size: $font-size-base;
 }
 
-.u-font-medium {
+.u-font-size-md {
   font-size: $font-size-medium;
 }
 
-.u-font-large {
+.u-font-size-lg {
   font-size: $font-size-large;
 }
 
-.u-font-xlarge {
+.u-font-size-xl {
   font-size: $font-size-xlarge;
 }
 
@@ -289,7 +289,7 @@ small,
   display: none;
 }
 
-.u-link-underline {
+.u-underline {
   text-decoration: underline;
 }
 
