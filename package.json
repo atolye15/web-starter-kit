@@ -30,6 +30,7 @@
     "gulp-svgstore": "^6.1.0",
     "gulp-twig": "^0.5.0",
     "gulp-uglify": "^2.0.0",
+    "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.7",
     "kss": "^2.4.0",
     "lazypipe": "^1.0.1",

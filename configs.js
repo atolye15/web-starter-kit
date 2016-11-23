@@ -65,6 +65,12 @@ const configs = {
     url: 'example.com',
     strategy: 'mobile' // mobile | desktop
   },
+  uncss: {
+    active: true,
+    ignore: [
+      // new RegExp('^(.[a-z-_.]*)?.(is|has)-.*')
+    ]
+  },
   autoprefixerBrowsers: [
     'ie >= 10',
     'ie_mob >= 10',

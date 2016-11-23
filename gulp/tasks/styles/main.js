@@ -14,6 +14,10 @@ module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, env
       .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
       .pipe($.sourcemaps.init())
       .pipe($.sass({precision: 10}).on('error', $.sass.logError))
+      .pipe(configs.uncss.active ? $.uncss({
+        html: [configs.paths.src + '/twig/**/*.twig'],
+        ignore: configs.uncss.ignore
+      }) : $.util.noop())
       .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
       .pipe($.autoprefixer(configs.autoprefixerBrowsers))
       .pipe($.header(banner))
