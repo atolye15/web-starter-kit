@@ -1,9 +1,6 @@
 
 module.exports = function({gulp, configs, $, browserSync}) {
-  return function(cb) {
-    if (!configs.lint.styles) {
-      return cb();
-    }
+  return function() {
     return gulp.src([
       `${configs.paths.src}/sass/**/*.scss`, `!${configs.paths.src}/sass/vendors/**`
     ])

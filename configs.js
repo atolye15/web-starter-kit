@@ -9,10 +9,6 @@ const configs = {
       url: 'http://www.atolye15.com'
     }
   },
-  lint: {
-    scripts: true,
-    styles: true
-  },
   paths: {
     src: 'src',
     dev: 'dev',
