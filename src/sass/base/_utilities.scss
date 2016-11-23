@@ -48,8 +48,29 @@
   display: flex;
 }
 
+.u-flex-extend {
+  flex: 1;
+}
+
 .u-flex-grow-full {
   flex-grow: 1;
+}
+
+.u-flex-no-shrink {
+  flex-shrink: 0;
+}
+
+.u-flex-vertical-center {
+  align-items: center;
+}
+
+.u-flex-justify-center {
+  justify-content: center;
+}
+
+.u-flex-full-center {
+  align-items: center;
+  justify-content: center;
 }
 
 .u-fit {
@@ -68,6 +89,10 @@
   height: 100%;
 }
 
+.u-full-vheight {
+  height: 100vh;
+}
+
 .u-relative {
   position: relative;
 }
@@ -80,7 +105,7 @@
   @include img-responsive(inline-block);
 }
 
-.u-text-overflow {
+.u-text-truncate {
   @include text-overflow();
 }
 
@@ -113,19 +138,6 @@
   transition: transform $global-transition-duration;
 }
 
-// element should be block or inline-block
-.u-vertical-center {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.u-horizontal-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 // Alignment
 .u-text-left {
   text-align: left;
@@ -141,6 +153,10 @@
 
 .u-text-justify {
   text-align: justify;
+}
+
+.u-reset-text-align {
+  vertical-align: initial;
 }
 
 .u-text-nowrap {
@@ -279,4 +295,16 @@ small,
 
 .u-no-hover-underline:hover {
   text-decoration: none;
+}
+
+.u-not-selectable {
+  user-select: none;
+}
+
+.u-pointer-events-none {
+  pointer-events: none;
+}
+
+.u-cursor-pointer {
+  cursor: pointer;
 }
