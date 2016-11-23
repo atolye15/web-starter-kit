@@ -113,19 +113,19 @@ $c-button-border-width: 0 !default; // Button default border width
 //  FORMS CONTROL VARIABLES
 // -------------------------
 
-$input-bg-color:           inherit !default; // `<input>` background color
-$input-bg-color-disabled:  $color-smoke !default; // `<input disabled>` background color
-$input-color:              $color-charcoal !default; // Text color for `<input>`s
-$input-color-placeholder:  $color-monsoon !default; // Placeholder text color
-$input-border-color:       $color-iron !default; // `<input>` border color
-$input-border-width:       1px !default; // `<input>` border width
-$input-border-radius:      null !default; // `<input>` border radius
-$input-border-focus:       #66afe9 !default; // Border color for inputs on focus
-$input-font-size:          $font-size-base !default;
-$input-line-height:        $line-height-computed !default;
-$input-padding-vertical:   6px;
-$input-padding-horizontal: 12px;
-$input-height-base:        ($input-line-height + ($input-padding-vertical * 2) + ($input-border-width * 2)) !default; // Default `.form-control` height
+$c-input-bg-color:           inherit !default; // `<input>` background color
+$c-input-bg-color-disabled:  $color-smoke !default; // `<input disabled>` background color
+$c-input-color:              $color-charcoal !default; // Text color for `<input>`s
+$c-input-color-placeholder:  $color-monsoon !default; // Placeholder text color
+$c-input-border-color:       $color-iron !default; // `<input>` border color
+$c-input-border-width:       1px !default; // `<input>` border width
+$c-input-border-radius:      null !default; // `<input>` border radius
+$c-input-border-focus:       #66afe9 !default; // Border color for inputs on focus
+$c-input-font-size:          $font-size-base !default;
+$c-input-line-height:        $line-height-computed !default;
+$c-input-padding-vertical:   6px;
+$c-input-padding-horizontal: 12px;
+$c-input-height-base:        ($c-input-line-height + ($c-input-padding-vertical * 2) + ($c-input-border-width * 2)) !default; // Default `.form-control` height
 
 // Grid breakpoints
 //

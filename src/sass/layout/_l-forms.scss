@@ -13,21 +13,7 @@
 //  @include form-control-modifier( $color, $bg-color, $border-color, $radius, $placeholder, $focus-border-color )
 
 .l-form {
-
-  &__control {
-    @include form-control-block();
-    @include form-control-modifier();
-
-    &[disabled] {
-      opacity: .5;
-    }
-
-    &--textarea {
-      height: auto;
-      resize: none; // Options: horizontal, vertical, both
-      overflow: auto; // Per CSS3 UI, `resize` only applies when `overflow` isn't `visible`
-    }
-  }
+  // layout styles
 }
 
 
