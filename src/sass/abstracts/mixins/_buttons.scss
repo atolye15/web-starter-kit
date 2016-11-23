@@ -14,7 +14,7 @@
 @mixin btn-block($ease:true) {
 
   @if ($ease == true){
-    @extend %transition-background;
+    transition: background-color $global-transition-duration;
   }
 
   position: relative;

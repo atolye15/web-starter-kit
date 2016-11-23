@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 .u-clearfix {
-  @extend %clearfix;
+  @include clearfix;
 }
 
 .u-pull-right {
@@ -45,11 +45,11 @@
 }
 
 .u-flex {
-  @extend %flex;
+  display: flex;
 }
 
 .u-flex-grow-full {
-  @extend %flex-grow-full;
+  flex-grow: 1;
 }
 
 .u-fit {
@@ -77,11 +77,11 @@
 }
 
 .u-img-responsive {
-  @extend %img-responsive;
+  @include img-responsive(inline-block);
 }
 
 .u-text-overflow {
-  @extend %text-overflow;
+  @include text-overflow();
 }
 
 .u-equalize-line-height {
@@ -98,19 +98,19 @@
 }
 
 .u-transition-background {
-  @extend %transition-background;
+  transition: background-color $global-transition-duration;
 }
 
 .u-transition-color {
-  @extend %transition-color;
+  transition: color $global-transition-duration;
 }
 
 .u-transition-opacity {
-  @extend %transition-opacity;
+  transition: opacity $global-transition-duration;
 }
 
 .u-transition-transform {
-  @extend %transition-transform;
+  transition: transform $global-transition-duration;
 }
 
 // element should be block or inline-block
