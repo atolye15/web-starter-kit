@@ -41,22 +41,6 @@
     "node": ">=5.2.0"
   },
   "private": true,
-  "eslintConfig": {
-    "extends": "google",
-    "parser": "babel-eslint",
-    "rules": {
-      "strict": 0,
-      "max-len": [
-        1,
-        100,
-        2,
-        {
-          "ignoreUrls": true,
-          "ignoreComments": false
-        }
-      ]
-    }
-  },
   "scripts": {
     "node_modules-chmod": "sudo chmod -R 0777 node_modules",
     "gulp": "gulp"
