@@ -64,27 +64,69 @@
   flex-shrink: 0;
 }
 
-.u-flex-vertical-center {
-  align-items: center;
+.u-flex-align {
+
+  //
+  // Horizontal
+  //
+
+  &-right {
+    justify-content: flex-end;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-justify {
+    justify-content: space-between;
+  }
+
+  &-spaced {
+    justify-content: space-between;
+  }
+
+  //
+  // Vertical
+  //
+
+  &-middle {
+    align-items: center;
+  }
+
+  &-bottom {
+    align-items: flex-end;
+  }
+
+  &-stretch {
+    align-items: stretch;
+  }
+
 }
 
-.u-flex-justify-center {
-  justify-content: center;
-}
+.u-flex-align-self {
+  &-top {
+    align-self: flex-start;
+  }
 
-.u-flex-justify-space-between {
-  justify-content: space-between;
-}
+  &-middle {
+    align-self: center;
+  }
 
-.u-flex-justify-end {
-  justify-content: flex-end;
+  &--bottom {
+    align-self: flex-end;
+  }
+
+  &-stretch {
+    align-self: stretch;
+  }
 }
 
 .u-flex-nowrap {
   flex-wrap: nowrap;
 }
 
-.u-flex-direction-column {
+.u-flex-dir-column {
   flex-direction: column;
 }
 
