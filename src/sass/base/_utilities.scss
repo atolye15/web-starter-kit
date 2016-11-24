@@ -123,19 +123,19 @@
 }
 
 .u-transition-background {
-  transition: background-color $global-transition-duration;
+  transition: background-color $g-transition-duration;
 }
 
 .u-transition-color {
-  transition: color $global-transition-duration;
+  transition: color $g-transition-duration;
 }
 
 .u-transition-opacity {
-  transition: opacity $global-transition-duration;
+  transition: opacity $g-transition-duration;
 }
 
 .u-transition-transform {
-  transition: transform $global-transition-duration;
+  transition: transform $g-transition-duration;
 }
 
 // Alignment
