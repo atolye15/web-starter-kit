@@ -205,40 +205,44 @@
 }
 
 // Alignment
-.u-text-align-left {
-  text-align: left;
-}
+.u-text {
+  &-left {
+    text-align: left;
+  }
 
-.u-text-align-right {
-  text-align: right;
-}
+  &-right {
+    text-align: right;
+  }
 
-.u-text-align-center {
-  text-align: center;
-}
+  &-center {
+    text-align: center;
+  }
 
-.u-text-align-justify {
-  text-align: justify;
+  &-justify {
+    text-align: justify;
+  }
 }
 
 .u-reset-text-align {
   vertical-align: initial;
 }
 
-.u-vert-align-top {
-  vertical-align: top;
-}
+.u-align {
+  &-top {
+    vertical-align: top;
+  }
 
-.u-vert-align-bottom {
-  vertical-align: bottom;
-}
+  &-bottom {
+    vertical-align: bottom;
+  }
 
-.u-vert-align-middle {
-  vertical-align: middle;
-}
+  &-middle {
+    vertical-align: middle;
+  }
 
-.u-vert-align-text-bottom {
-  vertical-align: text-bottom;
+  &-text-bottom {
+    vertical-align: text-bottom;
+  }
 }
 
 .u-text-nowrap {
