@@ -29,26 +29,6 @@
   // Modifiers
   // -------------------------
 
-  &--vertical-center {
-    align-items: center;
-  }
-
-  &--justify-center {
-    justify-content: center;
-  }
-
-  &--justify-space-between {
-    justify-content: space-between;
-  }
-
-  &--justify-end {
-    justify-content: flex-end;
-  }
-
-  &--nowrap {
-    flex-wrap: nowrap;
-  }
-
   &--no-gutter {
     margin-left: 0;
     margin-right: 0;
@@ -57,9 +37,5 @@
       padding-left: 0;
       padding-right: 0;
     }
-  }
-
-  &--direction-column {
-    flex-direction: column;
   }
 }

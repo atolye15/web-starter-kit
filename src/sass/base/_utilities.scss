@@ -72,6 +72,22 @@
   justify-content: center;
 }
 
+.u-flex-justify-space-between {
+  justify-content: space-between;
+}
+
+.u-flex-justify-end {
+  justify-content: flex-end;
+}
+
+.u-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.u-flex-direction-column {
+  flex-direction: column;
+}
+
 .u-flex-full-center {
   align-items: center;
   justify-content: center;
