@@ -11,6 +11,10 @@
   @return ($px / $base) * 1em;
 }
 
+@function gap($size, $position) {
+  @return map-get(map-get($g-gaps, $size), $position);
+}
+
 //
 // Font-Face Mixin
 //
