@@ -1,0 +1,39 @@
+
+
+@mixin make-utility-responsive-up($breakpoints: map-keys($grid-breakpoints)) {
+  @each $point in $breakpoints {
+    // Skip if first element(xs)
+    @if not (nth($breakpoints, 1) == $point) {
+      @include media-breakpoint-up($point) {
+        &\@#{$point}-up {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+@mixin make-utility-responsive-down($breakpoints: map-keys($grid-breakpoints)) {
+  @each $point in $breakpoints {
+    // Skip if last element(xl)
+    @if not (nth($breakpoints, length($breakpoints)) == $point) {
+      @include media-breakpoint-down($point) {
+        &\@#{$point}-down {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+@mixin make-utility-responsive($breakpoints: map-keys($grid-breakpoints)) {
+  @each $point in $breakpoints {
+    @include make-utility-responsive-up($breakpoints) {
+      @content;
+    };
+
+    @include make-utility-responsive-down($breakpoints) {
+      @content;
+    };
+  }
+}

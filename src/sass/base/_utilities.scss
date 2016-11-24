@@ -46,6 +46,10 @@
 
 .u-flex {
   display: flex;
+
+  @include make-utility-responsive() {
+    display: flex;
+  }
 }
 
 .u-flex-extend {
@@ -79,6 +83,10 @@
 
 .u-full-width {
   width: 100%;
+
+  @include make-utility-responsive() {
+    width: 100%;
+  }
 }
 
 .u-half-width {
@@ -287,6 +295,10 @@ small,
 
 .u-hidden {
   display: none;
+
+  @include make-utility-responsive() {
+    display: none;
+  }
 }
 
 .u-underline {
