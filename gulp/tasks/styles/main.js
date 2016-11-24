@@ -19,6 +19,7 @@ module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, env
       .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
       .pipe($.sourcemaps.init())
       .pipe($.sass({precision: 10}).on('error', $.sass.logError))
+      .pipe(gulp.dest('.tmp/styleguide/css'))
       .pipe(configs.uncss.active ? $.uncss(uncssOptions) : $.util.noop())
       .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
       .pipe($.autoprefixer(configs.autoprefixerBrowsers))
