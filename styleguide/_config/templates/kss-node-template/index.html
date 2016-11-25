@@ -13,6 +13,23 @@
     <![endif]-->
   </head>
   <body id="kss-node">
+    <script>
+     (function (doc) {
+       var scripts = doc.getElementsByTagName('script')
+       var script = scripts[scripts.length - 1]
+       var xhr = new XMLHttpRequest()
+       xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 400) {
+          var div = doc.createElement('div')
+          div.innerHTML = this.responseText
+          div.style.display = 'none'
+          script.parentNode.insertBefore(div, script)
+        }
+       }
+       xhr.open('get', '../dev/img/sprite.svg', true)
+       xhr.send()
+     })(document)
+    </script>
     <div class="kss-wrapper">
       <div class="kss-sidebar">
         <div class="kss-sidebar-inner">
@@ -57,11 +74,13 @@
             </div>
             {{/if}}
             <div class="kss-modifier-block">
+              {{#unless hideoriginal }}
               <div class="kss-modifier kss-modifier-original">
                 <div class="kss-modifier-example">
                   {{{markup}}}
                 </div>
               </div>
+              {{/unless}}
               {{#eachModifier}}
               <div class="kss-modifier">
                 <div class="kss-modifier-head">
@@ -85,6 +104,42 @@
               {{{description}}}
             </div>
             {{/if}}
+            {{#if colors}}
+            <ul class="kss-colors">
+              {{#kssColors colors}}
+                <li class="kss-colors__item">
+                  <div class="kss-colors__demo" style="background-color:{{color.hex}}"></div>
+                  <div class="kss-colors__info">
+                    <p class="kss-colors__name">{{color.name}}</p>
+                    <p class="kss-colors__hex">{{color.hex}}</p>
+                    <p class="kss-colors__rgb">rgb({{color.rgb.r}}, {{color.rgb.g}}, {{color.rgb.b}})</p>
+                    <p class="kss-colors__hsl">hsl({{color.hsl.h}}, {{color.hsl.s}}, {{color.hsl.l}})</p>
+                    <p class="kss-colors__description">{{{color.desc}}}</p>
+                  </div>
+                </li>
+              {{/kssColors}}
+            </ul>
+            {{/if}}
+
+            {{#if icons}}
+              <div class="kss-icons">
+                {{#kssIcons icons}}
+                <div class="kss-icons__item" title="{{icon.name}}">
+                  <svg class="icon kss-icons__demo">
+                    <use xlink:href="#icon-{{icon.name}}"></use>
+                  </svg>
+                  <span class="kss-icons__name">{{icon.name}}</span>
+                </div>
+                {{/kssIcons}}
+              </div>
+              <div class="kss-markup">
+<pre><code class="lang-html">&lt;svg class="icon"&gt;
+  &lt;use xlink:href="#icon-[name]"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+</code></pre>
+              </div>
+            {{/if}}
+
             {{/if}}
           </section>
           {{/eachSection}}

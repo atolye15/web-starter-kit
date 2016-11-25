@@ -206,9 +206,7 @@ p {
 // Emphasis & misc
 //
 
-mark,
-.mark {
-  background-color: $state-warning-bg;
+mark {
   padding: .2em;
 }
 
@@ -281,7 +279,7 @@ abbr[title],
 // Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
 abbr[data-original-title] {
   cursor: help;
-  border-bottom: 1px dotted $abbr-border-color;
+  border-bottom: 1px dotted $color-monsoon;
 }
 
 .initialism {

@@ -11,6 +11,10 @@
   @return ($px / $base) * 1em;
 }
 
+@function gap($size, $position) {
+  @return map-get(map-get($g-gaps, $size), $position);
+}
+
 //
 // Font-Face Mixin
 //
@@ -72,6 +76,15 @@
   }
 }
 
+// Responsive image
+//
+// Keep images from scaling beyond the width of their parents.
+@mixin img-responsive($display: block) {
+  display: $display;
+  max-width: 100%; // Part 1: Set a maximum relative to the parent
+  height: auto; // Part 2: Scale the height according to the width, otherwise you get stretching
+}
+
 
 //
 // Retina Image
@@ -91,61 +104,5 @@
   only screen and (min-resolution: 2dppx) {
     background-image: url($image2x);
     background-size: $width $height;
-  }
-}
-
-//
-// Gaps
-// -------------------------
-
-@mixin make-utility-gaps() {
-  @each $pos in map-keys($g-gaps) {
-    $gap: map-get($g-gaps, $pos);
-    $position: "";
-
-    @if not($pos == normal) {
-      $position: "-" + $pos;
-    }
-
-    &-bottom#{$position} {
-      margin-bottom: map-get($gap, y);
-    }
-
-    &-left#{$position} {
-      margin-left: map-get($gap, x);
-    }
-
-    &-right#{$position} {
-      margin-right: map-get($gap, x);
-    }
-  }
-}
-
-
-//
-// Pads
-// -------------------------
-
-@mixin make-utility-pads() {
-  @each $pos in map-keys($g-pads) {
-    $pad: map-get($g-pads, $pos);
-    $position: "";
-
-    @if not($pos == normal) {
-      $position: "-" + $pos;
-    }
-
-    &-ends#{$position} {
-      padding-top: $pad;
-      padding-bottom: $pad;
-    }
-
-    &-top#{$position} {
-      padding-top: $pad;
-    }
-
-    &-bottom#{$position} {
-      padding-bottom: $pad;
-    }
   }
 }

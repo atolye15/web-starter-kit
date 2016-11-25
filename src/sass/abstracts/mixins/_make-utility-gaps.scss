@@ -1,0 +1,66 @@
+//
+// Gaps
+// -------------------------
+
+@mixin make-utility-gaps() {
+  @each $pos in map-keys($g-gaps) {
+    $gap: map-get($g-gaps, $pos);
+    $position: "";
+
+    @if not($pos == normal) {
+      $position: "-" + $pos;
+    }
+
+    &-top#{$position} {
+      margin-top: map-get($gap, y);
+
+      @include make-utility-responsive() {
+        margin-top: map-get($gap, y);
+      }
+    }
+
+    &-bottom#{$position} {
+      margin-bottom: map-get($gap, y);
+
+      @include make-utility-responsive() {
+        margin-bottom: map-get($gap, y);
+      }
+    }
+
+    &-ends#{$position} {
+      margin-top: map-get($gap, y);
+      margin-bottom: map-get($gap, y);
+
+      @include make-utility-responsive() {
+        margin-top: map-get($gap, y);
+        margin-bottom: map-get($gap, y);
+      }
+    }
+
+    &-left#{$position} {
+      margin-left: map-get($gap, x);
+
+      @include make-utility-responsive() {
+        margin-left: map-get($gap, x);
+      }
+    }
+
+    &-right#{$position} {
+      margin-right: map-get($gap, x);
+
+      @include make-utility-responsive() {
+        margin-right: map-get($gap, x);
+      }
+    }
+
+    &-sides#{$position} {
+      margin-left: map-get($gap, x);
+      margin-right: map-get($gap, x);
+
+      @include make-utility-responsive() {
+        margin-left: map-get($gap, x);
+        margin-right: map-get($gap, x);
+      }
+    }
+  }
+}

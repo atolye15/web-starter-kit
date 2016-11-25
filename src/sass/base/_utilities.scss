@@ -4,7 +4,7 @@
 // --------------------------------------------------
 
 .u-clearfix {
-  @extend %clearfix;
+  @include clearfix;
 }
 
 .u-pull-right {
@@ -45,11 +45,94 @@
 }
 
 .u-flex {
-  @extend %flex;
+  display: flex;
+
+  @include make-utility-responsive() {
+    display: flex;
+  }
+}
+
+.u-flex-extend {
+  flex: 1;
 }
 
 .u-flex-grow-full {
-  @extend %flex-grow-full;
+  flex-grow: 1;
+}
+
+.u-flex-no-shrink {
+  flex-shrink: 0;
+}
+
+.u-flex-align {
+
+  //
+  // Horizontal
+  //
+
+  &-right {
+    justify-content: flex-end;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-justify {
+    justify-content: space-between;
+  }
+
+  &-spaced {
+    justify-content: space-between;
+  }
+
+  //
+  // Vertical
+  //
+
+  &-middle {
+    align-items: center;
+  }
+
+  &-bottom {
+    align-items: flex-end;
+  }
+
+  &-stretch {
+    align-items: stretch;
+  }
+
+}
+
+.u-flex-align-self {
+  &-top {
+    align-self: flex-start;
+  }
+
+  &-middle {
+    align-self: center;
+  }
+
+  &--bottom {
+    align-self: flex-end;
+  }
+
+  &-stretch {
+    align-self: stretch;
+  }
+}
+
+.u-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.u-flex-dir-column {
+  flex-direction: column;
+}
+
+.u-flex-full-center {
+  align-items: center;
+  justify-content: center;
 }
 
 .u-fit {
@@ -58,6 +141,10 @@
 
 .u-full-width {
   width: 100%;
+
+  @include make-utility-responsive() {
+    width: 100%;
+  }
 }
 
 .u-half-width {
@@ -66,6 +153,10 @@
 
 .u-full-height {
   height: 100%;
+}
+
+.u-full-vheight {
+  height: 100vh;
 }
 
 .u-relative {
@@ -77,11 +168,11 @@
 }
 
 .u-img-responsive {
-  @extend %img-responsive;
+  @include img-responsive(inline-block);
 }
 
-.u-text-overflow {
-  @extend %text-overflow;
+.u-text-truncate {
+  @include text-overflow();
 }
 
 .u-equalize-line-height {
@@ -98,69 +189,64 @@
 }
 
 .u-transition-background {
-  @extend %transition-background;
+  transition: background-color $g-transition-duration;
 }
 
 .u-transition-color {
-  @extend %transition-color;
+  transition: color $g-transition-duration;
 }
 
 .u-transition-opacity {
-  @extend %transition-opacity;
+  transition: opacity $g-transition-duration;
 }
 
 .u-transition-transform {
-  @extend %transition-transform;
-}
-
-// element should be block or inline-block
-.u-vertical-center {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.u-horizontal-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  transition: transform $g-transition-duration;
 }
 
 // Alignment
-.u-text-left {
-  text-align: left;
+.u-text {
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-justify {
+    text-align: justify;
+  }
 }
 
-.u-text-right {
-  text-align: right;
+.u-reset-text-align {
+  vertical-align: initial;
 }
 
-.u-text-center {
-  text-align: center;
-}
+.u-align {
+  &-top {
+    vertical-align: top;
+  }
 
-.u-text-justify {
-  text-align: justify;
+  &-bottom {
+    vertical-align: bottom;
+  }
+
+  &-middle {
+    vertical-align: middle;
+  }
+
+  &-text-bottom {
+    vertical-align: text-bottom;
+  }
 }
 
 .u-text-nowrap {
   white-space: nowrap;
-}
-
-.u-align-top {
-  vertical-align: top;
-}
-
-.u-align-bottom {
-  vertical-align: bottom;
-}
-
-.u-align-middle {
-  vertical-align: middle;
-}
-
-.u-align-text-bottom {
-  vertical-align: text-bottom;
 }
 
 // Transformation
@@ -177,36 +263,36 @@
 }
 
 // Font Weights
-.u-text-light {
+.u-font-weight-light {
   font-weight: 300;
 }
 
-.u-text-regular {
+.u-font-weight-regular {
   font-weight: 400;
 }
 
-.u-text-bold {
+.u-font-weight-bold {
   font-weight: 700;
 }
 
 // Contextual colors
-.u-text-muted {
+.u-color-muted {
   color: $text-muted;
 }
 
-.u-text-primary {
+.u-color-primary {
   color: $primary-color;
 }
 
-.u-text-success {
+.u-color-success {
   color: $success-color;
 }
 
-.u-text-alert {
+.u-color-alert {
   color: $alert-color;
 }
 
-.u-text-warining {
+.u-color-warning {
   color: $warning-color;
 }
 
@@ -215,23 +301,23 @@
 //
 
 small,
-.u-font-small {
+.u-font-size-sm {
   font-size: $font-size-small;
 }
 
-.u-font-regular {
+.u-font-size-regular {
   font-size: $font-size-base;
 }
 
-.u-font-medium {
+.u-font-size-md {
   font-size: $font-size-medium;
 }
 
-.u-font-large {
+.u-font-size-lg {
   font-size: $font-size-large;
 }
 
-.u-font-xlarge {
+.u-font-size-xl {
   font-size: $font-size-xlarge;
 }
 
@@ -271,12 +357,28 @@ small,
 
 .u-hidden {
   display: none;
+
+  @include make-utility-responsive() {
+    display: none;
+  }
 }
 
-.u-link-underline {
+.u-underline {
   text-decoration: underline;
 }
 
 .u-no-hover-underline:hover {
   text-decoration: none;
+}
+
+.u-not-selectable {
+  user-select: none;
+}
+
+.u-pointer-events-none {
+  pointer-events: none;
+}
+
+.u-cursor-pointer {
+  cursor: pointer;
 }
