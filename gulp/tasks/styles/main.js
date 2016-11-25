@@ -1,16 +1,17 @@
 
 module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, envPath}) {
   return function(cb) {
-    const stylesMinChannel = lazypipe()
-      .pipe($.cssnano, {discardComments: {removeAll: true}})
-      .pipe($.rename, {suffix: '.min'})
-      .pipe($.header, banner)
-      .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
-
     const uncssOptions = {
       html: [configs.paths.src + '/twig/**/*.{twig,html}'],
       ignore: configs.uncss.ignore
     };
+
+    const stylesMinChannel = lazypipe()
+      .pipe(() => configs.uncss.active ? $.uncss(uncssOptions) : $.util.noop())
+      .pipe($.cssnano, {discardComments: {removeAll: true}})
+      .pipe($.rename, {suffix: '.min'})
+      .pipe($.header, banner)
+      .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
 
     // For best performance, don't add Sass partials to `gulp.src`
     return gulp.src([
@@ -19,8 +20,6 @@ module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, env
       .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
       .pipe($.sourcemaps.init())
       .pipe($.sass({precision: 10}).on('error', $.sass.logError))
-      .pipe(gulp.dest('.tmp/css'))
-      .pipe(configs.uncss.active ? $.uncss(uncssOptions) : $.util.noop())
       .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
       .pipe($.autoprefixer(configs.autoprefixerBrowsers))
       .pipe($.header(banner))
