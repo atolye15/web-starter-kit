@@ -247,7 +247,12 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy(globals, 'vendors'));
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'], ['html:main', reload]);
+  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'], ['html:main', reload])
+    .on('change', () => {
+      if (configs.uncss.active) {
+        return runSequence('styles:main');
+      }
+    });
   gulp.watch([configs.paths.src + '/img/{icons,icons/**}'], ['html'], reload);
   gulp.watch([configs.paths.src + '/sass/**/*.scss'], () => {
     runSequence('styles', 'sync:deploy-styles', reload);
