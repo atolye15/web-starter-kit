@@ -55,7 +55,7 @@ const configs = {
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: [
-      '../.tmp/styleguide/css/main.css'
+      '../.tmp/css/main.css'
     ],
     js: [],
     homepage: 'styleguide.md',
