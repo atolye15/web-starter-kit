@@ -8,7 +8,7 @@ module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, env
       .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
 
     const uncssOptions = {
-      html: [configs.paths.src + '/twig/**/*.twig'],
+      html: [configs.paths.src + '/twig/**/*.{twig,html}'],
       ignore: configs.uncss.ignore
     };
 
