@@ -1,9 +1,9 @@
 
-
 @mixin make-utility-responsive-up($breakpoints: map-keys($grid-breakpoints)) {
+  $grid-breakpoints-first: nth(map-keys($grid-breakpoints), 1);
   @each $point in $breakpoints {
     // Skip if first element(xs)
-    @if not (nth($breakpoints, 1) == $point) {
+    @if not ($point == $grid-breakpoints-first) {
       @include media-breakpoint-up($point) {
         &\@#{$point}-up {
           @content;
@@ -14,9 +14,11 @@
 }
 
 @mixin make-utility-responsive-down($breakpoints: map-keys($grid-breakpoints)) {
+  $grid-breakpoints-keys: map-keys($grid-breakpoints);
+  $grid-breakpoints-last: nth($grid-breakpoints-keys, length($grid-breakpoints-keys));
   @each $point in $breakpoints {
     // Skip if last element(xl)
-    @if not (nth($breakpoints, length($breakpoints)) == $point) {
+    @if not ($point == $grid-breakpoints-last) {
       @include media-breakpoint-down($point) {
         &\@#{$point}-down {
           @content;
@@ -27,13 +29,11 @@
 }
 
 @mixin make-utility-responsive($breakpoints: map-keys($grid-breakpoints)) {
-  @each $point in $breakpoints {
-    @include make-utility-responsive-up($breakpoints) {
-      @content;
-    };
+  @include make-utility-responsive-up($breakpoints) {
+    @content;
+  };
 
-    @include make-utility-responsive-down($breakpoints) {
-      @content;
-    };
-  }
+  @include make-utility-responsive-down($breakpoints) {
+    @content;
+  };
 }
