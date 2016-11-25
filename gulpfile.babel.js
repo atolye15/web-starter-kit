@@ -201,7 +201,14 @@ gulp.task('build', cb =>
     ['styles', 'scripts', 'html', 'images', 'copy:fonts', 'copy:vendors'],
     'deploy',
     'notify:build',
-    cb
+    () => {
+      $.util.log($.util.colors.green(
+        '\n==============================================\n' +
+        'Build işlemi başarılı bir şekilde tamamlandı.' +
+        '\n=============================================='
+      ));
+      return cb();
+    }
   )
 );
 
