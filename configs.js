@@ -1,7 +1,7 @@
 const configs = {
   info: {
     name: 'Project-Name',
-    version: '1.0.0',
+    version: '0.1.0',
     description: 'Project Desc',
     author: {
       name: 'Atolye15',

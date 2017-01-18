@@ -88,10 +88,8 @@ gulp.task('styles', cb =>
  * Javascript dosyalarının derleme işlemleri
  */
 
-gulp.task('scripts:babel', tasks.scripts.babel(globals));
 gulp.task('scripts:lint', tasks.scripts.lint(globals));
-gulp.task('scripts:sync', ['scripts:babel', 'scripts:lint'], tasks.scripts.sync(globals));
-gulp.task('scripts:main', ['scripts:sync'], tasks.scripts.main(globals));
+gulp.task('scripts:main', tasks.scripts.main(globals));
 gulp.task('scripts:libs', tasks.scripts.libs(globals));
 gulp.task('scripts:combine', tasks.scripts.combine(globals));
 
@@ -198,7 +196,8 @@ gulp.task('notify:build',
 gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
-    ['styles', 'scripts', 'html', 'images', 'copy:fonts', 'copy:vendors'],
+    'html',
+    ['styles', 'scripts', 'images', 'copy:fonts', 'copy:vendors'],
     'deploy',
     'notify:build',
     () => {
@@ -254,11 +253,12 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy(globals, 'vendors'));
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'], ['html:main', reload])
+  gulp.watch([configs.paths.src + '/twig/**/*.{twig,html}'])
     .on('change', () => {
       if (configs.uncss.active) {
-        return runSequence('styles:main');
+        return runSequence('html:main', 'styles:main', reload);
       }
+      return runSequence('html:main', reload);
     });
   gulp.watch([configs.paths.src + '/img/{icons,icons/**}'], ['html'], reload);
   gulp.watch([configs.paths.src + '/sass/**/*.scss'], () => {
