@@ -147,6 +147,14 @@
   }
 }
 
+.u-free-width {
+  width: auto;
+
+  @include make-utility-responsive() {
+    width: auto;
+  }
+}
+
 .u-half-width {
   width: 50%;
 }
