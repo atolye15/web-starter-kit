@@ -88,10 +88,8 @@ gulp.task('styles', cb =>
  * Javascript dosyalarının derleme işlemleri
  */
 
-gulp.task('scripts:babel', tasks.scripts.babel(globals));
 gulp.task('scripts:lint', tasks.scripts.lint(globals));
-gulp.task('scripts:sync', ['scripts:babel', 'scripts:lint'], tasks.scripts.sync(globals));
-gulp.task('scripts:main', ['scripts:sync'], tasks.scripts.main(globals));
+gulp.task('scripts:main', tasks.scripts.main(globals));
 gulp.task('scripts:libs', tasks.scripts.libs(globals));
 gulp.task('scripts:combine', tasks.scripts.combine(globals));
 
