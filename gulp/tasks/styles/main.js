@@ -2,7 +2,7 @@
 module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, envPath}) {
   return function(cb) {
     const uncssOptions = {
-      html: [configs.paths.src + '/twig/**/*.{twig,html}'],
+      html: [envPath + '/*.html'],
       ignore: configs.uncss.ignore
     };
 
