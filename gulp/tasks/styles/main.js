@@ -2,7 +2,7 @@
 module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, envPath}) {
   return function(cb) {
     const uncssOptions = {
-      html: [configs.paths.src + '/twig/**/*.{twig,html}'],
+      html: [envPath + '/*.html'],
       ignore: configs.uncss.ignore
     };
 
@@ -18,7 +18,7 @@ module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, env
       configs.paths.src + '/sass/**/*.scss'
     ])
       .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
-      .pipe($.sourcemaps.init())
+      .pipe(isProduction ? $.util.noop() : $.sourcemaps.init())
       .pipe($.sass({precision: 10}).on('error', $.sass.logError))
       .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
       .pipe($.autoprefixer(configs.autoprefixerBrowsers))
