@@ -146,7 +146,7 @@ h2,
 h3,
 .h3 {
   margin-top: $g-line-height-computed;
-  margin-bottom: ($g-line-height-computed / 2);
+  margin-bottom: $g-line-height-computed;
 }
 
 h4,
@@ -211,7 +211,7 @@ h6,
 //
 
 p {
-  margin: 0 0 ($g-line-height-computed / 2);
+  margin: ($g-line-height-computed / 2) 0 0;
 }
 
 
