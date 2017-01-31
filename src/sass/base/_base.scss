@@ -40,9 +40,6 @@ input,
 button,
 select,
 textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
 
   &:focus { // Reset outline for chrome
     outline: none;
@@ -82,12 +79,6 @@ figure {
 img {
   vertical-align: middle;
 }
-
-// Responsive images (ensure images don't scale beyond their parents)
-.img-responsive {
-  @include img-responsive;
-}
-
 
 // Horizontal rules
 
@@ -146,13 +137,6 @@ h6,
   font-weight: $g-headings-font-weight;
   line-height: $g-headings-line-height;
   color: $g-headings-color;
-
-  small,
-  .small {
-    font-weight: normal;
-    line-height: 1;
-    color: $g-headings-small-color;
-  }
 }
 
 h1,
@@ -163,11 +147,6 @@ h3,
 .h3 {
   margin-top: $g-line-height-computed;
   margin-bottom: ($g-line-height-computed / 2);
-
-  small,
-  .small {
-    font-size: 65%;
-  }
 }
 
 h4,
@@ -178,11 +157,6 @@ h6,
 .h6 {
   margin-top: ($g-line-height-computed / 2);
   margin-bottom: ($g-line-height-computed / 2);
-
-  small,
-  .small {
-    font-size: 75%;
-  }
 }
 
 h1,
