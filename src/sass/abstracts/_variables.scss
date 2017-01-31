@@ -8,58 +8,64 @@
 // -------------------------
 
 // `<body>` nin arkaplan rengi
-$body-bg:               $global-bg-color !default;
+$g-body-bg: $color-white !default;
+
 //** `<body>` nin Global text rengi.
-$text-color:            $global-text-color !default;
+$g-text-color: $color-oil !default;
+
 // Global link rengi
-$link-color:            $global-link-color !default;
+$g-link-color: $primary-color !default;
+
 // Global link hover rengi
-$link-hover-color:      darken($link-color, 15%) !default;
-$link-hover-decoration: underline !default;
+$g-link-hover-color: darken($g-link-color, 15%) !default;
+
+$g-link-hover-decoration: underline !default;
+
+$g-border-color: $color-smoke;
 
 
 //  TYPOGRAPHY
 // -------------------------
 
-$font-size-base: 14px !default;
-$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-base: $font-family-sans-serif !default;
+$g-font-size-base: 14px !default;
+$g-font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$g-font-family-base: $g-font-family-sans-serif !default;
 
-$font-size-h1: floor(($font-size-base * 2.6)) !default; // ~36px
-$font-size-h2: 2.143em;//floor(($font-size-base * 2.15)) !default; // ~30px
-$font-size-h3: 1.714em; //ceil(($font-size-base * 1.7)) !default; // ~24px
-$font-size-h4: 1.286em;//ceil(($font-size-base * 1.25)) !default; // ~18px
-$font-size-h5: $font-size-base !default;
-$font-size-h6: 0.857em;//ceil(($font-size-base * 0.85)) !default; // ~12px
+$g-font-size-h1: floor(($g-font-size-base * 2.6)) !default; // ~36px
+$g-font-size-h2: 2.143em;//floor(($g-font-size-base * 2.15)) !default; // ~30px
+$g-font-size-h3: 1.714em; //ceil(($g-font-size-base * 1.7)) !default; // ~24px
+$g-font-size-h4: 1.286em;//ceil(($g-font-size-base * 1.25)) !default; // ~18px
+$g-font-size-h5: $g-font-size-base !default;
+$g-font-size-h6: 0.857em;//ceil(($g-font-size-base * 0.85)) !default; // ~12px
 
 // Unit-less `line-height` for use in components like buttons.
-$line-height-base: 1.428571429 !default; // 20/14
+$g-line-height-base: 1.428571429 !default; // 20/14
 // Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-$line-height-computed: floor(($font-size-base * $line-height-base)) !default; // ~20px
+$g-line-height-computed: floor(($g-font-size-base * $g-line-height-base)) !default; // ~20px
 
 // By default, this inherits from the `<body>`.
-$headings-font-family: inherit !default;
-$headings-font-weight: 500 !default;
-$headings-line-height: 1.1 !default;
-$headings-color:       $global-title-color !default;
-$headings-small-color: $color-monsoon;
+$g-headings-font-family: inherit !default;
+$g-headings-font-weight: 500 !default;
+$g-headings-line-height: 1.1 !default;
+$g-headings-color: inherit !default;
+$g-headings-small-color: $color-monsoon;
 
 // Text muted color
-$text-muted: $color-monsoon !default;
+$g-text-muted-color: $color-monsoon !default;
 // Horizontal line color.
-$hr-border: $global-border-color !default;
+$g-hr-border-color: $g-border-color !default;
 
 
 // FONT SIZING
 // -------------------------
 
-$font-size-small: $font-size-base - 2px;
-$font-size-xsmall: $font-size-base - 4px;
-$font-size-medium: $font-size-base + 2px;
-$font-size-large: $font-size-base + 4px;
-$font-size-xlarge: $font-size-base + 8px;
+$g-font-size-small: $g-font-size-base - 2px;
+$g-font-size-xsmall: $g-font-size-base - 4px;
+$g-font-size-medium: $g-font-size-base + 2px;
+$g-font-size-large: $g-font-size-base + 4px;
+$g-font-size-xlarge: $g-font-size-base + 8px;
 
-$g-base-gap: $line-height-computed;
+$g-base-gap: $g-line-height-computed;
 $g-gaps: (
   normal: (
     x: round($g-base-gap / 2),
@@ -121,8 +127,8 @@ $c-input-border-color:       $color-iron !default; // `<input>` border color
 $c-input-border-width:       1px !default; // `<input>` border width
 $c-input-border-radius:      null !default; // `<input>` border radius
 $c-input-border-focus:       #66afe9 !default; // Border color for inputs on focus
-$c-input-font-size:          $font-size-base !default;
-$c-input-line-height:        $line-height-computed !default;
+$c-input-font-size:          $g-font-size-base !default;
+$c-input-line-height:        $g-line-height-computed !default;
 $c-input-padding-vertical:   6px;
 $c-input-padding-horizontal: 12px;
 $c-input-height-base:        ($c-input-line-height + ($c-input-padding-vertical * 2) + ($c-input-border-width * 2)) !default; // Default `.form-control` height

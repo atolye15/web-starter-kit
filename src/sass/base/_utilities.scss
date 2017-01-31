@@ -285,7 +285,7 @@
 
 // Contextual colors
 .u-color-muted {
-  color: $text-muted;
+  color: $g-text-muted-color;
 }
 
 .u-color-primary {
@@ -310,23 +310,23 @@
 
 small,
 .u-font-size-sm {
-  font-size: $font-size-small;
+  font-size: $g-font-size-small;
 }
 
 .u-font-size-regular {
-  font-size: $font-size-base;
+  font-size: $g-font-size-base;
 }
 
 .u-font-size-md {
-  font-size: $font-size-medium;
+  font-size: $g-font-size-medium;
 }
 
 .u-font-size-lg {
-  font-size: $font-size-large;
+  font-size: $g-font-size-large;
 }
 
 .u-font-size-xl {
-  font-size: $font-size-xlarge;
+  font-size: $g-font-size-xlarge;
 }
 
 //

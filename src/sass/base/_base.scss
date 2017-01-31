@@ -28,11 +28,11 @@ html {
 
 
 body {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-  color: $text-color;
-  background-color: $body-bg;
+  font-family: $g-font-family-base;
+  font-size: $g-font-size-base;
+  line-height: $g-line-height-base;
+  color: $g-text-color;
+  background-color: $g-body-bg;
 }
 
 // Reset fonts for relevant elements
@@ -40,9 +40,6 @@ input,
 button,
 select,
 textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
 
   &:focus { // Reset outline for chrome
     outline: none;
@@ -53,7 +50,7 @@ textarea {
 // Links
 
 a {
-  color: $link-color;
+  color: $g-link-color;
   text-decoration: none;
 
   &:focus { // Reset outline for chrome
@@ -61,8 +58,8 @@ a {
   }
 
   &:hover {
-    color: $link-hover-color;
-    text-decoration: $link-hover-decoration;
+    color: $g-link-hover-color;
+    text-decoration: $g-link-hover-decoration;
   }
 }
 
@@ -83,19 +80,13 @@ img {
   vertical-align: middle;
 }
 
-// Responsive images (ensure images don't scale beyond their parents)
-.img-responsive {
-  @include img-responsive;
-}
-
-
 // Horizontal rules
 
 hr {
-  margin-top: $line-height-computed;
-  margin-bottom: $line-height-computed;
+  margin-top: $g-line-height-computed;
+  margin-bottom: $g-line-height-computed;
   border: 0;
-  border-top: 1px solid $hr-border;
+  border-top: 1px solid $g-hr-border-color;
 }
 
 //
@@ -142,17 +133,10 @@ h6,
 .h5,
 .h6,
 .heading {
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
-  color: $headings-color;
-
-  small,
-  .small {
-    font-weight: normal;
-    line-height: 1;
-    color: $headings-small-color;
-  }
+  font-family: $g-headings-font-family;
+  font-weight: $g-headings-font-weight;
+  line-height: $g-headings-line-height;
+  color: $g-headings-color;
 }
 
 h1,
@@ -161,13 +145,8 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: $line-height-computed;
-  margin-bottom: ($line-height-computed / 2);
-
-  small,
-  .small {
-    font-size: 65%;
-  }
+  margin-top: $g-line-height-computed;
+  margin-bottom: $g-line-height-computed;
 }
 
 h4,
@@ -176,43 +155,38 @@ h5,
 .h5,
 h6,
 .h6 {
-  margin-top: ($line-height-computed / 2);
-  margin-bottom: ($line-height-computed / 2);
-
-  small,
-  .small {
-    font-size: 75%;
-  }
+  margin-top: ($g-line-height-computed / 2);
+  margin-bottom: ($g-line-height-computed / 2);
 }
 
 h1,
 .h1 {
-  font-size: $font-size-h1;
+  font-size: $g-font-size-h1;
 }
 
 h2,
 .h2 {
-  font-size: $font-size-h2;
+  font-size: $g-font-size-h2;
 }
 
 h3,
 .h3 {
-  font-size: $font-size-h3;
+  font-size: $g-font-size-h3;
 }
 
 h4,
 .h4 {
-  font-size: $font-size-h4;
+  font-size: $g-font-size-h4;
 }
 
 h5,
 .h5 {
-  font-size: $font-size-h5;
+  font-size: $g-font-size-h5;
 }
 
 h6,
 .h6 {
-  font-size: $font-size-h6;
+  font-size: $g-font-size-h6;
 }
 
 //
@@ -237,7 +211,7 @@ h6,
 //
 
 p {
-  margin: 0 0 ($line-height-computed / 2);
+  margin: ($g-line-height-computed / 2) 0 0;
 }
 
 
@@ -257,7 +231,7 @@ mark {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: ($line-height-computed / 2);
+  margin-bottom: ($g-line-height-computed / 2);
 
   ul,
   ol {
@@ -293,12 +267,12 @@ ol {
 // Description Lists
 dl {
   margin-top: 0; // Remove browser default
-  margin-bottom: $line-height-computed;
+  margin-bottom: $g-line-height-computed;
 }
 
 dt,
 dd {
-  line-height: $line-height-base;
+  line-height: $g-line-height-base;
 }
 
 dt {
@@ -328,7 +302,7 @@ abbr[data-original-title] {
 
 // Addresses
 address {
-  margin-bottom: $line-height-computed;
+  margin-bottom: $g-line-height-computed;
   font-style: normal;
-  line-height: $line-height-base;
+  line-height: $g-line-height-base;
 }
