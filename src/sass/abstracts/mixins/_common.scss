@@ -7,7 +7,7 @@
 // Px to Em Mixin
 //
 
-@function em($px, $base: $font-size-base) {
+@function em($px, $base: $g-font-size-base) {
   @return ($px / $base) * 1em;
 }
 
