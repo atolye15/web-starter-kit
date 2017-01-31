@@ -1,12 +1,8 @@
 {
-  "name": "Project Name",
-  "version": "1.0.0",
-  "description": "Project Description",
+  "name": "atolye15-web-starter-kit",
+  "description": "Atölye15 Web Starter Kit",
+  "private": true,
   "dependencies": {
-    "jquery": "~2.2.0",
-    "html5shiv": "~3.7.3",
-    "classlist": "~2014.12.13",
-    "bootstrap-sass": "^3.3.6",
     "normalize-css": "^4.1.1"
   },
   "ignore": [
