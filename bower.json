@@ -3,7 +3,7 @@
   "description": "Atölye15 Web Starter Kit",
   "private": true,
   "dependencies": {
-    "normalize-css": "^4.1.1"
+    "normalize-css": "5.0.0"
   },
   "ignore": [
     "**/.*",
