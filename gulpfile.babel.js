@@ -38,10 +38,17 @@ const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 const today = $.util.date('dd-mm-yyyy HH:MM');
 
+const authors = configs.info.authors.reduce((pre, cur) => {
+ if (pre !== '') {
+   pre += '\n';
+ }
+ return `${pre} * ${cur.name} < ${cur.email} >`;
+}, '');
+
 const banner = [
   '/*!',
   ' * ' + configs.info.description,
-  ' * ' + configs.info.author.name + ' < ' + configs.info.author.email + ' >',
+  authors,
   ' * Version ' + configs.info.version + ' ( ' + today + ' )',
   ' */\n\n'
 ].join('\n');

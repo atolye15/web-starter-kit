@@ -3,11 +3,11 @@ const configs = {
     name: 'Project-Name',
     version: '0.1.0',
     description: 'Project Desc',
-    author: {
+    authors: [{
       name: 'Atolye15',
       email: 'hello@atolye15.com',
       url: 'http://www.atolye15.com'
-    }
+    }]
   },
   paths: {
     src: 'src',
