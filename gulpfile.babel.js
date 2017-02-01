@@ -49,6 +49,7 @@ const banner = [
   '/*!',
   ' * ' + configs.info.description,
   authors,
+  ' * Atölye15 (www.atolye15.com)',
   ' * Version ' + configs.info.version + ' ( ' + today + ' )',
   ' */\n\n'
 ].join('\n');
