@@ -97,7 +97,7 @@ gulp.task('styles', cb =>
  */
 
 gulp.task('scripts:lint', tasks.scripts.lint(globals));
-gulp.task('scripts:main', tasks.scripts.main(globals));
+gulp.task('scripts:main', ['scripts:lint'], tasks.scripts.main(globals));
 gulp.task('scripts:libs', tasks.scripts.libs(globals));
 gulp.task('scripts:combine', tasks.scripts.combine(globals));
 
