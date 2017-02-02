@@ -38,10 +38,18 @@ const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 const today = $.util.date('dd-mm-yyyy HH:MM');
 
+const authors = configs.info.authors.reduce((pre, cur) => {
+ if (pre !== '') {
+   pre += '\n';
+ }
+ return `${pre} * ${cur.name} < ${cur.email} >`;
+}, '');
+
 const banner = [
   '/*!',
   ' * ' + configs.info.description,
-  ' * ' + configs.info.author.name + ' < ' + configs.info.author.email + ' >',
+  authors,
+  ' * Atölye15 (www.atolye15.com)',
   ' * Version ' + configs.info.version + ' ( ' + today + ' )',
   ' */\n\n'
 ].join('\n');
@@ -89,7 +97,7 @@ gulp.task('styles', cb =>
  */
 
 gulp.task('scripts:lint', tasks.scripts.lint(globals));
-gulp.task('scripts:main', tasks.scripts.main(globals));
+gulp.task('scripts:main', ['scripts:lint'], tasks.scripts.main(globals));
 gulp.task('scripts:libs', tasks.scripts.libs(globals));
 gulp.task('scripts:combine', tasks.scripts.combine(globals));
 
