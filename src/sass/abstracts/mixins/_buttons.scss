@@ -21,8 +21,7 @@
   position: relative;
   display: inline-block;
   padding: $c-button-padding-vertical $c-button-padding-horizontal;
-  border-style: solid;
-  border-width: $c-button-border-width;
+  border: $c-button-border-width solid currentColor;
   font-family: $c-button-font-family;
   font-size: $c-button-font-size;
   line-height: $c-button-line-height;
@@ -79,7 +78,7 @@
 // @param $radius - Butonun border-radius değerini tanımlar
 // @param $disabled - Butona disable efekti vermek için kullanılır
 
-@mixin btn-modifier($bg:$c-button-bg-color, $bg-hover:$c-button-bg-hover, $color:auto, $hover-color:auto, $border-width:$c-button-border-width, $border-color:null, $border-hover-color:null, $radius:$c-button-radius, $disabled:false) {
+@mixin btn-modifier($bg:$c-button-bg-color, $bg-hover:$c-button-bg-hover, $color:auto, $hover-color:auto, $border-width:$c-button-border-width, $border-color:"same-as-bg", $border-hover-color:"same-as-bg", $radius:$c-button-radius, $disabled:false) {
 
 
   // $bg-hover tanımlanmamışsa ve hover color `auto` seçilmişse
@@ -93,11 +92,15 @@
     $border-color: scale-color($bg, $lightness: $c-button-function-factor);
   }
 
-  @if $border-color == null {
+  @if ($border-hover-color == auto) and not($bg-hover == null) {
+    $border-hover-color: scale-color($bg-hover, $lightness: $c-button-function-factor);
+  }
+
+  @if $border-color == "same-as-bg" {
     $border-color: $bg;
   }
 
-  @if $border-hover-color == null {
+  @if $border-hover-color == "same-as-bg" {
     $border-hover-color: $bg-hover;
   }
 
