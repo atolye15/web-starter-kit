@@ -68,7 +68,8 @@ const configs = {
   uncss: {
     active: true,
     ignore: [
-      // new RegExp('^(.[a-z-_.]*)?.(is|has)-.*')
+      new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'),
+      new RegExp('^(.?[a-z-_.\[]+)?disabled.*')
     ]
   },
   autoprefixerBrowsers: [
