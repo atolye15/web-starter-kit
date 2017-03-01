@@ -306,3 +306,6 @@ gulp.task('pagespeed', tasks.pagespeed(globals));
 gulp.task('styleguide', cb => {
   return kss(configs.styleGuide, cb);
 });
+
+gulp.task('bump', tasks.bump(globals));
+

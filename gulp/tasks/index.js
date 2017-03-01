@@ -8,5 +8,6 @@ module.exports = {
   copy: require('./copy'),
   notify: require('./notify'),
   sync: require('./sync'),
-  pagespeed: require('./pagespeed')
+  pagespeed: require('./pagespeed'),
+  bump: require('./bump')
 };
