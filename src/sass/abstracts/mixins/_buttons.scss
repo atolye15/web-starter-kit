@@ -13,7 +13,7 @@
 
 @mixin btn-block($ease:true) {
 
-  @if ($ease == true){
+  @if ($ease == true) {
     transition: background-color $g-transition-duration;
   }
 

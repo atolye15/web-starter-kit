@@ -35,17 +35,17 @@
 // Base
 @import "base/base";
 
-// Globals
-@import "base/utilities";
-
 // Components
 @import "components/index";
 
 // Layout
 @import "layout/index";
 
-// Layout
+// Pages
 @import "pages/index";
+
+// Utilities
+@import "base/utilities";
 
 // Responsive
 @import "base/responsive";
