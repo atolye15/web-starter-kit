@@ -1,13 +1,4 @@
 {
-  "extends": "google",
-  "parser": "babel-eslint",
-  "globals": {},
-  "rules": {
-    "strict": 0,
-    "comma-dangle": "off",
-    "max-len": [1, 100, 2, {
-      "ignoreUrls": true,
-      "ignoreComments": false
-    }]
-  }
+  "extends": "airbnb-base",
+  "parser": "babel-eslint"
 }
