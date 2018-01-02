@@ -10,6 +10,20 @@
 
     @if not($pos == normal) {
       $position: "-" + $pos;
+
+      &#{$position} {
+        padding: $pad;
+
+        @include make-utility-responsive() {
+          padding: $pad;
+        }
+      }
+    } @else {
+      padding: $pad;
+
+      @include make-utility-responsive() {
+        padding: $pad;
+      }
     }
 
     &-ends#{$position} {
@@ -45,6 +59,22 @@
 
       @include make-utility-responsive() {
         padding-bottom: $pad;
+      }
+    }
+
+    &-left#{$position} {
+      padding-left: $pad;
+
+      @include make-utility-responsive() {
+        padding-left: $pad;
+      }
+    }
+
+    &-right#{$position} {
+      padding-right: $pad;
+
+      @include make-utility-responsive() {
+        padding-right: $pad;
       }
     }
   }

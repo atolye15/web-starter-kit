@@ -9,6 +9,20 @@
 
     @if not($pos == normal) {
       $position: "-" + $pos;
+
+      &#{$position} {
+        margin: $pad;
+
+        @include make-utility-responsive() {
+          margin: $pad;
+        }
+      }
+    } @else {
+      margin: $pad;
+
+      @include make-utility-responsive() {
+        margin: $pad;
+      }
     }
 
     &-top#{$position} {
