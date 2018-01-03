@@ -13,17 +13,17 @@
       $position: '-' + $pos;
 
       &#{$position} {
-        margin: $gap;
+        margin: map-get($gap, y);
 
         @include make-utility-responsive() {
-          margin: $gap;
+          margin: map-get($gap, y);
         }
       }
     } @else {
-      margin: $gap;
+      margin: map-get($gap, y);
 
       @include make-utility-responsive() {
-        margin: $gap;
+        margin: map-get($gap, y);
       }
     }
 
