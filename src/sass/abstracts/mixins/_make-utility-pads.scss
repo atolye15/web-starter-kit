@@ -1,15 +1,16 @@
-
 //
 // Pads
+//
+// stylelint-disable max-nesting-depth
 // -------------------------
 
 @mixin make-utility-pads() {
   @each $pos in map-keys($g-pads) {
     $pad: map-get($g-pads, $pos);
-    $position: "";
+    $position: '';
 
     @if not($pos == normal) {
-      $position: "-" + $pos;
+      $position: '-' + $pos;
 
       &#{$position} {
         padding: $pad;
@@ -37,12 +38,12 @@
     }
 
     &-sides#{$position} {
-      padding-left: $pad;
       padding-right: $pad;
+      padding-left: $pad;
 
       @include make-utility-responsive() {
-        padding-left: $pad;
         padding-right: $pad;
+        padding-left: $pad;
       }
     }
 

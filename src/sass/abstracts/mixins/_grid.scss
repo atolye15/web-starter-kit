@@ -1,13 +1,15 @@
 //
 // Flexbox Grid Mixins
 // Generate semantic grid columns with these mixins.
+//
+// stylelint-disable max-nesting-depth
 // -------------------------
 
 @mixin make-grid-container($gutter: $grid-gutter-width) {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: ($gutter / 2);
   padding-right: ($gutter / 2);
+  padding-left: ($gutter / 2);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 // For each breakpoint, define the maximum width of the container in a media query
@@ -22,16 +24,16 @@
 @mixin make-grid-row($gutter: $grid-gutter-width) {
   display: flex;
   flex-wrap: wrap;
-  margin-left: ($gutter / -2);
   margin-right: ($gutter / -2);
+  margin-left: ($gutter / -2);
 }
 
 @mixin make-grid-col($size, $columns: $grid-columns, $gutter: $grid-gutter-width) {
-  flex: 0 0 percentage($size / $columns);
   // Add a `max-width` to ensure content within each column does not blow out
   // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
   // do not appear to require this.
   max-width: percentage($size / $columns);
+  flex: 0 0 percentage($size / $columns);
 }
 
 @mixin make-grid-col-offset($size, $columns: $grid-columns) {
@@ -50,9 +52,9 @@
 
     @include media-breakpoint-up($breakpoint, $breakpoints) {
       &--#{$breakpoint} {
+        max-width: 100%;
         flex-basis: 0;
         flex-grow: 1;
-        max-width: 100%;
       }
 
       @for $i from 1 through $columns {
@@ -63,9 +65,10 @@
 
       // `$columns - 1` because offsetting by the width of an entire row isn't possible
       @for $i from 0 through ($columns - 1) {
-        @if $breakpoint-counter != 1 or $i != 0 { // Avoid emitting useless .offset-xs-0
+        // Avoid emitting useless .offset-xs-0
+        @if $breakpoint-counter != 1 or $i != 0 {
           &--offset-#{$breakpoint}-#{$i} {
-            @include make-grid-col-offset($i, $columns)
+            @include make-grid-col-offset($i, $columns);
           }
         }
       }

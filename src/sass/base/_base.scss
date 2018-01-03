@@ -1,4 +1,3 @@
-
 //
 // BASE
 // --------------------------------------------------
@@ -10,9 +9,9 @@
 // Body reset
 
 html {
+  box-sizing: border-box;
   font-size: 10px;
   -webkit-tap-highlight-color: transparent;
-  box-sizing: border-box;
 }
 
 // Reset the box-sizing
@@ -26,13 +25,12 @@ html {
   box-sizing: inherit;
 }
 
-
 body {
+  background-color: $g-body-bg;
+  color: $g-text-color;
   font-family: $g-font-family-base;
   font-size: $g-font-size-base;
   line-height: $g-line-height-base;
-  color: $g-text-color;
-  background-color: $g-body-bg;
 }
 
 // Reset fonts for relevant elements
@@ -40,12 +38,11 @@ input,
 button,
 select,
 textarea {
-
-  &:focus { // Reset outline for chrome
+  &:focus {
+    // Reset outline for chrome
     outline: none;
   }
 }
-
 
 // Links
 
@@ -53,7 +50,8 @@ a {
   color: $g-link-color;
   text-decoration: none;
 
-  &:focus { // Reset outline for chrome
+  &:focus {
+    // Reset outline for chrome
     outline: none;
   }
 
@@ -62,7 +60,6 @@ a {
     text-decoration: $g-link-hover-decoration;
   }
 }
-
 
 // Figures
 //
@@ -73,7 +70,6 @@ figure {
   margin: 0;
 }
 
-
 // Images
 
 img {
@@ -83,17 +79,16 @@ img {
 // Horizontal rules
 
 hr {
-  margin-top: $g-line-height-computed;
-  margin-bottom: $g-line-height-computed;
   border: 0;
   border-top: 1px solid $g-hr-border-color;
+  margin-top: $g-line-height-computed;
+  margin-bottom: $g-line-height-computed;
 }
 
 //
 // Typography
 //
 // Styleguide 1
-
 
 //
 // Headings
@@ -133,10 +128,10 @@ h6,
 .h5,
 .h6,
 .heading {
+  color: $g-headings-color;
   font-family: $g-headings-font-family;
   font-weight: $g-headings-font-weight;
   line-height: $g-headings-line-height;
-  color: $g-headings-color;
 }
 
 h1,
@@ -214,13 +209,12 @@ p {
   margin: ($g-line-height-computed / 2) 0 0;
 }
 
-
 //
 // Emphasis & misc
 //
 
 mark {
-  padding: .2em;
+  padding: 0.2em;
 }
 
 //
@@ -251,7 +245,6 @@ ol {
   @include list-unstyled;
 }
 
-
 // Inline turns list items into inline-block
 .list-inline {
   @include list-unstyled;
@@ -259,8 +252,8 @@ ol {
 
   > li {
     display: inline-block;
-    padding-left: 5px;
     padding-right: 5px;
+    padding-left: 5px;
   }
 }
 
@@ -286,19 +279,6 @@ dd {
 //
 // Misc
 //
-
-// Abbreviations and acronyms
-abbr[title],
-// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
-abbr[data-original-title] {
-  cursor: help;
-  border-bottom: 1px dotted $color-monsoon;
-}
-
-.initialism {
-  font-size: 90%;
-  text-transform: uppercase;
-}
 
 // Addresses
 address {

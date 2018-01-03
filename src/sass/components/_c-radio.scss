@@ -8,7 +8,7 @@
 // </label>
 //  --------------------------------------------------
 
-// scss-lint:disable NestingDepth
+// stylelint-disable max-nesting-depth
 
 $c-radio-size: 18px;
 $c-radio-border-width: 1px;
@@ -37,17 +37,16 @@ $c-radio-circle-size: 8px;
   &__mask {
     position: relative;
     display: inline-block;
-    vertical-align: middle;
     width: $c-radio-size;
     height: $c-radio-size;
-    line-height: $c-radio-size;
     border-radius: 50%;
-    cursor: pointer;
     border-style: solid;
     border-width: $c-radio-border-width;
+    cursor: pointer;
+    line-height: $c-radio-size;
+    vertical-align: middle;
 
     &::before {
-      content: "";
       position: absolute;
       top: (($c-radio-size - $c-radio-circle-size - ($c-radio-border-width * 2)) / 2);
       left: (($c-radio-size - $c-radio-circle-size - ($c-radio-border-width * 2)) / 2);
@@ -55,6 +54,7 @@ $c-radio-circle-size: 8px;
       width: $c-radio-circle-size;
       height: $c-radio-circle-size;
       border-radius: 50%;
+      content: '';
     }
   }
 
@@ -67,7 +67,6 @@ $c-radio-circle-size: 8px;
   //
 
   &--primary {
-
     > .c-radio__mask {
       background-color: $color-silver;
       border-color: $color-gainsboro;

@@ -322,10 +322,6 @@ arrify@^1.0.0, arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-asap@~2.0.3:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
-
 asn1@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
@@ -1954,10 +1950,6 @@ decompress@^3.0.0:
     vinyl-assign "^1.0.1"
     vinyl-fs "^2.2.0"
 
-deep-extend@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.5.0.tgz#6ef4a09b05f98b0e358d6d93d4ca3caec6672803"
-
 deep-extend@~0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
@@ -2438,7 +2430,7 @@ eslint-visitor-keys@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
 
-eslint@^4.0.0, eslint@^4.14.0:
+eslint@^4.14.0:
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.14.0.tgz#96609768d1dd23304faba2d94b7fefe5a5447a82"
   dependencies:
@@ -3450,13 +3442,6 @@ gulp-directory-sync@^1.2.3:
     gulp-util "^3.0.7"
     through2 "^2.0.0"
 
-gulp-eslint@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-eslint/-/gulp-eslint-4.0.0.tgz#16d9ea4d696e7b7a9d65eeb1aa5bc4ba0a22c7f7"
-  dependencies:
-    eslint "^4.0.0"
-    gulp-util "^3.0.8"
-
 gulp-foreach@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/gulp-foreach/-/gulp-foreach-0.1.0.tgz#2547abfd1a1b75f569b54194190ef1c0b0289538"
@@ -3587,20 +3572,6 @@ gulp-sourcemaps@^2.6.3:
     source-map "0.X"
     strip-bom-string "1.X"
     through2 "2.X"
-
-gulp-stylelint@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-5.0.0.tgz#c507f5e314602e7122eff599f2880eb0b62657b0"
-  dependencies:
-    chalk "^2.0.1"
-    deep-extend "^0.5.0"
-    gulp-util "^3.0.8"
-    mkdirp "^0.5.1"
-    promise "^8.0.1"
-    source-map "^0.5.6"
-    strip-ansi "^4.0.0"
-    stylelint "^8.0.0"
-    through2 "^2.0.3"
 
 gulp-svgstore@^6.1.0:
   version "6.1.1"
@@ -6672,12 +6643,6 @@ progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
 
-promise@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.1.tgz#e45d68b00a17647b6da711bf85ed6ed47208f450"
-  dependencies:
-    asap "~2.0.3"
-
 property-is-enumerable-x@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/property-is-enumerable-x/-/property-is-enumerable-x-1.1.0.tgz#7ca48917476cd0914b37809bfd05776a0d942f6f"
@@ -7977,7 +7942,7 @@ stylelint@^7.6.0:
     svg-tags "^1.0.0"
     table "^4.0.1"
 
-stylelint@^8.0.0, stylelint@^8.1.1, stylelint@^8.4.0:
+stylelint@^8.1.1, stylelint@^8.4.0:
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-8.4.0.tgz#c2dbaeb17236917819f9206e1c0df5fddf6f83c3"
   dependencies:

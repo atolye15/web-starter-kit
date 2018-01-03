@@ -1,8 +1,6 @@
-
 //
 // BUTTONS
 // --------------------------------------------------
-
 
 // @MIXIN btn-block
 //
@@ -12,7 +10,6 @@
 //   Transition için sass/global/_utilities.scss deki .transition-background classını extend eder
 
 @mixin btn-block($ease:true) {
-
   @if ($ease == true) {
     transition: background-color $g-transition-duration;
   }
@@ -21,19 +18,18 @@
   display: inline-block;
   padding: $c-button-padding-vertical $c-button-padding-horizontal;
   border-width: 0;
+  cursor: pointer;
   font-family: $c-button-font-family;
   font-size: $c-button-font-size;
   line-height: $c-button-line-height;
   text-align: center;
   text-decoration: none;
-  cursor: pointer;
 
   &:hover,
   &:focus {
     text-decoration: none;
   }
 }
-
 
 // @MIXIN btn-size
 //
@@ -44,7 +40,6 @@
 // @param $font-size - Buton font size değerini tanımlar
 
 @mixin btn-size($padding-v:$c-button-padding-vertical, $padding-h:$c-button-padding-horizontal, $font-size:null) {
-
   // We control which padding styles come through,
   // these can be turned off by setting $padding:false
   @if $padding-v {
@@ -55,13 +50,12 @@
       padding-bottom: $padding-v;
     }
   } @else {
-    padding-left: $padding-h;
     padding-right: $padding-h;
+    padding-left: $padding-h;
   }
 
   font-size: $font-size;
 }
-
 
 // @MIXIN btn-modifier
 //
@@ -78,15 +72,21 @@
 // @param $disabled - Butona disable efekti vermek için kullanılır
 
 @mixin btn-modifier($bg:$c-button-bg-color, $bg-hover:auto, $color:auto, $hover-color:auto, $border-width:$c-button-border-width, $border-color:auto, $border-hover-color:null, $radius:$c-button-radius, $disabled:false) {
-
-
   // $bg-hover tanımlanmamışsa sass fonksiyonlarını kullanarak hover rengi taımlıyoruz
   @if $bg-hover == auto {
-    $bg-hover: if($bg == $c-button-bg-color, $c-button-bg-hover, scale-color($bg, $lightness: $c-button-function-factor));
+    $bg-hover: if(
+      $bg == $c-button-bg-color,
+      $c-button-bg-hover,
+      scale-color($bg, $lightness: $c-button-function-factor)
+    );
   }
   // $border-color tanımlanmamışsa sass fonksiyonlarını kullanarak border rengi taımlıyoruz
   @if ($border-color == auto) and not($bg == null) {
-    $border-color: if($bg == $c-button-bg-color, $c-button-border-color, scale-color($bg, $lightness: $c-button-function-factor));
+    $border-color: if(
+      $bg == $c-button-bg-color,
+      $c-button-border-color,
+      scale-color($bg, $lightness: $c-button-function-factor)
+    );
   }
 
   $bg-lightness: 0;
@@ -113,8 +113,8 @@
   }
 
   background-color: $bg;
-  color: $color;
   border-radius: $radius;
+  color: $color;
 
   @if not($border-width == 0) {
     box-shadow: inset 0 0 0 $border-width $border-color;
@@ -132,16 +132,14 @@
   // Eğer $disable:true ise Butonun disable durumunu ayarlıyoruz
   @if $disabled {
     &:disabled {
+      box-shadow: none;
       cursor: not-allowed;
       opacity: 0.7;
-      box-shadow: none;
 
       &:hover,
       &:focus {
         background-color: $bg;
       }
     }
-
   }
-
 }

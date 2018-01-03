@@ -1,5 +1,3 @@
-
 module.exports = {
-  lint: require('./lint'),
-  main: require('./main')
+  main: require('./main'),
 };

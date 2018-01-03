@@ -1,51 +1,51 @@
 @charset "UTF-8";
 
 // Colors
-@import "abstracts/colors";
+@import 'abstracts/colors';
 
 // Mixins
-@import "abstracts/mixins/index";
+@import 'abstracts/mixins/index';
 
 // Variables
-@import "abstracts/variables";
+@import 'abstracts/variables';
 
 // Placeholders
-@import "abstracts/placeholders";
+@import 'abstracts/placeholders';
 
 // Normalize
-@import "vendors/normalize";
+@import 'vendors/normalize';
 
-@import "base/reset";
+@import 'base/reset';
 
 // Fonts
-@import "base/fonts";
+@import 'base/fonts';
 
 // Icons
-@import "base/icons";
+@import 'base/icons';
 
 // Grid
-@import "base/grid";
+@import 'base/grid';
 
 // Vendors
-@import "vendors/index";
+@import 'vendors/index';
 
 // Vendors Extensions
-@import "vendors-extensions/index";
+@import 'vendors-extensions/index';
 
 // Base
-@import "base/base";
+@import 'base/base';
 
 // Components
-@import "components/index";
+@import 'components/index';
 
 // Layout
-@import "layout/index";
+@import 'layout/index';
 
 // Pages
-@import "pages/index";
+@import 'pages/index';
 
 // Utilities
-@import "base/utilities";
+@import 'base/utilities';
 
 // Responsive
-@import "base/responsive";
+@import 'base/responsive';
