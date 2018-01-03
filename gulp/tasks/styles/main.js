@@ -1,31 +1,31 @@
+/* eslint-disable */
 
-module.exports = function({gulp, configs, $, lazypipe, banner, isProduction, envPath}) {
+module.exports = function({ gulp, configs, $, lazypipe, banner, isProduction, envPath }) {
   return function(cb) {
     const uncssOptions = {
       html: [envPath + '/*.html'],
-      ignore: configs.uncss.ignore
+      ignore: configs.uncss.ignore,
     };
 
     const stylesMinChannel = lazypipe()
-      .pipe(() => configs.uncss.active ? $.uncss(uncssOptions) : $.util.noop())
-      .pipe($.cssnano, {discardComments: {removeAll: true}})
-      .pipe($.rename, {suffix: '.min'})
+      .pipe(() => (configs.uncss.active ? $.uncss(uncssOptions) : $.util.noop()))
+      .pipe($.cssnano, { discardComments: { removeAll: true } })
+      .pipe($.rename, { suffix: '.min' })
       .pipe($.header, banner)
       .pipe(gulp.dest, envPath + '/' + configs.paths.assets.css);
 
     // For best performance, don't add Sass partials to `gulp.src`
-    return gulp.src([
-      configs.paths.src + '/sass/**/*.scss'
-    ])
-      .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
+    return gulp
+      .src([configs.paths.src + '/sass/**/*.scss'])
+      .pipe($.plumber({ errorHandler: $.notify.onError('Hata: <%= error.message %>') }))
       .pipe(isProduction ? $.util.noop() : $.sourcemaps.init())
-      .pipe($.sass({precision: 10}).on('error', $.sass.logError))
-      .pipe(isProduction ? $.mergeMediaQueries({log: true}) : $.util.noop())
+      .pipe($.sass({ precision: 10 }).on('error', $.sass.logError))
+      .pipe(isProduction ? $.mergeMediaQueries({ log: true }) : $.util.noop())
       .pipe($.autoprefixer(configs.autoprefixerBrowsers))
       .pipe($.header(banner))
       .pipe(isProduction ? $.util.noop() : $.sourcemaps.write('./'))
       .pipe(gulp.dest(envPath + '/' + configs.paths.assets.css))
       .pipe(isProduction ? stylesMinChannel() : $.util.noop())
-      .pipe($.size({title: 'Css'}));
+      .pipe($.size({ title: 'Css' }));
   };
 };
