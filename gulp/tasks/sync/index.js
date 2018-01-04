@@ -1,5 +1,7 @@
+import regular from './regular';
+import deploy from './deploy';
 
-module.exports = {
-  regular: require('./regular'),
-  deploy: require('./deploy')
+export default {
+  regular,
+  deploy,
 };

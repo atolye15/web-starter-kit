@@ -1,7 +1,12 @@
+import gulp from 'gulp';
+import configs from '../../../configs';
 
-module.exports = function({gulp, configs, envPath}) {
+export default function({ isProduction }) {
+  const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+
   return function() {
-    return gulp.src(envPath + '/' + configs.paths.assets.vendors + '/**/*')
-      .pipe(gulp.dest(configs.paths.deploy + '/' + configs.paths.assets.vendors));
+    return gulp
+      .src(`${envPath}/${configs.paths.assets.vendors}/**/*`)
+      .pipe(gulp.dest(`${configs.paths.deploy}/${configs.paths.assets.vendors}`));
   };
-};
+}

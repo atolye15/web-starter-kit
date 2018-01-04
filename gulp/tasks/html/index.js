@@ -1,22 +1,28 @@
-
+import gulp from 'gulp';
 import fs from 'fs';
 import path from 'path';
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
+import twig from 'gulp-twig';
+import rename from 'gulp-rename';
+
+import configs from '../../../configs';
+import twigController from '../../../src/twig/controller';
 
 const helperFunctions = [
   {
     name: 'assets',
-    func: args => {
-      return args;
-    }
+    func: args => args,
   },
   {
     name: 'isFileExists',
-    func: filePath =>
-      fs.existsSync(path.resolve(__dirname, '../../../src/twig', filePath))
-  }
+    func: filePath => fs.existsSync(path.resolve(__dirname, '../../../src/twig', filePath)),
+  },
 ];
 
-module.exports = function({gulp, configs, $, twigController, isProduction, envPath}) {
+export default function({ isProduction }) {
+  const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+
   return function() {
     /**
      * 'production' değişkeni çalışma ortamının production olup olmadığı
@@ -24,17 +30,23 @@ module.exports = function({gulp, configs, $, twigController, isProduction, envPa
      * adında bir değişken tanımlamayın!
      */
     twigController.data.production = isProduction;
-    return gulp.src(configs.paths.src + '/twig/pages/**/*.twig')
-      .pipe($.plumber({errorHandler: $.notify.onError('Hata: <%= error.message %>')}))
-      .pipe($.twig({
-        data: twigController.data,
-        functions: helperFunctions.concat(twigController.functions),
-        filters: twigController.filters
-      }))
-      .pipe($.rename(path => {
-        path.basename = path.basename.replace(/(\.html)$/, '');
-        return path;
-      }))
+
+    return gulp
+      .src(`${configs.paths.src}/twig/pages/**/*.twig`)
+      .pipe(plumber({ errorHandler: notify.onError('Hata: <%= error.message %>') }))
+      .pipe(
+        twig({
+          data: twigController.data,
+          functions: helperFunctions.concat(twigController.functions),
+          filters: twigController.filters,
+        }),
+      )
+      .pipe(
+        rename(filePath => {
+          filePath.basename = filePath.basename.replace(/(\.html)$/, '');
+          return filePath;
+        }),
+      )
       .pipe(gulp.dest(envPath));
   };
-};
+}
