@@ -26,21 +26,25 @@ $g-border-color: $color-smoke;
 //  TYPOGRAPHY
 // -------------------------
 
-$g-font-size-base: 16px !default;
+// Pixel value used to responsively scale all typography. Applied to the `<html>` element.
+$g-font-size-root: 16px !default;
+
+$g-font-size-base-px: 16px;
+$g-font-size-base: px-to-rem($g-font-size-base-px) !default;
 $g-font-family-sans-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 $g-font-family-base: $g-font-family-sans-serif !default;
 
-$g-font-size-h1: floor(($g-font-size-base * 2.6)) !default; // ~36px
-$g-font-size-h2: 2.143em; //floor(($g-font-size-base * 2.15)) !default; // ~30px
-$g-font-size-h3: 1.714em; //ceil(($g-font-size-base * 1.7)) !default; // ~24px
-$g-font-size-h4: 1.286em; //ceil(($g-font-size-base * 1.25)) !default; // ~18px
-$g-font-size-h5: $g-font-size-base !default;
-$g-font-size-h6: 0.857em; //ceil(($g-font-size-base * 0.85)) !default; // ~12px
+$g-font-size-h1: em(36px) !default;
+$g-font-size-h2: em(30px) !default;
+$g-font-size-h3: em(24px) !default;
+$g-font-size-h4: em(18px) !default;
+$g-font-size-h5: 1em !default;
+$g-font-size-h6: em(14px) !default;
 
 // Unit-less `line-height` for use in components like buttons.
 $g-line-height-base: (24 / 16) !default; // 20/14
 // Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-$g-line-height-computed: floor(($g-font-size-base * $g-line-height-base)) !default; // ~20px
+$g-line-height-computed: px-to-rem(($g-font-size-base-px * $g-line-height-base)) !default;
 
 // By default, this inherits from the `<body>`.
 $g-headings-font-family: inherit !default;
@@ -57,11 +61,12 @@ $g-hr-border-color: $g-border-color !default;
 // FONT SIZING
 // -------------------------
 
-$g-font-size-small: $g-font-size-base - 2px;
-$g-font-size-xsmall: $g-font-size-base - 4px;
-$g-font-size-medium: $g-font-size-base + 2px;
-$g-font-size-large: $g-font-size-base + 4px;
-$g-font-size-xlarge: $g-font-size-base + 8px;
+$g-font-size-small: px-to-rem($g-font-size-base-px - 2px);
+$g-font-size-xsmall: px-to-rem($g-font-size-base-px - 4px);
+$g-font-size-2xsmall: px-to-rem($g-font-size-base-px - 6px);
+$g-font-size-medium: px-to-rem($g-font-size-base-px + 2px);
+$g-font-size-large: px-to-rem($g-font-size-base-px + 4px);
+$g-font-size-xlarge: px-to-rem($g-font-size-base-px + 8px);
 
 // GAPS
 //
@@ -90,7 +95,7 @@ $g-gaps: (
 // normal: 32px
 // small: 24px | xsmall: 16px | 2xsmall: 8px
 // -------------------------
-$g-base-padding: 32px;
+$g-base-padding: px-to-rem(32px);
 $g-pads: (
   normal: $g-base-padding,
   small: ($g-base-padding * 0.75),
@@ -110,13 +115,13 @@ $c-button-font-family: null !default; // Butonun fontu
 $c-button-bg-color: $primary-color !default; // Buton default bg color
 $c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-function-factor) !default; // Button default hover rengi
 $c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
-$c-button-radius: 3px !default; // Button default border radius
-$c-button-font-size: 14px !default; // Button default font boyutu
+$c-button-radius: px-to-rem(3px) !default; // Button default border radius
+$c-button-font-size: px-to-rem(16px) !default; // Button default font boyutu
 $c-button-line-height: null !default; // Button line-height
 $c-button-font-color: $color-white !default; // Button default font rengi
 $c-button-font-color-alt: $color-oil !default; // Button default font rengi
-$c-button-padding-vertical: 10px !default; // Button dikey padding
-$c-button-padding-horizontal: 20px !default; // Button default yatay padding
+$c-button-padding-vertical: px-to-rem(10px) !default; // Button dikey padding
+$c-button-padding-horizontal: px-to-rem(20px)!default; // Button default yatay padding
 $c-button-border-width: 0 !default; // Button default border width
 
 //  FORMS CONTROL VARIABLES
@@ -132,10 +137,10 @@ $c-input-border-radius: null !default; // `<input>` border radius
 $c-input-border-focus: #66afe9 !default; // Border color for inputs on focus
 $c-input-font-size: $g-font-size-base !default;
 $c-input-line-height: $g-line-height-computed !default;
-$c-input-padding-vertical: 6px;
-$c-input-padding-horizontal: 12px;
+$c-input-padding-vertical: px-to-rem(6px);
+$c-input-padding-horizontal: px-to-rem(12px);
 $c-input-height-base: (
-    $c-input-line-height + ($c-input-padding-vertical * 2) + ($c-input-border-width * 2)
+    $c-input-line-height + ($c-input-padding-vertical * 2) + (px-to-rem($c-input-border-width) * 2)
   )
   !default; // Default `.form-control` height
 
@@ -144,20 +149,33 @@ $c-input-height-base: (
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
-$grid-breakpoints: (xs: 0, sm: 544px, md: 768px, lg: 992px, xl: 1200px) !default;
+$grid-breakpoints: (
+    xs: 0,
+    sm: px-to-rem(544px),
+    md: px-to-rem(768px),
+    lg: px-to-rem(992px),
+    xl: px-to-rem(1200px)
+  )
+  !default;
 
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
 
-$container-max-widths: (sm: 576px, md: 720px, lg: 940px, xl: 1140px) !default;
+$container-max-widths: (
+    sm: px-to-rem(576px),
+    md: px-to-rem(720px),
+    lg: px-to-rem(940px),
+    xl: px-to-rem(1140px)
+  )
+  !default;
 
 // Grid columns
 //
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12 !default;
-$grid-gutter-width: 30px !default;
+$grid-gutter-width: px-to-rem(32px) !default;
 
 //
 // Transition Duration
