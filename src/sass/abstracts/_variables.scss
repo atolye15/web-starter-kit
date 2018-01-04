@@ -63,21 +63,43 @@ $g-font-size-medium: $g-font-size-base + 2px;
 $g-font-size-large: $g-font-size-base + 4px;
 $g-font-size-xlarge: $g-font-size-base + 8px;
 
+// GAPS
+//
+// normal: 24px <= Global line height
+// small:  16px
+// xsmall: 8px
+// 2xsmall: 4px
+// medium: 32px
+// large: 40px
+// xlarge:  48px
+// -------------------------
 $g-base-gap: $g-line-height-computed;
 $g-gaps: (
-  normal: (x: round($g-base-gap / 2), y: $g-base-gap),
-  small: (x: round($g-base-gap / 4), y: round($g-base-gap / 2)),
-  xsmall: (x: round($g-base-gap / 6), y: round($g-base-gap / 4)),
-  medium: (x: round($g-base-gap * 0.75), y: round($g-base-gap * 1.5)),
-  large: (x: $g-base-gap, y: round($g-base-gap * 2))
+  normal: $g-base-gap,
+  small: ($g-base-gap / 1.5),
+  xsmall: ($g-base-gap / 3),
+  2xsmall: ($g-base-gap / 6),
+  medium: ($g-base-gap * (4 / 3)),
+  large: ($g-base-gap * (5 / 3)),
+  xlarge: ($g-base-gap * 2)
 );
 
-$g-base-padding: 60px;
+// PADDINGS
+//
+// medium: 40px | large: 48px | xlarge: 64px | 2xlarge: 96px
+// normal: 32px
+// small: 24px | xsmall: 16px | 2xsmall: 8px
+// -------------------------
+$g-base-padding: 32px;
 $g-pads: (
   normal: $g-base-padding,
-  small: ($g-base-padding / 2),
-  medium: ($g-base-padding * 1.5),
-  large: ($g-base-padding * 2)
+  small: ($g-base-padding * 0.75),
+  xsmall: ($g-base-padding / 2),
+  2xsmall: ($g-base-padding / 4),
+  medium: ($g-base-padding * 1.25),
+  large: ($g-base-padding * 1.5),
+  xlarge: ($g-base-padding * 2),
+  2xlarge: ($g-base-padding * 3)
 );
 
 //  BUTTONS VARIABLES

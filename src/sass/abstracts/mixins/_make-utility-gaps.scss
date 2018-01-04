@@ -13,69 +13,69 @@
       $position: '-' + $pos;
 
       &#{$position} {
-        margin: map-get($gap, y);
+        margin: $gap;
 
         @include make-utility-responsive() {
-          margin: map-get($gap, y);
+          margin: $gap;
         }
       }
     } @else {
-      margin: map-get($gap, y);
+      margin: $gap;
 
       @include make-utility-responsive() {
-        margin: map-get($gap, y);
+        margin: $gap;
       }
     }
 
     &-top#{$position} {
-      margin-top: map-get($gap, y);
+      margin-top: $gap;
 
       @include make-utility-responsive() {
-        margin-top: map-get($gap, y);
+        margin-top: $gap;
       }
     }
 
     &-bottom#{$position} {
-      margin-bottom: map-get($gap, y);
+      margin-bottom: $gap;
 
       @include make-utility-responsive() {
-        margin-bottom: map-get($gap, y);
+        margin-bottom: $gap;
       }
     }
 
     &-ends#{$position} {
-      margin-top: map-get($gap, y);
-      margin-bottom: map-get($gap, y);
+      margin-top: $gap;
+      margin-bottom: $gap;
 
       @include make-utility-responsive() {
-        margin-top: map-get($gap, y);
-        margin-bottom: map-get($gap, y);
+        margin-top: $gap;
+        margin-bottom: $gap;
       }
     }
 
     &-left#{$position} {
-      margin-left: map-get($gap, x);
+      margin-left: $gap;
 
       @include make-utility-responsive() {
-        margin-left: map-get($gap, x);
+        margin-left: $gap;
       }
     }
 
     &-right#{$position} {
-      margin-right: map-get($gap, x);
+      margin-right: $gap;
 
       @include make-utility-responsive() {
-        margin-right: map-get($gap, x);
+        margin-right: $gap;
       }
     }
 
     &-sides#{$position} {
-      margin-right: map-get($gap, x);
-      margin-left: map-get($gap, x);
+      margin-right: $gap;
+      margin-left: $gap;
 
       @include make-utility-responsive() {
-        margin-right: map-get($gap, x);
-        margin-left: map-get($gap, x);
+        margin-right: $gap;
+        margin-left: $gap;
       }
     }
   }
