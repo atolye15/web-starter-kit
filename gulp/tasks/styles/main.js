@@ -16,7 +16,7 @@ module.exports = function({ gulp, configs, $, lazypipe, banner, isProduction, en
 
     // For best performance, don't add Sass partials to `gulp.src`
     return gulp
-      .src([configs.paths.src + '/sass/**/*.scss'])
+      .src([configs.paths.src + '/scss/**/*.scss'])
       .pipe($.plumber({ errorHandler: $.notify.onError('Hata: <%= error.message %>') }))
       .pipe(isProduction ? $.util.noop() : $.sourcemaps.init())
       .pipe($.sass({ precision: 10 }).on('error', $.sass.logError))

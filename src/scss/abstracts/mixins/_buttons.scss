@@ -7,7 +7,7 @@
 // Bu mixini butonun temel özelliklerini tanımlamak için kullanıyoruz
 //
 // @param $ease - Button arkaplanına transition tanımlar,
-//   Transition için sass/global/_utilities.scss deki .transition-background classını extend eder
+//   Transition için scss/global/_utilities.scss deki .transition-background classını extend eder
 
 @mixin btn-block($ease:true) {
   @if ($ease == true) {

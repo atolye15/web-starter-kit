@@ -236,7 +236,7 @@ gulp.task('serve', () => {
     return runSequence('html:main', reload);
   });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
-  gulp.watch([`${configs.paths.src}/sass/**/*.scss`], () => {
+  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], () => {
     runSequence('styles', 'sync:deploy-styles', reload);
   });
   gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
