@@ -11,7 +11,22 @@ export default function({ isProduction }) {
   return function() {
     return gulp
       .src(`${configs.paths.src}/img/icons/**/*.svg`)
-      .pipe(imagemin([imagemin.svgo({ plugins: [{ removeDimensions: true }] })]))
+      .pipe(
+        imagemin([
+          imagemin.svgo({
+            plugins: [
+              { removeDimensions: true },
+              { removeTitle: true },
+              { cleanupNumericValues: true },
+              { cleanupListOfValues: true },
+              { removeDimensions: true },
+              { removeRasterImages: true },
+              { sortAttrs: true },
+              { transformsWithOnePath: true },
+            ],
+          }),
+        ]),
+      )
       .pipe(rename({ prefix: 'icon-' }))
       .pipe(svgstore({ inlineSvg: true }))
       .pipe(rename({ basename: 'sprite' }))
