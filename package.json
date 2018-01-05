@@ -63,5 +63,6 @@
     "fmt:js": "prettier --write \"src/**/*.js\"",
     "fmt:css": "prettier-stylelint --quiet --write \"src/sass/**/*.scss\"",
     "gulp": "gulp"
-  }
+  },
+  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "ie >= 10"]
 }

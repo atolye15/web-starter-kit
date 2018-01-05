@@ -42,7 +42,7 @@ export default function({ isProduction }) {
       .pipe(sass({ precision: 10 }).on('error', sass.logError))
       .pipe(
         postcss([
-          autoprefixer(configs.autoprefixerBrowsers),
+          autoprefixer({ cascade: false }),
           flexBugsFixes(),
           isProduction ? mqpacker() : function() {},
         ]),

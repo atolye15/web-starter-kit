@@ -63,17 +63,6 @@ const configs = {
     active: true,
     ignore: [new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'), new RegExp('^(.?[a-z-_.[]+)?disabled.*')],
   },
-  autoprefixerBrowsers: [
-    'ie >= 10',
-    'ie_mob >= 10',
-    'ff >= 33',
-    'chrome >= 36',
-    'safari >= 7',
-    'opera >= 26',
-    'ios >= 7',
-    'android >= 4.4',
-    'bb >= 10',
-  ],
 };
 
 module.exports = configs;
