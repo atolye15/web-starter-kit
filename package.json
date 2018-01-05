@@ -31,7 +31,6 @@
     "gulp-svgstore": "^6.1.0",
     "gulp-twig": "^1.1.1",
     "gulp-uglify": "^3.0.0",
-    "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.8",
     "kss": "^2.4.0",
     "lazypipe": "^1.0.1",
@@ -46,7 +45,8 @@
     "stylelint-declaration-block-no-ignored-properties": "^1.0.1",
     "stylelint-declaration-strict-value": "^1.0.4",
     "stylelint-order": "^0.8.0",
-    "stylelint-scss": "^2.2.0"
+    "stylelint-scss": "^2.2.0",
+    "uncss": "^0.16.1"
   },
   "engines": {
     "node": ">=5.2.0"
@@ -63,5 +63,10 @@
     "fmt:css": "prettier-stylelint --quiet --write \"src/sass/**/*.scss\"",
     "gulp": "gulp"
   },
-  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "ie >= 10"]
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "ie >= 10"
+  ]
 }

@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import lazypipe from 'lazypipe';
 import postcss from 'gulp-postcss';
-import uncss from 'gulp-uncss';
+import uncss from 'uncss';
 import rename from 'gulp-rename';
 import sass from 'gulp-sass';
 
@@ -25,11 +25,14 @@ export default function({ isProduction }) {
     const uncssOptions = {
       html: [`${envPath}/*.html`],
       ignore: configs.uncss.ignore,
+      htmlroot: envPath,
     };
 
     const stylesMinChannel = lazypipe()
-      .pipe(() => (configs.uncss.active ? uncss(uncssOptions) : util.noop()))
-      .pipe(postcss, [cssnano({ discardComments: { removeAll: true } })])
+      .pipe(postcss, [
+        configs.uncss.active ? uncss.postcssPlugin(uncssOptions) : function() {},
+        cssnano({ discardComments: { removeAll: true } }),
+      ])
       .pipe(rename, { suffix: '.min' })
       .pipe(header, banner())
       .pipe(gulp.dest, `${envPath}/${configs.paths.assets.css}`);
