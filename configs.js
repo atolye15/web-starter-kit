@@ -46,14 +46,16 @@ const configs = {
   styleGuide: {
     source: ['src/scss'],
     destination: 'styleguide/',
-    custom: ['HideOriginal', 'Colors', 'Icons'],
-    helpers: 'styleguide/_config/helpers',
+    // custom: ['HideOriginal', 'Colors', 'Icons'],
+    extend: 'kss/extend',
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: ['../dev/css/main.css'],
     js: [],
-    homepage: 'styleguide.md',
-    template: 'styleguide/_config/templates/kss-node-template',
+    verbose: false,
+    builder: 'kss/builders/atolye15',
+    homepage: '../../readme.md',
+    title: 'Atölye Style Guide',
   },
   pagespeed: {
     url: 'example.com',
