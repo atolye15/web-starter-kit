@@ -46,7 +46,7 @@ const configs = {
   styleGuide: {
     source: ['src/scss'],
     destination: 'styleguide/',
-    // custom: ['HideOriginal', 'Colors', 'Icons'],
+    custom: ['HideOriginal', 'Colors', 'Icons'],
     extend: 'kss/extend',
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
