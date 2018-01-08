@@ -1,4 +1,6 @@
 /* eslint-disable */
+var fs = require('fs');
+var path = require('path');
 
 module.exports = function(Twig) {
   'use strict';
@@ -32,22 +34,23 @@ module.exports = function(Twig) {
       parse: function(token, context, chain) {
         var doc = Twig.expression.parse.apply(this, [token.stack, context]);
         var output = [];
-        var regex = /^(\S+)\s*:\s*(\S+)(?:\s*-\s*(.*))?$/gm;
         var test;
+        var iconNames = [];
 
-        while ((test = regex.exec(doc)) !== null) {
+        fs.readdirSync(`./${doc}`).forEach(file => {
+          if (path.extname(file) === '.svg') {
+            iconNames.push(file);
+          }
+        });
+
+        iconNames.forEach(item => {
           var innerContext = Twig.ChildContext(context);
           innerContext.icon = {};
-          innerContext.icon.name = test[1];
-          innerContext.icon.character = test[2];
-          if (test[3] !== undefined) {
-            innerContext.icon.description = test[3];
-          }
+          innerContext.icon.name = item;
 
           output.push(Twig.parse.apply(this, [token.output, innerContext]));
-
           Twig.merge(context, innerContext, true);
-        }
+        });
 
         return {
           chain: chain,
