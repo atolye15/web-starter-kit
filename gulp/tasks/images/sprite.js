@@ -19,7 +19,7 @@ export default function({ isProduction }) {
               { removeTitle: true },
               { cleanupNumericValues: true },
               { cleanupListOfValues: true },
-              { removeDimensions: true },
+              { removeViewBox: false },
               { removeRasterImages: true },
               { sortAttrs: true },
               { transformsWithOnePath: true },
