@@ -39,7 +39,7 @@ module.exports = function(Twig) {
 
         fs.readdirSync(`./${doc}`).forEach(file => {
           if (path.extname(file) === '.svg') {
-            iconNames.push(file);
+            iconNames.push(file.replace(/(\.svg)$/, ''));
           }
         });
 
