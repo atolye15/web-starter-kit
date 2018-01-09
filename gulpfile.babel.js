@@ -84,7 +84,6 @@ gulp.task('copy:vendors', tasks.copy.vendors({ isProduction }));
 // Clean output directory
 gulp.task('clean:dist', () => del([`${envPath}/*`], { dot: true }));
 gulp.task('clean:imgCache', () => del(['.tmp/img/*'], { dot: true }));
-gulp.task('clean:babelCache', () => del(['.tmp/babel/*'], { dot: true }));
 gulp.task('clean:tempJs', () => del(['.tmp/js/*'], { dot: true }));
 gulp.task('clean:deployFolder', () =>
   del([`${configs.paths.deploy}/*`], { dot: true, force: true }),
