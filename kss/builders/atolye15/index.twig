@@ -163,19 +163,6 @@
           </ul>
         {% endif %}
 
-        {% if section.icons %}
-          <div class="kss-icons">
-            {% kssIcons section.icons %}
-              <div class="kss-icons__item" title="{{icon.name}}">
-                <svg class="icon kss-icons__demo">
-                  <use xlink:href="#icon-{{icon.name}}"></use>
-                </svg>
-                <span class="kss-icons__name">{{icon.name}}</span>
-              </div>
-            {% endkssIcons %}
-          </div>
-        {% endif %}
-
         {% for parameter in section.parameters %}
           {% if loop.first %}
             <div class="kss-parameters__title">Parameters:</div>
@@ -199,21 +186,24 @@
       </div>
 
       {% if section.example %}
+        {% if not section.icons %}
         <div class="kss-modifier__wrapper">
           <div class="kss-modifier__heading kss-style">
             Example{% if section.modifiers is not empty %}s{% endif %}
           </div>
 
-          {% if section.modifiers is not empty %}
-            <div class="kss-modifier__default-name kss-style">
-              Default styling
-            </div>
-          {% endif %}
+          {% if not section.hideoriginal %}
+            {% if section.modifiers is not empty %}
+              <div class="kss-modifier__default-name kss-style">
+                Default styling
+              </div>
+            {% endif %}
 
           <div class="kss-modifier__example">
             {{ section.example|raw }}
             <div class="kss-modifier__example-footer"></div>
           </div>
+          {% endif %}
 
           {% for modifier in section.modifiers %}
             <div class="kss-modifier__name kss-style">
@@ -228,6 +218,7 @@
             </div>
           {% endfor %}
         </div>
+        {% endif %}
         {% if section.markup %}
           <details class="kss-markup kss-style">
             <summary>
@@ -241,6 +232,19 @@
           </details>
         {% endif %}
       {% endif %}
+
+      {% if section.icons %}
+          <div class="kss-icons">
+            {% kssIcons section.icons %}
+              <div class="kss-icons__item" title="{{icon.name}}">
+                <svg class="icon kss-icons__demo">
+                  <use xlink:href="#icon-{{icon.name}}"></use>
+                </svg>
+                <span class="kss-icons__name">{{icon.name}}</span>
+              </div>
+            {% endkssIcons %}
+          </div>
+        {% endif %}
 
       {% if section.source.filename %}
         <div class="kss-source kss-style">
