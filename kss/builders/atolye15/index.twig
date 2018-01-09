@@ -13,6 +13,12 @@
 </head>
 <body id="kss-node" {% if template.isItem %}class="kss-fullscreen-mode"{% endif %}>
 
+{% if isFileExists("../../../.tmp/img/sprite.svg") %}
+  <div class="u-hidden">
+    {% include "../../../.tmp/img/sprite.svg" %}
+  </div>
+  {% endif %}
+
 <div class="kss-sidebar kss-style">
   <header class="kss-header">
     <h1 class="kss-doc-title">{{ options.title }}</h1>
