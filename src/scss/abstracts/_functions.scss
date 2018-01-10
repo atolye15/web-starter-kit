@@ -1,4 +1,4 @@
-@function gap($size, $position) {
+@function gap($size: normal, $position) {
   @return map-get($g-gaps, $position);
 }
 

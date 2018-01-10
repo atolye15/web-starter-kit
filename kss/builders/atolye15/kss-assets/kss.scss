@@ -113,14 +113,25 @@ $kss-vertical-rhythm: $kss-font-size * 1.5;
   code,
   kbd,
   samp {
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
     color: mix($kss-colors-foreground, $kss-colors-heading, 50%);
     font-family: $kss-font-code;
-    font-size: 1em;
+  }
+
+  code {
+    padding: 0.2em 0.4em;
+    font-size: 85%;
   }
 
   pre {
     overflow: scroll;
+    padding: 24px;
     white-space: pre;
+
+    code {
+      background-color: transparent;
+    }
   }
 
   ins {
@@ -939,4 +950,26 @@ $kss-vertical-rhythm: $kss-font-size * 1.5;
   margin-left: 6px;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.kss-description {
+  table {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    background-color: white;
+    color: #363636;
+
+    th {
+      border-bottom-width: 1px;
+      color: #363636;
+    }
+
+    td,
+    th {
+      padding: 0.5em 0.75em;
+      border: 1px solid #dbdbdb;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
 }
