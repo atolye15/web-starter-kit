@@ -1,5 +1,5 @@
-@function gap($size: normal, $position) {
-  @return map-get($g-gaps, $position);
+@function gap($size: normal) {
+  @return map-get($g-gaps, $size);
 }
 
 @function pad($size: normal) {
