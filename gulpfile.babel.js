@@ -21,7 +21,7 @@ import configs from './configs';
 
 import tasks from './gulp/tasks';
 
-const { reload } = browserSync.reload;
+const { reload } = browserSync;
 
 const isProduction = util.env.prod;
 const isDeploy = util.env.deploy;
