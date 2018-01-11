@@ -6,7 +6,7 @@
  * @type {Object}
  */
 
-var twigController = {
+const twigController = {
   data: {
     locale: 'tr',
     title: 'Hello, Boys!',
