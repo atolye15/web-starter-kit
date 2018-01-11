@@ -197,7 +197,7 @@ gulp.task('serve', () => {
   });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
   gulp.watch([`${configs.paths.src}/scss/**/*.scss`], () => {
-    runSequence('styles', 'sync:deploy-styles', reload);
+    runSequence('styles', 'sync:deploy-styles', 'styleguide', reload);
   });
   gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
     runSequence('sync:build-fonts', 'sync:deploy-styles', reload);
