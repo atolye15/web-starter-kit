@@ -1,10 +1,11 @@
+import gulp from 'gulp';
+import notify from 'gulp-notify';
 
-module.exports = function({gulp, configs, $}, text) {
+export default function(text) {
   return function() {
     // Disable console logging
-    $.notify.logLevel(1);
+    notify.logLevel(1);
 
-    return gulp.src('')
-      .pipe($.notify(text));
+    return gulp.src('').pipe(notify(text));
   };
-};
+}

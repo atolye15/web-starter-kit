@@ -1,13 +1,23 @@
+import styles from './styles';
+import scripts from './scripts';
+import images from './images';
+import deploy from './deploy';
+import html from './html';
+import copy from './copy';
+import notify from './notify';
+import sync from './sync';
+import pagespeed from './pagespeed';
+import bump from './bump';
 
-module.exports = {
-  styles: require('./styles'),
-  scripts: require('./scripts'),
-  images: require('./images'),
-  deploy: require('./deploy'),
-  html: require('./html'),
-  copy: require('./copy'),
-  notify: require('./notify'),
-  sync: require('./sync'),
-  pagespeed: require('./pagespeed'),
-  bump: require('./bump')
+export default {
+  styles,
+  scripts,
+  images,
+  deploy,
+  html,
+  copy,
+  notify,
+  sync,
+  pagespeed,
+  bump,
 };

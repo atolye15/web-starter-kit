@@ -1,0 +1,84 @@
+//
+// CHECKBOX
+//
+// @markup
+// <label class="c-checkbox c-checkbox--modifier">
+//   <input class="c-checkbox__inp" type="checkbox">
+//   <span class="c-checkbox__mask"></span>
+//   <span>Optional Text</span>
+// </label>
+//  --------------------------------------------------
+
+$c-checkbox-size: 18px;
+$c-checkbox-radius: 2px;
+$c-checkbox-border-width: 1px;
+$c-checkbox-checkmark-size: 14px;
+
+.c-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+
+  //
+  // Elements
+  // -------------------------
+
+  &__inp {
+    display: none;
+
+    &:checked + .c-checkbox__mask {
+      background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTI4Ljk5OCA4LjUzbC0yLjEzNC0yLjEzM2MtLjM5NC0uMzkzLTEuMDMtLjM5My0xLjQyMyAwTDEyLjY0NyAxOS4xOTJsLTYuMDg2LTYuMTNjLS4zOTMtLjM5My0xLjAzLS4zOTMtMS40MjMgMGwtMi4xMzQgMi4xMzRjLS4zOTMuMzk0LS4zOTMgMS4wMyAwIDEuNDIzbDguOTI0IDguOTgzYy4zOTMuMzkzIDEuMDMuMzkzIDEuNDIzIDBsMTUuNjQ4LTE1LjY1Yy4zOTMtLjM5LjM5My0xLjAzIDAtMS40MjJ6Ii8+PC9zdmc+');
+    }
+  }
+
+  //
+  // Mask
+  //
+
+  &__mask {
+    position: relative;
+    display: inline-block;
+    width: $c-checkbox-size;
+    height: $c-checkbox-size;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: $c-checkbox-checkmark-size $c-checkbox-checkmark-size;
+    border-radius: $c-checkbox-radius;
+    border-style: solid;
+    border-width: $c-checkbox-border-width;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  //
+  // Modifiers
+  // ------------------------
+
+  //
+  // Primary
+  //
+
+  &--primary {
+    > .c-checkbox__inp:checked + .c-checkbox__mask {
+      background-color: $success-color;
+      border-color: darken($success-color, 2%);
+    }
+
+    > .c-checkbox__mask {
+      background-color: $color-silver;
+      border-color: $color-gainsboro;
+    }
+  }
+
+  //
+  // Secondary
+  //
+
+  // &--secondary {
+
+  //   > .custom-checkbox__mask {
+  //     background-color: $color-concrete;
+  //     color: $primary-color;
+  //     border-color: $iron;
+  //   }
+  // }
+}

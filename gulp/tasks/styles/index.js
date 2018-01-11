@@ -1,5 +1,5 @@
+import main from './main';
 
-module.exports = {
-  lint: require('./lint'),
-  main: require('./main')
+export default {
+  main,
 };

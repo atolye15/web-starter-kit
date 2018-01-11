@@ -3,11 +3,13 @@ const configs = {
     name: 'Project-Name',
     version: '0.1.0',
     description: 'Project Desc',
-    authors: [{
-      name: 'Atolye15',
-      email: 'hello@atolye15.com',
-      url: 'http://www.atolye15.com'
-    }]
+    authors: [
+      {
+        name: 'Atolye15',
+        email: 'hello@atolye15.com',
+        url: 'http://www.atolye15.com',
+      },
+    ],
   },
   paths: {
     src: 'src',
@@ -19,8 +21,8 @@ const configs = {
       css: 'css',
       img: 'img',
       fonts: 'css/fonts',
-      vendors: 'js/vendors'
-    }
+      vendors: 'js/vendors',
+    },
   },
   jsFiles: ['main.js'],
   libFiles: [],
@@ -39,50 +41,30 @@ const configs = {
     //       will present a certificate warning in the browser.
     // https: true,
     server: ['./'],
-    port: 3000
+    port: 3000,
   },
   styleGuide: {
-    source: [
-      'src/sass'
-    ],
+    source: ['src/scss'],
     destination: 'styleguide/',
-    custom: [
-      'HideOriginal',
-      'Colors',
-      'Icons'
-    ],
-    helpers: 'styleguide/_config/helpers',
+    custom: ['HideOriginal', 'Colors', 'Icons'],
+    extend: 'kss/extend',
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
-    css: [
-      '../dev/css/main.css'
-    ],
+    css: ['../dev/css/main.css'],
     js: [],
-    homepage: 'styleguide.md',
-    template: 'styleguide/_config/templates/kss-node-template'
+    verbose: false,
+    builder: 'kss/builders/atolye15',
+    homepage: '../../readme.md',
+    title: 'Atölye Style Guide',
   },
   pagespeed: {
     url: 'example.com',
-    strategy: 'mobile' // mobile | desktop
+    strategy: 'mobile', // mobile | desktop
   },
   uncss: {
     active: true,
-    ignore: [
-      new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'),
-      new RegExp('^(.?[a-z-_.\[]+)?disabled.*')
-    ]
+    ignore: [new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'), new RegExp('^(.?[a-z-_.[]+)?disabled.*')],
   },
-  autoprefixerBrowsers: [
-    'ie >= 10',
-    'ie_mob >= 10',
-    'ff >= 33',
-    'chrome >= 36',
-    'safari >= 7',
-    'opera >= 26',
-    'ios >= 7',
-    'android >= 4.4',
-    'bb >= 10'
-  ]
 };
 
 module.exports = configs;

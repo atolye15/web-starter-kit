@@ -1,6 +1,9 @@
-module.exports = {
-  lint: require('./lint'),
-  main: require('./main'),
-  libs: require('./libs'),
-  combine: require('./combine')
+import main from './main';
+import libs from './libs';
+import combine from './combine';
+
+export default {
+  main,
+  libs,
+  combine,
 };

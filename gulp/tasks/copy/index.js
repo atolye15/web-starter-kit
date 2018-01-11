@@ -1,5 +1,7 @@
+import fonts from './fonts';
+import vendors from './vendors';
 
-module.exports = {
-  fonts: require('./fonts'),
-  vendors: require('./vendors')
+export default {
+  fonts,
+  vendors,
 };

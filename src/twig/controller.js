@@ -6,13 +6,13 @@
  * @type {Object}
  */
 
-var twigController = {
+const twigController = {
   data: {
     locale: 'tr',
-    title: 'Hello, Boys!'
+    title: 'Hello, Boys!',
   },
   functions: [],
-  filters: []
+  filters: [],
 };
 
 module.exports = twigController;

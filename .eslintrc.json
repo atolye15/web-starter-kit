@@ -1,13 +1,8 @@
 {
-  "extends": "google",
+  "extends": ["airbnb-base", "prettier"],
   "parser": "babel-eslint",
-  "globals": {},
+  "plugins": ["prettier"],
   "rules": {
-    "strict": 0,
-    "comma-dangle": "off",
-    "max-len": [1, 100, 2, {
-      "ignoreUrls": true,
-      "ignoreComments": false
-    }]
+    "prettier/prettier": "error"
   }
 }

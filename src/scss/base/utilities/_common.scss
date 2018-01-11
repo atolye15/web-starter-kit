@@ -1,0 +1,111 @@
+//
+// Common
+//
+// | <span style="width: 210px; display: block">Class<span> | Description |
+// | -------------------------- | ------------- |
+// | `.u-clearfix`              | Clear any floats within an element. Can also be used as a mixin. `@include clearfix` |
+// | `.u-pull-right`            | Set `float: right` |
+// | `.u-pull-left`             | Set `float: left` |
+// | `.u-circle`                | Set `border-radius: 50%` |
+// | `.u-static`                | Set `position: static` |
+// | `.u-relative`              | Set `position: relative` |
+// | `.u-overflow-hidden`       | Set `overflow: hidden` |
+// | `.u-img-fluid`             | Responsive images (ensure images don't scale beyond their parents) |
+// | `.u-text-truncate`         | For longer content, you can add this class to truncate the text with an ellipsis. Requires `display: inline-block` or `display: block`. Can also be used as a mixin. `@include text-truncate`|
+// | `.u-equalize-line-height`  | Set `line-height: 1` |
+// | `.u-block-center`          | horizontally center the block element |
+// | `.u-table-layout-fixed`    | Set `table-layout: fixed`  |
+// | `.u-transition-background` | Set transition to background-color |
+// | `.u-transition-color`      | Set transition to color |
+// | `.u-transition-opacity`    | Set transition to opacity |
+// | `.u-transition-transform`  | Set transition to opacity |
+// | `.u-unselectable`          | Prevents the text from being selectable |
+// | `.u-pointer-events-none`   | Make element not react to pointer events, like `:hover` or `click`. |
+// | `.u-cursor-pointer`        | Set the mouse cursor to a pointer and indicate a link. |
+//
+// Styleguide Utilities.Common
+
+.u-clearfix {
+  @include clearfix;
+}
+
+.u-pull-right {
+  float: right;
+}
+
+.u-pull-left {
+  float: left;
+}
+
+.u-circle {
+  border-radius: 50%;
+}
+
+.u-static {
+  position: static;
+}
+
+.u-relative {
+  position: relative;
+}
+
+.u-overflow-hidden {
+  overflow: hidden;
+}
+
+// Responsive images (ensure images don't scale beyond their parents)
+//
+// This is purposefully opt-in via an explicit class rather than being the default for all `<img>`s.
+// We previously tried the "images are responsive by default" approach in Bootstrap v2,
+// and abandoned it in Bootstrap v3 because it breaks lots of third-party widgets (including Google Maps)
+// which weren't expecting the images within themselves to be involuntarily resized.
+// See also https://github.com/twbs/bootstrap/issues/18178
+
+.u-img-fluid {
+  @include img-fluid;
+}
+
+.u-text-truncate {
+  @include text-truncate;
+}
+
+.u-equalize-line-height {
+  line-height: 1;
+}
+
+.u-block-center {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.u-table-layout-fixed {
+  table-layout: fixed;
+}
+
+.u-transition-background {
+  transition: background-color $g-transition-duration;
+}
+
+.u-transition-color {
+  transition: color $g-transition-duration;
+}
+
+.u-transition-opacity {
+  transition: opacity $g-transition-duration;
+}
+
+.u-transition-transform {
+  transition: transform $g-transition-duration;
+}
+
+.u-unselectable {
+  user-select: none;
+}
+
+.u-pointer-events-none {
+  pointer-events: none;
+}
+
+.u-cursor-pointer {
+  cursor: pointer;
+}

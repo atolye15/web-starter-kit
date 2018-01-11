@@ -8,5 +8,4 @@ npm-debug.log
 .idea_modules
 dev/
 dist/
-styleguide/public
-styleguide/*.html
+styleguide
