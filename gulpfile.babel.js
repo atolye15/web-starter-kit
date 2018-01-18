@@ -189,7 +189,7 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, '
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([`${configs.paths.src} /twig/**/*.{twig,html}`]).on('change', () => {
+  gulp.watch([`${configs.paths.src}/twig/**/*.{twig,html}`]).on('change', () => {
     if (configs.uncss.active) {
       return runSequence('html:main', 'styles:main', reload);
     }
