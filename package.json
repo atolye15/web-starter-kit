@@ -1,5 +1,5 @@
 {
-  "version": "v4.0.0",
+  "version": "v4.0.2",
   "devDependencies": {
     "autoprefixer": "^7.2.4",
     "babel-core": "^6.21.0",
@@ -69,7 +69,7 @@
     "build": "yarn lint && gulp build",
     "build-prod": "DISABLE_NOTIFIER=true yarn build --prod",
     "deploy": "yarn build --deploy",
-    "deploy-prod": "yarn build --prod --deploy",
+    "deploy-prod": "DISABLE_NOTIFIER=true yarn build --prod --deploy",
     "start": "yarn build && gulp styleguide && gulp serve",
     "start-prod": "yarn build --prod && gulp styleguide && gulp serve --prod"
   },

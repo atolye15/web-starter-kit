@@ -21,7 +21,7 @@ import configs from './configs';
 
 import tasks from './gulp/tasks';
 
-const { reload } = browserSync.reload;
+const { reload } = browserSync;
 
 const isProduction = util.env.prod;
 const isDeploy = util.env.deploy;
@@ -189,7 +189,7 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, '
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([`${configs.paths.src} /twig/**/*.{twig,html}`]).on('change', () => {
+  gulp.watch([`${configs.paths.src}/twig/**/*.{twig,html}`]).on('change', () => {
     if (configs.uncss.active) {
       return runSequence('html:main', 'styles:main', reload);
     }
@@ -197,7 +197,7 @@ gulp.task('serve', () => {
   });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
   gulp.watch([`${configs.paths.src}/scss/**/*.scss`], () => {
-    runSequence('styles', 'sync:deploy-styles', reload);
+    runSequence('styles', 'sync:deploy-styles', 'styleguide', reload);
   });
   gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
     runSequence('sync:build-fonts', 'sync:deploy-styles', reload);
