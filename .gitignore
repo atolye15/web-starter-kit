@@ -9,3 +9,4 @@ npm-debug.log
 dev/
 dist/
 styleguide
+package-lock.json
