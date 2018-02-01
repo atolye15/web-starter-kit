@@ -1,12 +1,13 @@
 //
-// RADIO
+// Radio
 //
-// @markup
-// <label class="c-radio c-radio--modifier">
+// Markup:
+// <label class="c-radio {{ modifier_class }}">
 //   <input class="c-radio__inp" name="" value="" type="radio"/>
 //   <span class="c-radio__mask"></span>
 // </label>
-//  --------------------------------------------------
+//
+// Styleguide
 
 // stylelint-disable max-nesting-depth
 
