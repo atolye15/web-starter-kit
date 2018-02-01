@@ -1,13 +1,14 @@
 //
-// CHECKBOX
+// Checkbox
 //
-// @markup
-// <label class="c-checkbox c-checkbox--modifier">
+// Markup:
+// <label class="c-checkbox {{ modifier_class }}">
 //   <input class="c-checkbox__inp" type="checkbox">
 //   <span class="c-checkbox__mask"></span>
 //   <span>Optional Text</span>
 // </label>
-//  --------------------------------------------------
+//
+// Styleguide
 
 $c-checkbox-size: 18px;
 $c-checkbox-radius: 2px;

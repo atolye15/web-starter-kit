@@ -231,6 +231,18 @@
             <pre class="prettyprint linenums lang-html"><code data-language="html">{{ section.markup|escape('html') }}</code></pre>
           </details>
         {% endif %}
+        {% if section.example %}
+          <details class="kss-markup kss-style">
+            <summary>
+              {% if section.markupFile %}
+                Rendered Markup: <code>{{ section.markupFile }}</code>
+              {% else %}
+                Rendered Markup
+              {% endif %}
+            </summary>
+            <pre class="prettyprint linenums lang-html"><code data-language="html">{{ section.example|escape('html') }}</code></pre>
+          </details>
+        {% endif %}
       {% endif %}
 
       {% if section.icons %}

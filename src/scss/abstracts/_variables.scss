@@ -117,7 +117,7 @@ $c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-functi
 $c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
 $c-button-radius: px-to-rem(3px) !default; // Button default border radius
 $c-button-font-size: px-to-rem(16px) !default; // Button default font boyutu
-$c-button-line-height: null !default; // Button line-height
+$c-button-line-height: (24 / 16) !default; // Button line-height
 $c-button-font-color: $color-white !default; // Button default font rengi
 $c-button-font-color-alt: $color-oil !default; // Button default font rengi
 $c-button-padding-vertical: px-to-rem(10px) !default; // Button dikey padding
