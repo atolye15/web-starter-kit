@@ -10,17 +10,17 @@
 
 // stylelint-disable max-nesting-depth
 
-$c-selectbox-font-size: $input-font-size;
+$c-selectbox-font-size: $c-input-font-size;
 $c-selectbox-arrow-size: 18px;
 $c-selectbox-arrow-gap: 6px;
-$c-selectbox-bg-color: $input-bg-color;
+$c-selectbox-bg-color: $c-input-bg-color;
 $c-selectbox-bg-disabled-color: $color-ghost;
-$c-selectbox-color: $input-color;
-$c-selectbox-border-width: $input-border-width;
-$c-selectbox-border-color: $input-border-color;
-$c-selectbox-border-radius: $input-border-radius;
-$c-selectbox-padding-ends: $input-padding-vertical;
-$c-selectbox-padding-left: $input-padding-horizontal;
+$c-selectbox-color: $c-input-color;
+$c-selectbox-border-width: $c-input-border-width;
+$c-selectbox-border-color: $c-input-border-color;
+$c-selectbox-border-radius: $c-input-border-radius;
+$c-selectbox-padding-ends: $c-input-padding-vertical;
+$c-selectbox-padding-left: $c-input-padding-horizontal;
 $c-selectbox-padding-right: (
   $c-selectbox-arrow-size + ($c-selectbox-arrow-gap * 1.5) + $c-selectbox-border-width
 );
