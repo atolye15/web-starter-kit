@@ -1,3 +1,6 @@
+/* eslint-disable func-names, import/no-extraneous-dependencies */
+import cx from 'classnames';
+
 /**
  * Twig Controller
  * Front-end tarafında Twig dosyalarının HTML e render edilmesi
@@ -11,7 +14,12 @@ const twigController = {
     locale: 'tr',
     title: 'Hello, Boys!',
   },
-  functions: [],
+  functions: [
+    {
+      name: 'classNames',
+      func: (...args) => cx(...args),
+    },
+  ],
   filters: [],
 };
 
