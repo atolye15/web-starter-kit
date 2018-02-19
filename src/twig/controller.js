@@ -19,6 +19,10 @@ const twigController = {
       name: 'classNames',
       func: (...args) => cx(...args),
     },
+    {
+      name: 'assets',
+      func: args => args,
+    },
   ],
   filters: [],
 };

@@ -1,5 +1,5 @@
 {
-  "version": "v4.1.0",
+  "version": "v4.2.0",
   "devDependencies": {
     "autoprefixer": "^7.2.4",
     "babel-core": "^6.21.0",
@@ -60,10 +60,10 @@
     "start-server": "./node_modules/.bin/browser-sync start --server",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint \"src/js/**/*.js\"",
-    "lint:css": "stylelint --syntax scss \"src/sass/**/*.scss\"",
+    "lint:css": "stylelint --syntax scss \"src/scss/**/*.scss\"",
     "fmt": "yarn fmt:js && yarn fmt:css",
     "fmt:js": "prettier --write \"src/**/*.js\"",
-    "fmt:css": "prettier-stylelint --quiet --write \"src/sass/**/*.scss\"",
+    "fmt:css": "prettier-stylelint --quiet --write \"src/scss/**/*.scss\"",
     "gulp": "gulp",
     "generate-svg-sprite": "gulp images:sprite",
     "build-styleguide": "yarn generate-svg-sprite && gulp styleguide",
