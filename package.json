@@ -63,7 +63,7 @@
     "lint:css": "stylelint --syntax scss \"src/sass/**/*.scss\"",
     "fmt": "yarn fmt:js && yarn fmt:css",
     "fmt:js": "prettier --write \"src/**/*.js\"",
-    "fmt:css": "prettier-stylelint --quiet --write \"src/sass/**/*.scss\"",
+    "fmt:css": "prettier-stylelint --quiet --write \"src/scss/**/*.scss\"",
     "gulp": "gulp",
     "generate-svg-sprite": "gulp images:sprite",
     "build-styleguide": "yarn generate-svg-sprite && gulp styleguide",
