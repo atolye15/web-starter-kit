@@ -7,7 +7,6 @@ import sass from 'gulp-sass';
 
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
-import header from 'gulp-header';
 import sourcemaps from 'gulp-sourcemaps';
 import util from 'gulp-util';
 import autoprefixer from 'autoprefixer';
@@ -16,7 +15,6 @@ import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 
 import configs from '../../../configs';
-import banner from '../../banner';
 
 export default function({ isProduction }) {
   const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
@@ -34,7 +32,6 @@ export default function({ isProduction }) {
         cssnano({ discardComments: { removeAll: true } }),
       ])
       .pipe(rename, { suffix: '.min' })
-      .pipe(header, banner())
       .pipe(gulp.dest, `${envPath}/${configs.paths.assets.css}`);
 
     // For best performance, don't add Sass partials to `gulp.src`
@@ -50,7 +47,6 @@ export default function({ isProduction }) {
           isProduction ? mqpacker() : function() {},
         ]),
       )
-      .pipe(header(banner()))
       .pipe(isProduction ? util.noop() : sourcemaps.write('./'))
       .pipe(gulp.dest(`${envPath}/${configs.paths.assets.css}`))
       .pipe(isProduction ? stylesMinChannel() : util.noop());
