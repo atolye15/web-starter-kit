@@ -178,8 +178,8 @@ h5,
 .h5,
 h6,
 .h6 {
-  margin-top: ($g-line-height-computed / 2);
-  margin-bottom: ($g-line-height-computed / 2);
+  margin-top: ($g-line-height-computed / 1.5);
+  margin-bottom: ($g-line-height-computed / 1.5);
 }
 
 h1,
@@ -234,7 +234,7 @@ h6,
 //
 
 p {
-  margin-top: ($g-line-height-computed / 2);
+  margin-top: ($g-line-height-computed / 1.5);
   margin-bottom: 0;
 }
 
@@ -254,7 +254,7 @@ mark {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: ($g-line-height-computed / 2);
+  margin-bottom: ($g-line-height-computed / 1.5);
 
   ul,
   ol {
