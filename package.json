@@ -60,7 +60,7 @@
     "start-server": "./node_modules/.bin/browser-sync start --server",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint \"src/js/**/*.js\"",
-    "lint:css": "stylelint --syntax scss \"src/sass/**/*.scss\"",
+    "lint:css": "stylelint --syntax scss \"src/scss/**/*.scss\"",
     "fmt": "yarn fmt:js && yarn fmt:css",
     "fmt:js": "prettier --write \"src/**/*.js\"",
     "fmt:css": "prettier-stylelint --quiet --write \"src/scss/**/*.scss\"",
