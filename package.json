@@ -71,7 +71,9 @@
     "deploy": "yarn build --deploy",
     "deploy-prod": "DISABLE_NOTIFIER=true yarn build --prod --deploy",
     "start": "yarn build && gulp styleguide && gulp serve",
-    "start-prod": "yarn build --prod && gulp styleguide && gulp serve --prod"
+    "start-prod": "yarn build-prod && gulp styleguide && gulp serve --prod",
+    "start-deploy": "yarn deploy && gulp styleguide && gulp serve --deploy",
+    "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy"
   },
   "browserslist": [
     ">1%",
