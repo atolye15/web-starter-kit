@@ -3,6 +3,4 @@
 // Budada @import dışında hiçbir tanımlama bulunmamalıdır.
 // --------------------------------------------------
 
-//
-// !! normalize.scss'i main.scss de özel bir yere tanımladığımız için
-// burada tekrardan import etmeyiniz
+@import '../../../node_modules/normalize.css/normalize';

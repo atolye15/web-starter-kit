@@ -87,7 +87,6 @@ root
 ├── .editorconfig
 ├── .gitattributes
 ├── .gitignore
-├── bower.json
 ├── config.js
 ├── gulpfile.babel.js
 └── package.json
@@ -182,23 +181,3 @@ Derlenip `.tmp/babel` içerisine yedeklenmiş javascript dosyalarını temizler.
 #### gulp styleguide
 
 Styleguide'ı oluşturur.
-
-## Bower Kullanımı
-
-Projenizde kullanacağınız kütüphaneleri [Bower](http://bower.io/) kullanarak projenize çok kolay dahil edebilirsiniz.
-Komut satırına
-
-```bash
-bower install jquery --save
-```
-
-yazarak kütüphaneleri yükleyebilirsiniz. Eğer hazır bir bower.json dosyasına sahipseniz
-
-```bash
-bower install
-```
-
-komutunu çalıştırmanız yeterli olacaktır.
-
-[Bower](http://bower.io/) kullanımı hakkında daha detaylı bilgi için şu makaleyi inceleyebilirsiniz.
-[http://akademi.atolye15.com/post/73516641491/bower-nedir](http://akademi.atolye15.com/post/73516641491/bower-nedir)

@@ -8,6 +8,10 @@
   @include make-grid-container-max-widths();
 }
 
+.container-fluid {
+  @include make-grid-container();
+}
+
 .row {
   @include make-grid-row();
 
@@ -31,8 +35,8 @@
 }
 
 .col {
-
   @include make-grid-columns();
+
   position: relative;
   width: 100%;
   min-height: 1px;

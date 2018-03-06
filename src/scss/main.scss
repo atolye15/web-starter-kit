@@ -18,8 +18,8 @@
 // Keyframes
 @import 'abstracts/keyframes';
 
-// Normalize
-@import 'vendors/normalize';
+// Vendors
+@import 'vendors/index';
 
 @import 'base/reset';
 
@@ -31,9 +31,6 @@
 
 // Grid
 @import 'base/grid';
-
-// Vendors
-@import 'vendors/index';
 
 // Vendors Extensions
 @import 'vendors-extensions/index';
