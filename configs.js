@@ -2,7 +2,6 @@ const configs = {
   info: {
     name: 'Project-Name',
     version: '0.1.0',
-    description: 'Project Desc',
   },
   paths: {
     src: 'src',

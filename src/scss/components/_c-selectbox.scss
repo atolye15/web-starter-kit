@@ -10,6 +10,8 @@
 
 // stylelint-disable max-nesting-depth
 
+$c-selectbox-font-family: $c-input-font-family;
+$c-selectbox-height-base: $c-input-height-base;
 $c-selectbox-font-size: $c-input-font-size;
 $c-selectbox-arrow-size: 18px;
 $c-selectbox-arrow-gap: 6px;
@@ -28,6 +30,7 @@ $c-selectbox-padding-right: (
 .c-selectbox {
   // stylelint-disable scale-unlimited/declaration-strict-value, property-no-vendor-prefix
   display: inline-block;
+  height: $c-selectbox-height-base;
   padding: $c-selectbox-padding-ends $c-selectbox-padding-right $c-selectbox-padding-ends
     $c-selectbox-padding-left;
   -moz-appearance: none;
@@ -43,6 +46,7 @@ $c-selectbox-padding-right: (
   border-width: $c-selectbox-border-width;
   color: $c-selectbox-color;
   cursor: pointer;
+  font-family: $c-selectbox-font-family;
   font-size: $c-selectbox-font-size;
 
   &:focus {

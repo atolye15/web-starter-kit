@@ -111,7 +111,7 @@ $g-pads: (
 // -------------------------
 
 $c-button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
-$c-button-font-family: null !default; // Butonun fontu
+$c-button-font-family: inherit !default; // Butonun fontu
 $c-button-bg-color: $primary-color !default; // Buton default bg color
 $c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-function-factor) !default; // Button default hover rengi
 $c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
@@ -127,6 +127,7 @@ $c-button-border-width: 0 !default; // Button default border width
 //  FORMS CONTROL VARIABLES
 // -------------------------
 
+$c-input-font-family: inherit !default; // `<input>` background color
 $c-input-bg-color: inherit !default; // `<input>` background color
 $c-input-bg-color-disabled: $color-smoke !default; // `<input disabled>` background color
 $c-input-color: $color-charcoal !default; // Text color for `<input>`s
