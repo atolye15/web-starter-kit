@@ -10,6 +10,7 @@
 
 // stylelint-disable max-nesting-depth
 
+$c-selectbox-font-family: $c-input-font-family;
 $c-selectbox-font-size: $c-input-font-size;
 $c-selectbox-arrow-size: 18px;
 $c-selectbox-arrow-gap: 6px;
@@ -43,6 +44,7 @@ $c-selectbox-padding-right: (
   border-width: $c-selectbox-border-width;
   color: $c-selectbox-color;
   cursor: pointer;
+  font-family: $c-selectbox-font-family;
   font-size: $c-selectbox-font-size;
 
   &:focus {
