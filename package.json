@@ -78,5 +78,8 @@
     "last 4 versions",
     "Firefox ESR",
     "ie >= 10"
-  ]
+  ],
+  "dependencies": {
+    "normalize.css": "^8.0.0"
+  }
 }
