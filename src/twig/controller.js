@@ -20,7 +20,7 @@ const twigController = {
       func: (...args) => cx(...args),
     },
     {
-      name: 'assets',
+      name: 'asset',
       func: args => args,
     },
   ],
