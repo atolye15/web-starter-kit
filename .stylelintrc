@@ -15,7 +15,7 @@
       }
     ],
     "plugin/declaration-block-no-ignored-properties": true,
-    "max-nesting-depth": 2,
+    "max-nesting-depth": 3,
     "order/properties-alphabetical-order": null,
     "order/properties-order": [
       [
