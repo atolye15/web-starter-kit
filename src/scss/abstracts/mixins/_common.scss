@@ -93,6 +93,6 @@
     only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     background-image: url($image2x);
-    background-size: $width $height;
+    background-size: $width2x $height2x;
   }
 }
