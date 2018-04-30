@@ -127,8 +127,8 @@ gulp.task('notify:build', tasks.notify('Build işlemi başarılı bir şekilde t
 gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
-    'html',
-    ['styles', 'scripts', 'images', 'copy:fonts', 'copy:vendors'],
+    ['html', 'scripts'],
+    ['styles', 'images', 'copy:fonts', 'copy:vendors'],
     'deploy',
     'notify:build',
     () => {
