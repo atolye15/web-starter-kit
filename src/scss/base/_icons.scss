@@ -8,7 +8,7 @@
 // Icons: src/img/icons
 //
 // Markup:
-// <svg class="icon {{class}}">
+// <svg class="{{ classNames('icon', class) }}">
 //   <use xlink:href="#icon-{% if name %}{{ name }}{% else %}[name]{% endif %}"></use>
 // </svg>
 //
