@@ -84,6 +84,7 @@ $g-font-size-xlarge: px-to-rem($g-font-size-base-px + 8px);
 // -------------------------
 $g-base-gap: $g-line-height-computed;
 $g-gaps: (
+  auto: auto,
   normal: $g-base-gap,
   small: ($g-base-gap / 1.5),
   xsmall: ($g-base-gap / 3),
