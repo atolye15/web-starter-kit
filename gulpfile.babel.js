@@ -236,6 +236,6 @@ gulp.task('pagespeed', tasks.pagespeed());
  * Generates KSS living styleguide
  */
 
-gulp.task('styleguide', cb => kss(configs.styleGuide, cb));
+gulp.task('styleguide', () => kss(configs.styleGuide));
 
 gulp.task('bump', tasks.bump());
