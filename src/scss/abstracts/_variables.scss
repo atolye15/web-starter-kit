@@ -13,15 +13,19 @@ $g-body-bg: $color-white !default;
 //** `<body>` nin Global text rengi.
 $g-text-color: $color-oil !default;
 
-// Global link rengi
-$g-link-color: $primary-color !default;
-
-// Global link hover rengi
-$g-link-hover-color: darken($g-link-color, 15%) !default;
-
-$g-link-hover-decoration: underline !default;
-
+// Border Color
 $g-border-color: $color-smoke;
+
+// Transition Duration
+$g-transition-duration: 0.4s;
+
+//  LINK
+// -------------------------
+
+$g-link-color: $primary-color !default;
+$g-link-transition: null;
+$g-link-hover-color: darken($g-link-color, 15%) !default;
+$g-link-hover-decoration: underline !default;
 
 //  TYPOGRAPHY
 // -------------------------
@@ -113,7 +117,10 @@ $g-pads: (
 $c-button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
 $c-button-font-family: null !default; // Butonun fontu
 $c-button-bg-color: $primary-color !default; // Buton default bg color
-$c-button-bg-hover: scale-color($c-button-bg-color, $lightness: $c-button-function-factor) !default; // Button default hover rengi
+$c-button-bg-hover: scale-color(
+  $c-button-bg-color,
+  $lightness: $c-button-function-factor
+) !default; // Button default hover rengi
 $c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
 $c-button-radius: px-to-rem(3px) !default; // Button default border radius
 $c-button-font-size: px-to-rem(16px) !default; // Button default font boyutu
@@ -121,7 +128,7 @@ $c-button-line-height: (24 / 16) !default; // Button line-height
 $c-button-font-color: $color-white !default; // Button default font rengi
 $c-button-font-color-alt: $color-oil !default; // Button default font rengi
 $c-button-padding-vertical: px-to-rem(10px) !default; // Button dikey padding
-$c-button-padding-horizontal: px-to-rem(20px)!default; // Button default yatay padding
+$c-button-padding-horizontal: px-to-rem(20px) !default; // Button default yatay padding
 $c-button-border-width: 0 !default; // Button default border width
 
 //  FORMS CONTROL VARIABLES
@@ -141,9 +148,8 @@ $c-input-line-height: $g-line-height-computed !default;
 $c-input-padding-vertical: px-to-rem(6px);
 $c-input-padding-horizontal: px-to-rem(12px);
 $c-input-height-base: (
-    $c-input-line-height + ($c-input-padding-vertical * 2) + (px-to-rem($c-input-border-width) * 2)
-  )
-  !default; // Default `.form-control` height
+  $c-input-line-height + ($c-input-padding-vertical * 2) + (px-to-rem($c-input-border-width) * 2)
+) !default; // Default `.form-control` height
 
 // Grid breakpoints
 //
@@ -151,25 +157,23 @@ $c-input-height-base: (
 // adapting to different screen sizes, for use in media queries.
 
 $grid-breakpoints: (
-    xs: 0,
-    sm: px-to-rem(544px),
-    md: px-to-rem(768px),
-    lg: px-to-rem(992px),
-    xl: px-to-rem(1200px)
-  )
-  !default;
+  xs: 0,
+  sm: px-to-rem(544px),
+  md: px-to-rem(768px),
+  lg: px-to-rem(992px),
+  xl: px-to-rem(1200px)
+) !default;
 
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-    sm: px-to-rem(576px),
-    md: px-to-rem(720px),
-    lg: px-to-rem(940px),
-    xl: px-to-rem(1140px)
-  )
-  !default;
+  sm: px-to-rem(576px),
+  md: px-to-rem(720px),
+  lg: px-to-rem(940px),
+  xl: px-to-rem(1140px)
+) !default;
 
 // Grid columns
 //
@@ -177,12 +181,6 @@ $container-max-widths: (
 
 $grid-columns: 12 !default;
 $grid-gutter-width: px-to-rem(32px) !default;
-
-//
-// Transition Duration
-// -------------------------
-
-$g-transition-duration: 0.4s;
 
 //
 // Z-index
