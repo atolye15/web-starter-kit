@@ -11,6 +11,7 @@
 // https://babeljs.io/docs/learn-es2015/
 
 import gulp from 'gulp';
+import path from 'path';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import util from 'gulp-util';
@@ -27,6 +28,8 @@ const isProduction = util.env.prod;
 const isDeploy = util.env.deploy;
 
 const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+
+runSequence.options.ignoreUndefinedTasks = true;
 
 /**
  * STYLES
@@ -189,17 +192,17 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, '
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp
-    .watch([
-      `${configs.paths.src}/twig/**/*.{twig,html}`,
-      `${configs.paths.src}/scss/**/*.{twig,html}`,
-    ])
-    .on('change', () => {
-      if (configs.uncss.active) {
-        return runSequence('html:main', 'styles:main', 'styleguide', reload);
-      }
-      return runSequence('html:main', 'styleguide', reload);
-    });
+  gulp.watch([`${configs.paths.src}/{twig,scss}/**/*.twig`], e => {
+    if (path.extname(e.path) !== '.twig') {
+      return;
+    }
+    runSequence(
+      'html:main',
+      isProduction && configs.uncss.active ? 'styles:main' : null,
+      'styleguide',
+      reload,
+    );
+  });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
   gulp.watch([`${configs.paths.src}/scss/**/*.scss`], () => {
     runSequence('styles', 'sync:deploy-styles', 'styleguide', reload);
