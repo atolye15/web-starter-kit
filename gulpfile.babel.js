@@ -204,7 +204,10 @@ gulp.task('serve', () => {
     );
   });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
-  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], () => {
+  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], e => {
+    if (path.extname(e.path) !== '.scss') {
+      return;
+    }
     runSequence('styles', 'sync:deploy-styles', 'styleguide', reload);
   });
   gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
