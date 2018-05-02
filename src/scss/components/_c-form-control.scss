@@ -1,17 +1,32 @@
 //
-// Form Controls
+// Form Control
 //
-//  > *.u-gap-bottom not mandatory *
+// Styleguide Components.Form-Control
+
+//
+// Inputs
 //
 //  Markup:
-//  <form>
-//    <input type="text" class="c-form-control u-gap-bottom" />
-//    <input type="text" class="c-form-control u-gap-bottom" disabled/>
-//    <input type="number" class="c-form-control u-gap-bottom" placeholder="Number"/>
-//    <textarea class="c-form-control c-form-control--textarea" rows="5"></textarea>
-//  </form>
+// <input type="text" class="{{ classNames('c-form-control', modifier_class != '[disabled]' ? modifier_class : '') }}" placeholder="Please Enter" {% if modifier_class %}value="John Doe"{% endif %} {% if modifier_class == '[disabled]' %}disabled{% endif %}/>
 //
-//  Styleguide Components.Form-control
+// [disabled] - Disabled
+// .is-valid - Valid
+// .is-invalid - Invalid
+// .is-warning - Warning
+//
+//  Styleguide Components.Form-Control.Inputs
+
+//
+// Textarea
+//
+//  Markup:
+// <textarea class="{{ classNames('c-form-control c-form-control--textarea', modifier_class) }}">John Doe</textarea>
+//
+// .is-valid - Valid
+// .is-invalid - Invalid
+// .is-warning - Warning
+//
+//  Styleguide Components.Form-Control.Textarea
 
 .c-form-control {
   @include form-control-block();
@@ -24,6 +39,24 @@
   &[disabled] {
     background-color: $c-input-bg-color-disabled;
     opacity: 0.5;
+  }
+
+  .is-valid > &,
+  &.is-valid {
+    border-color: $success-color;
+    color: $success-color;
+  }
+
+  .is-invalid > &,
+  &.is-invalid {
+    border-color: $alert-color;
+    color: $alert-color;
+  }
+
+  .is-warning > &,
+  &.is-warning {
+    border-color: $warning-color;
+    color: $warning-color;
   }
 
   //
