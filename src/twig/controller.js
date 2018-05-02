@@ -12,7 +12,6 @@ import cx from 'classnames';
 const twigController = {
   data: {
     locale: 'tr',
-    title: 'Hello, Boys!',
   },
   functions: [
     {
