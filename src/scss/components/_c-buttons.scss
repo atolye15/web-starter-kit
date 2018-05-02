@@ -1,7 +1,7 @@
 //
 // Buttons
 //
-// Button styles can be applied to anything with the `.btn` class applied.
+// Button styles can be applied to anything with the `.c-button` class applied.
 // However, typically you'll want to apply these to only `<a>` and `<button>` elements for the best rendering.
 //
 // Styleguide Components.Buttons
@@ -21,7 +21,7 @@
 //
 // Sizes
 //
-// Fancy larger or smaller buttons? Add <code>.btn-lg</code>, <code>.btn-sm</code>, or <code>.btn-xs</code> for additional sizes.
+// Fancy larger or smaller buttons? Add <code>.c-button--large</code>, <code>.c-button--small</code>, or <code>.c-button--xsmall</code> for additional sizes.
 //
 // Markup:
 // <button class="c-button {{modifier_class}}">Button</button>
