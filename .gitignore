@@ -11,3 +11,4 @@ dev/
 dist/
 styleguide
 package-lock.json
+yarn-error.log

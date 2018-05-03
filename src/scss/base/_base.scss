@@ -12,7 +12,6 @@
 
 html {
   box-sizing: border-box; // 1
-  font-size: $g-font-size-root;
   -webkit-tap-highlight-color: transparent; // 2
 }
 
@@ -79,6 +78,7 @@ textarea {
 a {
   color: $g-link-color;
   text-decoration: none;
+  transition: $g-link-transition;
 
   &:focus {
     // Reset outline for chrome

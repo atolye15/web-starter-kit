@@ -11,6 +11,7 @@
 // https://babeljs.io/docs/learn-es2015/
 
 import gulp from 'gulp';
+import path from 'path';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import util from 'gulp-util';
@@ -27,6 +28,8 @@ const isProduction = util.env.prod;
 const isDeploy = util.env.deploy;
 
 const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+
+runSequence.options.ignoreUndefinedTasks = true;
 
 /**
  * STYLES
@@ -127,8 +130,8 @@ gulp.task('notify:build', tasks.notify('Build işlemi başarılı bir şekilde t
 gulp.task('build', cb =>
   runSequence(
     ['clean:dist', 'clean:tempJs'],
-    'html',
-    ['styles', 'scripts', 'images', 'copy:fonts', 'copy:vendors'],
+    ['html', 'scripts'],
+    ['styles', 'images', 'copy:fonts', 'copy:vendors'],
     'deploy',
     'notify:build',
     () => {
@@ -189,19 +192,22 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, '
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp
-    .watch([
-      `${configs.paths.src}/twig/**/*.{twig,html}`,
-      `${configs.paths.src}/scss/**/*.{twig,html}`,
-    ])
-    .on('change', () => {
-      if (configs.uncss.active) {
-        return runSequence('html:main', 'styles:main', 'styleguide', reload);
-      }
-      return runSequence('html:main', 'styleguide', reload);
-    });
+  gulp.watch([`${configs.paths.src}/{twig,scss}/**/*.twig`], e => {
+    if (path.extname(e.path) !== '.twig') {
+      return;
+    }
+    runSequence(
+      'html:main',
+      isProduction && configs.uncss.active ? 'styles:main' : null,
+      'styleguide',
+      reload,
+    );
+  });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
-  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], () => {
+  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], e => {
+    if (path.extname(e.path) !== '.scss') {
+      return;
+    }
     runSequence('styles', 'sync:deploy-styles', 'styleguide', reload);
   });
   gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
@@ -236,6 +242,6 @@ gulp.task('pagespeed', tasks.pagespeed());
  * Generates KSS living styleguide
  */
 
-gulp.task('styleguide', cb => kss(configs.styleGuide, cb));
+gulp.task('styleguide', () => kss(configs.styleGuide));
 
 gulp.task('bump', tasks.bump());

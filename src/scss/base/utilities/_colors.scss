@@ -1,7 +1,12 @@
 //
 // Colors
 //
-// | Class              | Description |
+// Styleguide Utilities.Colors
+
+//
+// Colors
+//
+// | Class              | Description   |
 // | ------------------ | ------------- |
 // | `.u-color-muted`   | <span class="u-color-muted">Set the text color of an element to muted color.</span> |
 // | `.u-color-primary` | <span class="u-color-primary">Set the text color of an element to primary color.</span> |
@@ -9,12 +14,13 @@
 // | `.u-color-alert`   | <span class="u-color-alert">Set the text color of an element to alert color.</span> |
 // | `.u-color-warning` | <span class="u-color-warning">Set the text color of an element to warning color.</span> |
 //
-// Styleguide Utilities.Colors
+// Styleguide Utilities.Colors.1-Color
 
 //
 // Contextual colors
 // -------------------------
 
+/* uncss:ignore start */
 .u-color-muted {
   color: $g-text-muted-color;
 }
@@ -34,3 +40,38 @@
 .u-color-warning {
   color: $warning-color;
 }
+/* uncss:ignore end */
+
+//
+// Background
+//
+// | Class                    | Description   |
+// | ------------------------ | ------------- |
+// | `.u-bg-primary`          | <span class="u-bg-primary u-pad-2xsmall">Set the bg color of an element.</span> |
+// | `.u-bg-success`          | <span class="u-bg-success u-pad-2xsmall">Set the bg color of an element.</span> |
+// | `.u-bg-alert`            | <span class="u-bg-alert u-pad-2xsmall">Set the bg color of an element.</span> |
+// | `.u-bg-warning`          | <span class="u-bg-warning u-pad-2xsmall">Set the bg color of an element.</span> |
+//
+// Styleguide Utilities.Colors.2-Background
+
+//
+// Contextual background colors
+// -------------------------
+
+/* uncss:ignore start */
+.u-bg-primary {
+  background-color: $primary-color;
+}
+
+.u-bg-success {
+  background-color: $success-color;
+}
+
+.u-bg-alert {
+  background-color: $alert-color;
+}
+
+.u-bg-warning {
+  background-color: $warning-color;
+}
+/* uncss:ignore end */

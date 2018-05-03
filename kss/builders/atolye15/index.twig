@@ -199,7 +199,7 @@
               </div>
             {% endif %}
 
-          <div class="kss-modifier__example">
+          <div class="kss-modifier__example" {% if section.demobgcolor %}style="background-color: {{section.demobgcolor}}"{% endif %}>
             {{ section.example|raw }}
             <div class="kss-modifier__example-footer"></div>
           </div>
@@ -231,7 +231,7 @@
             <pre class="prettyprint linenums lang-html"><code data-language="html">{{ section.markup|escape('html') }}</code></pre>
           </details>
         {% endif %}
-        {% if section.example %}
+        {% if section.example and not section.icons %}
           <details class="kss-markup kss-style">
             <summary>
               {% if section.markupFile %}

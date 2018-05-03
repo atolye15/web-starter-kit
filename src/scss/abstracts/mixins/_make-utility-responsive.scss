@@ -4,7 +4,7 @@
   $grid-breakpoints-first: nth(map-keys($grid-breakpoints), 1);
   @each $point in $breakpoints {
     // Skip if first element(xs)
-    @if not ($point == $grid-breakpoints-first) {
+    @if not($point == $grid-breakpoints-first) {
       @include media-breakpoint-up($point) {
         &\@#{$point}-up {
           @content;
@@ -19,7 +19,7 @@
   $grid-breakpoints-last: nth($grid-breakpoints-keys, length($grid-breakpoints-keys));
   @each $point in $breakpoints {
     // Skip if last element(xl)
-    @if not ($point == $grid-breakpoints-last) {
+    @if not($point == $grid-breakpoints-last) {
       @include media-breakpoint-down($point) {
         &\@#{$point}-down {
           @content;

@@ -69,6 +69,7 @@
 //
 // **Where size is one of:**
 // - undefined - (by default) for classes that set the margin `$g-gaps[normal]` or padding to `$g-pads[normal]`
+// - `auto` - for classes that set the margin `auto`
 // - `small` - (by default) for classes that set the margin `$g-gaps[small]` or padding to `$g-pads[small]`
 // - `xsmall` - (by default) for classes that set the margin `$g-gaps[xsmall]` or padding to `$g-pads[xsmall]`
 // - `2xsmall` - (by default) for classes that set the margin `$g-gaps[2xsmall]` or padding to `$g-pads[2xsmall]`

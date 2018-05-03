@@ -650,6 +650,7 @@ $kss-vertical-rhythm: $kss-font-size * 1.5;
     border: 2px dashed transparent;
     margin: -2px -2px ($kss-vertical-rhythm - 2px);
     clear: left;
+    transform: translate3d(0, 0, 0);
 
     &:last-child {
       margin-bottom: 0;

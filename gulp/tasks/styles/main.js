@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import gulp from 'gulp';
 import lazypipe from 'lazypipe';
 import postcss from 'gulp-postcss';
@@ -15,6 +17,22 @@ import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 
 import configs from '../../../configs';
+
+function inlineCssImporter(url, prev) {
+  if (!url.endsWith('.css')) {
+    return { file: url };
+  }
+
+  const resolvedPath = path.resolve(path.dirname(prev), url);
+
+  if (!fs.existsSync(resolvedPath)) {
+    return new Error(`Could not find url: ${url}`);
+  }
+
+  const contents = fs.readFileSync(resolvedPath, 'utf-8');
+
+  return { contents };
+}
 
 export default function({ isProduction }) {
   const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
@@ -39,7 +57,7 @@ export default function({ isProduction }) {
       .src([`${configs.paths.src}/scss/**/*.scss`])
       .pipe(plumber({ errorHandler: notify.onError('Hata: <%= error.message %>') }))
       .pipe(isProduction ? util.noop() : sourcemaps.init())
-      .pipe(sass({ precision: 10 }).on('error', sass.logError))
+      .pipe(sass({ precision: 10, importer: inlineCssImporter }).on('error', sass.logError))
       .pipe(
         postcss([
           autoprefixer({ cascade: false }),

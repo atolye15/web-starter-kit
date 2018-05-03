@@ -12,7 +12,6 @@ import cx from 'classnames';
 const twigController = {
   data: {
     locale: 'tr',
-    title: 'Hello, Boys!',
   },
   functions: [
     {
@@ -20,7 +19,7 @@ const twigController = {
       func: (...args) => cx(...args),
     },
     {
-      name: 'assets',
+      name: 'asset',
       func: args => args,
     },
   ],
