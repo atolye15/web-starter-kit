@@ -55,7 +55,7 @@
   }
 
   &--secondary {
-    @include btn-modifier($bg:$secondary-color);
+    @include btn-modifier($bg: $secondary-color);
   }
 
   // &--custom {
@@ -63,7 +63,7 @@
   // }
 
   &--medium {
-    @include btn-size($padding-v:15px, $padding-h:50px, $font-size:1.1em);
+    @include btn-size($padding-v: 15px, $padding-h: 50px, $font-size: 1.1em);
   }
 
   &--tiny {

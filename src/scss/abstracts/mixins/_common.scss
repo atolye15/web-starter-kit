@@ -6,7 +6,13 @@
 // Font-Face Mixin
 //
 
-@mixin font-face($font-name, $font-folder, $font-file-name, $font-weight : normal, $font-style : normal) {
+@mixin font-face(
+  $font-name,
+  $font-folder,
+  $font-file-name,
+  $font-weight: normal,
+  $font-style: normal
+) {
   @font-face {
     font-family: $font-name;
     font-style: $font-style;
@@ -24,7 +30,13 @@
 // IE 9+
 //
 
-@mixin font-face-modern ($font-name, $font-folder, $font-file-name, $font-weight: normal, $font-style : normal) {
+@mixin font-face-modern(
+  $font-name,
+  $font-folder,
+  $font-file-name,
+  $font-weight: normal,
+  $font-style: normal
+) {
   @font-face {
     font-family: $font-name;
     font-style: $font-style;

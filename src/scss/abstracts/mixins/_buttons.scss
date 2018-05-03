@@ -9,7 +9,7 @@
 // @param $ease - Button arkaplanına transition tanımlar,
 //   Transition için scss/global/_utilities.scss deki .transition-background classını extend eder
 
-@mixin btn-block($ease:true) {
+@mixin btn-block($ease: true) {
   @if ($ease == true) {
     transition-duration: $g-transition-duration;
     transition-property: background-color, color, border-color;
@@ -40,7 +40,11 @@
 // @param $padding-h - Butona sağ ve soldan verilecek padding değerini tanımlar
 // @param $font-size - Buton font size değerini tanımlar
 
-@mixin btn-size($padding-v:$c-button-padding-vertical, $padding-h:$c-button-padding-horizontal, $font-size:null) {
+@mixin btn-size(
+  $padding-v: $c-button-padding-vertical,
+  $padding-h: $c-button-padding-horizontal,
+  $font-size: null
+) {
   // We control which padding styles come through,
   // these can be turned off by setting $padding:false
   @if $padding-v {
@@ -73,16 +77,16 @@
 // @param $disabled - Butona disable efekti vermek için kullanılır
 
 @mixin btn-modifier(
-    $bg: $c-button-bg-color,
-    $bg-hover: $c-button-bg-hover,
-    $color: auto,
-    $hover-color: auto,
-    $border-width: $c-button-border-width,
-    $border-color: 'same-as-bg',
-    $border-hover-color: 'same-as-bg',
-    $radius: $c-button-radius,
-    $disabled: false
-  ) {
+  $bg: $c-button-bg-color,
+  $bg-hover: $c-button-bg-hover,
+  $color: auto,
+  $hover-color: auto,
+  $border-width: $c-button-border-width,
+  $border-color: 'same-as-bg',
+  $border-hover-color: 'same-as-bg',
+  $radius: $c-button-radius,
+  $disabled: false
+) {
   // $bg-hover tanımlanmamışsa ve hover color `auto` seçilmişse
   // sass fonksiyonlarını kullanarak hover rengi taımlıyoruz
   @if $bg-hover == auto {
@@ -135,7 +139,7 @@
   border-radius: $radius;
   color: $color;
 
-  @if not ($border-width == $c-button-border-width) {
+  @if not($border-width == $c-button-border-width) {
     border-width: $border-width;
   }
 
