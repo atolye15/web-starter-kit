@@ -87,26 +87,27 @@ module.exports = function(Twig) {
       },
       parse: function(token, context, chain) {
         var doc = Twig.expression.parse.apply(this, [token.stack, context]);
-        var output = [];
-        var regex = /^(\S+)\s*:\s*(#[0-9A-Fa-f]{3,6})(?:\s*-\s*(.*))?$/gm;
-        var test;
 
-        while ((test = regex.exec(doc)) !== null) {
+        const output = doc.reduce((acc, curr) => {
           var innerContext = Twig.ChildContext(context);
-          innerContext.color = {};
-          innerContext.color.name = test[1];
-          innerContext.color.hex = test[2];
-          if (test[3] !== undefined) {
-            innerContext.color.description = test[3];
+          innerContext.color = {
+            name: curr.name,
+            hex: curr.color,
+          };
+
+          if (curr.description) {
+            innerContext.color.description = curr.description;
           }
 
           innerContext.color.rgb = hexToRgb(innerContext.color.hex);
           innerContext.color.hsl = rgbToHsl(innerContext.color.rgb);
 
-          output.push(Twig.parse.apply(this, [token.output, innerContext]));
+          acc.push(Twig.parse.apply(this, [token.output, innerContext]));
 
           Twig.merge(context, innerContext, true);
-        }
+
+          return acc;
+        }, []);
 
         return {
           chain: chain,
