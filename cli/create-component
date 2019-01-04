@@ -1,0 +1,48 @@
+#!/bin/bash
+
+NL=$'\r'
+COMPONENT_NAME=$1;
+
+COMPONENT_TEMPLATE="//${NL}// ${COMPONENT_NAME}${NL}//${NL}// Markup: c-${COMPONENT_NAME}-styleguide.twig${NL}//${NL}//${NL}// Styleguide Component.${COMPONENT_NAME}${NL}${NL}.c-${COMPONENT_NAME} {${NL}${NL}}${NL}"
+
+if [ -z $COMPONENT_NAME ]
+then
+  echo "Component name is required"
+elif [ -e "package.json" ]
+then
+  if [ -d "src/scss/components/c-${COMPONENT_NAME}" ]
+  then
+    echo "${COMPONENT_NAME} component is already exists"
+  else
+    mkdir "src/scss/components/c-${COMPONENT_NAME}"
+    if [ -d "src/scss/components/c-${COMPONENT_NAME}" ]
+    then
+      echo "Component folder created"
+    fi
+
+    touch "src/scss/components/c-${COMPONENT_NAME}/_c-${COMPONENT_NAME}.scss"
+    if [ -e "src/scss/components/c-${COMPONENT_NAME}/_c-${COMPONENT_NAME}.scss" ]
+    then
+      echo "SCSS File created"
+
+      # Next line can be removed to prevent auto-fill scss file.
+      echo $COMPONENT_TEMPLATE >> "src/scss/components/c-${COMPONENT_NAME}/_c-${COMPONENT_NAME}.scss"
+    fi
+
+    touch "src/scss/components/c-${COMPONENT_NAME}/c-${COMPONENT_NAME}.twig"
+    if [ -e "src/scss/components/c-${COMPONENT_NAME}/c-${COMPONENT_NAME}.twig" ]
+    then
+      echo "Template File created"
+    fi
+
+    touch "src/scss/components/c-${COMPONENT_NAME}/c-${COMPONENT_NAME}-styleguide.twig"
+    if [ -e "src/scss/components/c-${COMPONENT_NAME}/c-${COMPONENT_NAME}-styleguide.twig" ]
+    then
+      echo "Styleguide File created"
+    fi
+  fi
+else
+  echo "You're not in a project"
+fi
+
+exit 0
