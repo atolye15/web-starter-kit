@@ -41,6 +41,7 @@
     "prettier-stylelint": "^0.4.2",
     "psi": "^3.1.0",
     "run-sequence": "^2.2.1",
+    "shelljs": "^0.8.3",
     "stylelint": "^9.4.0",
     "stylelint-config-prettier": "^3.3.0",
     "stylelint-config-sass-guidelines": "^5.0.0",
