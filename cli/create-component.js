@@ -1,10 +1,14 @@
+#!/usr/bin/env node
+
+/* eslint-disable import/no-extraneous-dependencies */
+
 const fs = require('fs');
 const shell = require('shelljs');
 
 (() => {
   // create-component component-name
   const componentName = process.argv[2];
-  const componentsFolder = `${__dirname}/../app/src/scss/components`;
+  const componentsFolder = `${__dirname}/../src/scss/components`;
 
   console.log(`
     Component Name: ${componentName},
