@@ -5,25 +5,25 @@
 const fs = require('fs');
 const shell = require('shelljs');
 
+const componentNameCapital = name => {
+  if (typeof name !== 'string') {
+    return null;
+  }
+  return name
+    .split('-')
+    .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+    .join('');
+};
+
 (() => {
   // create-component component-name
   const componentName = process.argv[2];
   const componentsFolder = `${__dirname}/../src/scss/components`;
 
   console.log(`
-    Component Name: ${componentName},
+    Component Name: ${componentNameCapital(componentName)}
     Component Folder: ${componentsFolder}
   `);
-
-  const componentNameCapital = name => {
-    if (typeof name !== 'string') {
-      return null;
-    }
-    return name
-      .split('-')
-      .map(x => x.charAt(0).toUpperCase() + x.slice(1))
-      .join('');
-  };
 
   const componentFolder = `${componentsFolder}/c-${componentName}`;
   if (fs.existsSync(componentFolder)) {
@@ -37,7 +37,7 @@ const shell = require('shelljs');
 
     const scssFile = `_c-${componentName}.scss`;
     const twigFile = `c-${componentName}.twig`;
-    const styleguideFile = `c-${componentName}.styleguide.twig`;
+    const styleguideFile = `c-${componentName}-styleguide.twig`;
 
     shell.touch(`${componentFolder}/${scssFile}`);
 
@@ -49,7 +49,7 @@ const shell = require('shelljs');
     // Scss Template
     const scssTemplate = `//\n// ${componentNameCapital(
       componentName,
-    )}\n//\n// Markup: ${styleguideFile}\n//\n// Styleguide Component.${componentNameCapital(
+    )}\n//\n// Markup: ${styleguideFile}\n//\n// Styleguide Components.${componentNameCapital(
       componentName,
     )}\n//\n\n.c-${componentName} {\n  \n}\n`;
 
