@@ -74,7 +74,8 @@
     "start": "yarn build && gulp styleguide && gulp serve",
     "start-prod": "yarn build-prod && gulp styleguide && gulp serve --prod",
     "start-deploy": "yarn deploy && gulp styleguide && gulp serve --deploy",
-    "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy"
+    "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy",
+    "create-component": "node cli/create-component.js"
   },
   "browserslist": [
     ">1%",
