@@ -1,0 +1,13 @@
+<structure out="src/twig">
+  <file name="pages/%name%.html.twig">
+    {% extends "../layout.html.twig" %}
+
+    {% block body %}
+      {% include '../page-contents/%name%.twig' with {} only %}
+    {% endblock %}
+  </file>
+
+  <file name="page-contents/%name%.twig">
+    %name%
+  </file>
+</structure>

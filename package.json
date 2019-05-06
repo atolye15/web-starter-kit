@@ -73,7 +73,9 @@
     "start": "yarn build && gulp styleguide && gulp serve",
     "start-prod": "yarn build-prod && gulp styleguide && gulp serve --prod",
     "start-deploy": "yarn deploy && gulp styleguide && gulp serve --deploy",
-    "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy"
+    "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy",
+    "generate:component": "npx generate-structure -t code-templates/component.html",
+    "generate:page": "npx generate-structure -t code-templates/page.html"
   },
   "browserslist": [
     ">1%",
