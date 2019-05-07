@@ -1,5 +1,5 @@
-<structure out="src/scss/components/c-%name%">
-  <file name="_c-%name%.scss">
+<gs:root out="src/scss/components/c-%name%">
+  <gs:file name="_c-%name%.scss">
     // %capName%
     //
     // Markup: c-%name%-styleguide.twig
@@ -10,21 +10,21 @@
       /* Let's start! */
     }
     
-  </file>
+  </gs:file>
 
-  <file name="c-%name%-styleguide.twig">
+  <gs:file name="c-%name%-styleguide.twig">
     {% include "c-%name%.twig" with {} only %}
-  </file>
+  </gs:file>
 
-  <file name="c-%name%.twig">
+  <gs:file name="c-%name%.twig">
     <div class="c-%name%">
       %capName% Component
     </div>
-  </file>
+  </gs:file>
 
-  <script>
+  <gs:script>
     const {name, getVariable, setVariable} = GenerateStructure;
     const capName = name.split('-').map(x => x.charAt(0).toUpperCase() + x.slice(1)).join('');
     setVariable('capName', capName);
-  </script>
-</structure>
+  </gs:script>
+</gs:root>

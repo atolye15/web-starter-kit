@@ -1,13 +1,13 @@
-<structure out="src/twig">
-  <file name="pages/%name%.html.twig">
+<gs:root out="src/twig">
+  <gs:file name="pages/%name%.html.twig">
     {% extends "../layout.html.twig" %}
 
     {% block body %}
       {% include '../page-contents/%name%.twig' with {} only %}
     {% endblock %}
-  </file>
+  </gs:file>
 
-  <file name="page-contents/%name%.twig">
+  <gs:file name="page-contents/%name%.twig">
     %name%
-  </file>
-</structure>
+  </gs:file>
+</gs:root>
