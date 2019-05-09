@@ -192,7 +192,7 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, '
 gulp.task('serve', () => {
   browserSync(configs.browserSync);
 
-  gulp.watch([`${configs.paths.src}/{twig,scss}/**/*.twig`], e => {
+  gulp.watch([`${configs.paths.src}/{twig,scss}/**/*.twig`], { cwd: './' }, e => {
     if (path.extname(e.path) !== '.twig') {
       return;
     }
@@ -204,7 +204,7 @@ gulp.task('serve', () => {
     );
   });
   gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
-  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], e => {
+  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], { cwd: './' }, e => {
     if (path.extname(e.path) !== '.scss') {
       return;
     }
@@ -213,7 +213,7 @@ gulp.task('serve', () => {
   gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
     runSequence('sync:build-fonts', 'sync:deploy-styles', reload);
   });
-  gulp.watch([`${configs.paths.src}/js/**/*.js`], () => {
+  gulp.watch([`${configs.paths.src}/js/**/*.js`], { cwd: './' }, () => {
     runSequence('scripts:main', 'scripts:combine', 'sync:deploy-scripts', reload);
   });
   gulp.watch([`${configs.paths.src}/libs/**/*.js`], () => {
