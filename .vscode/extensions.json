@@ -9,6 +9,9 @@
     "naumovs.color-highlight", // Color Highlight
     "formulahendry.auto-rename-tag", // Auto Rename Tag
     "formulahendry.auto-close-tag", // Auto Close Tag
-    "eamodio.gitlens" // Gitlens
+    "editorconfig.editorconfig", // Editor Config
+    "zignd.html-css-class-completion", // IntelliSense for CSS class names in HTML
+    "mrmlnc.vscode-scss", // SCSS IntelliSense
+    "christian-kohler.path-intellisense" // Path IntelliSense
   ]
 }
