@@ -49,10 +49,6 @@ const configs = {
     homepage: '../../readme.md',
     title: 'Atölye Style Guide',
   },
-  pagespeed: {
-    url: 'example.com',
-    strategy: 'mobile', // mobile | desktop
-  },
   uncss: {
     active: true,
     ignore: [new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'), new RegExp('^(.?[a-z-_.[]+)?disabled.*')],

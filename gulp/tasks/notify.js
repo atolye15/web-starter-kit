@@ -1,11 +1,8 @@
-import gulp from 'gulp';
-import notify from 'gulp-notify';
+import notifier from '../utils/notifier';
 
-export default function(text) {
-  return function() {
-    // Disable console logging
-    notify.logLevel(1);
-
-    return gulp.src('').pipe(notify(text));
-  };
+export function notifyBuildComplete(cb) {
+  notifier('Build işlemi başarılı bir şekilde tamamlandı.');
+  cb();
 }
+
+export default { buildComplete: notifyBuildComplete };
