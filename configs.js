@@ -13,7 +13,7 @@ const configs = {
       css: 'css',
       img: 'img',
       fonts: 'css/fonts',
-      vendors: 'js/vendors',
+      vendors: 'vendors',
     },
   },
   jsFiles: ['main.js'],
