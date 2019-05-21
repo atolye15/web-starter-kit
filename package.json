@@ -75,12 +75,6 @@
     "start-deploy": "yarn deploy && gulp styleguide && gulp serve --deploy",
     "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy"
   },
-  "browserslist": [
-    ">1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "ie >= 10"
-  ],
   "dependencies": {
     "normalize.css": "^8.0.1"
   }
