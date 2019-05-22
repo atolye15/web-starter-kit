@@ -1,22 +1,6 @@
 @charset "UTF-8";
 
-// Colors
-@import 'abstracts/colors';
-
-// Mixins
-@import 'abstracts/mixins/index';
-
-// Functions
-@import 'abstracts/functions';
-
-// Variables
-@import 'abstracts/variables';
-
-// Placeholders
-@import 'abstracts/placeholders';
-
-// Keyframes
-@import 'abstracts/keyframes';
+@import 'abstracts/index';
 
 // Vendors
 @import 'vendors/index';
