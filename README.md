@@ -84,7 +84,7 @@ yazmanız yeterli olacaktır.
 ### 1. Klasör Yapısı
 
 |-- \
-|---- [.tmp/](#.tmp) \
+|---- [.tmp/](1-tmp) \
 |---- dev/ \
 |---- dist/ \
 |---- .vscode/ \
@@ -129,7 +129,7 @@ yazmanız yeterli olacaktır.
 |---- gulpfile.babel.js \
 |---- package.json \
 |---- README.md \
-|---- yarn.lock \
+|---- yarn.lock
 
 #### 1. .tmp/
 
