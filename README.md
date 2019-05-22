@@ -150,15 +150,15 @@ Visual Studio Code için gerekli ayarlar tutulur.
 
 Bütün gulp tasksları bu klasör için de bulunur.
 
-#### 5.1 gulp/assets
+#### 5.1 gulp/assets/
 
 Gulp Tasklarında kullanılacak static assetsler bu klasör içinde bulunur.
 
-#### 5.2 gulp/taks
+#### 5.2 gulp/tasks/
 
 Gulp tasklarının hepsi bu dosya içinde bulunur.
 
-#### 5.3 gulp/utils
+#### 5.3 gulp/utils/
 
 Gulp tasklarının ihtiyaç duyduğu bütün utils fonksiyonları bu dosya içinde bulunur.
 
