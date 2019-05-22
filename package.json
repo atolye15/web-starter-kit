@@ -75,7 +75,7 @@
     "start-deploy": "yarn deploy && gulp styleguide && gulp serve --deploy",
     "start-deploy-prod": "yarn build-prod && gulp styleguide && gulp serve --prod --deploy",
     "publish-github": "yarn build-prod && gh-pages -d dist",
-    "tasks": "gulp --tasks"
+    "gulp-tasks": "gulp --tasks"
   },
   "dependencies": {
     "normalize.css": "^8.0.1"
