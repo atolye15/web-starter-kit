@@ -130,77 +130,77 @@ yazmanız yeterli olacaktır.
 |---- yarn.lock
 ```
 
-#### 1. .tmp/
+### 1. .tmp/
 
 Bu klasör minification ve compile işlemleri için yedekleme klasörüdür. Sistem tarafından kullanılır.
 
-#### 2. dev/
+### 2. dev/
 
 Development ortamında build işlemi dosyaları bu klasör içerisine oluşturur.
 
-#### 3. dist/
+### 3. dist/
 
 Production ortamında build işlemi dosyaları bu klasör içerisinde oluşturur.
 
-#### 4. .vscode/
+### 4. .vscode/
 
 Visual Studio Code için gerekli ayarlar tutulur.
 
-#### 5. gulp/
+### 5. gulp/
 
 Bütün gulp tasksları bu klasör için de bulunur.
 
-##### 5.1 gulp/assets
+#### 5.1 gulp/assets
 
 Gulp Tasklarında kullanılacak static assetsler bu klasör içinde bulunur.
 
-##### 5.2 gulp/taks
+#### 5.2 gulp/taks
 
 Gulp tasklarının hepsi bu dosya içinde bulunur.
 
-##### 5.3 gulp/utils
+#### 5.3 gulp/utils
 
 Gulp tasklarının ihtiyaç duyduğu bütün utils fonksiyonları bu dosya içinde bulunur.
 
-#### 6. kss/
+### 6. kss/
 
 Styleguide için kullanılan kss paketinin ayarları tutulur.
 
-#### 7. src/
+### 7. src/
 
 Geliştirme ortamının bulunduğu dosyalar. Bu dosyalar gulp tarafından derlenip dev/ ve dist/ dosyaları oluşturur.
 
-##### 7.1 src/fonts/
+#### 7.1 src/fonts/
 
 Proje için gerekli font dosyaların derlenmesi için bu dosya içine atılır.
 
-##### 7.2 src/img/
+#### 7.2 src/img/
 
 Proje için gerekli resimler bu dosya içine atılır.
 
-###### 7.2.1 src/img/icons/
+##### 7.2.1 src/img/icons/
 
 Proje için svg iconların derlenebilmesi için svg iconları bu dosyada tutulur.
 
-##### 7.3 src/js/
+#### 7.3 src/js/
 
 Projede kullanılan javascript dosyalarının derlenmesi için js dosyaları bu dosya içinde tutulur.
 
-##### 7.4 src/libs/
+#### 7.4 src/libs/
 
 Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosyaları içermelidir. Burada eklediğiniz dosyalar config.js da libFiles değişkeni içerisinde sadece dosya adları yazılarak sisteme dahil edilir.
 
-##### 7.5 src/scss/
+#### 7.5 src/scss/
 
 Scss dosyaları bu klasör içerisinde bulunur.
 
-##### 7.6 src/twig/
+#### 7.6 src/twig/
 
 Projenin twig dosyaları bu klasör içinde bulunuyor.
 
-###### 7.6.3 src/partials
+##### 7.6.3 src/partials
 
-##### 7.7 src/vendors/
+#### 7.7 src/vendors/
 
 Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
 
@@ -216,7 +216,7 @@ yazarak çalıştırabilirsiniz.
 
 | Komut               | Açıklama                                                           |
 | :------------------ | ------------------------------------------------------------------ |
-| node_modules-chmod  |  node_modules dosyasını 777 iznini ayarlar                         |
+| node_modules-chmod  | node_modules dosyasını 777 iznini ayarlar                          |
 | start-server        | serveri elle başlatır                                              |
 | lint                | lint:js ve lint:css komutlarını çalıştırır.                        |
 | lint:js             | eslint'i javascript dosyaları için çalıştırır                      |
