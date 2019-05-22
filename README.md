@@ -28,7 +28,7 @@ Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir ba�
 git clone git@github.com:atolye15/web-starter-kit.git proje-klasoru
 ```
 
-### 2. İndirdiğiniz/Klonladığınız klasöre girin.
+### 2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak.
 
 ```bash
 cd proje-klasoru
