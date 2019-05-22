@@ -198,8 +198,6 @@ Scss dosyaları bu klasör içerisinde bulunur.
 
 Projenin twig dosyaları bu klasör içinde bulunuyor.
 
-##### 7.6.3 src/partials
-
 #### 7.7 src/vendors/
 
 Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
