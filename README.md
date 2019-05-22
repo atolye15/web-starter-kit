@@ -81,52 +81,52 @@ yazmanız yeterli olacaktır.
 ### 1. Klasör Yapısı
 
 ```
-|-- \
-|---- .tmp/ \
-|---- dev/ \
-|---- dist/ \
-|---- .vscode/ \
-|---- gulp/ \
-|-------- assets/ \
-|-------- tasks/ \
-|-------- utils/ \
-|---- kss/ \
-|---- src/ \
-|-------- fonts/ \
-|-------- img/ \
-|------------ icons/ \
-|-------- js/ \
-|-------- libs/ \
-|-------- scss/ \
-|------------ abstracts/ \
-|---------------- mixins/ \
-|------------ base/ \
-|----------------/utilities\ \
-|------------ components/ \
-|------------ objects/ \
-|------------ pages/ \
-|------------ vendors/ \
-|-------- twig/ \
-|------------ page-contents/ \
-|------------ pages/ \
-|------------ partials/ \
-|-------- vendors/ \
-|---- .babelrc \
-|---- .browserlistrc \
-|---- .editorconfig \
-|---- .eslintrc.json \
-|---- .gitattributes \
-|---- .gitignore \
-|---- .prettierignore \
-|---- .prettierrc \
-|---- .stylelintignore \
-|---- .stylelintrc \
-|---- .archive.sh \
-|---- CHANGELOG.md \
-|---- config.js \
-|---- gulpfile.babel.js \
-|---- package.json \
-|---- README.md \
+|--
+|---- .tmp/
+|---- dev/
+|---- dist/
+|---- .vscode/
+|---- gulp/
+|-------- assets/
+|-------- tasks/
+|-------- utils/
+|---- kss/
+|---- src/
+|-------- fonts/
+|-------- img/
+|------------ icons/
+|-------- js/
+|-------- libs/
+|-------- scss/
+|------------ abstracts/
+|---------------- mixins/
+|------------ base/
+|----------------/utilities
+|------------ components/
+|------------ objects/
+|------------ pages/
+|------------ vendors/
+|-------- twig/
+|------------ page-contents/
+|------------ pages/
+|------------ partials/
+|-------- vendors/
+|---- .babelrc
+|---- .browserlistrc
+|---- .editorconfig
+|---- .eslintrc.json
+|---- .gitattributes
+|---- .gitignore
+|---- .prettierignore
+|---- .prettierrc
+|---- .stylelintignore
+|---- .stylelintrc
+|---- .archive.sh
+|---- CHANGELOG.md
+|---- config.js
+|---- gulpfile.babel.js
+|---- package.json
+|---- README.md
 |---- yarn.lock
 ```
 
