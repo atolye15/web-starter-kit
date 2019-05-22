@@ -4,9 +4,11 @@ import images from './images';
 import deploy from './deploy';
 import html from './html';
 import copy from './copy';
-import notify from './notify';
 import sync from './sync';
-import pagespeed from './pagespeed';
+import clean from './clean';
+import notify from './notify';
+import log from './log';
+
 import bump from './bump';
 
 export default {
@@ -16,8 +18,9 @@ export default {
   deploy,
   html,
   copy,
-  notify,
   sync,
-  pagespeed,
+  clean,
+  notify,
+  log,
   bump,
 };

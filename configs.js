@@ -13,7 +13,7 @@ const configs = {
       css: 'css',
       img: 'img',
       fonts: 'css/fonts',
-      vendors: 'js/vendors',
+      vendors: 'vendors',
     },
   },
   jsFiles: ['main.js'],
@@ -48,10 +48,6 @@ const configs = {
     builder: 'kss/builders/atolye15',
     homepage: '../../readme.md',
     title: 'Atölye Style Guide',
-  },
-  pagespeed: {
-    url: 'example.com',
-    strategy: 'mobile', // mobile | desktop
   },
   uncss: {
     active: true,

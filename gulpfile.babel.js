@@ -7,182 +7,140 @@
 
 // This gulpfile makes use of new JavaScript features.
 // Babel handles this without us having to do anything. It just works.
-// You can read more about the new JavaScript features here:
-// https://babeljs.io/docs/learn-es2015/
 
 import gulp from 'gulp';
-import path from 'path';
-import runSequence from 'run-sequence';
-import browserSync from 'browser-sync';
-import util from 'gulp-util';
+import browserSyncBase from 'browser-sync';
 import kss from 'kss';
-import del from 'del';
-
-import configs from './configs';
+import minimist from 'minimist';
 
 import tasks from './gulp/tasks';
+import configs from './configs';
+import skippable from './gulp/utils/skippable';
 
-const { reload } = browserSync;
+const argv = minimist(process.argv.slice(2));
 
-const isProduction = util.env.prod;
-const isDeploy = util.env.deploy;
+const browserSync = browserSyncBase.create();
 
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
-
-runSequence.options.ignoreUndefinedTasks = true;
-
-/**
- * STYLES
- * Sass dosyalarını derleme ve prefix ekleme
- */
-
-gulp.task('styles:main', tasks.styles.main({ isProduction }));
-
-gulp.task('styles', ['styles:main']);
-
-/**
- * SCRIPTS
- * Javascript dosyalarının derleme işlemleri
- */
-
-gulp.task('scripts:main', tasks.scripts.main({ isProduction }));
-gulp.task('scripts:libs', tasks.scripts.libs({ isProduction }));
-gulp.task('scripts:combine', tasks.scripts.combine({ isProduction }));
-
-gulp.task('scripts', cb => runSequence('scripts:libs', 'scripts:main', 'scripts:combine', cb));
-
-/**
- * IMAGES
- * Resim optimizasyon işlemleri
- */
-
-// Optimize images
-gulp.task('images:optimize', tasks.images.optimize());
-gulp.task('images:sync', tasks.images.sync());
-gulp.task('images:deploy', tasks.images.deploy({ isProduction }));
-gulp.task('images:sprite', tasks.images.sprite({ isProduction }));
-
-gulp.task('images', cb => runSequence('images:optimize', 'images:sync', 'images:deploy', cb));
-
-/**
- * HTML
- * Html(Twig) derleme işlemleri
- */
-gulp.task('html:main', tasks.html({ isProduction }));
-gulp.task('html', cb => runSequence('clean:sprite', 'images:sprite', 'html:main', cb));
-
-/**
- * COPY
- * Statik dosyaların kopyalanma işlemleri
- */
-
-gulp.task('copy:fonts', tasks.copy.fonts({ isProduction }));
-gulp.task('copy:vendors', tasks.copy.vendors({ isProduction }));
+const isProduction = argv.prod;
+const isDeploy = argv.deploy;
 
 /**
  * CLEAN
- * Klasör temizleme işlemleri
  */
 
-// Clean output directory
-gulp.task('clean:dist', () => del([`${envPath}/*`], { dot: true }));
-gulp.task('clean:imgCache', () => del(['.tmp/img/*'], { dot: true }));
-gulp.task('clean:tempJs', () => del(['.tmp/js/*'], { dot: true }));
-gulp.task('clean:deployFolder', () =>
-  del([`${configs.paths.deploy}/*`], { dot: true, force: true }),
-);
-gulp.task('clean:sprite', () => del(['.tmp/img/sprite.svg'], { dot: true }));
+gulp.task('clean:dist', tasks.clean.dist);
+gulp.task('clean:imgCache', tasks.clean.imgCache);
+gulp.task('clean:tempJs', tasks.clean.tempJs);
+gulp.task('clean:deployFolder', tasks.clean.deployFolder);
+gulp.task('clean:sprite', tasks.clean.sprite);
+
+/**
+ * COPY
+ */
+
+gulp.task('copy:fonts', tasks.copy.fonts);
+gulp.task('copy:vendors', tasks.copy.vendors);
+
+/**
+ * STYLES
+ */
+
+gulp.task('styles:main', tasks.styles);
+gulp.task('styles', gulp.series('styles:main'));
+
+/**
+ * SCRIPTS
+ */
+
+gulp.task('scripts:main', tasks.scripts.main);
+gulp.task('scripts:libs', tasks.scripts.libs);
+gulp.task('scripts:combine', tasks.scripts.combine);
+
+gulp.task('scripts', gulp.series('scripts:libs', 'scripts:main', 'scripts:combine'));
+
+/**
+ * IMAGES
+ */
+
+gulp.task('images:optimize', tasks.images.optimize);
+gulp.task('images:sync', tasks.images.sync);
+gulp.task('images:deploy', tasks.images.deploy);
+gulp.task('images:sprite', tasks.images.sprite);
+
+gulp.task('images', gulp.series('images:optimize', 'images:sync', 'images:deploy'));
+
+/**
+ * HTML
+ */
+
+gulp.task('html:main', tasks.html);
+gulp.task('html', gulp.series('clean:sprite', 'images:sprite', 'html:main'));
 
 /**
  * DEPLOY
- * Build edilmiş assetslerin backend tarafından kullanılabilecek deploy klasörüne
- * kopyalanma işlemleri
+ * Copy the builded assets to the deploy folder
  */
 
-gulp.task('deploy:styles', tasks.deploy.styles({ isProduction }));
-gulp.task('deploy:scripts', tasks.deploy.scripts({ isProduction }));
-gulp.task('deploy:images', tasks.deploy.images({ isProduction }));
-gulp.task('deploy:vendors', tasks.deploy.vendors({ isProduction }));
+gulp.task('deploy:styles', tasks.deploy.styles);
+gulp.task('deploy:scripts', tasks.deploy.scripts);
+gulp.task('deploy:images', tasks.deploy.images);
+gulp.task('deploy:vendors', tasks.deploy.vendors);
 
 gulp.task('deploy', cb => {
   if (!isDeploy) {
-    return cb();
+    cb();
+    return;
   }
-  return runSequence(
-    ['clean:deployFolder'],
-    ['deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'],
+
+  gulp.series(
+    'clean:deployFolder',
+    gulp.parallel('deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'),
     cb,
   );
 });
 
 /**
  * NOTIFY
- * Notifikasyon işlemleri
  */
 
-gulp.task('notify:build', tasks.notify('Build işlemi başarılı bir şekilde tamamlandı.'));
+gulp.task('notify:build', tasks.notify.buildComplete);
+
+gulp.task('log:build-success', tasks.log.buildSuccess);
 
 /**
  * BUILD
- * Build işlemleri bu task çağırılarak yapılır
- * Burada yapılan işlemlerin sırası önemlidir.
+ * Build operations are done by calling this task.
+ * the sequence of tasks are important!
  */
-gulp.task('build', cb =>
-  runSequence(
-    ['clean:dist', 'clean:tempJs'],
-    ['html', 'scripts'],
-    ['styles', 'images', 'copy:fonts', 'copy:vendors'],
+gulp.task(
+  'build',
+  gulp.series(
+    'clean:dist',
+    'clean:tempJs',
+    gulp.parallel('html', 'scripts'),
+    gulp.parallel('styles', 'images', 'copy:fonts', 'copy:vendors'),
     'deploy',
     'notify:build',
-    () => {
-      util.log(
-        util.colors.green(
-          '\n==============================================\n' +
-            'Build işlemi başarılı bir şekilde tamamlandı.' +
-            '\n==============================================',
-        ),
-      );
-      return cb();
-    },
+    'log:build-success',
   ),
 );
 
 /**
  * SYNC
- * Klasörlerin eşitlenme işlemleri
- * Bu taskklar sadece watch aktifken çalışır
- * Tüm dosyaların sürekli tekrardan kopyalanmaması için tanımlanmıştır.
+ * Synchronization of folders
+ * These tasks only work when watch is active
  */
 
-// src deki font klasörü ile dist'deki font klasörünü eşitler.
-gulp.task(
-  'sync:build-fonts',
-  tasks.sync.regular({ isProduction }, 'fonts', configs.paths.assets.fonts),
-);
+// BUILD
+gulp.task('sync:build-fonts', tasks.sync.build.fonts);
+gulp.task('sync:build-image', tasks.sync.build.image);
+gulp.task('sync:build-vendors', tasks.sync.build.vendors);
 
-// src deki resim klasörü ile dist'deki resim klasörünü eşitler.
-gulp.task(
-  'sync:build-image',
-  tasks.sync.regular({ isProduction }, 'img', configs.paths.assets.img),
-);
-
-// src deki vendors klasörü ile dist'deki vendors klasörünü eşitler.
-gulp.task(
-  'sync:build-vendors',
-  tasks.sync.regular({ isProduction }, 'vendors', configs.paths.assets.vendors),
-);
-
-// deploy pathdeki css klasörü ile dist'deki css klasörünü eşitler.
-gulp.task('sync:deploy-styles', tasks.sync.deploy({ isProduction, isDeploy }, 'css'));
-
-// deploy pathdeki javascript klasörü ile dist'deki javascript klasörünü eşitler.
-gulp.task('sync:deploy-scripts', tasks.sync.deploy({ isProduction, isDeploy }, 'js'));
-
-// deploy pathdeki image klasörü ile dist'deki image klasörünü eşitler.
-gulp.task('sync:deploy-images', tasks.sync.deploy({ isProduction, isDeploy }, 'img'));
-
-// deploy pathdeki image klasörü ile dist'deki image klasörünü eşitler.
-gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, 'vendors'));
+// DEPLOY
+gulp.task('sync:deploy-styles', tasks.sync.deploy.css);
+gulp.task('sync:deploy-scripts', tasks.sync.deploy.js);
+gulp.task('sync:deploy-images', tasks.sync.deploy.img);
+gulp.task('sync:deploy-vendors', tasks.sync.deploy.vendors);
 
 /**
  * WATCH
@@ -190,53 +148,68 @@ gulp.task('sync:deploy-vendors', tasks.sync.deploy({ isProduction, isDeploy }, '
  */
 
 gulp.task('serve', () => {
-  browserSync(configs.browserSync);
+  browserSync.init(configs.browserSync);
 
-  gulp.watch([`${configs.paths.src}/{twig,scss}/**/*.twig`], { cwd: './' }, e => {
-    if (path.extname(e.path) !== '.twig') {
-      return;
-    }
-    runSequence(
-      'html:main',
-      isProduction && configs.uncss.active ? 'styles:main' : null,
-      'styleguide',
-      reload,
-    );
-  });
-  gulp.watch([`${configs.paths.src}/img/{icons,icons/**}`], ['html'], reload);
-  gulp.watch([`${configs.paths.src}/scss/**/*.scss`], { cwd: './' }, e => {
-    if (path.extname(e.path) !== '.scss') {
-      return;
-    }
-    runSequence('styles', 'sync:deploy-styles', 'styleguide', reload);
-  });
-  gulp.watch([`${configs.paths.src}/fonts/**/*`], () => {
-    runSequence('sync:build-fonts', 'sync:deploy-styles', reload);
-  });
-  gulp.watch([`${configs.paths.src}/js/**/*.js`], { cwd: './' }, () => {
-    runSequence('scripts:main', 'scripts:combine', 'sync:deploy-scripts', reload);
-  });
-  gulp.watch([`${configs.paths.src}/libs/**/*.js`], () => {
-    runSequence('scripts:libs', 'scripts:combine', 'sync:deploy-scripts', reload);
-  });
-  gulp.watch([`${configs.paths.src}/vendors/**`], () => {
-    runSequence('sync:build-vendors', 'sync:deploy-vendors', reload);
-  });
-  gulp.watch(
-    [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`],
-    () => {
-      runSequence('sync:build-image', 'sync:deploy-images', reload);
-    },
-  );
-  gulp.watch(['configs.js'], ['build', reload]);
+  gulp
+    .watch(
+      [`${configs.paths.src}/{twig,scss}/**/*.twig`],
+      { cwd: './' },
+      gulp.series(
+        'html:main',
+        skippable(isProduction && configs.uncss.active, 'styles:main'),
+        'styleguide',
+      ),
+    )
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch([`${configs.paths.src}/img/icons/*.svg`], gulp.series('html'))
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch(
+      [`${configs.paths.src}/scss/**/*.scss`],
+      { cwd: './' },
+      gulp.series('styles', 'sync:deploy-styles', 'styleguide'),
+    )
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch(
+      [`${configs.paths.src}/fonts/**/*`],
+      gulp.series('sync:build-fonts', 'sync:deploy-styles'),
+    )
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch(
+      [`${configs.paths.src}/js/**/*.js`],
+      { cwd: './' },
+      gulp.series('scripts:main', 'scripts:combine', 'sync:deploy-scripts'),
+    )
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch(
+      [`${configs.paths.src}/libs/**/*.js`],
+      gulp.series('scripts:libs', 'scripts:combine', 'sync:deploy-scripts'),
+    )
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch(
+      [`${configs.paths.src}/vendors/**`],
+      gulp.series('sync:build-vendors', 'sync:deploy-vendors'),
+    )
+    .on('change', browserSync.reload);
+
+  gulp
+    .watch(
+      [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`],
+      gulp.series('sync:build-image', 'sync:deploy-images'),
+    )
+    .on('change', browserSync.reload);
 });
-
-/**
- * PAGE SPEED
- * Run PageSpeed Insights
- */
-
-gulp.task('pagespeed', tasks.pagespeed());
 
 /**
  * Generates KSS living styleguide
@@ -244,4 +217,4 @@ gulp.task('pagespeed', tasks.pagespeed());
 
 gulp.task('styleguide', () => kss(configs.styleGuide));
 
-gulp.task('bump', tasks.bump());
+gulp.task('bump', tasks.bump);
