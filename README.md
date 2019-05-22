@@ -82,7 +82,7 @@ yazmanız yeterli olacaktır.
 
 ```
 |-- \
-|---- [.tmp/](#1-tmp) \
+|---- .tmp/ \
 |---- dev/ \
 |---- dist/ \
 |---- .vscode/ \
@@ -194,85 +194,15 @@ Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosya
 
 Scss dosyaları bu klasör içerisinde bulunur.
 
-###### 7.5.1 src/scss/abstract/
-
-Temel scss dosyaları bu klasör içerisinde bulunur
-
-###### 7.5.1.1 src/scss/abstract/mixins/
-
-Temel scss mixinleri bu klasör içerisinde bulunur.
-
-###### 7.5.2 src/scss/base/
-
-Proje için kullanılan temel işlevlerin bulunduğu klasördür.
-
-###### 7.5.2.1 src/scss/base/utilities/
-
-Proje için tanımlanan utilitiesler bu klasör içinde bulunur.
-
-###### 7.5.3 src/scss/components/
-
-Projenin componentleri bu klasör içerisinde bulunur.
-
-###### 7.5.4 src/scss/objects/
-
-Proje için gerekli object dosyaları bu klasör içinde bulunur.
-
-###### 7.5.5 src/scss/pages/
-
-Proje sayfaları için gerekli scss dosyaları u klasör de bulunur.
-
-###### 7.5.6 src/scss/vendors/
-
-Proje için dışarıdan gerekli scss kütüphaneleri bu klasör içine eklenir.
-
 ##### 7.6 src/twig/
 
 Projenin twig dosyaları bu klasör içinde bulunuyor.
-
-###### 7.6.1 src/twig/page-contents/
-
-###### 7.6.2 src/twig/pages/
 
 ###### 7.6.3 src/partials
 
 ##### 7.7 src/vendors/
 
 Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
-
-#### 8. .babelrc
-
-#### 9. .browserlistrc
-
-#### 10. .editorconfig
-
-#### 11. .eslintrc.json
-
-#### 12. .gitattributes
-
-#### 13. .gitignore
-
-#### 14. .prettierignore
-
-#### 15. .prettierrc
-
-#### 16. .stylelintignore
-
-#### 17. .stylelintrc
-
-#### 18. .archive.sh
-
-#### 19. CHANGELOG.md
-
-#### 20. config.js
-
-#### 21. gulpfile.babel.js
-
-#### 22. package.json
-
-#### 23. README.md
-
-#### 24. yarn.lock
 
 ### 2. Komutlar
 
@@ -286,7 +216,7 @@ yazarak çalıştırabilirsiniz.
 
 | Komut               | Açıklama                                                           |
 | :------------------ | ------------------------------------------------------------------ |
-| node_modules-chmod  | node_modules dosyası için gerekli izinleri ayarlar                 |
+| node_modules-chmod  |  node_modules dosyasını 777 iznini ayarlar                         |
 | start-server        | serveri elle başlatır                                              |
 | lint                | lint:js ve lint:css komutlarını çalıştırır.                        |
 | lint:js             | eslint'i javascript dosyaları için çalıştırır                      |
