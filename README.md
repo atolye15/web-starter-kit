@@ -14,11 +14,31 @@ Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir ba�
 - Eslint
 - Stylelint
 
+ve daha fazlası
+
 ## Sistem Gereksinimleri
 
 - [Node.js](http://nodejs.org/)
 - [Yarn (Yarn Package Manager)](https://yarnpkg.com/lang/en/)
 - [Git](http://git-scm.com/)
+
+### Browser Desteği
+
+- Chrome
+- Edge
+- Firefox
+- Safari
+
+## Özellikler
+
+| Özellik                     | Açıklama                                                                                                    |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Kolay Başlangıç             | Kurulumu tamamladıktan sonra hemen kod yazmaya başlayabilirsiniz.                                           |
+| Sass Support                | Proje SASS compilera sahiptir. Temel değişkenler mixinler fonksiyonlar hazır olarak eliniz de bulunmaktadır |
+| Performans Optimizasyonları | Resimlerin küçültülmesi, js ve css dosyalarının min halleri çıktı olarak verilmektedir                      |
+| HTML template engine        | Template engine olarak twig.js kullanır. Standart HTML ile boğulmamanızı sağlar                             |
+| Code Linting                | Stylelint ve eslint için gerekli linter configleri ayarlanmış olup. Sizin standardınız belirlenmiştir       |
+| ES2015 Support              |                                                                                                             |
 
 ## Kurulum
 
@@ -81,126 +101,54 @@ yazmanız yeterli olacaktır.
 ### 1. Klasör Yapısı
 
 ```
-|--
-|---- .tmp/
-|---- dev/
-|---- dist/
-|---- .vscode/
-|---- gulp/
-|-------- assets/
-|-------- tasks/
-|-------- utils/
-|---- kss/
-|---- src/
-|-------- fonts/
-|-------- img/
-|------------ icons/
-|-------- js/
-|-------- libs/
-|-------- scss/
-|------------ abstracts/
-|---------------- mixins/
-|------------ base/
-|----------------/utilities
-|------------ components/
-|------------ objects/
-|------------ pages/
-|------------ vendors/
-|-------- twig/
-|------------ page-contents/
-|------------ pages/
-|------------ partials/
-|-------- vendors/
-|---- .babelrc
-|---- .browserlistrc
-|---- .editorconfig
-|---- .eslintrc.json
-|---- .gitattributes
-|---- .gitignore
-|---- .prettierignore
-|---- .prettierrc
-|---- .stylelintignore
-|---- .stylelintrc
-|---- .archive.sh
-|---- CHANGELOG.md
-|---- config.js
-|---- gulpfile.babel.js
-|---- package.json
-|---- README.md
-|---- yarn.lock
+root
+├── .tmp/                 # Bu klasör minification ve compile işlemleri için yedekleme klasörüdür. Sistem tarafından kullanılır.
+├── dev/                  # Development ortamında build işlemi dosyaları bu klasör içerisine oluşturur.
+├── dist/                 # Production ortamında build işlemi dosyaları bu klasör içerisinde oluşturur.
+├── .vscode/              # Visual Studio Code için gerekli ayarlar tutulur.
+├── gulp/                 # Bütün gulp tasksları bu klasör için de bulunur.
+│     ├── assets/         # Gulp Tasklarında kullanılacak static assetsler bu klasör içinde bulunur.
+│     ├── tasks/          # Gulp tasklarının hepsi bu dosya içinde bulunur.
+│     └── utils/          # Gulp tasklarının ihtiyaç duyduğu bütün utils fonksiyonları bu dosya içinde bulunur.
+├── kss/                  # Styleguide için kullanılan kss paketinin ayarları tutulur.
+├── src/                  # Geliştirme ortamının bulunduğu dosyalar. Bu dosyalar gulp tarafından derlenip dev/ ve dist/ dosyaları oluşturur.
+│     ├── fonts/          # Proje için gerekli font dosyaların derlenmesi için bu dosya içine atılır.
+│     ├── img/            # Proje için gerekli resimler bu dosya içine atılır.
+│       └── icons/        # Proje için svg iconların derlenebilmesi için svg iconları bu dosyada tutulur.
+│     ├── js/             # Projede kullanılan javascript dosyalarının derlenmesi için js dosyaları bu dosya içinde tutulur.
+│     ├── libs/           # Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosyaları içermelidir. Burada eklediğiniz dosyalar config.js da libFiles değişkeni içerisinde sadece dosya adları yazılarak sisteme dahil edilir.
+│     ├── scss/           # Scss dosyaları bu klasör içerisinde bulunur.
+│       ├── abstracts/
+│         └── mixins/
+│       ├── base/
+│         └── utilities/
+│       ├── components/
+│       ├── objects/
+│       ├──pages/
+│       └── vendors/
+├── twig/                 # Projenin twig dosyaları bu klasör içinde bulunuyor.
+│   ├── page-contents/
+│   ├── pages/
+│   └── partials/
+├── vendors/              # Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
+├── .babelrc
+├── .browserlistrc
+├── .editorconfig
+├── .eslintrc.json
+├── .gitattributes
+├── .gitignore
+├── .prettierignore
+├── .prettierrc
+├── .stylelintignore
+├── .stylelintrc
+├── .archive.sh
+├── CHANGELOG.md
+├── config.js
+├── gulpfile.babel.js
+├── package.json
+├── README.md
+├── yarn.lock
 ```
-
-### 1. .tmp/
-
-Bu klasör minification ve compile işlemleri için yedekleme klasörüdür. Sistem tarafından kullanılır.
-
-### 2. dev/
-
-Development ortamında build işlemi dosyaları bu klasör içerisine oluşturur.
-
-### 3. dist/
-
-Production ortamında build işlemi dosyaları bu klasör içerisinde oluşturur.
-
-### 4. .vscode/
-
-Visual Studio Code için gerekli ayarlar tutulur.
-
-### 5. gulp/
-
-Bütün gulp tasksları bu klasör için de bulunur.
-
-#### 5.1 gulp/assets/
-
-Gulp Tasklarında kullanılacak static assetsler bu klasör içinde bulunur.
-
-#### 5.2 gulp/tasks/
-
-Gulp tasklarının hepsi bu dosya içinde bulunur.
-
-#### 5.3 gulp/utils/
-
-Gulp tasklarının ihtiyaç duyduğu bütün utils fonksiyonları bu dosya içinde bulunur.
-
-### 6. kss/
-
-Styleguide için kullanılan kss paketinin ayarları tutulur.
-
-### 7. src/
-
-Geliştirme ortamının bulunduğu dosyalar. Bu dosyalar gulp tarafından derlenip dev/ ve dist/ dosyaları oluşturur.
-
-#### 7.1 src/fonts/
-
-Proje için gerekli font dosyaların derlenmesi için bu dosya içine atılır.
-
-#### 7.2 src/img/
-
-Proje için gerekli resimler bu dosya içine atılır.
-
-##### 7.2.1 src/img/icons/
-
-Proje için svg iconların derlenebilmesi için svg iconları bu dosyada tutulur.
-
-#### 7.3 src/js/
-
-Projede kullanılan javascript dosyalarının derlenmesi için js dosyaları bu dosya içinde tutulur.
-
-#### 7.4 src/libs/
-
-Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosyaları içermelidir. Burada eklediğiniz dosyalar config.js da libFiles değişkeni içerisinde sadece dosya adları yazılarak sisteme dahil edilir.
-
-#### 7.5 src/scss/
-
-Scss dosyaları bu klasör içerisinde bulunur.
-
-#### 7.6 src/twig/
-
-Projenin twig dosyaları bu klasör içinde bulunuyor.
-
-#### 7.7 src/vendors/
-
-Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
 
 ### 2. Komutlar
 
