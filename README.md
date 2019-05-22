@@ -80,6 +80,7 @@ yazmanız yeterli olacaktır.
 
 ### 1. Klasör Yapısı
 
+```
 |-- \
 |---- [.tmp/](#1-tmp) \
 |---- dev/ \
@@ -127,6 +128,7 @@ yazmanız yeterli olacaktır.
 |---- package.json \
 |---- README.md \
 |---- yarn.lock
+```
 
 #### 1. .tmp/
 
