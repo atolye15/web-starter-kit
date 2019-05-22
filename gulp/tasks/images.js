@@ -3,6 +3,9 @@ import fs from 'fs';
 import plumber from 'gulp-plumber';
 import newer from 'gulp-newer';
 import imagemin from 'gulp-imagemin';
+import imageminPngquant from 'imagemin-pngquant';
+import imageminMozjpeg from 'imagemin-mozjpeg';
+
 import tap from 'gulp-tap';
 import c from 'ansi-colors';
 import rename from 'gulp-rename';
@@ -22,8 +25,10 @@ export function imagesOptimize() {
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
-        imagemin.jpegtran({ progressive: true }),
-        imagemin.optipng({ optimizationLevel: 5 }),
+        imageminMozjpeg({ progressive: true }),
+        imageminPngquant({
+          quality: [0.6, 0.8],
+        }),
         imagemin.svgo({ plugins: [{ removeDimensions: true }] }),
       ]),
     )
