@@ -34,7 +34,7 @@ ve daha fazlası
 | Özellik                     | Açıklama                                                                                                    |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | Kolay Başlangıç             | Kurulumu tamamladıktan sonra hemen kod yazmaya başlayabilirsiniz.                                           |
-| Sass Support                | Proje SASS compilera sahiptir. Temel değişkenler mixinler fonksiyonlar hazır olarak eliniz de bulunmaktadır |
+| Sass Desteği                | Proje SASS compilera sahiptir. Temel değişkenler mixinler fonksiyonlar hazır olarak eliniz de bulunmaktadır |
 | Performans Optimizasyonları | Resimlerin küçültülmesi, js ve css dosyalarının min halleri çıktı olarak verilmektedir                      |
 | HTML template engine        | Template engine olarak twig.js kullanır. Standart HTML ile boğulmamanızı sağlar                             |
 | Code Linting                | Stylelint ve eslint için gerekli linter configleri ayarlanmış olup. Sizin standardınız belirlenmiştir       |
