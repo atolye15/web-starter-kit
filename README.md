@@ -18,10 +18,7 @@ Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir ba�
 
 - [Node.js](http://nodejs.org/)
 - [Yarn (Yarn Package Manager)](https://yarnpkg.com/lang/en/)
-- [Ruby](https://www.ruby-lang.org/)
-- [Sass](http://sass-lang.com/install/)
 - [Git](http://git-scm.com/)
-- [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
 ## Kurulum
 
@@ -84,7 +81,7 @@ yazmanız yeterli olacaktır.
 ### 1. Klasör Yapısı
 
 |-- \
-|---- [.tmp/](1-tmp) \
+|---- [.tmp/](#1-tmp) \
 |---- dev/ \
 |---- dist/ \
 |---- .vscode/ \
