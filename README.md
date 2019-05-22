@@ -25,7 +25,7 @@ Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir ba�
 
 ## Kurulum
 
-### 1. Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
+### 1. Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
 
 ```bash
 git clone git@github.com:atolye15/web-starter-kit.git proje-klasoru
@@ -84,7 +84,7 @@ yazmanız yeterli olacaktır.
 ### 1. Klasör Yapısı
 
 |-- \
-|---- .tmp/ \
+|---- [.tmp/](#.tmp) \
 |---- dev/ \
 |---- dist/ \
 |---- .vscode/ \
