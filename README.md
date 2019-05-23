@@ -189,7 +189,7 @@ yazarak çalıştırabilirsiniz.
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [Iconların kullanımı](recipies/ADDING_NEW_ICON.md)                                      | Projenin içinde iconların nasıl yükleneceği ve kullanacağını açıklar                    |
 | [Yeni bir javascript dosyası oluşturmak](recipies/ADDING_NEW_JS_FILE.md)                | Projenin içinde yeni bir javascript dosyası oluşturulduğunda neler yapılacağını açıklar |
-| [Yeni bir kütüphane eklendiğinde yapılacaklar](recipies/ADDING_NEW_EXTERNAL_JS_FILE.md) |  Projeye yeni bir kütüphane yüklendiğinde neler yapılacağını açıklar                    |
+| [Yeni bir kütüphane eklendiğinde yapılacaklar](recipies/ADDING_NEW_EXTERNAL_JS_FILE.md) | Projeye yeni bir kütüphane yüklendiğinde neler yapılacağını açıklar                     |
 
 ## License
 
