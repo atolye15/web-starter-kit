@@ -12,6 +12,7 @@
     "editorconfig.editorconfig", // Editor Config
     "zignd.html-css-class-completion", // IntelliSense for CSS class names in HTML
     "mrmlnc.vscode-scss", // SCSS IntelliSense
-    "christian-kohler.path-intellisense" // Path IntelliSense
+    "christian-kohler.path-intellisense", // Path IntelliSense
+    "rebornix.project-snippets" // Project Snippets
   ]
 }
