@@ -1,1 +1,12 @@
-{}
+{
+  "svg:icon": {
+    "prefix": "svg:icon",
+    "body": ["<svg class=\"icon\">", "\t<use xlink:href=\"#icon-$1\"></use>", "</svg>"],
+    "description": "Creates svg icon"
+  },
+  "Include with only": {
+    "prefix": "incwo",
+    "body": ["{% include \"${1:template}\" with {${2}} only %}$0"],
+    "description": "Include with only"
+  }
+}

@@ -1,1 +1,90 @@
-{}
+{
+  "Comment": {
+    "prefix": "comm",
+    "body": ["//", "// $0", "//"],
+    "description": "Scss normal comment"
+  },
+  "Comment Medium": {
+    "prefix": "comm:md",
+    "body": ["//", "// $0", "// -------------------------"],
+    "description": "Scss medium comment"
+  },
+  "Comment Large": {
+    "prefix": "comm:lg",
+    "body": ["//", "// $0", "// --------------------------------------------------"],
+    "description": "Scss large comment"
+  },
+  "Component": {
+    "prefix": "scss:comp",
+    "body": [
+      "",
+      "//",
+      "// ${TM_FILENAME_BASE}",
+      "//",
+      "// Markup:",
+      "// ",
+      "//",
+      "// Styleguide ",
+      "",
+      ".${TM_FILENAME_BASE} {",
+      "",
+      "  //",
+      "  // Elements",
+      "  // -------------------------",
+      "    ${0}",
+      "  //",
+      "  // Modifiers",
+      "  // -------------------------",
+      "",
+      "}"
+    ],
+    "description": "Component layout"
+  },
+  "Module": {
+    "prefix": "scss:module",
+    "body": [
+      "",
+      "//",
+      "// $1",
+      "// --------------------------------------------------",
+      "",
+      ".${4} {",
+      "",
+      "  //",
+      "  // Elements",
+      "  // -------------------------",
+      "    ${0}",
+      "  //",
+      "  // Modifiers",
+      "  // -------------------------",
+      "",
+      "}"
+    ],
+    "description": "Component layout"
+  },
+  "Import": {
+    "prefix": "imp",
+    "body": ["@import '${1}';"],
+    "description": "Import"
+  },
+  "StyelintDisable": {
+    "prefix": "std",
+    "body": "/* stylelint-disable */",
+    "description": "Styelint Disable"
+  },
+  "StyelintEnable": {
+    "prefix": "ste",
+    "body": "/* stylelint-enable */",
+    "description": "Styelint Enable"
+  },
+  "StyelintDisableLine": {
+    "prefix": "stdl",
+    "body": "// stylelint-disable-line",
+    "description": "Styelint Disable Line"
+  },
+  "StyelintDisableNextLine": {
+    "prefix": "stdnl",
+    "body": "// stylelint-disable-next-line",
+    "description": "Styelint Disable Nexy Line"
+  }
+}

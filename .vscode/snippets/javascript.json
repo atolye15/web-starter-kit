@@ -1,1 +1,27 @@
-{}
+{
+  "Print to console": {
+    "prefix": "cl",
+    "body": ["console.log($1)"],
+    "description": "Log output to console"
+  },
+  "EslintDisable": {
+    "prefix": "esd",
+    "body": "/* eslint-disable */",
+    "description": "Eslint Disable"
+  },
+  "EslintEnable": {
+    "prefix": "ese",
+    "body": "/* eslint-enable */",
+    "description": "Eslint Enable"
+  },
+  "EslintDisableLine": {
+    "prefix": "esdl",
+    "body": "// eslint-disable-line",
+    "description": "Eslint Disable Line"
+  },
+  "EslintDisableNextLine": {
+    "prefix": "esdnl",
+    "body": "// eslint-disable-next-line",
+    "description": "Eslint Disable Line"
+  }
+}
