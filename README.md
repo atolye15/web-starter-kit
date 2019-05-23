@@ -183,6 +183,10 @@ yazarak çalıştırabilirsiniz.
 | start-deploy-prod   | projeyi deploy ve production moduyla beraber başlatır              |
 | publish-github      | projeyi github pages ile publish eder                              |
 
+## 3. Örnek Kullanımlar
+
+### 1. [Iconların kullanımı](recipies/ADDING_NEW_ICON.md)
+
 ## License
 
 Web Starter Kit is MIT license
