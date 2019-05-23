@@ -79,6 +79,7 @@
     "gulp-tasks": "gulp --tasks"
   },
   "dependencies": {
+    "buttono": "^0.5.2",
     "normalize.css": "^8.0.1"
   }
 }
