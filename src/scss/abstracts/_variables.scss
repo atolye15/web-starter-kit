@@ -7,24 +7,13 @@
 // SCAFFOLDING
 // -------------------------
 
-// `<body>` nin arkaplan rengi
-$g-body-bg: $color-white !default;
-
-//** `<body>` nin Global text rengi.
-$g-text-color: color-palette('gray', 900) !default;
-
-// Border Color
-$g-border-color: color-palette('gray', 100) !default;
-
 // Transition Duration
 $g-transition-duration: 0.4s;
 
 //  LINK
 // -------------------------
 
-$g-link-color: $primary-color !default;
 $g-link-transition: null;
-$g-link-hover-color: darken($g-link-color, 15%) !default;
 $g-link-hover-decoration: underline !default;
 
 //  TYPOGRAPHY
@@ -54,12 +43,6 @@ $g-line-height-computed: px-to-rem(($g-font-size-base-px * $g-line-height-base))
 $g-headings-font-family: inherit !default;
 $g-headings-font-weight: 500 !default;
 $g-headings-line-height: 1.1 !default;
-$g-headings-color: inherit !default;
-
-// Text muted color
-$g-text-muted-color: color-palette('gray', 600) !default;
-// Horizontal line color.
-$g-hr-border-color: $g-border-color !default;
 
 // FONT SIZING
 // -------------------------
