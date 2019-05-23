@@ -11,10 +11,10 @@
 $g-body-bg: $color-white !default;
 
 //** `<body>` nin Global text rengi.
-$g-text-color: $color-oil !default;
+$g-text-color: color-palette('gray', 900) !default;
 
 // Border Color
-$g-border-color: $color-smoke;
+$g-border-color: color-palette('gray', 100) !default;
 
 // Transition Duration
 $g-transition-duration: 0.4s;
@@ -57,7 +57,7 @@ $g-headings-line-height: 1.1 !default;
 $g-headings-color: inherit !default;
 
 // Text muted color
-$g-text-muted-color: $color-monsoon !default;
+$g-text-muted-color: color-palette('gray', 600) !default;
 // Horizontal line color.
 $g-hr-border-color: $g-border-color !default;
 
@@ -140,15 +140,15 @@ $g-pads: (
 //  FORMS CONTROL VARIABLES
 // -------------------------
 
-$c-input-font-family: null !default; // `<input>` background color
-$c-input-bg-color: inherit !default; // `<input>` background color
-$c-input-bg-color-disabled: $color-smoke !default; // `<input disabled>` background color
-$c-input-color: $color-charcoal !default; // Text color for `<input>`s
-$c-input-color-placeholder: $color-monsoon !default; // Placeholder text color
-$c-input-border-color: $color-iron !default; // `<input>` border color
-$c-input-border-width: 1px !default; // `<input>` border width
-$c-input-border-radius: null !default; // `<input>` border radius
-$c-input-border-focus: #66afe9 !default; // Border color for inputs on focus
+$c-input-font-family: null !default;
+$c-input-bg-color: inherit !default;
+$c-input-bg-color-disabled: color-palette('gray', 200) !default;
+$c-input-color: color-palette('gray', 700) !default;
+$c-input-color-placeholder: color-palette('gray', 600) !default;
+$c-input-border-color: color-palette('gray', 300) !default;
+$c-input-border-width: 1px !default;
+$c-input-border-radius: null !default;
+$c-input-border-focus: #66afe9 !default;
 $c-input-font-size: $g-font-size-base !default;
 $c-input-line-height: $g-line-height-computed !default;
 $c-input-padding-vertical: px-to-rem(6px);
