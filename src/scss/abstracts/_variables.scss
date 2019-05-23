@@ -86,23 +86,23 @@ $g-gaps: (
   auto: auto,
   normal: $g-base-gap,
   small: (
-    $g-base-gap / 1.5
+    $g-base-gap / 1.5,
   ),
   xsmall: (
-    $g-base-gap / 3
+    $g-base-gap / 3,
   ),
   2xsmall: (
-    $g-base-gap / 6
+    $g-base-gap / 6,
   ),
   medium: (
-    $g-base-gap * (4 / 3)
+    $g-base-gap * (4 / 3),
   ),
   large: (
-    $g-base-gap * (5 / 3)
+    $g-base-gap * (5 / 3),
   ),
   xlarge: (
-    $g-base-gap * 2
-  )
+    $g-base-gap * 2,
+  ),
 );
 
 // PADDINGS
@@ -115,26 +115,26 @@ $g-base-padding: px-to-rem(32px);
 $g-pads: (
   normal: $g-base-padding,
   small: (
-    $g-base-padding * 0.75
+    $g-base-padding * 0.75,
   ),
   xsmall: (
-    $g-base-padding / 2
+    $g-base-padding / 2,
   ),
   2xsmall: (
-    $g-base-padding / 4
+    $g-base-padding / 4,
   ),
   medium: (
-    $g-base-padding * 1.25
+    $g-base-padding * 1.25,
   ),
   large: (
-    $g-base-padding * 1.5
+    $g-base-padding * 1.5,
   ),
   xlarge: (
-    $g-base-padding * 2
+    $g-base-padding * 2,
   ),
   2xlarge: (
-    $g-base-padding * 3
-  )
+    $g-base-padding * 3,
+  ),
 );
 
 //  BUTTONS VARIABLES
@@ -187,7 +187,7 @@ $grid-breakpoints: (
   sm: px-to-rem(544px),
   md: px-to-rem(768px),
   lg: px-to-rem(992px),
-  xl: px-to-rem(1200px)
+  xl: px-to-rem(1200px),
 ) !default;
 
 // Grid containers
@@ -198,7 +198,7 @@ $container-max-widths: (
   sm: px-to-rem(576px),
   md: px-to-rem(720px),
   lg: px-to-rem(940px),
-  xl: px-to-rem(1140px)
+  xl: px-to-rem(1140px),
 ) !default;
 
 // Grid columns
