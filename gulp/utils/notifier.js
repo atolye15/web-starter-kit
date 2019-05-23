@@ -3,6 +3,7 @@ import c from 'ansi-colors';
 
 import baseNotifier from 'node-notifier';
 import configs from '../../configs';
+import { isProduction } from './parseArguments';
 
 /**
  * 1. Due to a bug in `node-notifier` we have to set timeout to 3,
@@ -15,7 +16,7 @@ import configs from '../../configs';
  */
 
 function notifier(message, cb = () => {}) {
-  if (process.env.DISABLE_NOTIFIER) {
+  if (isProduction) {
     return cb();
   }
 
