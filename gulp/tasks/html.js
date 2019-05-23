@@ -4,15 +4,19 @@ import path from 'path';
 import plumber from 'gulp-plumber';
 import twig from 'gulp-twig';
 import rename from 'gulp-rename';
+import cx from 'classnames';
 
 import configs from '../../configs';
 import { isProduction } from '../utils/parseArguments';
-import twigController from '../../src/twig/controller';
 import { notifierErrorHandler } from '../utils/notifier';
 
 const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 const helperFunctions = [
+  {
+    name: 'classNames',
+    func: (...args) => cx(...args),
+  },
   {
     name: 'assets',
     func: args => args,
@@ -21,7 +25,6 @@ const helperFunctions = [
     name: 'isFileExists',
     func: filePath => fs.existsSync(path.resolve(__dirname, '../../../src/twig', filePath)),
   },
-
   {
     name: 'isProduction',
     func: () => isProduction,
@@ -38,9 +41,7 @@ export default function() {
     )
     .pipe(
       twig({
-        data: twigController.data,
-        functions: helperFunctions.concat(twigController.functions),
-        filters: twigController.filters,
+        functions: helperFunctions,
       }),
     )
     .pipe(
