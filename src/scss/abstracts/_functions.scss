@@ -65,3 +65,16 @@
   }
   @return ($px / $base) * 1em;
 }
+
+//
+// Color Pallete
+//
+// @param: {String} $palete - Palette Name
+// @param: {Number} $weight - Color Weight
+//
+// @returns {Color} the requested color from the color palette
+//
+
+@function color-palette($palette: 'gray', $weight: 100) {
+  @return map-get(map-get($g-color-palettes, $palette), $weight);
+}

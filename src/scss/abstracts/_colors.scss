@@ -4,55 +4,60 @@
 //  Styleguide Colors
 
 //
+//  Palletes
+//
+//  Styleguide Colors.1-Palettes
+
+//
+// Gray Palette
+//
+// Colors:
+// 50: #fafafa
+// 100: #f5f5f5
+// 200: #eee
+// 300: #e0e0e0
+// 400: #bdbdbd
+// 500: #9e9e9e
+// 600: #757575
+// 700: #616161
+// 800: #424242
+// 900: #212121
+//
+// Styleguide Colors.1-Palettes.Gray
+
+$color-palette-gray: (
+  50: #fafafa,
+  100: #f5f5f5,
+  200: #eee,
+  300: #e0e0e0,
+  400: #bdbdbd,
+  500: #9e9e9e,
+  600: #757575,
+  700: #616161,
+  800: #424242,
+  900: #212121,
+);
+
+$g-color-palettes: (
+  'gray': $color-palette-gray,
+);
+
+//
 // Default Colors
 //
 // Colors:
 // $color-white: #fff
-// $color-ghost: #fafafa
-// $color-snow: #f9f9f9
-// $color-vapor: #f6f6f6
-// $color-white-smoke: #f5f5f5
-// $color-silver: #efefef
-// $color-smoke: #eee
-// $color-gainsboro: #ddd
-// $color-iron: #ccc
-// $color-base: #aaa
-// $color-aluminum: #999
-// $color-jumbo: #888
-// $color-monsoon: #777
-// $color-steel: #666
-// $color-charcoal: #555
-// $color-tuatara: #444
-// $color-oil: #333
-// $color-jet: #222
 // $color-black: #000
 //
-// Styleguide Colors.Default-Colors
+// Styleguide Colors.2-Default-Colors
 
 $color-white: #fff;
-$color-ghost: #fafafa;
-$color-snow: #f9f9f9;
-$color-vapor: #f6f6f6;
-$color-white-smoke: #f5f5f5;
-$color-silver: #efefef;
-$color-smoke: #eee;
-$color-gainsboro: #ddd;
-$color-iron: #ccc;
-$color-base: #aaa;
-$color-aluminum: #999;
-$color-jumbo: #888;
-$color-monsoon: #777;
-$color-steel: #666;
-$color-charcoal: #555;
-$color-tuatara: #444;
-$color-oil: #333;
-$color-jet: #222;
 $color-black: #000;
 
 //
 // Custom Colors
 //
-// Styleguide Colors.Custom-Colors
+// Styleguide Colors.3-Custom-Colors
 
 //
 // Project Colors
@@ -65,7 +70,7 @@ $color-black: #000;
 // $warning-color: #f08a24
 // $info-color: #a0d3e8
 //
-// Styleguide Colors.Project-Colors
+// Styleguide Colors.4-Project-Colors
 
 $primary-color: #008cba;
 $secondary-color: #e7e7e7;
@@ -73,3 +78,16 @@ $alert-color: #f04124;
 $success-color: #43ac6a;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
+
+//
+// Project Color Configs
+//
+
+$g-body-bg: $color-white !default;
+$g-text-color: color-palette('gray', 900) !default;
+$g-headings-color: inherit !default;
+$g-link-color: $primary-color !default;
+$g-link-hover-color: darken($g-link-color, 15%) !default;
+$g-border-color: color-palette('gray', 100) !default;
+$g-text-muted-color: color-palette('gray', 600) !default;
+$g-hr-border-color: $g-border-color !default;
