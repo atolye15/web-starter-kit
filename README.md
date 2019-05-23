@@ -185,9 +185,9 @@ yazarak çalıştırabilirsiniz.
 
 ### 3. Örnek Kullanımlar
 
-1. [Iconların kullanımı](recipies/ADDING_NEW_ICON.md)
-2. [Yeni bir javascript dosyası oluşturmak](recipies/ADDING_NEW_JS_FILE.md)
-3. [Yeni bir kütüphane eklendiğinde yapılacaklar](recipies/ADDING_NEW_EXTERNAL_JS_FILE.md)
+- [Iconların kullanımı](recipies/ADDING_NEW_ICON.md)
+- [Yeni bir javascript dosyası oluşturmak](recipies/ADDING_NEW_JS_FILE.md)
+- [Yeni bir kütüphane eklendiğinde yapılacaklar](recipies/ADDING_NEW_EXTERNAL_JS_FILE.md)
 
 ## License
 
