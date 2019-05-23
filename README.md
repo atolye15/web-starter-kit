@@ -2,10 +2,6 @@
 
 Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir başlangıç paketidir. Temel amacı her proje başlangıcında yapılan rutin işlerden sizi kurtarmak ve Frontend geliştiriciler arasında senkronizasyonu sağlamaktır.
 
-[TOCM]
-
-[TOC]
-
 ## İçeriği
 
 - Twig (HTML Template Sistemi)
@@ -22,7 +18,7 @@ ve daha fazlası
 - [Yarn (Yarn Package Manager)](https://yarnpkg.com/lang/en/)
 - [Git](http://git-scm.com/)
 
-### Browser Desteği
+## Browser Desteği
 
 - Chrome
 - Edge
@@ -42,13 +38,15 @@ ve daha fazlası
 
 ## Kurulum
 
-### 1. Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
+### 1. Web Starter Kit'i edinmek
+
+Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
 
 ```bash
 git clone git@github.com:atolye15/web-starter-kit.git proje-klasoru
 ```
 
-### 2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak.
+### 2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak
 
 ```bash
 cd proje-klasoru
