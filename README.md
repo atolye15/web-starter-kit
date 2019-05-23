@@ -167,9 +167,9 @@ yazarak çalıştırabilirsiniz.
 | lint                | lint:js ve lint:css komutlarını çalıştırır.                        |
 | lint:js             | eslint'i javascript dosyaları için çalıştırır                      |
 | lint:css            | stylelint' i scss dosyaları için çalıştırır                        |
-| fmt                 | fmt:js ve fmt:css komutlarını çalıştırır                           |
-| fmt:js              | prettier' ı javascript dosyaları için çalıştırır                   |
-| fmt:css             | prettier' ı scss dosyaları için çalıştırır                         |
+| format              | format:js ve format:css komutlarını çalıştırır                     |
+| format:js           | prettier' ı javascript dosyaları için çalıştırır                   |
+| format:css          | prettier' ı scss dosyaları için çalıştırır                         |
 | gulp                | gulp komutunu çalıştırır                                           |
 | generate-svg-sprite | image:sprite task' ını çalıştırır                                  |
 | build-styleguide    | styleguide' ı build eder                                           |
