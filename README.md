@@ -1,121 +1,86 @@
-# Atölye15 Web Starter Kit
+# Atölye15 - Web Starter Kit
 
-Web Starter Kit Atolye15 Front-end developerları için hazırlanmış bir başlangıç paketidir. Temel amacı her proje başlangıçlarında yapılan rutin işlerden sizi kurtarmak ve Front-end geliştiriciler arasında senkronizasyonu sağlamaktır. [Atölye15 CSS Stil Rehberi](http://gitlab.atolye15.net/common/wiki/wikis/css-style-guide) kuralları çerçevesinde yazılmıştır.
+Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir başlangıç paketidir. Temel amacı her proje başlangıcında yapılan rutin işlerden sizi kurtarmak ve Frontend geliştiriciler arasında senkronizasyonu sağlamaktır.
 
-## İçerisinde neler mevcut ?
+[TOCM]
 
-* Twig (HTML Template Sitemi)
-* Sass (CSS extension language)
-* Autoprefixer
-* Css media queryleri gruplama
-* Resimleri optimize etme
-* Babel ile ES2015 (JavaScript compiler)
-* Eslint (Javascript Lint)
-* Minifications
-* Sourcemaps
-* Responsive boilerplate
+[TOC]
+
+## İçeriği
+
+- Twig (HTML Template Sistemi)
+- Sass (CSS extension language)
+- Babel ile ES2015 (Javascript compiler)
+- Eslint
+- Stylelint
+
+ve daha fazlası
 
 ## Sistem Gereksinimleri
 
-Web Starter Kit ile yeni bir projeye başlayabilmeniz için bilgisayarınızda aşağıda listelenen gereksinimler yüklü olmalıdır.
+- [Node.js](http://nodejs.org/)
+- [Yarn (Yarn Package Manager)](https://yarnpkg.com/lang/en/)
+- [Git](http://git-scm.com/)
 
-* [Node.js](http://nodejs.org/)
-* [Npm (Node Package Manager)](https://www.npmjs.org/)
-* [Ruby](https://www.ruby-lang.org/)
-* [Sass](http://sass-lang.com/install/)
-* [Git](http://git-scm.com/)
-* [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
+### Browser Desteği
 
-## Kurulum ?
+- Chrome
+- Edge
+- Firefox
+- Safari
 
-1. Web Starter Kit'in güncel halini [buradan](http://gitlab.atolye15.net/frontend/web-starter-kit/repository/archive.zip?ref=master) indirin yada
+## Özellikler
+
+| Özellik                     | Açıklama                                                                                                    |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Kolay Başlangıç             | Kurulumu tamamladıktan sonra hemen kod yazmaya başlayabilirsiniz.                                           |
+| Sass Desteği                | Proje SASS compilera sahiptir. Temel değişkenler mixinler fonksiyonlar hazır olarak eliniz de bulunmaktadır |
+| Performans Optimizasyonları | Resimlerin küçültülmesi, js ve css dosyalarının min halleri çıktı olarak verilmektedir                      |
+| HTML template engine        | Template engine olarak twig.js kullanır. Standart HTML ile boğulmamanızı sağlar                             |
+| Code Linting                | Stylelint ve eslint için gerekli linter configleri ayarlanmış olup. Sizin standardınız belirlenmiştir       |
+| ES2015 Support              |                                                                                                             |
+
+## Kurulum
+
+### 1. Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
 
 ```bash
-git clone git@gitlab.atolye15.net:frontend/web-starter-kit.git proje-klasoru
+git clone git@github.com:atolye15/web-starter-kit.git proje-klasoru
 ```
 
-şeklinde klonlayın.
-
-2. İndirdiğiniz/Klonladığınız klasöre girin. Terminal ile
+### 2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak.
 
 ```bash
-cd Desktop/Dev/proje-klasoru
-# Projeye temiz bir git geçmişi ile başlamak için
-# clone repoyu silelim ve tekrar oluşturalım
+cd proje-klasoru
+
+# Projeye temiz bir git geçmişi ile başlamak için clone repoyu silelim ve tekrar oluşturalım.
 rm -rf .git
 git init
-# Dosyaları commitleyelim
+
+# İlk commitimizi atalım.
 git add -A
 git commit -m "İlk Commit"
 ```
 
-3. Projenizde kullanacağınız bağımlılıkları
+### 3. Projenizde Kullanacağınız Bağımlılıklar
+
+Projenizde kullanılan bağımlılıkları kurmak için,
 
 ```bash
-npm install
-# npm install da sorun yaşarsanız, bu komutu kullanın.
-sudo npm install
+yarn
+
+# yarn komutunda sorun yaşarsanız, bu komutu kullanın.
+sudo yarn
 ```
 
-komutu ile kurabilirsiniz.
-
-4. Bağımlılıkları indirdikten sonra terminalinizde;
+### 4. Projeyi başlatma
 
 ```bash
-gulp build # Geliştirme ortamını develop moda hazırlar. --prod yazarak çalışma ortamını production olarak belirleyebilirsiniz.
-gulp serve # watch işlemlerini başlatır.
+# Geliştirme ortamını ve styleguide' ı başlatır ve watch işlemini başlatır.
+yarn start
 ```
 
-komutunu yazarak grunt izlemeyi başlatabilirsiniz.
-
-## Klasör Yapısı
-
-```html
-root
-├── dev
-├── dist
-├── .tmp
-├── src
-│   ├── fonts
-│   ├── img
-│   ├── js
-│   ├── libs
-│   ├── scss
-│   ├── twig
-│   └── vendors
-├── .babelrc
-├── .editorconfig
-├── .gitattributes
-├── .gitignore
-├── config.js
-├── gulpfile.babel.js
-└── package.json
-```
-
-* `dev` Development ortamında build işlemi dosyaları bu klasör içerisine oluşturur.
-* `prod` Production ortamında build işlemi dosyaları bu klasör içerisinde oluşturur.
-* `.tmp` Bu klasör minification ve compile işlemleri için yedekleme klasörüdür. Sistem tarafından kullanılır. Kaynak dosyalara yeni bir ekleme olduğunda sistem sadece yeni eklenmiş dosya üzerinde işlem yaparak bu dosyayı işlenmiş dosyaların içerisine atar. Bu sayede gereksiz yere tekrardan tüm dosyaların işlenmesinin önüne geçilmek amaçlanmıştır.
-* `src` Kaynak kodların bulunduğu klasördür
-* `src/js` Javascript (babel) dosyalarının bulunduğu klasördür. Burada oluşturduğunuz dosyalar **config.js** da **jsFiles** değişkeni içerisinde **sadece dosya adları** yazılarak sisteme dahil edilir.
-* `src/fonts` Font dosyaları bu klasör içerinde bulunur.
-* `src/img` Resim dosyaları bu klasör içerisinde bulunur.
-* `libs` Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosyaları içermelidir. Burada eklediğiniz dosyalar **config.js** da **libFiles** değişkeni içerisinde **sadece dosya adları** yazılarak sisteme dahil edilir.
-* `scss` Scss dosyaları bu klasör içerisinde bulunur. Bu klasör içerisindeki klasörlerinde özelliklerine [Buradan](gitlab.atolye15.net/frontend/atolye15-style-guide/blob/master/css-style-guilde.md#dosya-yapisi) ulaşabilirsiniz.
-* `tpl` HTML Template dosyaları bu klasörde bulunur.
-* `vendors` Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır. Genellikle kople kütüphane klasörlerini projeye eklemek için kullanılmalıdır. Eğer ekliyeceğiniz kütüphanenin sadece javascript ve css dosyası varsa, javascript dosyasını **libs** klasörüne, css dosyasını **scss/plugins** klasörüne (\_plugin-name.scss dosya ismi ile) ekleyip. javascript dosyasını **config.js** de, css dosyasını **scss/plugins.scss** de import ederek sisteme dahil edin.
-
-## Projeyi Gitlab a yüklemek
-
-[gitlab.atolye15.net](http://gitlab.atolye15.net) e giriş yaptıktan sonra, sağ üst menüden **New Project** butonuna tıklayarak projenizi oluşturunuz.
-Buradan projenizin gitlab ayarlarını yaparak **Create project** butonuna tıklayınız.
-Projenizi oluşturduktan SSH bölümünde yazan
-
-```bash
-git@gitlab.atolye15.net:frontend/project-name.git
-```
-
-repo adresini kopyalayıp, bilgisayarınızda terminalinizi açıp, proje klasörünüzün içine girin.
-Projenizin remote adresini eklemek için;
+### 5. Projeyi Github' a yüklemek
 
 ```bash
 git remote add origin git@gitlab.atolye15.net:frontend/project-name.git
@@ -131,53 +96,101 @@ git push origin --all
 
 yazmanız yeterli olacaktır.
 
-Projenizde eğer tag oluşturmuşsanız veya mevcut tagları remote a yüklemek isterseniz
+## Dökümantasyon
 
-```bash
-git push origin --tags
+### 1. Klasör Yapısı
+
+```
+root
+├── .tmp/                 # Bu klasör minification ve compile işlemleri için yedekleme klasörüdür. Sistem tarafından kullanılır.
+├── dev/                  # Development ortamında build işlemi dosyaları bu klasör içerisine oluşturur.
+├── dist/                 # Production ortamında build işlemi dosyaları bu klasör içerisinde oluşturur.
+├── .vscode/              # Visual Studio Code için gerekli ayarlar tutulur.
+├── gulp/                 # Bütün gulp tasksları bu klasör için de bulunur.
+│     ├── assets/         # Gulp Tasklarında kullanılacak static assetsler bu klasör içinde bulunur.
+│     ├── tasks/          # Gulp tasklarının hepsi bu dosya içinde bulunur.
+│     └── utils/          # Gulp tasklarının ihtiyaç duyduğu bütün utils fonksiyonları bu dosya içinde bulunur.
+├── kss/                  # Styleguide için kullanılan kss paketinin ayarları tutulur.
+├── src/                  # Geliştirme ortamının bulunduğu dosyalar. Bu dosyalar gulp tarafından derlenip dev/ ve dist/ dosyaları oluşturur.
+│     ├── fonts/          # Proje için gerekli font dosyaların derlenmesi için bu dosya içine atılır.
+│     ├── img/            # Proje için gerekli resimler bu dosya içine atılır.
+│       └── icons/        # Proje için svg iconların derlenebilmesi için svg iconları bu dosyada tutulur.
+│     ├── js/             # Projede kullanılan javascript dosyalarının derlenmesi için js dosyaları bu dosya içinde tutulur.
+│     ├── libs/           # Projeye dahil edilecek Javascript dosyaları. Bu klasör sadece javascript dosyaları içermelidir. Burada eklediğiniz dosyalar config.js da libFiles değişkeni içerisinde sadece dosya adları yazılarak sisteme dahil edilir.
+│     ├── scss/           # Scss dosyaları bu klasör içerisinde bulunur.
+│       ├── abstracts/
+│         └── mixins/
+│       ├── base/
+│         └── utilities/
+│       ├── components/
+│       ├── objects/
+│       ├──pages/
+│       └── vendors/
+│     ├── vendors/        # Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
+├── twig/                 # Projenin twig dosyaları bu klasör içinde bulunuyor.
+│   ├── page-contents/
+│   ├── pages/
+│   └── partials/
+├── .babelrc
+├── .browserlistrc
+├── .editorconfig
+├── .eslintrc.json
+├── .gitattributes
+├── .gitignore
+├── .prettierignore
+├── .prettierrc
+├── .stylelintignore
+├── .stylelintrc
+├── .archive.sh
+├── CHANGELOG.md
+├── config.js
+├── gulpfile.babel.js
+├── package.json
+├── README.md
+├── yarn.lock
 ```
 
-komutu ile taglarınızı remote a atabilirsiniz.
+### 2. Komutlar
 
----
-
-## Gulp Kullanımı
-
-Gulp Node.Js ile çalışan, terminal aracılığı ile konrol ettiğimiz bir görev çalıştırıcısıdır. Web geliştirme sürecinde elle yaptığımız rutin işleri üzerine alarak bu işleri otomatikleştirir ve Front-end geliştirme yükünü hafifletir.
-
-### Gulp Kurulumu
-
-Gulp kullabilmek için Node.Js kurulu olması gereklidir. Node.Js Kurulumunu yaptıktan sonra
+Gerekli Komutları,
 
 ```bash
-npm install --global gulp
+yarn [komut-ismi]
 ```
 
-komutu ile Gulp'ı yükleyebilirsiniz.
+yazarak çalıştırabilirsiniz.
 
-### Gulp Taskları
+| Komut               | Açıklama                                                           |
+| :------------------ | ------------------------------------------------------------------ |
+| node_modules-chmod  | node_modules dosyasını 777 iznini ayarlar                          |
+| start-server        | serveri elle başlatır                                              |
+| lint                | lint:js ve lint:css komutlarını çalıştırır.                        |
+| lint:js             | eslint'i javascript dosyaları için çalıştırır                      |
+| lint:css            | stylelint' i scss dosyaları için çalıştırır                        |
+| fmt                 | fmt:js ve fmt:css komutlarını çalıştırır                           |
+| fmt:js              | prettier' ı javascript dosyaları için çalıştırır                   |
+| fmt:css             | prettier' ı scss dosyaları için çalıştırır                         |
+| gulp                | gulp komutunu çalıştırır                                           |
+| generate-svg-sprite | image:sprite task' ını çalıştırır                                  |
+| build-styleguide    | styleguide' ı build eder                                           |
+| build               | projeyi develop modda build eder                                   |
+| build-prod          | projeyi production modda build eder                                |
+| deploy              | projeyi deploy eder                                                |
+| deploy-prod         | projeyi production moduyla beraber deploy eder                     |
+| start               | projeyi başlatır. styleguide' ı oluşturur. watch işlemini başlatır |
+| start-prod          | projeyi production modunda başlatır                                |
+| start-deploy        | projeyi deploy modunda başlatır                                    |
+| start-deploy-prod   | projeyi deploy ve production moduyla beraber başlatır              |
+| publish-github      | projeyi github pages ile publish eder                              |
 
-#### gulp build
+### 3. Örnek Kullanımlar
 
-Bu görev projeyi çalışma ortamına göre belirlenen hedef klasöre hazırlar.
-Eğer komutun sonuna `--prod` eklenirse çalışma ortamı production, hiç bir şey yazılmaz ise development olarak belirlenir.
+| Kullanım                                                                                | Açıklama                                                                                |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [Iconların kullanımı](recipies/ADDING_NEW_ICON.md)                                      | Projenin içinde iconların nasıl yükleneceği ve kullanacağını açıklar                    |
+| [Yeni bir javascript dosyası oluşturmak](recipies/ADDING_NEW_JS_FILE.md)                | Projenin içinde yeni bir javascript dosyası oluşturulduğunda neler yapılacağını açıklar |
+| [Yeni bir kütüphane eklendiğinde yapılacaklar](recipies/ADDING_NEW_EXTERNAL_JS_FILE.md) | Projeye yeni bir kütüphane yüklendiğinde neler yapılacağını açıklar                     |
 
-#### gulp serve
+## License
 
-Geliştirme modunda twig, sass, resim ve babel javascript dosyaların izleyerek, değişimleri halinde derleme işlemini gerçekleştirir.
-
-#### gulp clean:dist
-
-Çalışma ortamına göre belirlenen hedef klasörün içerisini temizler.
-
-#### gulp clean:imgCache
-
-Minify edilip `.tmp/img` içerisine yedeklenmiş resim dosyalarını temizler.
-
-#### gulp clean:babelCache
-
-Derlenip `.tmp/babel` içerisine yedeklenmiş javascript dosyalarını temizler.
-
-#### gulp styleguide
-
-Styleguide'ı oluşturur.
+Web Starter Kit is MIT license
