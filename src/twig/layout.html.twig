@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ locale }}">
+<html lang="en">
   <head>
     <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
     {% block meta %}
       <title>Default Project</title>
     {% endblock %}
-    <link rel=stylesheet href="css/main{% if production %}.min{% endif %}.css">
+    <link rel=stylesheet href="css/main{% if isProduction() %}.min{% endif %}.css">
     {% block headerStylesheets %}{% endblock %}
     {% block headerJavascripts %}{% endblock %}
   </head>
@@ -21,7 +21,7 @@
 
   <!-- Javascript Files -->
   {% block footerVendorJavascripts %}{% endblock %}
-  {% if production %}
+  {% if isProduction() %}
   <script src="js/app.min.js"></script>
   {% else %}
   <script src="js/libs.js"></script>
