@@ -183,7 +183,7 @@ yazarak çalıştırabilirsiniz.
 | start-deploy-prod   | projeyi deploy ve production moduyla beraber başlatır              |
 | publish-github      | projeyi github pages ile publish eder                              |
 
-## 3. Örnek Kullanımlar
+### 3. Örnek Kullanımlar
 
 | Kullanım                                                                                | Açıklama                                                                                |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
