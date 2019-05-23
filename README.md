@@ -2,10 +2,6 @@
 
 Web Starter Kit, Atölye15 Front-end developerları için hazırlanmış bir başlangıç paketidir. Temel amacı her proje başlangıcında yapılan rutin işlerden sizi kurtarmak ve Frontend geliştiriciler arasında senkronizasyonu sağlamaktır.
 
-**Table of Contents**
-
-<!-- TOC -->autoauto- [Atölye15 - Web Starter Kit](#atölye15---web-starter-kit)auto  - [İçeriği](#i̇çeriği)auto  - [Sistem Gereksinimleri](#sistem-gereksinimleri)auto  - [Browser Desteği](#browser-desteği)auto  - [Özellikler](#özellikler)auto  - [Kurulum](#kurulum)auto    - [1. Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.](#1-web-starter-kitin-güncel-halini-buradanhttpsgithubcomatolye15web-starter-kit-indirin-yada)auto    - [2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak.](#2-i̇ndirdiğinizklonladığınız-klasörü-githuba-hazırlamak)auto    - [3. Projenizde Kullanacağınız Bağımlılıklar](#3-projenizde-kullanacağınız-bağımlılıklar)auto    - [4. Projeyi başlatma](#4-projeyi-başlatma)auto    - [5. Projeyi Github' a yüklemek](#5-projeyi-github-a-yüklemek)auto  - [Dökümantasyon](#dökümantasyon)auto    - [1. Klasör Yapısı](#1-klasör-yapısı)auto    - [2. Komutlar](#2-komutlar)auto    - [3. Örnek Kullanımlar](#3-örnek-kullanımlar)auto  - [License](#license)autoauto<!-- /TOC -->
-
 ## İçeriği
 
 - Twig (HTML Template Sistemi)
@@ -42,13 +38,15 @@ ve daha fazlası
 
 ## Kurulum
 
-### 1. Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
+### 1. Web Starter Kit'i edinmek
+
+Web Starter Kit'in güncel halini [buradan](https://github.com/atolye15/web-starter-kit) indirin yada.
 
 ```bash
 git clone git@github.com:atolye15/web-starter-kit.git proje-klasoru
 ```
 
-### 2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak.
+### 2. İndirdiğiniz/Klonladığınız klasörü githuba hazırlamak
 
 ```bash
 cd proje-klasoru
