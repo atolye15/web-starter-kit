@@ -137,26 +137,6 @@ $g-pads: (
   ),
 );
 
-//  BUTTONS VARIABLES
-// -------------------------
-
-$c-button-function-factor: -20% !default; // Butunun arkaplan rengini aydınlatma oranı
-$c-button-font-family: null !default; // Butonun fontu
-$c-button-bg-color: $primary-color !default; // Buton default bg color
-$c-button-bg-hover: scale-color(
-  $c-button-bg-color,
-  $lightness: $c-button-function-factor
-) !default; // Button default hover rengi
-$c-button-border-color: $c-button-bg-hover !default; // Button default border rengi
-$c-button-radius: px-to-rem(3px) !default; // Button default border radius
-$c-button-font-size: px-to-rem(16px) !default; // Button default font boyutu
-$c-button-line-height: (24 / 16) !default; // Button line-height
-$c-button-font-color: $color-white !default; // Button default font rengi
-$c-button-font-color-alt: $color-oil !default; // Button default font rengi
-$c-button-padding-vertical: px-to-rem(10px) !default; // Button dikey padding
-$c-button-padding-horizontal: px-to-rem(20px) !default; // Button default yatay padding
-$c-button-border-width: 0 !default; // Button default border width
-
 //  FORMS CONTROL VARIABLES
 // -------------------------
 

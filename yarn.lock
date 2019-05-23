@@ -1481,6 +1481,11 @@ bump-regex@^3.1.1:
     semver "^5.1.0"
     xtend "^4.0.1"
 
+buttono@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/buttono/-/buttono-0.5.2.tgz#4620ab88ccc8a1a9407b63bba1427e17a1a2f728"
+  integrity sha512-jb3+Obz0v+dRRB5L0dpNqXuVdc09TjwLD1jaHEBnzy2qYyjExE6KwVukTS7WztcaUiMMPrWgpBjh5eg0YhZZ6w==
+
 bytes@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
