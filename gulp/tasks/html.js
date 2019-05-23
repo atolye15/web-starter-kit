@@ -21,15 +21,14 @@ const helperFunctions = [
     name: 'isFileExists',
     func: filePath => fs.existsSync(path.resolve(__dirname, '../../../src/twig', filePath)),
   },
+
+  {
+    name: 'isProduction',
+    func: () => isProduction,
+  },
 ];
 
 export default function() {
-  /**
-   * The variable 'production' stores information about whether the working environment is production.
-   * So do not define this variable in `src/twig/data.json`!
-   */
-  twigController.data.production = isProduction;
-
   return gulp
     .src(`${configs.paths.src}/twig/pages/**/*.twig`)
     .pipe(
