@@ -120,26 +120,6 @@ $g-pads: (
   ),
 );
 
-//  FORMS CONTROL VARIABLES
-// -------------------------
-
-$c-input-font-family: null !default;
-$c-input-bg-color: inherit !default;
-$c-input-bg-color-disabled: color-palette('gray', 200) !default;
-$c-input-color: color-palette('gray', 700) !default;
-$c-input-color-placeholder: color-palette('gray', 600) !default;
-$c-input-border-color: color-palette('gray', 300) !default;
-$c-input-border-width: 1px !default;
-$c-input-border-radius: null !default;
-$c-input-border-focus: #66afe9 !default;
-$c-input-font-size: $g-font-size-base !default;
-$c-input-line-height: $g-line-height-computed !default;
-$c-input-padding-vertical: px-to-rem(6px);
-$c-input-padding-horizontal: px-to-rem(12px);
-$c-input-height-base: (
-  $c-input-line-height + ($c-input-padding-vertical * 2) + (px-to-rem($c-input-border-width) * 2)
-) !default; // Default `.form-control` height
-
 // Grid breakpoints
 //
 // Define the minimum dimensions at which your layout will change,
