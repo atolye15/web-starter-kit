@@ -1,17 +1,10 @@
-// Colors
-@import './colors';
+//
+// Abstracts
+//
 
-// Mixins
-@import './mixins/index';
-
-// Functions
 @import './functions';
-
-// Variables
+@import './colors';
 @import './variables';
-
-// Placeholder
+@import './mixins/index';
 @import './placeholders';
-
-// Keyframes
 @import './keyframes';
