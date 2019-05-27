@@ -85,6 +85,6 @@
   "StyelintDisableNextLine": {
     "prefix": "stdnl",
     "body": "// stylelint-disable-next-line",
-    "description": "Styelint Disable Nexy Line"
+    "description": "Styelint Disable Next Line"
   }
 }
