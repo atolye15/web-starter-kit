@@ -78,3 +78,73 @@
 @function color-palette($palette: 'gray', $weight: 100) {
   @return map-get(map-get($g-color-palettes, $palette), $weight);
 }
+
+//
+// Normalize Utility Breakpoints
+// @param: {Boolean|Map|List} $responsive - Responsivity data of the utility class
+//
+// @return {Map} Normalize utility breakpoints
+
+@function normalize-utility-breakpoints($responsive) {
+  $breakpoints: ();
+
+  @if $responsive == false {
+    @return ();
+  }
+
+  @if $responsive == true {
+    $responsive: map-keys($grid-breakpoints);
+  }
+
+  @each $breakpoint in $responsive {
+    @if type-of($breakpoint) == 'map' {
+      @each $key, $value in $breakpoint {
+        $breakpoints: append(
+          $breakpoints,
+          (
+            'breakpoint': $key,
+            'direction': $value,
+          )
+        );
+      }
+    } @else {
+      $breakpoints: append(
+        $breakpoints,
+        (
+          'breakpoint': $breakpoint,
+          'direction': 'all',
+        )
+      );
+    }
+  }
+
+  @return $breakpoints;
+}
+
+//
+// Transform Spaces Map To Utilty Values
+// @param: {Map} $spaces - $g-gaps or $g-pads
+//
+// @return {Map} Transformed map
+
+@function transform-spaces-map-to-utilty-values($spaces) {
+  $result: ();
+
+  @each $key, $value in $spaces {
+    @if $key == 'normal' {
+      $key: '';
+    }
+
+    $result: map-merge(
+      $result,
+      (
+        $key: (
+          value: $value,
+          responsive: true,
+        ),
+      )
+    );
+  }
+
+  @return $result;
+}
