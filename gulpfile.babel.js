@@ -197,7 +197,7 @@ gulp.task('serve', () => {
   );
 
   gulp.watch(
-    [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`],
+    [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
     gulp.series('sync:build-image', 'sync:deploy-images', 'reload'),
   );
 });
