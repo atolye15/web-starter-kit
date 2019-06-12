@@ -23,7 +23,7 @@ const helperFunctions = [
   },
   {
     name: 'isFileExists',
-    func: filePath => fs.existsSync(path.resolve(__dirname, '../../../src/twig', filePath)),
+    func: filePath => fs.existsSync(path.resolve(__dirname, '../../src/twig', filePath)),
   },
   {
     name: 'isProduction',
