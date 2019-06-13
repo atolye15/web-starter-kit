@@ -1,5 +1,3 @@
-// stylelint-disable max-nesting-depth
-
 @mixin make-utility-responsive-up($breakpoints: map-keys($grid-breakpoints)) {
   $grid-breakpoints-first: nth(map-keys($grid-breakpoints), 1);
   @each $point in $breakpoints {

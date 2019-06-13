@@ -13,8 +13,8 @@
 $c-selectbox-font-family: $c-input-font-family;
 $c-selectbox-height-base: $c-input-height-base;
 $c-selectbox-font-size: $c-input-font-size;
-$c-selectbox-arrow-size: 18px;
-$c-selectbox-arrow-gap: 6px;
+$c-selectbox-arrow-size: px-to-rem(18px);
+$c-selectbox-arrow-gap: px-to-rem(6px);
 $c-selectbox-bg-color: $c-input-bg-color;
 $c-selectbox-bg-disabled-color: $color-ghost;
 $c-selectbox-color: $c-input-color;
@@ -28,7 +28,7 @@ $c-selectbox-padding-right: (
 );
 
 .c-selectbox {
-  // stylelint-disable scale-unlimited/declaration-strict-value, property-no-vendor-prefix
+  // stylelint-disable property-no-vendor-prefix
   display: inline-block;
   height: $c-selectbox-height-base;
   padding: $c-selectbox-padding-ends $c-selectbox-padding-right $c-selectbox-padding-ends

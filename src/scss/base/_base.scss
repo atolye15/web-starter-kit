@@ -28,7 +28,7 @@ html {
 
 // IE10+ doesn't honor `<meta name="viewport">` in some cases.
 @at-root {
-  // stylelint-disable at-rule-no-vendor-prefix, csstree/validator
+  // stylelint-disable at-rule-no-vendor-prefix
   @-ms-viewport {
     width: device-width;
   }
@@ -55,6 +55,7 @@ body {
 //
 // Credit: https://github.com/suitcss/base
 [tabindex='-1']:focus {
+  // stylelint-disable-next-line declaration-no-important
   outline: 0 !important;
 }
 
@@ -276,7 +277,7 @@ dd {
 }
 
 dt {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 dd {

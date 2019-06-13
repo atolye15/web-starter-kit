@@ -223,6 +223,7 @@
 // Styleguide Utilities.Text
 
 .u-text-decoration-none\:hover:hover {
+  // stylelint-disable-next-line declaration-no-important
   text-decoration: none !important;
 }
 

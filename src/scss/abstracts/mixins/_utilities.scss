@@ -96,6 +96,7 @@
 
     .u-#{$property-class + $modifier } {
       @each $property in $properties {
+        // stylelint-disable-next-line declaration-no-important
         #{$property}: $value !important;
       }
 
@@ -103,8 +104,8 @@
 
       @if $responsive {
         @include generate-utility-responsive($responsive) {
-          // stylelint-disable-next-line max-nesting-depth
           @each $property in $properties {
+            // stylelint-disable-next-line declaration-no-important
             #{$property}: $value !important;
           }
         }
