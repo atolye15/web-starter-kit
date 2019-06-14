@@ -10,10 +10,10 @@
 //
 // Styleguide
 
-$c-checkbox-size: 18px;
-$c-checkbox-radius: 2px;
+$c-checkbox-size: px-to-rem(18px);
+$c-checkbox-radius: px-to-rem(2px);
 $c-checkbox-border-width: 1px;
-$c-checkbox-checkmark-size: 14px;
+$c-checkbox-checkmark-size: px-to-rem(14px);
 
 .c-checkbox {
   display: inline-block;
@@ -59,6 +59,7 @@ $c-checkbox-checkmark-size: 14px;
   //
 
   &--primary {
+    // stylelint-disable-next-line selector-max-specificity
     > .c-checkbox__inp:checked + .c-checkbox__mask {
       background-color: $success-color;
       border-color: darken($success-color, 2%);

@@ -1,8 +1,6 @@
 //
 // Flexbox Grid Mixins
 // Generate semantic grid columns with these mixins.
-//
-// stylelint-disable max-nesting-depth
 // -------------------------
 
 @mixin make-grid-container($gutter: $grid-gutter-width) {

@@ -11,9 +11,9 @@
 
 // stylelint-disable max-nesting-depth
 
-$c-radio-size: 18px;
+$c-radio-size: px-to-rem(18px);
 $c-radio-border-width: 1px;
-$c-radio-circle-size: 8px;
+$c-radio-circle-size: px-to-rem(8px);
 
 .c-radio {
   display: inline-block;
@@ -26,6 +26,7 @@ $c-radio-circle-size: 8px;
   &__inp {
     display: none;
 
+    // stylelint-disable-next-line selector-max-specificity
     &:checked + .c-radio__mask::before {
       display: block;
     }
