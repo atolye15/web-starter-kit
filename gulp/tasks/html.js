@@ -1,7 +1,6 @@
 import gulp from 'gulp';
 import fs from 'fs';
 import path from 'path';
-import plumber from 'gulp-plumber';
 import twig from 'gulp-twig';
 import rename from 'gulp-rename';
 import cx from 'classnames';
@@ -35,11 +34,6 @@ export default function() {
   return gulp
     .src(`${configs.paths.src}/twig/pages/**/*.twig`)
     .pipe(
-      plumber({
-        errorHandler: notifierErrorHandler,
-      }),
-    )
-    .pipe(
       twig({
         functions: helperFunctions,
       }),
@@ -51,5 +45,6 @@ export default function() {
         return filePath;
       }),
     )
-    .pipe(gulp.dest(envPath));
+    .pipe(gulp.dest(envPath))
+    .on('error', notifierErrorHandler);
 }

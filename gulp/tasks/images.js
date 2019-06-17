@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 import fs from 'fs';
-import plumber from 'gulp-plumber';
 import newer from 'gulp-newer';
 import imagemin from 'gulp-imagemin';
 import imageminPngquant from 'imagemin-pngquant';
@@ -20,7 +19,6 @@ const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 export function imagesOptimize() {
   return gulp
     .src([`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`])
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(newer('.tmp/img'))
     .pipe(
       imagemin([
@@ -32,13 +30,13 @@ export function imagesOptimize() {
         imagemin.svgo({ plugins: [{ removeDimensions: true }] }),
       ]),
     )
-    .pipe(gulp.dest('.tmp/img'));
+    .pipe(gulp.dest('.tmp/img'))
+    .on('error', notifierErrorHandler);
 }
 
 export function imagesSync() {
   return gulp
     .src(['.tmp/img/**/*', '!.tmp/img/sprite.svg'])
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       tap(file => {
         if (!fs.existsSync(`${configs.paths.src}/img/${file.relative}`)) {
@@ -47,17 +45,20 @@ export function imagesSync() {
           console.log(c.red(`[images:sync] >> ${file.relative} deleted from tmp!`));
         }
       }),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export function imagesDeploy() {
-  return gulp.src('.tmp/img/**/*').pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`));
+  return gulp
+    .src('.tmp/img/**/*')
+    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
+    .on('error', notifierErrorHandler);
 }
 
 export function imagesSprite() {
   return gulp
     .src(`${configs.paths.src}/img/icons/**/*.svg`)
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       imagemin([
         imagemin.svgo({
@@ -78,7 +79,8 @@ export function imagesSprite() {
     .pipe(svgstore({ inlineSvg: true }))
     .pipe(rename({ basename: 'sprite' }))
     .pipe(gulp.dest('.tmp/img'))
-    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`));
+    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
+    .on('error', notifierErrorHandler);
 }
 
 export default {

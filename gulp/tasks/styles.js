@@ -6,7 +6,6 @@ import postcss from 'gulp-postcss';
 import uncss from 'uncss';
 import rename from 'gulp-rename';
 import sass from 'gulp-sass';
-import plumber from 'gulp-plumber';
 import autoprefixer from 'autoprefixer';
 import mqpacker from 'css-mqpacker';
 import flexBugsFixes from 'postcss-flexbugs-fixes';
@@ -72,7 +71,6 @@ export default function(cb) {
 
   return gulp
     .src([`${configs.paths.src}/scss/**/*.scss`], { sourcemaps: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(sass({ precision: 10, importer: inlineCssImporter }))
     .pipe(
       postcss([
@@ -88,5 +86,6 @@ export default function(cb) {
       }),
     )
     .pipe(isProduction ? stylesMinChannel() : noop())
+    .on('error', notifierErrorHandler)
     .on('end', cb);
 }

@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import uglify from 'gulp-uglify';
@@ -19,11 +18,11 @@ export function scriptsMain() {
 
   return gulp
     .src(jsFiles, { sourcemaps: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(concat('main.js'))
     .pipe(babel())
     .pipe(gulp.dest('.tmp/js', { sourcemaps: isProduction ? false : '.' }))
-    .pipe(isProduction ? noop() : gulp.dest(`${envPath}/${configs.paths.assets.js}`));
+    .pipe(isProduction ? noop() : gulp.dest(`${envPath}/${configs.paths.assets.js}`))
+    .on('error', notifierErrorHandler);
 }
 
 export function scriptsLibs(cb) {
@@ -35,10 +34,10 @@ export function scriptsLibs(cb) {
 
   return gulp
     .src(libFiles, { sourcemaps: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(concat('libs.js'))
     .pipe(gulp.dest('.tmp/js', { sourcemaps: isProduction ? false : '.' }))
-    .pipe(isProduction ? noop() : gulp.dest(`${envPath}/${configs.paths.assets.js}`));
+    .pipe(isProduction ? noop() : gulp.dest(`${envPath}/${configs.paths.assets.js}`))
+    .on('error', notifierErrorHandler);
 }
 
 export function scriptsCombine(cb) {
@@ -48,10 +47,10 @@ export function scriptsCombine(cb) {
 
   return gulp
     .src(['.tmp/js/libs.js', '.tmp/js/main.js'], { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(concat('app.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.js}`));
+    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.js}`))
+    .on('error', notifierErrorHandler);
 }
 
 export default { libs: scriptsLibs, main: scriptsMain, combine: scriptsCombine };

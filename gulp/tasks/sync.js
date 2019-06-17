@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import dirSync from 'gulp-directory-sync';
 import c from 'ansi-colors';
 
@@ -13,9 +12,7 @@ const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 function printSummary(result, taskName) {
   console.log(
     c.green(
-      `${taskName}: [created: ${result.created}, updated: ${result.updated}, deleted: ${
-        result.removed
-      }, unchanged: ${result.same}]`,
+      `${taskName}: [created: ${result.created}, updated: ${result.updated}, deleted: ${result.removed}, unchanged: ${result.same}]`,
     ),
   );
 }
@@ -26,23 +23,23 @@ function printSummary(result, taskName) {
 export function syncFontsInBuild() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       dirSync(`${configs.paths.src}/fonts`, `${envPath}/${configs.paths.assets.fonts}`, {
         printSummary: result => printSummary(result, 'sync:build-fonts'),
       }),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export function syncImgInBuild() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       dirSync(`${configs.paths.src}/img`, `${envPath}/${configs.paths.assets.img}`, {
         printSummary: result => printSummary(result, 'sync:build-image'),
       }),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export function syncVendorsInBuild() {
@@ -64,7 +61,6 @@ export function syncCssInDeploy(cb) {
 
   return gulp
     .src('dummy.ext', { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       dirSync(
         `${envPath}/${configs.paths.assets.css}`,
@@ -73,7 +69,8 @@ export function syncCssInDeploy(cb) {
           printSummary: result => printSummary(result, 'sync:deploy-css'),
         },
       ),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export function syncJsInDeploy(cb) {
@@ -82,7 +79,6 @@ export function syncJsInDeploy(cb) {
   }
   return gulp
     .src('dummy.ext', { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       dirSync(
         `${envPath}/${configs.paths.assets.js}`,
@@ -91,7 +87,8 @@ export function syncJsInDeploy(cb) {
           printSummary: result => printSummary(result, 'sync:deploy-js'),
         },
       ),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export function syncImgInDeploy(cb) {
@@ -101,7 +98,6 @@ export function syncImgInDeploy(cb) {
 
   return gulp
     .src('dummy.ext', { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       dirSync(
         `${envPath}/${configs.paths.assets.img}`,
@@ -110,7 +106,8 @@ export function syncImgInDeploy(cb) {
           printSummary: result => printSummary(result, 'sync:deploy-img'),
         },
       ),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export function syncVendorsInDeploy(cb) {
@@ -120,7 +117,6 @@ export function syncVendorsInDeploy(cb) {
 
   return gulp
     .src('dummy.ext', { allowEmpty: true })
-    .pipe(plumber({ errorHandler: notifierErrorHandler }))
     .pipe(
       dirSync(
         `${envPath}/${configs.paths.assets.vendors}`,
@@ -129,7 +125,8 @@ export function syncVendorsInDeploy(cb) {
           printSummary: result => printSummary(result, 'sync:deploy-vendors'),
         },
       ),
-    );
+    )
+    .on('error', notifierErrorHandler);
 }
 
 export default {
