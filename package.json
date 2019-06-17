@@ -24,7 +24,6 @@
     "gulp-directory-sync": "^1.2.3",
     "gulp-imagemin": "^6.0.0",
     "gulp-newer": "^1.4.0",
-    "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
