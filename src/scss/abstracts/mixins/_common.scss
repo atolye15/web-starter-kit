@@ -15,6 +15,7 @@
   $font-style: normal
 ) {
   @font-face {
+    font-display: swap;
     font-family: $font-name;
     font-style: $font-style;
     font-weight: $font-weight;
