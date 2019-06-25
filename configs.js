@@ -34,6 +34,7 @@ const configs = {
     // https: true,
     server: ['./'],
     port: 3000,
+    ghostMode: false,
   },
   styleGuide: {
     source: ['src/scss'],
