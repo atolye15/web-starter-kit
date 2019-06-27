@@ -122,11 +122,9 @@ root
 │         └── utilities/
 │       ├── components/
 │       ├── objects/
-│       ├──pages/
 │       └── vendors/
 │     ├── vendors/        # Projeye dışarıdan eklenecek eklentiler bu klasörde bulunur. Buraya eklenen dosyalara sistem tarafından hiçbir müdehale olmaz. Sistem sadece vendors klasörünü dist adresine taşıyacaktır.
 ├── twig/                 # Projenin twig dosyaları bu klasör içinde bulunuyor.
-│   ├── page-contents/
 │   ├── pages/
 │   └── partials/
 ├── .babelrc
