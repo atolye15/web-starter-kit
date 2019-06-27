@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@atolye15/stylelint-config@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@atolye15/stylelint-config/-/stylelint-config-1.0.0.tgz#d608f2db10217c93b1e6cfab92f1b490ddb9d52e"
-  integrity sha512-B1gZMT8YZk7v0X4e9d00zcDhhkfCuwJaUJnVA00PBpkZVFO9UW7nX+ZeBWjQnfLo53+FGoh1PtQZP0FyeC7bfQ==
+"@atolye15/stylelint-config@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@atolye15/stylelint-config/-/stylelint-config-1.1.0.tgz#260c3fd528145ddbc90298e88c547cc517290de8"
+  integrity sha512-4/qmoG+8MZtfvo89QUhLphs6E27KlPmtr5q4opV075Na/ZRcE4W5SXJz6y6wjFtM3+gLhF9HH8wnNYuQLcA3dg==
   dependencies:
     stylelint-declaration-block-no-ignored-properties "^2.1.0"
     stylelint-declaration-strict-value "^1.1.3"
