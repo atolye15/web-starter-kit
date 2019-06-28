@@ -117,7 +117,7 @@ root
 │         └── utilities/
 │       ├── components/
 │       ├── objects/
-│       └── vendors/
+│       └── libs/
 │     ├── vendors/        # Third party libraries and plugins should be placed in this folder. These files won't be compiled, only will be moved to /vendors under /dist folder.
 ├── twig/                 # Twig files are located in this folder.
 │   ├── pages/
