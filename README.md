@@ -180,4 +180,4 @@ yarn [command]
 
 ## License
 
-Web Starter Kit is [MIT licensed.](./LICENSE)
+Web Starter Kit is [MIT licensed.](/LICENSE)
