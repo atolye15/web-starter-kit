@@ -1,6 +1,6 @@
 # Atölye15 - Web Starter Kit
 
-Web Starter Kit is a starter package designed for Frontend developers of Atölye15. Its main goals are to save developers from redundant work needs to be done at every project's start and also creating consistent code bases between developers.
+Web Starter Kit is a starter package designed for front-end developers of Atölye15. Its main goals are to save developers from redundant work needs to be done at every project's start and also creating consistent code bases between developers.
 
 ## Includes
 
@@ -103,7 +103,7 @@ root
 │     ├── assets/         # Static assets used by Gulp tasks are located in this folder.
 │     ├── tasks/          # All Gulp tasks are located in this folder.
 │     └── utils/          # Utility functions used by Gulp tasks are located in this folder.
-├── kss/                  # Settings for KSSS package used by Styleguid are located in this folder.
+├── kss/                  # Settings for KSS package used by Styleguide are located in this folder.
 ├── src/                  # Files for development are located here. These files are processed by Gulp and /dev and /dist will be created
 │     ├── fonts/          # Font files needed for the project should be placed here to be compiled.
 │     ├── img/            # Image files needed for the project should be placed here.
@@ -157,8 +157,8 @@ yarn [command]
 | lint:js             | runs eslint for javascript files                           |
 | lint:css            | runs stylint for scss files                                |
 | format              | runs format:js and format:css commands                     |
-| format:js           | runs prettiers for javascript files                        |
-| format:css          | runs prettiers for scss files                              |
+| format:js           | runs prettier for javascript files                         |
+| format:css          | runs prettier for scss files                               |
 | gulp                | runs gulp command                                          |
 | generate-svg-sprite | runs image:sprite task                                     |
 | build-styleguide    | builds styleguide                                          |
@@ -180,4 +180,4 @@ yarn [command]
 
 ## License
 
-Web Starter Kit is MIT license
+Web Starter Kit is [MIT licensed.](./LICENSE)
