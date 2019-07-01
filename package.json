@@ -1,6 +1,7 @@
 {
   "version": "v4.4.2",
   "devDependencies": {
+    "@atolye15/eslint-config-base": "^1.0.14",
     "@atolye15/stylelint-config": "^1.1.0",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
@@ -14,10 +15,6 @@
     "cssnano": "^4.1.10",
     "del": "^4.1.1",
     "eslint": "^6.0.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-prettier": "^3.1.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-bump": "^3.1.3",
