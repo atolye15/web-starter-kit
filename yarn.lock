@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@atolye15/eslint-config-base@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@atolye15/eslint-config-base/-/eslint-config-base-1.0.14.tgz#05b20d028564f78f2de9364b905679bbc085cfb6"
+  integrity sha512-8e33GdUP0ZEjIyTRmrl62Li65Rovt+7ErQj3tf6wMRlaTNsT9D3Fas0r6iQQjYViYPRxZlEucNvwxTON7cvtvA==
+  dependencies:
+    eslint-config-airbnb-base "^13.1.0"
+    eslint-config-prettier "^4.1.0"
+    eslint-plugin-eslint-comments "^3.1.1"
+    eslint-plugin-import "^2.17.2"
+    eslint-plugin-jest "^22.4.1"
+    eslint-plugin-prettier "^3.1.0"
+
 "@atolye15/stylelint-config@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@atolye15/stylelint-config/-/stylelint-config-1.1.0.tgz#260c3fd528145ddbc90298e88c547cc517290de8"
@@ -2940,10 +2952,10 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-prettier@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.0.0.tgz#f429a53bde9fc7660e6353910fd996d6284d3c25"
-  integrity sha512-vDrcCFE3+2ixNT5H83g28bO/uYAwibJxerXPj+E7op4qzBCsAV36QfvdAyVOoNxKAH2Os/e01T/2x++V0LPukA==
+eslint-config-prettier@^4.1.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-4.3.0.tgz#c55c1fcac8ce4518aeb77906984e134d9eb5a4f0"
+  integrity sha512-sZwhSTHVVz78+kYD3t5pCWSYEdVSBR0PXnwjDRsUs8ytIrK8PLXw+6FKp8r3Z7rx4ZszdetWlXYKOHoUrrwPlA==
   dependencies:
     get-stdin "^6.0.0"
 
@@ -2963,7 +2975,15 @@ eslint-module-utils@^2.4.0:
     debug "^2.6.8"
     pkg-dir "^2.0.0"
 
-eslint-plugin-import@^2.18.0:
+eslint-plugin-eslint-comments@^3.1.1:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.1.2.tgz#4ef6c488dbe06aa1627fea107b3e5d059fc8a395"
+  integrity sha512-QexaqrNeteFfRTad96W+Vi4Zj1KFbkHHNMMaHZEYcovKav6gdomyGzaxSDSL3GoIyUOo078wRAdYlu1caiauIQ==
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    ignore "^5.0.5"
+
+eslint-plugin-import@^2.17.2:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.18.0.tgz#7a5ba8d32622fb35eb9c8db195c2090bd18a3678"
   integrity sha512-PZpAEC4gj/6DEMMoU2Df01C5c50r7zdGIN52Yfi7CvvWaYssG7Jt5R9nFG5gmqodxNOz9vQS87xk6Izdtpdrig==
@@ -2979,6 +2999,11 @@ eslint-plugin-import@^2.18.0:
     minimatch "^3.0.4"
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
+
+eslint-plugin-jest@^22.4.1:
+  version "22.7.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.7.1.tgz#5dcdf8f7a285f98040378220d6beca581f0ab2a1"
+  integrity sha512-CrT3AzA738neimv8G8iK2HCkrCwHnAJeeo7k5TEHK86VMItKl6zdJT/tHBDImfnVVAYsVs4Y6BUdBZQCCgfiyw==
 
 eslint-plugin-prettier@^3.1.0:
   version "3.1.0"
@@ -4420,6 +4445,11 @@ ignore@^4.0.3, ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
+
+ignore@^5.0.5:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.2.tgz#e28e584d43ad7e92f96995019cc43b9e1ac49558"
+  integrity sha512-vdqWBp7MyzdmHkkRWV5nY+PfGRbYbahfuvsBCh277tq+w9zyNi7h5CYJCK0kmzti9kU+O/cB7sE8HvKv6aXAKQ==
 
 ignore@^5.0.6:
   version "5.1.1"

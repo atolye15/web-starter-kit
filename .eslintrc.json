@@ -1,11 +1,7 @@
 {
-  "extends": ["airbnb-base", "prettier"],
+  "extends": ["@atolye15/eslint-config-base"],
   "parser": "babel-eslint",
-  "plugins": ["prettier"],
   "env": {
     "browser": true
-  },
-  "rules": {
-    "prettier/prettier": "error"
   }
 }
