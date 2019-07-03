@@ -86,18 +86,13 @@ gulp.task('deploy:scripts', tasks.deploy.scripts);
 gulp.task('deploy:images', tasks.deploy.images);
 gulp.task('deploy:vendors', tasks.deploy.vendors);
 
-gulp.task('deploy', cb => {
-  if (!isDeploy) {
-    cb();
-    return;
-  }
-
+gulp.task(
+  'deploy',
   gulp.series(
     'clean:deployFolder',
     gulp.parallel('deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'),
-    cb,
-  );
-});
+  ),
+);
 
 /**
  * NOTIFY
@@ -119,7 +114,7 @@ gulp.task(
     'clean:tempJs',
     gulp.parallel('html', 'scripts'),
     gulp.parallel('styles', 'images', 'copy:fonts', 'copy:vendors'),
-    'deploy',
+    skippable(isDeploy, 'deploy'),
     'notify:build',
     'log:build-success',
   ),
