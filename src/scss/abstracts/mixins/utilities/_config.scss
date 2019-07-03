@@ -1,6 +1,56 @@
 //
 // Utilities
-// --------------------------------------------------
+//
+// Example Config:
+//
+// $g-utilities: (
+//   'float': (
+//     property: float,
+//     values: left right none,
+//   ),
+//   'color': (
+//     'display': (
+//       property: display,
+//       values: block
+//         (
+//           value: none,
+//           responsive: (
+//             md: up,
+//             sm: all,
+//           ),
+//         )
+//         inline inline-block table table-row table-cell
+//         (
+//           value: flex,
+//           responsive: true,
+//         )
+//         (
+//           value: inline-flex,
+//           responsive: (
+//             md: up,
+//           )
+//           sm,
+//         ),
+//     ),
+//     'font-size': (
+//       property: font-size,
+//       values: (
+//         'small': (
+//           value: $g-font-size-small,
+//           responsive: true,
+//         ),
+//         'base': (
+//           value: $g-font-size-base,
+//           responsive: (
+//             md: up,
+//             xs: all,
+//           )
+//         ),
+//         'medium': $g-font-size-medium,
+//       ),
+//     ),
+//   ),
+// );
 
 $margin-utility-values: transform-spaces-map-to-utilty-values(
   map-merge(
