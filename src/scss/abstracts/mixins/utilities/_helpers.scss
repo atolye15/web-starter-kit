@@ -120,7 +120,7 @@
         @content;
       }
     }
-    @if map-get($breakpoint, 'direction') or map-get($breakpoint, 'direction') == 'down' {
+    @if map-get($breakpoint, 'direction') == 'all' or map-get($breakpoint, 'direction') == 'down' {
       @include generate-utility-responsive-down(map-get($breakpoint, 'breakpoint')) {
         @content;
       }
