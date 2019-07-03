@@ -19,6 +19,12 @@
     $responsive: map-keys($grid-breakpoints);
   }
 
+  // When there is only one value in the list and the value type is map
+  // $responsive value type transforms to map, so we need to convert it to list again.
+  @if type-of($responsive) == 'map' {
+    $responsive: append((), $responsive);
+  }
+
   @each $breakpoint in $responsive {
     @if type-of($breakpoint) == 'map' {
       @each $key, $value in $breakpoint {
