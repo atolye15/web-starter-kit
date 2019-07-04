@@ -16,7 +16,7 @@ export function deployImages() {
     .pipe(gulp.dest(`${configs.paths.deploy}/${configs.paths.assets.img}`));
 }
 
-export function deployJavaScripts() {
+export function deployScripts() {
   return gulp
     .src(`${envPath}/${configs.paths.assets.js}/**/*`)
     .pipe(gulp.dest(`${configs.paths.deploy}/${configs.paths.assets.js}`));
@@ -30,7 +30,7 @@ export function deployVendors() {
 
 export default {
   styles: deployStyles,
-  javascripts: deployJavaScripts,
+  scripts: deployScripts,
   images: deployImages,
   vendors: deployVendors,
 };
