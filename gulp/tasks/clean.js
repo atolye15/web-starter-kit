@@ -10,7 +10,7 @@ export function cleanDist() {
 }
 
 export function cleanImgCache() {
-  return del(['.tmp/js/*'], { dot: true });
+  return del(['.tmp/img/*'], { dot: true });
 }
 
 export function cleanTempJs() {
