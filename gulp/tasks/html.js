@@ -21,11 +21,11 @@ const helperFunctions = [
     func: args => args,
   },
   {
-    name: 'isFileExists',
+    name: 'is_file_exists',
     func: filePath => fs.existsSync(path.resolve(__dirname, '../../src/twig', filePath)),
   },
   {
-    name: 'isProduction',
+    name: 'is_production',
     func: () => isProduction,
   },
 ];
