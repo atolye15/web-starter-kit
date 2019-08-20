@@ -13,7 +13,7 @@ const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 const helperFunctions = [
   {
-    name: 'classNames',
+    name: 'html_classes',
     func: (...args) => cx(...args),
   },
   {
