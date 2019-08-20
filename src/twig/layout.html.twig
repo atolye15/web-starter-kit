@@ -7,12 +7,12 @@
     {% block meta %}
       <title>Default Project</title>
     {% endblock %}
-    <link rel=stylesheet href="css/main{% if isProduction() %}.min{% endif %}.css">
+    <link rel=stylesheet href="css/main{% if is_production() %}.min{% endif %}.css">
     {% block headerStylesheets %}{% endblock %}
     {% block headerJavascripts %}{% endblock %}
   </head>
   <body>
-  {% if isFileExists("../../.tmp/img/sprite.svg") %}
+  {% if is_file_exists("../../.tmp/img/sprite.svg") %}
   <div class="u-display-none">
     {% include "../../.tmp/img/sprite.svg" %}
   </div>
@@ -21,7 +21,7 @@
 
   <!-- Javascript Files -->
   {% block footerVendorJavascripts %}{% endblock %}
-  {% if isProduction() %}
+  {% if is_production() %}
   <script src="js/app.min.js"></script>
   {% else %}
   <script src="js/libs.js"></script>

@@ -2,5 +2,6 @@
 import cx from 'classnames';
 
 module.exports = function(Twig) {
-  Twig.extendFunction('classNames', (...args) => cx(...args));
+  Twig.extendFunction('html_classes', (...args) => cx(...args));
 };
+/* eslint-enable */

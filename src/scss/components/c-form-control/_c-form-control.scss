@@ -9,7 +9,7 @@
 // Inputs
 //
 //  Markup:
-// <input type="text" class="{{ classNames('c-form-control', modifier_class != '[disabled]' ? modifier_class : '') }}" placeholder="Please Enter" {% if modifier_class %}value="John Doe"{% endif %} {% if modifier_class == '[disabled]' %}disabled{% endif %}/>
+// <input type="text" class="{{ html_classes('c-form-control', modifier_class != '[disabled]' ? modifier_class : '') }}" placeholder="Please Enter" {% if modifier_class %}value="John Doe"{% endif %} {% if modifier_class == '[disabled]' %}disabled{% endif %}/>
 //
 // [disabled] - Disabled
 // .is-valid - Valid
@@ -22,7 +22,7 @@
 // Textarea
 //
 //  Markup:
-// <textarea class="{{ classNames('c-form-control c-form-control--textarea', modifier_class) }}">John Doe</textarea>
+// <textarea class="{{ html_classes('c-form-control c-form-control--textarea', modifier_class) }}">John Doe</textarea>
 //
 // .is-valid - Valid
 // .is-invalid - Invalid
