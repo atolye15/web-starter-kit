@@ -1,5 +1,7 @@
 # Atölye15 - Web Starter Kit
 
+> ⚠️ **ATTENTION**: This project is in heavily under development! Documentation will be updated later.
+
 Web Starter Kit is a starter package designed for front-end developers of Atölye15. Its main goals are to save developers from redundant work needs to be done at every project's start and also creating consistent code bases between developers.
 
 ## Includes
