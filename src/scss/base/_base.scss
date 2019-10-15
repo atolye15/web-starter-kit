@@ -245,11 +245,6 @@ dl {
   margin-bottom: $g-line-height-computed;
 }
 
-dt,
-dd {
-  line-height: $g-line-height-base;
-}
-
 dt {
   font-weight: 700;
 }
@@ -266,5 +261,5 @@ dd {
 address {
   margin-bottom: $g-line-height-computed;
   font-style: normal;
-  line-height: $g-line-height-base;
+  line-height: inherit;
 }
