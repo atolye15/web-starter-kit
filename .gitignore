@@ -3,7 +3,7 @@
 node_modules/
 bower_components/
 npm-debug.log
-.tmp
+.cache
 .idea
 .idea_modules
 .publish
