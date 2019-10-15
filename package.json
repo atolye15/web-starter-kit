@@ -48,8 +48,6 @@
   },
   "private": true,
   "scripts": {
-    "node_modules-chmod": "sudo chmod -R 0777 node_modules",
-    "start-server": "./node_modules/.bin/browser-sync start --server",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint \"src/js/**/*.js\"",
     "lint:css": "stylelint --syntax scss \"src/scss/**/*.scss\"",
