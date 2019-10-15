@@ -5,23 +5,13 @@ import baseNotifier from 'node-notifier';
 import configs from '../../configs';
 import { isProduction } from './parseArguments';
 
-/**
- * 1. Due to a bug in `node-notifier` we have to set timeout to 3,
- * otherwise even though the task is finished, the promise cannot resolve before ten seconds passed.
- *
- * TODO: After the pull request to be merged set timeout to false.
- *
- * Related Issue: https://github.com/mikaelbr/node-notifier/issues/218
- * Related Pull Request: https://github.com/mikaelbr/node-notifier/pull/271
- */
-
 function notifier(message, cb = () => {}) {
   if (isProduction) {
     return cb();
   }
 
   const defaultOptions = {
-    timeout: 3, // [1]
+    timeout: false,
   };
 
   if (typeof message === 'string') {
