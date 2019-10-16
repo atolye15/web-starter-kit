@@ -153,8 +153,6 @@ yarn [command]
 
 | Command             | Description                                                                                 |
 | :------------------ | ------------------------------------------------------------------------------------------- |
-| node_modules-chmod  | node_modules folder 777 permission                                                          |
-| start-server        | starts server manually                                                                      |
 | lint                | runs lint:js and lint:css commands.                                                         |
 | lint:js             | runs eslint for javascript files                                                            |
 | lint:css            | runs stylint for scss files                                                                 |
