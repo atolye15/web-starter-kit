@@ -13,9 +13,9 @@
 </head>
 <body id="kss-node" {% if template.isItem %}class="kss-fullscreen-mode"{% endif %}>
 
-{% if is_file_exists("../../../.tmp/img/sprite.svg") %}
+{% if is_file_exists("../../../.cache/img/sprite.svg") %}
   <div class="u-display-none">
-    {% include "../../../.tmp/img/sprite.svg" %}
+    {% include "../../../.cache/img/sprite.svg" %}
   </div>
   {% endif %}
 

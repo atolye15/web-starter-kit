@@ -39,10 +39,6 @@ export default function(cb) {
     html: [`${envPath}/*.html`],
     ignore: configs.uncss.ignore,
     htmlroot: envPath,
-    // This is a workaround for the error that comes with version 0.17.0.
-    // Remove the following line when the problem fixed.
-    // Related Issuee: https://github.com/uncss/uncss/issues/404
-    jsdom: {},
   };
 
   const stylesMinChannel = lazypipe()

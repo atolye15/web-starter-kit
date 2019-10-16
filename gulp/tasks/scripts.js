@@ -20,7 +20,7 @@ export function scriptsMain() {
     .src(jsFiles, { sourcemaps: true })
     .pipe(concat('main.js'))
     .pipe(babel())
-    .pipe(gulp.dest('.tmp/js', { sourcemaps: isProduction ? false : '.' }))
+    .pipe(gulp.dest('.cache/js', { sourcemaps: isProduction ? false : '.' }))
     .pipe(isProduction ? noop() : gulp.dest(`${envPath}/${configs.paths.assets.js}`))
     .on('error', notifierErrorHandler);
 }
@@ -35,7 +35,7 @@ export function scriptsLibs(cb) {
   return gulp
     .src(libFiles, { sourcemaps: true })
     .pipe(concat('libs.js'))
-    .pipe(gulp.dest('.tmp/js', { sourcemaps: isProduction ? false : '.' }))
+    .pipe(gulp.dest('.cache/js', { sourcemaps: isProduction ? false : '.' }))
     .pipe(isProduction ? noop() : gulp.dest(`${envPath}/${configs.paths.assets.js}`))
     .on('error', notifierErrorHandler);
 }
@@ -46,7 +46,7 @@ export function scriptsCombine(cb) {
   }
 
   return gulp
-    .src(['.tmp/js/libs.js', '.tmp/js/main.js'], { allowEmpty: true })
+    .src(['.cache/js/libs.js', '.cache/js/main.js'], { allowEmpty: true })
     .pipe(concat('app.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.js}`))

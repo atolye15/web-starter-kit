@@ -19,7 +19,7 @@ const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 export function imagesOptimize() {
   return gulp
     .src([`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`])
-    .pipe(newer('.tmp/img'))
+    .pipe(newer('.cache/img'))
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
@@ -30,17 +30,17 @@ export function imagesOptimize() {
         imagemin.svgo({ plugins: [{ removeDimensions: true }] }),
       ]),
     )
-    .pipe(gulp.dest('.tmp/img'))
+    .pipe(gulp.dest('.cache/img'))
     .on('error', notifierErrorHandler);
 }
 
 export function imagesSync() {
   return gulp
-    .src(['.tmp/img/**/*', '!.tmp/img/sprite.svg'])
+    .src(['.cache/img/**/*', '!.cache/img/sprite.svg'])
     .pipe(
       tap(file => {
         if (!fs.existsSync(`${configs.paths.src}/img/${file.relative}`)) {
-          fs.unlinkSync(`.tmp/img/${file.relative}`);
+          fs.unlinkSync(`.cache/img/${file.relative}`);
           // eslint-disable-next-line no-console
           console.log(c.red(`[images:sync] >> ${file.relative} deleted from tmp!`));
         }
@@ -51,7 +51,7 @@ export function imagesSync() {
 
 export function imagesDeploy() {
   return gulp
-    .src('.tmp/img/**/*')
+    .src('.cache/img/**/*')
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
     .on('error', notifierErrorHandler);
 }
@@ -78,7 +78,7 @@ export function imagesSprite() {
     .pipe(rename({ prefix: 'icon-' }))
     .pipe(svgstore({ inlineSvg: true }))
     .pipe(rename({ basename: 'sprite' }))
-    .pipe(gulp.dest('.tmp/img'))
+    .pipe(gulp.dest('.cache/img'))
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
     .on('error', notifierErrorHandler);
 }

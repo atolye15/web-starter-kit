@@ -49,27 +49,6 @@ body {
   text-align: left; // 1
 }
 
-// Suppress the focus outline on elements that cannot be accessed via keyboard.
-// This prevents an unwanted focus outline from appearing around elements that
-// might still respond to pointer events.
-//
-// Credit: https://github.com/suitcss/base
-[tabindex='-1']:focus {
-  // stylelint-disable-next-line declaration-no-important
-  outline: 0 !important;
-}
-
-// Reset fonts for relevant elements
-input,
-button,
-select,
-textarea {
-  &:focus {
-    // Reset outline for chrome
-    outline: none;
-  }
-}
-
 [role='button'] {
   cursor: pointer;
 }
@@ -80,11 +59,6 @@ a {
   color: $g-link-color;
   text-decoration: none;
   transition: $g-link-transition;
-
-  &:focus {
-    // Reset outline for chrome
-    outline: none;
-  }
 
   &:hover {
     color: $g-link-hover-color;
@@ -271,11 +245,6 @@ dl {
   margin-bottom: $g-line-height-computed;
 }
 
-dt,
-dd {
-  line-height: $g-line-height-base;
-}
-
 dt {
   font-weight: 700;
 }
@@ -292,5 +261,5 @@ dd {
 address {
   margin-bottom: $g-line-height-computed;
   font-style: normal;
-  line-height: $g-line-height-base;
+  line-height: inherit;
 }

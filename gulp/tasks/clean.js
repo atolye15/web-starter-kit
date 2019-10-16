@@ -10,11 +10,11 @@ export function cleanDist() {
 }
 
 export function cleanImgCache() {
-  return del(['.tmp/img/*'], { dot: true });
+  return del(['.cache/img/*'], { dot: true });
 }
 
 export function cleanTempJs() {
-  return del(['.tmp/js/*'], { dot: true });
+  return del(['.cache/js/*'], { dot: true });
 }
 
 export function cleanDeployFolder() {
@@ -22,7 +22,7 @@ export function cleanDeployFolder() {
 }
 
 export function cleanSprite() {
-  return del(['.tmp/img/sprite.svg'], { dot: true });
+  return del(['.cache/img/sprite.svg'], { dot: true });
 }
 
 export default {

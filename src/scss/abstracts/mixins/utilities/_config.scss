@@ -44,9 +44,20 @@
 //           responsive: (
 //             md: up,
 //             xs: all,
-//           )
+//           ),
 //         ),
 //         'medium': $g-font-size-medium,
+//       ),
+//     ),
+//     'border-right': (
+//       property: border-right,
+//       values: (
+//         '': (
+//           value: 1px solid $g-border-color,
+//           responsive: (
+//             md: down,
+//           ),
+//         ),
 //       ),
 //     ),
 //   ),
