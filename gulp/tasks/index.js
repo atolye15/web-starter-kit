@@ -1,6 +1,6 @@
 import styles from './styles';
 import scripts from './scripts';
-import images from './images';
+import icons from './icons';
 import deploy from './deploy';
 import html from './html';
 import copy from './copy';
@@ -14,7 +14,7 @@ import bump from './bump';
 export default {
   styles,
   scripts,
-  images,
+  icons,
   deploy,
   html,
   copy,

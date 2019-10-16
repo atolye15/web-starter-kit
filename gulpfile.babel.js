@@ -29,15 +29,15 @@ const isDeploy = argv.deploy;
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
-gulp.task('clean:imgCache', tasks.clean.imgCache);
 gulp.task('clean:tempJs', tasks.clean.tempJs);
 gulp.task('clean:deployFolder', tasks.clean.deployFolder);
-gulp.task('clean:sprite', tasks.clean.sprite);
+gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
 /**
  * COPY
  */
 
+gulp.task('copy:images', tasks.copy.images);
 gulp.task('copy:fonts', tasks.copy.fonts);
 gulp.task('copy:vendors', tasks.copy.vendors);
 
@@ -59,22 +59,17 @@ gulp.task('scripts:combine', tasks.scripts.combine);
 gulp.task('scripts', gulp.series('scripts:libs', 'scripts:main', 'scripts:combine'));
 
 /**
- * IMAGES
+ * Icons Sprite
  */
 
-gulp.task('images:optimize', tasks.images.optimize);
-gulp.task('images:sync', tasks.images.sync);
-gulp.task('images:deploy', tasks.images.deploy);
-gulp.task('images:sprite', tasks.images.sprite);
-
-gulp.task('images', gulp.series('images:optimize', 'images:sync', 'images:deploy'));
+gulp.task('icons:sprite', tasks.icons.sprite);
 
 /**
  * HTML
  */
 
 gulp.task('html:main', tasks.html);
-gulp.task('html', gulp.series('clean:sprite', 'images:sprite', 'html:main'));
+gulp.task('html', gulp.series('clean:icons-sprite', 'icons:sprite', 'html:main'));
 
 /**
  * DEPLOY
@@ -113,7 +108,7 @@ gulp.task(
     'clean:dist',
     'clean:tempJs',
     gulp.parallel('html', 'scripts'),
-    gulp.parallel('styles', 'images', 'copy:fonts', 'copy:vendors'),
+    gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:vendors'),
     skippable(isDeploy, 'deploy'),
     'notify:build',
     'log:build-success',

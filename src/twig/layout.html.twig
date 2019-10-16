@@ -12,9 +12,9 @@
     {% block headerJavascripts %}{% endblock %}
   </head>
   <body>
-  {% if is_file_exists("../../.cache/img/sprite.svg") %}
-  <div class="u-display-none">
-    {% include "../../.cache/img/sprite.svg" %}
+  {% if is_file_exists("../../.cache/sprite.svg") %}
+  <div hidden>
+    {% include "../../.cache/sprite.svg" %}
   </div>
   {% endif %}
   {% block body %}{% endblock %}
