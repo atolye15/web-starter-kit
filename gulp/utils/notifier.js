@@ -42,10 +42,10 @@ export function notifierErrorHandler(error) {
 
   /* eslint-disable no-console */
   console.log(c.red(`\nError ${error.plugin ? `in plugin "${error.plugin}"` : ':'}`));
-  console.log(c.dim(`Message: ${error.message}`));
+  console.log(c.dim(`Message: ${error.message}\n`));
   /* eslint-enable */
 
-  return this.emit('end');
+  return this && this.emit ? this.emit('end') : undefined;
 }
 
 export default notifier;

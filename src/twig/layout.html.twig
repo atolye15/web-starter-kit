@@ -21,12 +21,7 @@
 
   <!-- Javascript Files -->
   {% block footerVendorJavascripts %}{% endblock %}
-  {% if is_production() %}
-  <script src="js/app.min.js"></script>
-  {% else %}
-  <script src="js/libs.js"></script>
-  <script src="js/main.js"></script>
-  {% endif %}
+  <script src="js/app{{ is_production() ? '.min'}}.js"></script>
   {% block footerJavascripts %}{% endblock %}
   </body>
 </html>
