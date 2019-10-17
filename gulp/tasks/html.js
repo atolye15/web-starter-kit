@@ -43,12 +43,25 @@ const helperFunctions = [
   },
 ];
 
+/**
+ * Usage
+ *
+ * components usage {% include '@components/*' %}
+ * partials usage {% include '@partials/*' %}
+ */
+
+const namespaces = {
+  components: path.join(__dirname, '../../src/scss/components'),
+  partials: path.join(__dirname, '../../src/twig/partials'),
+};
+
 export default function() {
   return gulp
     .src(`${configs.paths.src}/twig/pages/**/*.twig`)
     .pipe(
       twig({
         functions: helperFunctions,
+        namespaces,
       }),
     )
     .pipe(

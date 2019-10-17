@@ -49,6 +49,7 @@ const configs = {
     builder: 'kss/builders/atolye15',
     homepage: '../../readme.md',
     title: 'Atölye Style Guide',
+    namespace: ['components:src/scss/components', 'partials:src/twig/partials'],
   },
   uncss: {
     active: true,
