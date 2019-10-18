@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import gulp from 'gulp';
 import dirSync from 'gulp-directory-sync';
 import c from 'ansi-colors';
@@ -10,6 +9,7 @@ import { notifierErrorHandler } from '../utils/notifier';
 const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 function printSummary(result, taskName) {
+  // eslint-disable-next-line no-console
   console.log(
     c.green(
       `${taskName}: [created: ${result.created}, updated: ${result.updated}, deleted: ${result.removed}, unchanged: ${result.same}]`,
