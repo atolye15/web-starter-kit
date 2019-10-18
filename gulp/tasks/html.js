@@ -5,7 +5,7 @@ import twig from 'gulp-twig';
 import rename from 'gulp-rename';
 import cx from 'classnames';
 
-import configs from '../../configs';
+import configs, { namespaces } from '../../configs';
 import { isProduction } from '../utils/parseArguments';
 import { notifierErrorHandler } from '../utils/notifier';
 
@@ -43,12 +43,20 @@ const helperFunctions = [
   },
 ];
 
+/**
+ * Usage
+ *
+ * components usage {% include '@components/*' %}
+ * partials usage {% include '@partials/*' %}
+ */
+
 export default function() {
   return gulp
     .src(`${configs.paths.src}/twig/pages/**/*.twig`)
     .pipe(
       twig({
         functions: helperFunctions,
+        namespaces,
       }),
     )
     .pipe(
