@@ -1,4 +1,15 @@
-const configs = {
+export const namespaces = {
+  components: 'src/scss/components',
+  objects: 'src/scss/objects',
+  partials: 'src/twig/partials',
+};
+
+const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentValue) => {
+  accumulator.push(`${currentValue}:${namespaces[currentValue]}`);
+  return accumulator;
+}, []);
+
+export default {
   info: {
     name: 'Project-Name',
     version: '0.1.0',
@@ -47,12 +58,10 @@ const configs = {
     builder: 'kss/builders/atolye15',
     homepage: '../../readme.md',
     title: 'Atölye Style Guide',
-    namespace: ['components:src/scss/components', 'partials:src/twig/partials'],
+    namespace: namespacesForKss,
   },
   uncss: {
     active: true,
     ignore: [new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'), new RegExp('^(.?[a-z-_.[]+)?disabled.*')],
   },
 };
-
-module.exports = configs;

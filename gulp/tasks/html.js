@@ -5,7 +5,7 @@ import twig from 'gulp-twig';
 import rename from 'gulp-rename';
 import cx from 'classnames';
 
-import configs from '../../configs';
+import configs, { namespaces } from '../../configs';
 import { isProduction } from '../utils/parseArguments';
 import { notifierErrorHandler } from '../utils/notifier';
 
@@ -49,11 +49,6 @@ const helperFunctions = [
  * components usage {% include '@components/*' %}
  * partials usage {% include '@partials/*' %}
  */
-
-const namespaces = {
-  components: path.join(__dirname, '../../src/scss/components'),
-  partials: path.join(__dirname, '../../src/twig/partials'),
-};
 
 export default function() {
   return gulp
