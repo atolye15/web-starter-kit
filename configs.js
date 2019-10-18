@@ -16,8 +16,6 @@ const configs = {
       vendors: 'vendors',
     },
   },
-  jsFiles: ['main.js'],
-  libFiles: [],
   browserSync: {
     notify: false,
     // Customize the Browsersync console logging prefix

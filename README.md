@@ -111,7 +111,6 @@ root
 │     ├── img/            # Image files needed for the project should be placed here.
 │       └── icons/        # SVG files needed for the project should be placed here to be compiled.
 │     ├── js/             # Javascript files used in the project should be placed here to be compiled.
-│     ├── libs/           # Third-party javascript files used in the project should be placed here and should be added into config.js file under libFiles to be compiled.
 │     ├── scss/           # Scss files are located in this folder.
 │       ├── abstracts/
 │         └── mixins/

@@ -53,10 +53,7 @@ gulp.task('styles', gulp.series('styles:main'));
  */
 
 gulp.task('scripts:main', tasks.scripts.main);
-gulp.task('scripts:libs', tasks.scripts.libs);
-gulp.task('scripts:combine', tasks.scripts.combine);
-
-gulp.task('scripts', gulp.series('scripts:libs', 'scripts:main', 'scripts:combine'));
+gulp.task('scripts', gulp.series('scripts:main'));
 
 /**
  * Icons Sprite
@@ -173,12 +170,7 @@ gulp.task('serve', () => {
   gulp.watch(
     [`${configs.paths.src}/js/**/*.js`],
     { cwd: './' },
-    gulp.series('scripts:main', 'scripts:combine', 'sync:deploy-scripts', 'reload'),
-  );
-
-  gulp.watch(
-    [`${configs.paths.src}/libs/**/*.js`],
-    gulp.series('scripts:libs', 'scripts:combine', 'sync:deploy-scripts', 'reload'),
+    gulp.series('scripts:main', 'sync:deploy-scripts', 'reload'),
   );
 
   gulp.watch(
