@@ -13,7 +13,7 @@ export default {
   output: {
     file: `${envPath}/${configs.paths.assets.js}/app${isProduction ? '.min' : ''}.js`,
     format: 'iife', // immediately-invoked function expression — suitable for <script> tags
-    sourcemap: true,
+    sourcemap: !isProduction,
     name: 'App',
   },
   plugins: [
