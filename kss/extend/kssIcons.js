@@ -68,3 +68,4 @@ module.exports = function(Twig) {
     });
   });
 };
+/* eslint-enable */
