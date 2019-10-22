@@ -44,7 +44,7 @@ export default {
     ghostMode: false,
   },
   styleGuide: {
-    source: ['src/scss'],
+    source: ['src/'],
     destination: 'styleguide/',
     custom: ['HideOriginal', 'DemoBgColor', 'Colors', 'Icons'],
     extend: 'kss/extend',
