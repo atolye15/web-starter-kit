@@ -18,7 +18,6 @@ export default {
     src: 'src',
     dev: 'dev',
     dist: 'dist',
-    deploy: '../web/assets',
     assets: {
       js: 'js',
       css: 'css',

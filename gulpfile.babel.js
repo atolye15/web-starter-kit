@@ -22,14 +22,12 @@ const argv = minimist(process.argv.slice(2));
 const browserSync = browserSyncBase.create();
 
 const isProduction = argv.prod;
-const isDeploy = argv.deploy;
 
 /**
  * CLEAN
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
-gulp.task('clean:deployFolder', tasks.clean.deployFolder);
 gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
 /**
@@ -68,24 +66,6 @@ gulp.task('html:main', tasks.html);
 gulp.task('html', gulp.series('clean:icons-sprite', 'icons:sprite', 'html:main'));
 
 /**
- * DEPLOY
- * Copy the builded assets to the deploy folder
- */
-
-gulp.task('deploy:styles', tasks.deploy.styles);
-gulp.task('deploy:scripts', tasks.deploy.scripts);
-gulp.task('deploy:images', tasks.deploy.images);
-gulp.task('deploy:public', tasks.deploy.public);
-
-gulp.task(
-  'deploy',
-  gulp.series(
-    'clean:deployFolder',
-    gulp.parallel('deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:public'),
-  ),
-);
-
-/**
  * NOTIFY
  */
 
@@ -104,7 +84,6 @@ gulp.task(
     'clean:dist',
     gulp.parallel('html', 'scripts'),
     gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:public'),
-    skippable(isDeploy, 'deploy'),
     'notify:build',
     'log:build-success',
   ),
@@ -119,11 +98,6 @@ gulp.task(
 // BUILD
 gulp.task('sync:build-fonts', tasks.sync.build.fonts);
 gulp.task('sync:build-image', tasks.sync.build.image);
-
-// DEPLOY
-gulp.task('sync:deploy-styles', tasks.sync.deploy.css);
-gulp.task('sync:deploy-scripts', tasks.sync.deploy.js);
-gulp.task('sync:deploy-images', tasks.sync.deploy.img);
 
 // Reload
 gulp.task('reload', cb => {
@@ -155,23 +129,20 @@ gulp.task('serve', () => {
   gulp.watch(
     [`${configs.paths.src}/scss/**/*.scss`],
     { cwd: './' },
-    gulp.series('styles', 'sync:deploy-styles', 'styleguide', 'reload'),
+    gulp.series('styles', 'styleguide', 'reload'),
   );
 
-  gulp.watch(
-    [`${configs.paths.src}/fonts/**/*`],
-    gulp.series('sync:build-fonts', 'sync:deploy-styles', 'reload'),
-  );
+  gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:build-fonts', 'reload'));
 
   gulp.watch(
     [`${configs.paths.src}/js/**/*.js`],
     { cwd: './' },
-    gulp.series('scripts:main', 'sync:deploy-scripts', 'reload'),
+    gulp.series('scripts:main', 'reload'),
   );
 
   gulp.watch(
     [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
-    gulp.series('sync:build-image', 'sync:deploy-images', 'reload'),
+    gulp.series('sync:build-image', 'reload'),
   );
 });
 

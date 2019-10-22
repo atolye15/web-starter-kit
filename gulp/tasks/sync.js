@@ -3,7 +3,7 @@ import dirSync from 'gulp-directory-sync';
 import c from 'ansi-colors';
 
 import configs from '../../configs';
-import { isProduction, isDeploy } from '../utils/parseArguments';
+import { isProduction } from '../utils/parseArguments';
 import { notifierErrorHandler } from '../utils/notifier';
 
 const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
@@ -42,71 +42,6 @@ export function syncImgInBuild() {
     .on('error', notifierErrorHandler);
 }
 
-/**
- * Deploy
- */
-
-export function syncCssInDeploy(cb) {
-  if (!isDeploy) {
-    return cb();
-  }
-
-  return gulp
-    .src('dummy.ext', { allowEmpty: true })
-    .pipe(
-      dirSync(
-        `${envPath}/${configs.paths.assets.css}`,
-        `${configs.paths.deploy}/${configs.paths.assets.css}`,
-        {
-          printSummary: result => printSummary(result, 'sync:deploy-css'),
-        },
-      ),
-    )
-    .on('error', notifierErrorHandler);
-}
-
-export function syncJsInDeploy(cb) {
-  if (!isDeploy) {
-    return cb();
-  }
-  return gulp
-    .src('dummy.ext', { allowEmpty: true })
-    .pipe(
-      dirSync(
-        `${envPath}/${configs.paths.assets.js}`,
-        `${configs.paths.deploy}/${configs.paths.assets.js}`,
-        {
-          printSummary: result => printSummary(result, 'sync:deploy-js'),
-        },
-      ),
-    )
-    .on('error', notifierErrorHandler);
-}
-
-export function syncImgInDeploy(cb) {
-  if (!isDeploy) {
-    return cb();
-  }
-
-  return gulp
-    .src('dummy.ext', { allowEmpty: true })
-    .pipe(
-      dirSync(
-        `${envPath}/${configs.paths.assets.img}`,
-        `${configs.paths.deploy}/${configs.paths.assets.img}`,
-        {
-          printSummary: result => printSummary(result, 'sync:deploy-img'),
-        },
-      ),
-    )
-    .on('error', notifierErrorHandler);
-}
-
 export default {
-  deploy: {
-    css: syncCssInDeploy,
-    js: syncJsInDeploy,
-    img: syncImgInDeploy,
-  },
   build: { fonts: syncFontsInBuild, image: syncImgInBuild },
 };

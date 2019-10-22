@@ -164,12 +164,8 @@ yarn [command]
 | build-styleguide    | builds styleguide                                                                           |
 | build               | builds project in development mode                                                          |
 | build-prod          | builds project in production mode                                                           |
-| deploy              | deploys project                                                                             |
-| deploy-prod         | deploys project with production mode                                                        |
 | start               | starts project, builds styleguide and runs watch processes                                  |
 | start-prod          | starts project in production mode                                                           |
-| start-deploy        | starts project in deploy mode                                                               |
-| start-deploy-prod   | starts project in both deploy and production mode                                           |
 | publish-github      | publishes project on github pages (You need to install gh-pages plugin to use this command) |
 
 ### 3. Example Use Cases
