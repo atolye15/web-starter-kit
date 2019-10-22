@@ -42,14 +42,6 @@ export function syncImgInBuild() {
     .on('error', notifierErrorHandler);
 }
 
-export function syncVendorsInBuild() {
-  return gulp.src('dummy.ext', { allowEmpty: true }).pipe(
-    dirSync(`${configs.paths.src}/vendors`, `${envPath}/${configs.paths.assets.vendors}`, {
-      printSummary: result => printSummary(result, 'sync:build-vendors'),
-    }),
-  );
-}
-
 /**
  * Deploy
  */
@@ -110,31 +102,11 @@ export function syncImgInDeploy(cb) {
     .on('error', notifierErrorHandler);
 }
 
-export function syncVendorsInDeploy(cb) {
-  if (!isDeploy) {
-    return cb();
-  }
-
-  return gulp
-    .src('dummy.ext', { allowEmpty: true })
-    .pipe(
-      dirSync(
-        `${envPath}/${configs.paths.assets.vendors}`,
-        `${configs.paths.deploy}/${configs.paths.assets.vendors}`,
-        {
-          printSummary: result => printSummary(result, 'sync:deploy-vendors'),
-        },
-      ),
-    )
-    .on('error', notifierErrorHandler);
-}
-
 export default {
   deploy: {
     css: syncCssInDeploy,
     js: syncJsInDeploy,
     img: syncImgInDeploy,
-    vendors: syncVendorsInDeploy,
   },
-  build: { fonts: syncFontsInBuild, image: syncImgInBuild, vendors: syncVendorsInBuild },
+  build: { fonts: syncFontsInBuild, image: syncImgInBuild },
 };

@@ -39,7 +39,7 @@ gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
 gulp.task('copy:images', tasks.copy.images);
 gulp.task('copy:fonts', tasks.copy.fonts);
-gulp.task('copy:vendors', tasks.copy.vendors);
+gulp.task('copy:public', tasks.copy.public);
 
 /**
  * STYLES
@@ -76,13 +76,13 @@ gulp.task('html', gulp.series('clean:icons-sprite', 'icons:sprite', 'html:main')
 gulp.task('deploy:styles', tasks.deploy.styles);
 gulp.task('deploy:scripts', tasks.deploy.scripts);
 gulp.task('deploy:images', tasks.deploy.images);
-gulp.task('deploy:vendors', tasks.deploy.vendors);
+gulp.task('deploy:public', tasks.deploy.public);
 
 gulp.task(
   'deploy',
   gulp.series(
     'clean:deployFolder',
-    gulp.parallel('deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'),
+    gulp.parallel('deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:public'),
   ),
 );
 
@@ -105,7 +105,7 @@ gulp.task(
     'clean:dist',
     'clean:tempJs',
     gulp.parallel('html', 'scripts'),
-    gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:vendors'),
+    gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:public'),
     skippable(isDeploy, 'deploy'),
     'notify:build',
     'log:build-success',
@@ -121,13 +121,11 @@ gulp.task(
 // BUILD
 gulp.task('sync:build-fonts', tasks.sync.build.fonts);
 gulp.task('sync:build-image', tasks.sync.build.image);
-gulp.task('sync:build-vendors', tasks.sync.build.vendors);
 
 // DEPLOY
 gulp.task('sync:deploy-styles', tasks.sync.deploy.css);
 gulp.task('sync:deploy-scripts', tasks.sync.deploy.js);
 gulp.task('sync:deploy-images', tasks.sync.deploy.img);
-gulp.task('sync:deploy-vendors', tasks.sync.deploy.vendors);
 
 // Reload
 gulp.task('reload', cb => {
@@ -171,11 +169,6 @@ gulp.task('serve', () => {
     [`${configs.paths.src}/js/**/*.js`],
     { cwd: './' },
     gulp.series('scripts:main', 'sync:deploy-scripts', 'reload'),
-  );
-
-  gulp.watch(
-    [`${configs.paths.src}/vendors/**`],
-    gulp.series('sync:build-vendors', 'sync:deploy-vendors', 'reload'),
   );
 
   gulp.watch(

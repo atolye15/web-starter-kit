@@ -106,6 +106,7 @@ root
 │     ├── tasks/          # All Gulp tasks are located in this folder.
 │     └── utils/          # Utility functions used by Gulp tasks are located in this folder.
 ├── kss/                  # Settings for KSS package used by Styleguide are located in this folder.
+├── public/               # The public folder contains the files won't be compiled. The files is in this folder only will be copy and paste to the dist folder.
 ├── src/                  # Files for development are located here. These files are processed by Gulp and /dev and /dist will be created
 │     ├── fonts/          # Font files needed for the project should be placed here to be compiled.
 │     ├── img/            # Image files needed for the project should be placed here.
@@ -119,7 +120,7 @@ root
 │       ├── components/
 │       ├── objects/
 │       └── libs/
-│     ├── vendors/        # Third party libraries and plugins should be placed in this folder. These files won't be compiled, only will be moved to /vendors under /dist folder.
+│
 ├── twig/                 # Twig files are located in this folder.
 │   ├── pages/
 │   └── partials/

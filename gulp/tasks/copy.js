@@ -16,14 +16,12 @@ export function copyFonts() {
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.fonts}`));
 }
 
-export function copyVendors() {
-  return gulp
-    .src(`${configs.paths.src}/vendors/**/*`)
-    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.vendors}`));
+export function copyPublic() {
+  return gulp.src(`public/**/*`, { dot: true }).pipe(gulp.dest(`${envPath}/`));
 }
 
 export default {
   images: copyImages,
   fonts: copyFonts,
-  vendors: copyVendors,
+  public: copyPublic,
 };

@@ -24,7 +24,6 @@ export default {
       css: 'css',
       img: 'img',
       fonts: 'css/fonts',
-      vendors: 'vendors',
     },
   },
   browserSync: {

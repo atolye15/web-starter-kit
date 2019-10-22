@@ -22,15 +22,13 @@ export function deployScripts() {
     .pipe(gulp.dest(`${configs.paths.deploy}/${configs.paths.assets.js}`));
 }
 
-export function deployVendors() {
-  return gulp
-    .src(`${envPath}/${configs.paths.assets.vendors}/**/*`)
-    .pipe(gulp.dest(`${configs.paths.deploy}/${configs.paths.assets.vendors}`));
+export function deployPublic() {
+  return gulp.src(`${configs.paths.src}/public/**/*`).pipe(gulp.dest(`${configs.paths.deploy}/`));
 }
 
 export default {
   styles: deployStyles,
   scripts: deployScripts,
   images: deployImages,
-  vendors: deployVendors,
+  public: deployPublic,
 };
