@@ -29,7 +29,6 @@ const isDeploy = argv.deploy;
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
-gulp.task('clean:tempJs', tasks.clean.tempJs);
 gulp.task('clean:deployFolder', tasks.clean.deployFolder);
 gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
@@ -103,7 +102,6 @@ gulp.task(
   'build',
   gulp.series(
     'clean:dist',
-    'clean:tempJs',
     gulp.parallel('html', 'scripts'),
     gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:public'),
     skippable(isDeploy, 'deploy'),

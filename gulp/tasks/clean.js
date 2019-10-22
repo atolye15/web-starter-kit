@@ -9,10 +9,6 @@ export function cleanDist() {
   return del([`${envPath}/*`], { dot: true });
 }
 
-export function cleanTempJs() {
-  return del(['.cache/js/*'], { dot: true });
-}
-
 export function cleanDeployFolder() {
   return del([`${configs.paths.deploy}/*`], { dot: true, force: true });
 }
@@ -23,7 +19,6 @@ export function cleanIconsSprite() {
 
 export default {
   dist: cleanDist,
-  tempJs: cleanTempJs,
   deployFolder: cleanDeployFolder,
   iconsSprite: cleanIconsSprite,
 };
