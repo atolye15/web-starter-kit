@@ -96,8 +96,8 @@ gulp.task(
  */
 
 // BUILD
-gulp.task('sync:build-fonts', tasks.sync.build.fonts);
-gulp.task('sync:build-image', tasks.sync.build.image);
+gulp.task('sync:fonts', tasks.sync.fonts);
+gulp.task('sync:images', tasks.sync.images);
 
 // Reload
 gulp.task('reload', cb => {
@@ -132,7 +132,7 @@ gulp.task('serve', () => {
     gulp.series('styles', 'styleguide', 'reload'),
   );
 
-  gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:build-fonts', 'reload'));
+  gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:fonts', 'reload'));
 
   gulp.watch(
     [`${configs.paths.src}/js/**/*.js`],
@@ -142,7 +142,7 @@ gulp.task('serve', () => {
 
   gulp.watch(
     [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
-    gulp.series('sync:build-image', 'reload'),
+    gulp.series('sync:images', 'reload'),
   );
 });
 

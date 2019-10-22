@@ -20,7 +20,7 @@ function printSummary(result, taskName) {
 /**
  * Build
  */
-export function syncFontsInBuild() {
+export function syncFonts() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
     .pipe(
@@ -31,7 +31,7 @@ export function syncFontsInBuild() {
     .on('error', notifierErrorHandler);
 }
 
-export function syncImgInBuild() {
+export function syncImages() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
     .pipe(
@@ -42,6 +42,4 @@ export function syncImgInBuild() {
     .on('error', notifierErrorHandler);
 }
 
-export default {
-  build: { fonts: syncFontsInBuild, image: syncImgInBuild },
-};
+export default { fonts: syncFonts, images: syncImages };
