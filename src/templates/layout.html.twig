@@ -7,7 +7,7 @@
     {% block meta %}
       <title>Default Project</title>
     {% endblock %}
-    <link rel=stylesheet href="css/main{% if is_production() %}.min{% endif %}.css">
+    <link rel=stylesheet href="css/app{% if is_production() %}.min{% endif %}.css">
     {% block headerStylesheets %}{% endblock %}
     {% block headerJavascripts %}{% endblock %}
   </head>

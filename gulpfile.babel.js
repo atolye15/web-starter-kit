@@ -22,15 +22,12 @@ const argv = minimist(process.argv.slice(2));
 const browserSync = browserSyncBase.create();
 
 const isProduction = argv.prod;
-const isDeploy = argv.deploy;
 
 /**
  * CLEAN
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
-gulp.task('clean:tempJs', tasks.clean.tempJs);
-gulp.task('clean:deployFolder', tasks.clean.deployFolder);
 gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
 /**
@@ -39,7 +36,7 @@ gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
 gulp.task('copy:images', tasks.copy.images);
 gulp.task('copy:fonts', tasks.copy.fonts);
-gulp.task('copy:vendors', tasks.copy.vendors);
+gulp.task('copy:public', tasks.copy.public);
 
 /**
  * STYLES
@@ -69,24 +66,6 @@ gulp.task('html:main', tasks.html);
 gulp.task('html', gulp.series('clean:icons-sprite', 'icons:sprite', 'html:main'));
 
 /**
- * DEPLOY
- * Copy the builded assets to the deploy folder
- */
-
-gulp.task('deploy:styles', tasks.deploy.styles);
-gulp.task('deploy:scripts', tasks.deploy.scripts);
-gulp.task('deploy:images', tasks.deploy.images);
-gulp.task('deploy:vendors', tasks.deploy.vendors);
-
-gulp.task(
-  'deploy',
-  gulp.series(
-    'clean:deployFolder',
-    gulp.parallel('deploy:styles', 'deploy:scripts', 'deploy:images', 'deploy:vendors'),
-  ),
-);
-
-/**
  * NOTIFY
  */
 
@@ -103,10 +82,8 @@ gulp.task(
   'build',
   gulp.series(
     'clean:dist',
-    'clean:tempJs',
     gulp.parallel('html', 'scripts'),
-    gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:vendors'),
-    skippable(isDeploy, 'deploy'),
+    gulp.parallel('styles', 'copy:images', 'copy:fonts', 'copy:public'),
     'notify:build',
     'log:build-success',
   ),
@@ -119,15 +96,8 @@ gulp.task(
  */
 
 // BUILD
-gulp.task('sync:build-fonts', tasks.sync.build.fonts);
-gulp.task('sync:build-image', tasks.sync.build.image);
-gulp.task('sync:build-vendors', tasks.sync.build.vendors);
-
-// DEPLOY
-gulp.task('sync:deploy-styles', tasks.sync.deploy.css);
-gulp.task('sync:deploy-scripts', tasks.sync.deploy.js);
-gulp.task('sync:deploy-images', tasks.sync.deploy.img);
-gulp.task('sync:deploy-vendors', tasks.sync.deploy.vendors);
+gulp.task('sync:fonts', tasks.sync.fonts);
+gulp.task('sync:images', tasks.sync.images);
 
 // Reload
 gulp.task('reload', cb => {
@@ -144,7 +114,7 @@ gulp.task('serve', () => {
   browserSync.init(configs.browserSync);
 
   gulp.watch(
-    [`${configs.paths.src}/{twig,scss}/**/*.twig`],
+    [`${configs.paths.src}/**/*.twig`],
     { cwd: './' },
     gulp.series(
       'html:main',
@@ -159,28 +129,20 @@ gulp.task('serve', () => {
   gulp.watch(
     [`${configs.paths.src}/scss/**/*.scss`],
     { cwd: './' },
-    gulp.series('styles', 'sync:deploy-styles', 'styleguide', 'reload'),
+    gulp.series('styles', 'styleguide', 'reload'),
   );
 
-  gulp.watch(
-    [`${configs.paths.src}/fonts/**/*`],
-    gulp.series('sync:build-fonts', 'sync:deploy-styles', 'reload'),
-  );
+  gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:fonts', 'reload'));
 
   gulp.watch(
     [`${configs.paths.src}/js/**/*.js`],
     { cwd: './' },
-    gulp.series('scripts:main', 'sync:deploy-scripts', 'reload'),
-  );
-
-  gulp.watch(
-    [`${configs.paths.src}/vendors/**`],
-    gulp.series('sync:build-vendors', 'sync:deploy-vendors', 'reload'),
+    gulp.series('scripts:main', 'reload'),
   );
 
   gulp.watch(
     [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
-    gulp.series('sync:build-image', 'sync:deploy-images', 'reload'),
+    gulp.series('sync:images', 'reload'),
   );
 });
 

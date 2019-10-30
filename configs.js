@@ -9,23 +9,28 @@ const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentVal
   return accumulator;
 }, []);
 
+const paths = {
+  src: 'src',
+  dev: 'dev',
+  dist: 'dist',
+  assets: {
+    js: 'js',
+    css: 'css',
+    img: 'img',
+    fonts: 'css/fonts',
+  },
+};
+
 export default {
   info: {
     name: 'Project-Name',
     version: '0.1.0',
   },
-  paths: {
-    src: 'src',
-    dev: 'dev',
-    dist: 'dist',
-    deploy: '../web/assets',
-    assets: {
-      js: 'js',
-      css: 'css',
-      img: 'img',
-      fonts: 'css/fonts',
-      vendors: 'vendors',
-    },
+  paths,
+  entry: {
+    styles: [`${paths.src}/app.scss`],
+    scripts: [`${paths.src}/index.js`],
+    pages: `${paths.src}/templates/pages/**/*.html.twig`,
   },
   browserSync: {
     notify: false,
@@ -46,7 +51,7 @@ export default {
     ghostMode: false,
   },
   styleGuide: {
-    source: ['src/scss'],
+    source: ['src/'],
     destination: 'styleguide/',
     custom: ['HideOriginal', 'DemoBgColor', 'Colors', 'Icons'],
     extend: 'kss/extend',

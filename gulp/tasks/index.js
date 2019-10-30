@@ -1,7 +1,6 @@
 import styles from './styles';
 import scripts from './scripts';
 import icons from './icons';
-import deploy from './deploy';
 import html from './html';
 import copy from './copy';
 import sync from './sync';
@@ -15,7 +14,6 @@ export default {
   styles,
   scripts,
   icons,
-  deploy,
   html,
   copy,
   sync,

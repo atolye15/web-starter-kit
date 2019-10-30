@@ -9,7 +9,7 @@ import { isProduction } from './gulp/utils/parseArguments';
 const envPath = configs.paths[isProduction ? 'dist' : 'dev'];
 
 export default {
-  input: `${configs.paths.src}/js/index.js`,
+  input: configs.entry.scripts,
   output: {
     file: `${envPath}/${configs.paths.assets.js}/app${isProduction ? '.min' : ''}.js`,
     format: 'iife', // immediately-invoked function expression — suitable for <script> tags

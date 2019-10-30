@@ -16,14 +16,14 @@ export function copyFonts() {
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.fonts}`));
 }
 
-export function copyVendors() {
+export function copyPublic() {
   return gulp
-    .src(`${configs.paths.src}/vendors/**/*`)
-    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.vendors}`));
+    .src([`public/**/*`, '!public/.gitkeep'], { dot: true })
+    .pipe(gulp.dest(`${envPath}/`));
 }
 
 export default {
   images: copyImages,
   fonts: copyFonts,
-  vendors: copyVendors,
+  public: copyPublic,
 };
