@@ -21,7 +21,7 @@ function normalizeTwigFunction(functions) {
 
 export default function() {
   return gulp
-    .src(`${configs.paths.src}/twig/pages/**/*.twig`)
+    .src(configs.entry.pages)
     .pipe(
       twig({
         functions: normalizeTwigFunction(twigFunctions),
@@ -31,7 +31,7 @@ export default function() {
     .pipe(
       rename(filePath => {
         // eslint-disable-next-line no-param-reassign
-        filePath.basename = filePath.basename.replace(/(\.html)$/, '');
+        filePath.basename = filePath.basename.replace(/(\.page.html)$/, '');
         return filePath;
       }),
     )

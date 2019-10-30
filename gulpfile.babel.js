@@ -114,7 +114,7 @@ gulp.task('serve', () => {
   browserSync.init(configs.browserSync);
 
   gulp.watch(
-    [`${configs.paths.src}/{twig,scss}/**/*.twig`],
+    [`${configs.paths.src}/**/*.twig`],
     { cwd: './' },
     gulp.series(
       'html:main',

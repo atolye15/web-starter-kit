@@ -66,7 +66,7 @@ export default function(cb) {
    */
 
   return gulp
-    .src([`${configs.paths.src}/scss/**/*.scss`], { sourcemaps: true })
+    .src(configs.entry.styles, { sourcemaps: true })
     .pipe(sass({ precision: 10, importer: inlineCssImporter }))
     .pipe(
       postcss([
