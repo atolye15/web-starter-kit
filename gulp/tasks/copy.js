@@ -17,7 +17,9 @@ export function copyFonts() {
 }
 
 export function copyPublic() {
-  return gulp.src(`public/**/*`, { dot: true }).pipe(gulp.dest(`${envPath}/`));
+  return gulp
+    .src([`public/**/*`, '!public/.gitkeep'], { dot: true })
+    .pipe(gulp.dest(`${envPath}/`));
 }
 
 export default {
