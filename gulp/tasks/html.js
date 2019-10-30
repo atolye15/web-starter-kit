@@ -19,6 +19,17 @@ function normalizeTwigFunction(functions) {
   }, []);
 }
 
+function flattenFilePath(filePath) {
+  if (filePath.dirname === '.') {
+    return filePath;
+  }
+
+  return Object.assign(filePath, {
+    basename: `${filePath.dirname.split('/').join('-')}-${filePath.basename}`,
+    dirname: '.',
+  });
+}
+
 export default function() {
   return gulp
     .src(configs.entry.pages)
@@ -29,11 +40,13 @@ export default function() {
       }),
     )
     .pipe(
-      rename(filePath => {
-        // eslint-disable-next-line no-param-reassign
-        filePath.basename = filePath.basename.replace(/(\.page.html)$/, '');
-        return filePath;
-      }),
+      rename(filePath =>
+        flattenFilePath(
+          // Here we use Object.assign instead of object spread operator(...) because
+          // we should not lose the object reference. Otherwise, rename will not work correctly
+          Object.assign(filePath, { basename: filePath.basename.replace(/(\.html)$/, '') }),
+        ),
+      ),
     )
     .pipe(gulp.dest(envPath))
     .on('error', notifierErrorHandler);
