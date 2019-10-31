@@ -13,11 +13,11 @@
 </head>
 <body id="kss-node" {% if template.isItem %}class="kss-fullscreen-mode"{% endif %}>
 
-{% if is_file_exists("../../../.cache/img/sprite.svg") %}
-  <div class="u-display-none">
-    {% include "../../../.cache/img/sprite.svg" %}
+{% if is_file_exists("../../../styleguide/kss-assets/sprite.svg") %}
+  <div hidden>
+    {% include "../../../styleguide/kss-assets/sprite.svg" %}
   </div>
-  {% endif %}
+{% endif %}
 
 <div class="kss-sidebar kss-style">
   <header class="kss-header">
@@ -249,9 +249,9 @@
           <div class="kss-icons">
             {% kssIcons section.icons %}
               <div class="kss-icons__item" title="{{icon.name}}">
-                <svg class="icon kss-icons__demo">
-                  <use xlink:href="#icon-{{icon.name}}"></use>
-                </svg>
+                <div class="kss-icons__demo">
+                {{ section.example|replace({'[name]': icon.name}) }}
+                </div>
                 <span class="kss-icons__name">{{icon.name}}</span>
               </div>
             {% endkssIcons %}

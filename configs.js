@@ -57,7 +57,7 @@ export default {
     extend: 'kss/extend',
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
-    css: ['../dev/css/main.css'],
+    css: ['../dev/css/app.css'],
     js: [],
     verbose: false,
     builder: 'kss/builders/atolye15',
