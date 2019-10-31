@@ -127,7 +127,7 @@ gulp.task('serve', () => {
   gulp.watch([`${configs.paths.src}/img/icons/*.svg`], gulp.series('html', 'reload'));
 
   gulp.watch(
-    [`${configs.paths.src}/scss/**/*.scss`],
+    [`${configs.paths.src}/**/*.scss`],
     { cwd: './' },
     gulp.series('styles', 'styleguide', 'reload'),
   );
@@ -135,7 +135,7 @@ gulp.task('serve', () => {
   gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:fonts', 'reload'));
 
   gulp.watch(
-    [`${configs.paths.src}/js/**/*.js`],
+    [`${configs.paths.src}/**/*.js`],
     { cwd: './' },
     gulp.series('scripts:main', 'reload'),
   );
