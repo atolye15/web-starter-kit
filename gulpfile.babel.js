@@ -28,6 +28,7 @@ const isProduction = argv.prod;
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
+gulp.task('clean:styleguide', tasks.clean.styleguide);
 
 /**
  * COPY
