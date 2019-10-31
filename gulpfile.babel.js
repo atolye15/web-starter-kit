@@ -28,7 +28,6 @@ const isProduction = argv.prod;
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
-gulp.task('clean:icons-sprite', tasks.clean.iconsSprite);
 
 /**
  * COPY
@@ -63,7 +62,7 @@ gulp.task('icons:sprite', tasks.icons.sprite);
  */
 
 gulp.task('html:main', tasks.html);
-gulp.task('html', gulp.series('clean:icons-sprite', 'icons:sprite', 'html:main'));
+gulp.task('html', gulp.series('icons:sprite', 'html:main'));
 
 /**
  * NOTIFY

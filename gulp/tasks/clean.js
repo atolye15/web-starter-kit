@@ -9,11 +9,6 @@ export function cleanDist() {
   return del([`${envPath}/*`], { dot: true });
 }
 
-export function cleanIconsSprite() {
-  return del(['.cache/sprite.svg'], { dot: true });
-}
-
 export default {
   dist: cleanDist,
-  iconsSprite: cleanIconsSprite,
 };
