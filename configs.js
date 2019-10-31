@@ -60,7 +60,7 @@ export default {
     css: ['../dev/css/app.css'],
     js: [],
     verbose: false,
-    builder: 'kss/builders/atolye15',
+    builder: 'node_modules/@atolye15/kss-node-twig-builder',
     homepage: '../../readme.md',
     title: 'Atölye Style Guide',
     namespace: namespacesForKss,
