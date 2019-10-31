@@ -946,9 +946,15 @@ $kss-vertical-rhythm: $kss-font-size * 1.5;
 }
 
 .kss-icons__demo {
-  display: inline-block;
   color: #162a36;
   font-size: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 4px;
 }
 
 .kss-icons__name {
