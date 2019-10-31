@@ -249,9 +249,9 @@
           <div class="kss-icons">
             {% kssIcons section.icons %}
               <div class="kss-icons__item" title="{{icon.name}}">
-                <svg class="icon kss-icons__demo">
-                  <use xlink:href="#icon-{{icon.name}}"></use>
-                </svg>
+                <div class="kss-icons__demo">
+                {{ section.example|replace({'[name]': icon.name}) }}
+                </div>
                 <span class="kss-icons__name">{{icon.name}}</span>
               </div>
             {% endkssIcons %}
