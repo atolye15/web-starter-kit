@@ -14,7 +14,7 @@ export function iconsSprite() {
     .pipe(rename({ prefix: 'icon-' }))
     .pipe(svgstore({ inlineSvg: true }))
     .pipe(rename({ basename: 'sprite' }))
-    .pipe(gulp.dest('styleguide/kss-assets'))
+    .pipe(gulp.dest(`${configs.styleGuide.destination}/kss-assets`))
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
     .on('error', notifierErrorHandler);
 }

@@ -52,7 +52,7 @@ export default {
   },
   styleGuide: {
     source: ['src/'],
-    destination: 'styleguide/',
+    destination: 'styleguide',
     custom: ['HideOriginal', 'DemoBgColor', 'Colors', 'Icons'],
     extend: 'kss/extend',
     // The css and js paths are URLs, like '/misc/jquery.js'.
