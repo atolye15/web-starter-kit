@@ -90,12 +90,22 @@ gulp.task(
 );
 
 /**
+ * BUILD KSS living styleguide
+ */
+
+gulp.task('styleguide:generate', () => kss(configs.styleGuide));
+
+gulp.task(
+  'build-styleguide',
+  gulp.series('clean:styleguide', 'icons:sprite', 'styleguide:generate'),
+);
+
+/**
  * SYNC
  * Synchronization of folders
  * These tasks only work when watch is active
  */
 
-// BUILD
 gulp.task('sync:fonts', tasks.sync.fonts);
 gulp.task('sync:images', tasks.sync.images);
 
@@ -119,7 +129,7 @@ gulp.task('serve', () => {
     gulp.series(
       'html:main',
       skippable(isProduction && configs.uncss.active, 'styles:main'),
-      'styleguide',
+      'styleguide:generate',
       'reload',
     ),
   );
@@ -129,7 +139,7 @@ gulp.task('serve', () => {
   gulp.watch(
     [`${configs.paths.src}/**/*.scss`],
     { cwd: './' },
-    gulp.series('styles', 'styleguide', 'reload'),
+    gulp.series('styles', 'styleguide:generate', 'reload'),
   );
 
   gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:fonts', 'reload'));
@@ -145,11 +155,5 @@ gulp.task('serve', () => {
     gulp.series('sync:images', 'reload'),
   );
 });
-
-/**
- * Generates KSS living styleguide
- */
-
-gulp.task('styleguide', () => kss(configs.styleGuide));
 
 gulp.task('bump', tasks.bump);
