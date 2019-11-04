@@ -171,8 +171,6 @@ yarn [command]
 ### 3. Example Use Cases
 
 - [Adding icons](docs/Adding-icon.md)
-- [Creating a new Javascript file](docs/Adding-javascript-file.md)
-- [Adding a new third party library](docs/Adding-third-party-js-files.md)
 
 ## License
 
