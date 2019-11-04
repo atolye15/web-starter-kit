@@ -52,15 +52,15 @@ export default {
   },
   styleGuide: {
     source: ['src/'],
-    destination: 'styleguide/',
-    custom: ['HideOriginal', 'DemoBgColor', 'Colors', 'Icons'],
+    destination: 'styleguide',
+    custom: [],
     extend: 'kss/extend',
     // The css and js paths are URLs, like '/misc/jquery.js'.
     // The following paths are relative to the generated style guide.
     css: ['../dev/css/app.css'],
     js: [],
     verbose: false,
-    builder: 'kss/builders/atolye15',
+    builder: 'node_modules/@atolye15/kss-node-twig-builder',
     homepage: '../../readme.md',
     title: 'Atölye Style Guide',
     namespace: namespacesForKss,

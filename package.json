@@ -2,6 +2,7 @@
   "version": "v4.4.2",
   "devDependencies": {
     "@atolye15/eslint-config-base": "^1.0.17",
+    "@atolye15/kss-node-twig-builder": "^1.1.1",
     "@atolye15/stylelint-config": "^1.3.0",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
@@ -53,11 +54,11 @@
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "gulp": "gulp",
     "generate-svg-sprite": "gulp icons:sprite",
-    "build-styleguide": "yarn generate-svg-sprite && gulp styleguide",
+    "build-styleguide": "gulp build-styleguide",
     "build": "yarn lint && gulp build",
     "build-prod": "yarn build --prod",
-    "start": "yarn build && gulp styleguide && gulp serve",
-    "start-prod": "yarn build-prod && gulp styleguide && gulp serve --prod",
+    "start": "gulp clean:styleguide && yarn build && gulp styleguide:generate && gulp serve",
+    "start-prod": "gulp clean:styleguide && yarn build-prod && gulp styleguide && gulp serve --prod",
     "publish-github": "yarn build-prod && gh-pages -d dist",
     "gulp-tasks": "gulp --tasks"
   },
