@@ -53,9 +53,9 @@
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "gulp": "gulp",
     "build": "yarn lint && gulp build",
-    "build-prod": "yarn build --prod",
-    "start": "yarn build && gulp serve",
-    "start-prod": "yarn build-prod && gulp serve --prod",
+    "build-prod": "yarn build --env production",
+    "start": "yarn build && gulp start",
+    "start-prod": "yarn build-prod && gulp start --env production",
     "publish-github": "yarn build-prod && gh-pages -d dist",
     "gulp-tasks": "gulp --tasks"
   },

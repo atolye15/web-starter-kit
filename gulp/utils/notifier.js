@@ -3,7 +3,7 @@ import c from 'ansi-colors';
 
 import baseNotifier from 'node-notifier';
 import configs from '../../configs';
-import { isProduction } from './parseArguments';
+import { isProduction } from './env';
 
 function notifier(message, cb = () => {}) {
   if (isProduction) {

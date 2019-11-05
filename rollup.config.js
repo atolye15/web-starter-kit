@@ -4,7 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 
 import configs from './configs';
-import { isProduction } from './gulp/utils/parseArguments';
+import { isProduction } from './gulp/utils/env';
 
 const envPath = configs.paths[isProduction ? 'dist' : 'dev'];
 

@@ -1,12 +1,10 @@
-import gulp from 'gulp';
+import gulp, { parallel } from 'gulp';
 import dirSync from 'gulp-directory-sync';
 import c from 'ansi-colors';
 
 import configs from '../../configs';
-import { isProduction } from '../utils/parseArguments';
+import { envPath } from '../utils/env';
 import { notifierErrorHandler } from '../utils/notifier';
-
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 function printSummary(result, taskName) {
   // eslint-disable-next-line no-console
@@ -41,5 +39,4 @@ export function syncImages() {
     )
     .on('error', notifierErrorHandler);
 }
-
-export default { fonts: syncFonts, images: syncImages };
+export default parallel(syncFonts, syncImages);

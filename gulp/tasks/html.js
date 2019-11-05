@@ -3,11 +3,9 @@ import twig from 'gulp-twig';
 import rename from 'gulp-rename';
 
 import configs, { namespaces } from '../../configs';
-import { isProduction } from '../utils/parseArguments';
+import { envPath } from '../utils/env';
 import { notifierErrorHandler } from '../utils/notifier';
 import twigFunctions from '../../twig/functions';
-
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 function normalizeTwigFunction(functions) {
   return Object.keys(functions).reduce((accumulator, currentValue) => {
@@ -30,7 +28,7 @@ function flattenFilePath(filePath) {
   });
 }
 
-export default function() {
+export default function html() {
   return gulp
     .src(configs.entry.pages)
     .pipe(

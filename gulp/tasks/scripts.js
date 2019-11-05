@@ -5,10 +5,8 @@ import { notifierErrorHandler } from '../utils/notifier';
 
 const { output: rollupOutputOptions, ...rollupInputOptions } = rollupOptions;
 
-export function scriptsMain() {
+export default function scripts() {
   return rollup(rollupInputOptions)
     .then(bundle => bundle.write(rollupOutputOptions))
     .catch(notifierErrorHandler);
 }
-
-export default { main: scriptsMain };

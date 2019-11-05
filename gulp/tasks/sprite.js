@@ -3,12 +3,10 @@ import rename from 'gulp-rename';
 import svgstore from 'gulp-svgstore';
 
 import configs from '../../configs';
-import { isProduction } from '../utils/parseArguments';
+import { envPath } from '../utils/env';
 import { notifierErrorHandler } from '../utils/notifier';
 
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
-
-export function iconsSprite() {
+export default function sprite() {
   return gulp
     .src(`${configs.paths.src}/img/icons/**/*.svg`)
     .pipe(rename({ prefix: 'icon-' }))
@@ -17,7 +15,3 @@ export function iconsSprite() {
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
     .on('error', notifierErrorHandler);
 }
-
-export default {
-  sprite: iconsSprite,
-};

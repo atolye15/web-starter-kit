@@ -12,11 +12,9 @@ import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 
 import configs from '../../configs';
-import { isProduction } from '../utils/parseArguments';
+import { isProduction, envPath } from '../utils/env';
 import noop from '../utils/noop';
 import { notifierErrorHandler } from '../utils/notifier';
-
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 function inlineCssImporter(url, prev) {
   if (!url.endsWith('.css')) {
@@ -34,7 +32,7 @@ function inlineCssImporter(url, prev) {
   return { contents };
 }
 
-export default function(cb) {
+export default function styles(cb) {
   const uncssOptions = {
     html: [`${envPath}/*.html`],
     ignore: configs.uncss.ignore,
