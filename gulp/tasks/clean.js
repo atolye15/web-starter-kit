@@ -9,11 +9,6 @@ export function cleanDist() {
   return del([`${envPath}/*`], { dot: true });
 }
 
-export function cleanStyleguide() {
-  return del([`${configs.styleGuide.destination}/*`], { dot: true });
-}
-
 export default {
   dist: cleanDist,
-  styleguide: cleanStyleguide,
 };

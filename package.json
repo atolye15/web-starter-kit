@@ -53,11 +53,10 @@
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "gulp": "gulp",
     "generate-svg-sprite": "gulp icons:sprite",
-    "build-styleguide": "gulp build-styleguide",
     "build": "yarn lint && gulp build",
     "build-prod": "yarn build --prod",
-    "start": "gulp clean:styleguide && yarn build && gulp styleguide:generate && gulp serve",
-    "start-prod": "gulp clean:styleguide && yarn build-prod && gulp styleguide && gulp serve --prod",
+    "start": "yarn build && gulp serve",
+    "start-prod": "yarn build-prod && gulp serve --prod",
     "publish-github": "yarn build-prod && gh-pages -d dist",
     "gulp-tasks": "gulp --tasks"
   },

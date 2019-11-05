@@ -10,7 +10,6 @@
 
 import gulp from 'gulp';
 import browserSyncBase from 'browser-sync';
-import kss from 'kss';
 import minimist from 'minimist';
 
 import tasks from './gulp/tasks';
@@ -28,7 +27,6 @@ const isProduction = argv.prod;
  */
 
 gulp.task('clean:dist', tasks.clean.dist);
-gulp.task('clean:styleguide', tasks.clean.styleguide);
 
 /**
  * COPY
@@ -90,17 +88,6 @@ gulp.task(
 );
 
 /**
- * BUILD KSS living styleguide
- */
-
-gulp.task('styleguide:generate', () => kss(configs.styleGuide));
-
-gulp.task(
-  'build-styleguide',
-  gulp.series('clean:styleguide', 'icons:sprite', 'styleguide:generate'),
-);
-
-/**
  * SYNC
  * Synchronization of folders
  * These tasks only work when watch is active
@@ -129,18 +116,13 @@ gulp.task('serve', () => {
     gulp.series(
       'html:main',
       skippable(isProduction && configs.uncss.active, 'styles:main'),
-      'styleguide:generate',
       'reload',
     ),
   );
 
   gulp.watch([`${configs.paths.src}/img/icons/*.svg`], gulp.series('html', 'reload'));
 
-  gulp.watch(
-    [`${configs.paths.src}/**/*.scss`],
-    { cwd: './' },
-    gulp.series('styles', 'styleguide:generate', 'reload'),
-  );
+  gulp.watch([`${configs.paths.src}/**/*.scss`], { cwd: './' }, gulp.series('styles', 'reload'));
 
   gulp.watch([`${configs.paths.src}/fonts/**/*`], gulp.series('sync:fonts', 'reload'));
 
