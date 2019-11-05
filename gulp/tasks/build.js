@@ -1,6 +1,6 @@
 import { series, parallel } from 'gulp';
 
-import { cleanDist } from './clean';
+import { clearDist } from './clear';
 import html from './html';
 import scripts from './scripts';
 import styles from './styles';
@@ -9,7 +9,7 @@ import { notifyBuildComplete } from './notify';
 import { logBuildSuccess } from './log';
 
 export default series(
-  cleanDist,
+  clearDist,
   parallel(html, scripts, copy),
   parallel(styles),
   notifyBuildComplete,

@@ -3,8 +3,8 @@ import del from 'del';
 
 import { envPath } from '../utils/env';
 
-export function cleanDist() {
+export function clearDist() {
   return del([`${envPath}/*`], { dot: true });
 }
 
-export default series(cleanDist);
+export default series(clearDist);
