@@ -1,14 +1,3 @@
-export const namespaces = {
-  components: 'src/scss/components',
-  objects: 'src/scss/objects',
-  partials: 'src/twig/partials',
-};
-
-const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentValue) => {
-  accumulator.push(`${currentValue}:${namespaces[currentValue]}`);
-  return accumulator;
-}, []);
-
 const paths = {
   src: 'src',
   dev: 'dev',
@@ -21,12 +10,19 @@ const paths = {
   },
 };
 
+export const namespaces = {
+  components: 'src/scss/components',
+  objects: 'src/scss/objects',
+  partials: 'src/twig/partials',
+};
+
 export default {
   info: {
     name: 'Project-Name',
     version: '0.1.0',
   },
   paths,
+  namespaces,
   entry: {
     styles: [`${paths.src}/app.scss`],
     scripts: [`${paths.src}/index.js`],
@@ -49,21 +45,6 @@ export default {
     server: ['./'],
     port: 3000,
     ghostMode: false,
-  },
-  styleGuide: {
-    source: ['src/'],
-    destination: 'styleguide',
-    custom: [],
-    extend: 'kss/extend',
-    // The css and js paths are URLs, like '/misc/jquery.js'.
-    // The following paths are relative to the generated style guide.
-    css: ['../dev/css/app.css'],
-    js: [],
-    verbose: false,
-    builder: 'node_modules/@atolye15/kss-node-twig-builder',
-    homepage: '../../readme.md',
-    title: 'Atölye Style Guide',
-    namespace: namespacesForKss,
   },
   uncss: {
     active: true,
