@@ -150,22 +150,21 @@ You can run commands by typing,
 yarn [command]
 ```
 
-| Command             | Description                                                                                 |
-| :------------------ | ------------------------------------------------------------------------------------------- |
-| lint                | runs lint:js and lint:css commands.                                                         |
-| lint:js             | runs eslint for javascript files                                                            |
-| lint:css            | runs stylint for scss files                                                                 |
-| format              | runs format:js and format:css commands                                                      |
-| format:js           | runs prettier for javascript files                                                          |
-| format:css          | runs prettier for scss files                                                                |
-| gulp                | runs gulp command                                                                           |
-| generate-svg-sprite | runs image:sprite task                                                                      |
-| build-styleguide    | builds styleguide                                                                           |
-| build               | builds project in development mode                                                          |
-| build-prod          | builds project in production mode                                                           |
-| start               | starts project, builds styleguide and runs watch processes                                  |
-| start-prod          | starts project in production mode                                                           |
-| publish-github      | publishes project on github pages (You need to install gh-pages plugin to use this command) |
+| Command          | Description                                                                                 |
+| :--------------- | ------------------------------------------------------------------------------------------- |
+| lint             | runs lint:js and lint:css commands.                                                         |
+| lint:js          | runs eslint for javascript files                                                            |
+| lint:css         | runs stylint for scss files                                                                 |
+| format           | runs format:js and format:css commands                                                      |
+| format:js        | runs prettier for javascript files                                                          |
+| format:css       | runs prettier for scss files                                                                |
+| gulp             | runs gulp command                                                                           |
+| build-styleguide | builds styleguide                                                                           |
+| build            | builds project in development mode                                                          |
+| build-prod       | builds project in production mode                                                           |
+| start            | starts project, builds styleguide and runs watch processes                                  |
+| start-prod       | starts project in production mode                                                           |
+| publish-github   | publishes project on github pages (You need to install gh-pages plugin to use this command) |
 
 ### 3. Example Use Cases
 

@@ -52,7 +52,6 @@
     "format:js": "prettier --write \"src/**/*.js\"",
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "gulp": "gulp",
-    "generate-svg-sprite": "gulp icons:sprite",
     "build": "yarn lint && gulp build",
     "build-prod": "yarn build --prod",
     "start": "yarn build && gulp serve",
