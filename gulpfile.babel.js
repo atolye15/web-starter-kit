@@ -155,5 +155,3 @@ gulp.task('serve', () => {
     gulp.series('sync:images', 'reload'),
   );
 });
-
-gulp.task('bump', tasks.bump);
