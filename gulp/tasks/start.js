@@ -8,6 +8,8 @@ import html from './html';
 import styles from './styles';
 import scripts from './scripts';
 import { syncFonts, syncImages } from './sync';
+import sprite from './sprite';
+import build from './build';
 
 const browserSync = browserSyncBase.create();
 
@@ -16,7 +18,7 @@ function reload(cb) {
   cb();
 }
 
-export default function start() {
+function start() {
   browserSync.init(configs.browserSync);
 
   watch(
@@ -25,7 +27,7 @@ export default function start() {
     series(html, skippable(isProduction && configs.uncss.active, styles), reload),
   );
 
-  watch([`${configs.paths.src}/img/icons/*.svg`], series(html, reload));
+  watch([`${configs.paths.src}/img/icons/*.svg`], series(sprite, html, reload));
 
   watch([`${configs.paths.src}/**/*.scss`], { cwd: './' }, series(styles, reload));
 
@@ -38,3 +40,5 @@ export default function start() {
     series(syncImages, reload),
   );
 }
+
+export default series(build, start);

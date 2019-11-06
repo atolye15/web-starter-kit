@@ -7,6 +7,7 @@ import html from './html';
 import scripts from './scripts';
 import styles from './styles';
 import copy from './copy';
+import sprite from './sprite';
 
 function completed(cb) {
   notifier('Build işlemi başarılı bir şekilde tamamlandı.');
@@ -22,4 +23,10 @@ function completed(cb) {
   cb();
 }
 
-export default series(clearDist, parallel(html, scripts, copy), parallel(styles), completed);
+export default series(
+  clearDist,
+  sprite,
+  parallel(html, scripts, copy),
+  parallel(styles),
+  completed,
+);
