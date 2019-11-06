@@ -24,7 +24,7 @@ function start() {
   watch(
     [`${configs.paths.src}/**/*.twig`],
     { cwd: './' },
-    series(html, skippable(isProduction && configs.uncss.active, styles), reload),
+    series(html, skippable(isProduction && configs.uncssActive, styles), reload),
   );
 
   watch([`${configs.paths.src}/img/icons/*.svg`], series(sprite, html, reload));

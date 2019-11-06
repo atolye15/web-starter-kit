@@ -11,7 +11,7 @@ import mqpacker from 'css-mqpacker';
 import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 
-import configs from '../../configs';
+import configs, { uncssOptions } from '../../configs';
 import { isProduction, envPath } from '../utils/env';
 import noop from '../utils/noop';
 import { notifierErrorHandler } from '../utils/notifier';
@@ -33,17 +33,11 @@ function inlineCssImporter(url, prev) {
 }
 
 export default function styles(cb) {
-  const uncssOptions = {
-    html: [`${envPath}/*.html`],
-    ignore: configs.uncss.ignore,
-    htmlroot: envPath,
-  };
-
   const stylesMinChannel = lazypipe()
     .pipe(
       postcss,
       [
-        configs.uncss.active ? uncss.postcssPlugin(uncssOptions) : function() {},
+        configs.uncssActive ? uncss.postcssPlugin(uncssOptions) : function() {},
         cssnano({ discardComments: { removeAll: true } }),
       ],
     )

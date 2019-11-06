@@ -35,6 +35,13 @@ export const browserSyncOptions = {
   ghostMode: false,
 };
 
+export const uncssOptions = {
+  // We used dist path here because of uncss only works in production
+  html: [`${paths.dist}/*.html`],
+  htmlroot: paths.dist,
+  ignore: [new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'), new RegExp('^(.?[a-z-_.[]+)?disabled.*')],
+};
+
 export default {
   info: {
     name: 'Project-Name',
@@ -42,13 +49,10 @@ export default {
   },
   paths,
   namespaces,
+  uncssActive: true,
   entry: {
     styles: [`${paths.src}/app.scss`],
     scripts: [`${paths.src}/index.js`],
     pages: `${paths.src}/templates/pages/**/*.html.twig`,
-  },
-  uncss: {
-    active: true,
-    ignore: [new RegExp('^(.[a-z-_.]*)?.(is|has)-.*'), new RegExp('^(.?[a-z-_.[]+)?disabled.*')],
   },
 };
