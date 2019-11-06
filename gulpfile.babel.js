@@ -8,4 +8,7 @@
 import build from './gulp/tasks/build';
 import start from './gulp/tasks/start';
 
-export { build, start };
+import styleguideStart from './gulp/tasks/styleguide/start';
+import styleguideBuild from './gulp/tasks/styleguide/build';
+
+export { build, start, styleguideBuild, styleguideStart };
