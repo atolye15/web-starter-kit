@@ -159,11 +159,12 @@ yarn [command]
 | format:js        | runs prettier for javascript files                                                          |
 | format:css       | runs prettier for scss files                                                                |
 | gulp             | runs gulp command                                                                           |
-| build-styleguide | builds styleguide                                                                           |
 | build            | builds project in development mode                                                          |
 | build-prod       | builds project in production mode                                                           |
-| start            | starts project, builds styleguide and runs watch processes                                  |
-| start-prod       | starts project in production mode                                                           |
+| start            | builds project and then runs watch processes                                                |
+| start-prod       | builds project and then runs watch processes in production mode                             |
+| styleguide       | builds styleguide and then runs watch processes                                             |
+| styleguide-build | builds styleguide                                                                           |
 | publish-github   | publishes project on github pages (You need to install gh-pages plugin to use this command) |
 
 ### 3. Example Use Cases
