@@ -24,6 +24,7 @@ export function syncFonts() {
     .pipe(
       dirSync(`${configs.paths.src}/fonts`, `${paths.dist}/${paths.assets.fonts}`, {
         printSummary: result => printSummary(result, 'syncFonts'),
+        ignore: '.gitkeep',
       }),
     )
     .on('error', notifierErrorHandler);
@@ -35,6 +36,7 @@ export function syncImages() {
     .pipe(
       dirSync(`${configs.paths.src}/img`, `${paths.dist}/${paths.assets.images}`, {
         printSummary: result => printSummary(result, 'syncImages'),
+        ignore: ['.gitkeep', 'icons'],
       }),
     )
     .on('error', notifierErrorHandler);
