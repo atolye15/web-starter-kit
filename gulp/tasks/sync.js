@@ -22,6 +22,7 @@ export function syncImages() {
     .pipe(
       dirSync(`${configs.paths.src}/img`, `${envPath}/${configs.paths.assets.img}`, {
         ignore: ['.gitkeep', 'icons'],
+        nodelete: 'sprite.svg',
       }),
     )
     .on('error', notifierErrorHandler);
