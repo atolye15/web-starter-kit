@@ -1,10 +1,3 @@
-import { namespaces } from '../configs';
-
-const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentValue) => {
-  accumulator.push(`${currentValue}:${namespaces[currentValue]}`);
-  return accumulator;
-}, []);
-
 export const paths = {
   dist: 'styleguide',
   assets: {
@@ -47,5 +40,5 @@ export default {
   builder: 'node_modules/@atolye15/kss-node-twig-builder',
   homepage: '../../README.md',
   title: 'Atölye Style Guide',
-  namespace: namespacesForKss,
+  namespace: [],
 };
