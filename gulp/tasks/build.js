@@ -27,6 +27,6 @@ export default series(
   clearDist,
   sprite,
   parallel(html, scripts, copy),
-  parallel(styles),
+ styles,
   completed,
 );
