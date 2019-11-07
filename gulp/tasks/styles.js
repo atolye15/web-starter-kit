@@ -11,12 +11,10 @@ import mqpacker from 'css-mqpacker';
 import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 
-import configs from '../../configs';
-import { isProduction } from '../utils/parseArguments';
+import configs, { uncssOptions } from '../../configs';
+import { isProduction, envPath } from '../utils/env';
 import noop from '../utils/noop';
 import { notifierErrorHandler } from '../utils/notifier';
-
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
 
 function inlineCssImporter(url, prev) {
   if (!url.endsWith('.css')) {
@@ -34,18 +32,12 @@ function inlineCssImporter(url, prev) {
   return { contents };
 }
 
-export default function(cb) {
-  const uncssOptions = {
-    html: [`${envPath}/*.html`],
-    ignore: configs.uncss.ignore,
-    htmlroot: envPath,
-  };
-
+export default function styles(cb) {
   const stylesMinChannel = lazypipe()
     .pipe(
       postcss,
       [
-        configs.uncss.active ? uncss.postcssPlugin(uncssOptions) : function() {},
+        configs.uncssActive ? uncss.postcssPlugin(uncssOptions) : function() {},
         cssnano({ discardComments: { removeAll: true } }),
       ],
     )

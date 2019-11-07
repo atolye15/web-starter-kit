@@ -1,7 +1,7 @@
 import { rollup } from 'rollup';
-import rollupOptions from '../../rollup.config';
+import { notifierErrorHandler } from '../../utils/notifier';
 
-import { notifierErrorHandler } from '../utils/notifier';
+import rollupOptions from '../../../kss/rollup.config';
 
 const { output: rollupOutputOptions, ...rollupInputOptions } = rollupOptions;
 

@@ -1,8 +1,6 @@
-import gulp from 'gulp';
+import gulp, { parallel } from 'gulp';
 import configs from '../../configs';
-import { isProduction } from '../utils/parseArguments';
-
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+import { envPath } from '../utils/env';
 
 export function copyImages() {
   return gulp
@@ -22,8 +20,4 @@ export function copyPublic() {
     .pipe(gulp.dest(`${envPath}/`));
 }
 
-export default {
-  images: copyImages,
-  fonts: copyFonts,
-  public: copyPublic,
-};
+export default parallel(copyImages, copyFonts, copyPublic);

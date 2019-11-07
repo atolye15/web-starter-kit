@@ -1,15 +1,15 @@
 import gulp, { parallel } from 'gulp';
 import dirSync from 'gulp-directory-sync';
 
-import configs from '../../configs';
-import { envPath } from '../utils/env';
-import { notifierErrorHandler } from '../utils/notifier';
+import { notifierErrorHandler } from '../../utils/notifier';
+import configs from '../../../configs';
+import { paths } from '../../../kss/configs';
 
 export function syncFonts() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
     .pipe(
-      dirSync(`${configs.paths.src}/fonts`, `${envPath}/${configs.paths.assets.fonts}`, {
+      dirSync(`${configs.paths.src}/fonts`, `${paths.dist}/${paths.assets.fonts}`, {
         ignore: '.gitkeep',
       }),
     )
@@ -20,7 +20,7 @@ export function syncImages() {
   return gulp
     .src('dummy.ext', { allowEmpty: true })
     .pipe(
-      dirSync(`${configs.paths.src}/img`, `${envPath}/${configs.paths.assets.img}`, {
+      dirSync(`${configs.paths.src}/img`, `${paths.dist}/${paths.assets.images}`, {
         ignore: ['.gitkeep', 'icons'],
         nodelete: 'sprite.svg',
       }),

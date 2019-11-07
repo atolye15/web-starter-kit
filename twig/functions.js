@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import cx from 'classnames';
 
-import { isProduction } from '../gulp/utils/parseArguments';
+import { isProduction } from '../gulp/utils/env';
 import configs from '../configs';
 
 const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
