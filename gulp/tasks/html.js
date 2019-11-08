@@ -39,6 +39,7 @@ export default function html() {
         data: {
           svgSprite: spriteStore.getSprite(),
         },
+        onError: errorHandler,
       }),
     )
     .pipe(
