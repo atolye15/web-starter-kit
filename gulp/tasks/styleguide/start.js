@@ -20,6 +20,7 @@ function reload(cb) {
 
 function start() {
   browserSync.init(browserSyncOptions);
+  process.env.WATCH_ACTIVE = true;
 
   watch([`${configs.paths.src}/**/*.twig`], { cwd: './' }, series(generate, reload));
 
