@@ -1,7 +1,7 @@
 export const namespaces = {
-  components: 'src/scss/components',
-  objects: 'src/scss/objects',
-  partials: 'src/twig/partials',
+  components: 'src/components',
+  objects: 'src/objects',
+  templates: 'src/templates',
 };
 
 const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentValue) => {
