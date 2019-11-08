@@ -37,7 +37,7 @@ export default function styles(cb) {
     .pipe(
       postcss,
       [
-        configs.uncssActive ? uncss.postcssPlugin(uncssOptions) : function() {},
+        configs.uncssActive ? uncss.postcssPlugin(uncssOptions) : () => {},
         cssnano({ discardComments: { removeAll: true } }),
       ],
     )
@@ -64,7 +64,7 @@ export default function styles(cb) {
       postcss([
         autoprefixer({ cascade: false }),
         flexBugsFixes(),
-        isProduction ? mqpacker() : function() {},
+        isProduction ? mqpacker() : () => {},
       ]),
     )
 
