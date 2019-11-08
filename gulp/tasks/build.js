@@ -2,6 +2,7 @@ import { series, parallel } from 'gulp';
 import c from 'ansi-colors';
 
 import notifier from '../utils/notifier';
+import { successLogger } from '../utils/logger';
 import { clearDist } from './clear';
 import html from './html';
 import scripts from './scripts';
@@ -12,21 +13,12 @@ import sprite from './sprite';
 function completed(cb) {
   notifier('Build işlemi başarılı bir şekilde tamamlandı.');
 
-  // eslint-disable-next-line no-console
-  console.log(
-    c.green(
-      '\n==============================================\n' +
-        'Build işlemi başarılı bir şekilde tamamlandı.' +
-        '\n==============================================\n',
-    ),
+  successLogger.log(
+    '\n==============================================\n' +
+      'Build işlemi başarılı bir şekilde tamamlandı.' +
+      '\n==============================================\n',
   );
   cb();
 }
 
-export default series(
-  clearDist,
-  sprite,
-  parallel(html, scripts, copy),
- styles,
-  completed,
-);
+export default series(clearDist, sprite, parallel(html, scripts, copy), styles, completed);
