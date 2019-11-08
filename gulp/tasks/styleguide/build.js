@@ -10,11 +10,11 @@ import sprite from './sprite';
 import generate from './generate';
 
 function completed(cb) {
-  notifier('Styleguide Build işlemi başarılı bir şekilde tamamlandı.');
+  notifier('Styleguide compiled successfully.');
 
   successLogger.log(
     '\n==============================================\n' +
-      'Styleguide Build işlemi başarılı bir şekilde tamamlandı.' +
+      'Styleguide compiled successfully.' +
       '\n==============================================\n',
   );
   cb();

@@ -10,11 +10,11 @@ import copy from './copy';
 import sprite from './sprite';
 
 function completed(cb) {
-  notifier('Build işlemi başarılı bir şekilde tamamlandı.');
+  notifier('Compiled successfully.');
 
   successLogger.log(
     '\n==============================================\n' +
-      'Build işlemi başarılı bir şekilde tamamlandı.' +
+      'Compiled successfully.' +
       '\n==============================================\n',
   );
   cb();
