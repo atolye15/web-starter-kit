@@ -9,6 +9,10 @@ export default function errorHandler(error) {
   console.log(c.dim(`Message: ${error.message}\n`));
   /* eslint-enable */
 
+  if (!process.env.WATCH_ACTIVE) {
+    process.exit(1);
+  }
+
   if (this && this.emit) {
     this.emit('end');
   }
