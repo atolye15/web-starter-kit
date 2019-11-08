@@ -1,14 +1,16 @@
 import c from 'ansi-colors';
 
 export default class Logger {
+  // Check the following link for available styles
+  // https://github.com/doowb/ansi-colors#available-styles
   constructor(styles = []) {
     this.styles = styles;
   }
 
   log(message) {
     const logMessage = this.styles.reduce((accumulator, currentValue) => {
-      return c[currentValue](accumulator);
-    }, message);
+      return accumulator[currentValue];
+    }, c)(message);
 
     // eslint-disable-next-line no-console
     console.log(logMessage);
