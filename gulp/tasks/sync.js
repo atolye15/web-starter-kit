@@ -3,7 +3,7 @@ import dirSync from 'gulp-directory-sync';
 
 import configs from '../../configs';
 import { envPath } from '../utils/env';
-import { notifierErrorHandler } from '../utils/notifier';
+import errorHandler from '../utils/errorHandler';
 
 export function syncFonts() {
   return gulp
@@ -13,7 +13,7 @@ export function syncFonts() {
         ignore: '.gitkeep',
       }),
     )
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }
 
 export function syncImages() {
@@ -25,6 +25,6 @@ export function syncImages() {
         nodelete: 'sprite.svg',
       }),
     )
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }
 export default parallel(syncFonts, syncImages);

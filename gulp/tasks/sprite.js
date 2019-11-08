@@ -6,7 +6,7 @@ import through2 from 'through2';
 import configs from '../../configs';
 import { envPath } from '../utils/env';
 import spriteStore from '../utils/spriteStore';
-import { notifierErrorHandler } from '../utils/notifier';
+import errorHandler from '../utils/errorHandler';
 
 export default function sprite() {
   return gulp
@@ -21,5 +21,5 @@ export default function sprite() {
     )
     .pipe(rename({ basename: 'sprite' }))
     .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`))
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }

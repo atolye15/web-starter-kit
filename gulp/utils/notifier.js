@@ -1,5 +1,4 @@
 import path from 'path';
-import c from 'ansi-colors';
 
 import baseNotifier from 'node-notifier';
 import configs from '../../configs';
@@ -35,17 +34,6 @@ function notifier(message, cb = () => {}) {
     },
     cb,
   );
-}
-
-export function notifierErrorHandler(error) {
-  notifier({ message: error.message, type: 'error' });
-
-  /* eslint-disable no-console */
-  console.log(c.red(`\nError ${error.plugin ? `in plugin "${error.plugin}"` : ':'}`));
-  console.log(c.dim(`Message: ${error.message}\n`));
-  /* eslint-enable */
-
-  return this && this.emit ? this.emit('end') : undefined;
 }
 
 export default notifier;

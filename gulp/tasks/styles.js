@@ -14,7 +14,7 @@ import cssnano from 'cssnano';
 import configs, { uncssOptions } from '../../configs';
 import { isProduction, envPath } from '../utils/env';
 import noop from '../utils/noop';
-import { notifierErrorHandler } from '../utils/notifier';
+import errorHandler from '../utils/errorHandler';
 
 function inlineCssImporter(url, prev) {
   if (!url.endsWith('.css')) {
@@ -59,7 +59,7 @@ export default function styles(cb) {
 
   return gulp
     .src(configs.entry.styles, { sourcemaps: true })
-    .pipe(sass({ precision: 10, importer: inlineCssImporter }))
+    .pipe(sass({ precision: 10, importer: inlineCssImporter }).on('error', errorHandler))
     .pipe(
       postcss([
         autoprefixer({ cascade: false }),
@@ -74,6 +74,6 @@ export default function styles(cb) {
       }),
     )
     .pipe(isProduction ? stylesMinChannel() : noop())
-    .on('error', notifierErrorHandler)
+    .on('error', errorHandler)
     .on('end', cb);
 }

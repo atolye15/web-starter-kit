@@ -4,7 +4,7 @@ import rename from 'gulp-rename';
 
 import configs, { namespaces } from '../../configs';
 import { envPath } from '../utils/env';
-import { notifierErrorHandler } from '../utils/notifier';
+import errorHandler from '../utils/errorHandler';
 import spriteStore from '../utils/spriteStore';
 import twigFunctions from '../../twig/functions';
 
@@ -51,5 +51,5 @@ export default function html() {
       ),
     )
     .pipe(gulp.dest(envPath))
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }

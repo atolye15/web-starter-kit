@@ -1,7 +1,7 @@
 import gulp, { parallel } from 'gulp';
 import dirSync from 'gulp-directory-sync';
 
-import { notifierErrorHandler } from '../../utils/notifier';
+import errorHandler from '../../utils/errorHandler';
 import configs from '../../../configs';
 import { paths } from '../../../kss/configs';
 
@@ -13,7 +13,7 @@ export function syncFonts() {
         ignore: '.gitkeep',
       }),
     )
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }
 
 export function syncImages() {
@@ -25,6 +25,6 @@ export function syncImages() {
         nodelete: 'sprite.svg',
       }),
     )
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }
 export default parallel(syncFonts, syncImages);
