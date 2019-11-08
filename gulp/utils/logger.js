@@ -1,8 +1,8 @@
-import c from 'ansi-colors';
+import chalk from 'chalk';
 
 export default class Logger {
   // Check the following link for available styles
-  // https://github.com/doowb/ansi-colors#available-styles
+  // https://github.com/chalk/chalk#styles
   constructor(styles = []) {
     this.styles = styles;
   }
@@ -10,7 +10,7 @@ export default class Logger {
   log(message) {
     const logMessage = this.styles.reduce((accumulator, currentValue) => {
       return accumulator[currentValue];
-    }, c)(message);
+    }, chalk)(message);
 
     // eslint-disable-next-line no-console
     console.log(logMessage);
