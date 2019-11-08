@@ -1,5 +1,4 @@
 import { series, parallel } from 'gulp';
-import c from 'ansi-colors';
 
 import notifier from '../utils/notifier';
 import { successLogger } from '../utils/logger';
