@@ -3,6 +3,7 @@ import kss from 'kss';
 import spriteStore from '../../utils/spriteStore';
 import { namespaces } from '../../../configs';
 import kssOptions from '../../../kss/configs';
+import errorHandler from '../../utils/errorHandler';
 
 const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentValue) => {
   accumulator.push(`${currentValue}:${namespaces[currentValue]}`);
@@ -14,5 +15,5 @@ export default function generate() {
     ...kssOptions,
     svgSprite: spriteStore.getSprite(),
     namespace: [...kssOptions.namespace, ...namespacesForKss],
-  });
+  }).catch(errorHandler);
 }
