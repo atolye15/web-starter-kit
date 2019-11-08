@@ -7,7 +7,7 @@ export default function errorHandler(error) {
   errorLoger.log(`\nError ${error.plugin ? `in plugin "${error.plugin}"` : ':'}`);
   traceLoger.log(`Message: ${error.message}\n`);
 
-  if (!process.env.WATCH_ACTIVE) {
+  if (!process.env.WATCHING) {
     process.exit(1);
   }
 
