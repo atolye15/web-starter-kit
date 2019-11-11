@@ -150,20 +150,17 @@ You can run commands by typing,
 yarn [command]
 ```
 
-| Command          | Description                                                     |
-| :--------------- | --------------------------------------------------------------- |
-| lint             | runs lint:js and lint:css commands.                             |
-| lint:js          | runs eslint for javascript files                                |
-| lint:css         | runs stylint for scss files                                     |
-| format           | runs format:js and format:css commands                          |
-| format:js        | runs prettier for javascript files                              |
-| format:css       | runs prettier for scss files                                    |
-| build            | builds project in development mode                              |
-| build-prod       | builds project in production mode                               |
-| start            | builds project and then runs watch processes                    |
-| start-prod       | builds project and then runs watch processes in production mode |
-| styleguide       | builds styleguide and then runs watch processes                 |
-| styleguide-build | builds styleguide                                               |
+| Command    | Description                                     |
+| :--------- | ----------------------------------------------- |
+| lint       | runs lint:js and lint:css commands.             |
+| lint:js    | runs eslint for javascript files                |
+| lint:css   | runs stylint for scss files                     |
+| format     | runs format:js and format:css commands          |
+| format:js  | runs prettier for javascript files              |
+| format:css | runs prettier for scss files                    |
+| build      | builds project in production mode               |
+| start      | builds project and then runs watch processes    |
+| styleguide | builds styleguide and then runs watch processes |
 
 ### 3. Example Use Cases
 
