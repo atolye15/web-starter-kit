@@ -51,15 +51,12 @@
     "format": "yarn format:js && yarn format:css",
     "format:js": "prettier --write \"src/**/*.js\"",
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
-    "gulp": "gulp",
     "build": "yarn lint && gulp build",
     "build-prod": "yarn build --env production",
     "start": "gulp start",
     "start-prod": "gulp start --env production",
     "styleguide-build": "gulp styleguideBuild",
     "styleguide": "gulp styleguideStart",
-    "publish-github": "yarn build-prod && gh-pages -d dist",
-    "gulp-tasks": "gulp --tasks"
   },
   "dependencies": {}
 }
