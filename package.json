@@ -54,8 +54,7 @@
     "build": "gulp build --env production",
     "start": "gulp start",
     "start-prod": "gulp start --env production",
-    "styleguide-build": "gulp styleguideBuild",
-    "styleguide": "gulp styleguideStart",
+    "styleguide": "gulp styleguide"
   },
   "dependencies": {}
 }
