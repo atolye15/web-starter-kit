@@ -53,7 +53,6 @@
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "build": "gulp build --env production",
     "start": "gulp start",
-    "start-prod": "gulp start --env production",
     "styleguide": "gulp styleguide"
   },
   "dependencies": {}
