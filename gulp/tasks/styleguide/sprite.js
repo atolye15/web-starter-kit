@@ -3,7 +3,7 @@ import rename from 'gulp-rename';
 import svgstore from 'gulp-svgstore';
 import through2 from 'through2';
 
-import { notifierErrorHandler } from '../../utils/notifier';
+import errorHandler from '../../utils/errorHandler';
 
 import configs from '../../../configs';
 import spriteStore from '../../utils/spriteStore';
@@ -19,5 +19,5 @@ export default function sprite() {
         callback(null, file);
       }),
     )
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }

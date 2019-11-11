@@ -8,7 +8,7 @@ import flexBugsFixes from 'postcss-flexbugs-fixes';
 
 import configs from '../../../configs';
 import { paths } from '../../../kss/configs';
-import { notifierErrorHandler } from '../../utils/notifier';
+import errorHandler from '../../utils/errorHandler';
 
 function inlineCssImporter(url, prev) {
   if (!url.endsWith('.css')) {
@@ -29,12 +29,12 @@ function inlineCssImporter(url, prev) {
 export default function styles() {
   return gulp
     .src(configs.entry.styles, { sourcemaps: true })
-    .pipe(sass({ precision: 10, importer: inlineCssImporter }))
+    .pipe(sass({ precision: 10, importer: inlineCssImporter }).on('error', errorHandler))
     .pipe(postcss([autoprefixer({ cascade: false }), flexBugsFixes()]))
     .pipe(
       gulp.dest(`${paths.dist}/${paths.assets.styles}`, {
         sourcemaps: '.',
       }),
     )
-    .on('error', notifierErrorHandler);
+    .on('error', errorHandler);
 }
