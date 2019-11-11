@@ -61,7 +61,5 @@
     "publish-github": "yarn build-prod && gh-pages -d dist",
     "gulp-tasks": "gulp --tasks"
   },
-  "dependencies": {
-    "buttono": "^0.5.2"
-  }
+  "dependencies": {}
 }

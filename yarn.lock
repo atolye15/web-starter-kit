@@ -1649,11 +1649,6 @@ builtin-modules@^3.1.0:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-3.1.0.tgz#aad97c15131eb76b65b50ef208e7584cd76a7484"
   integrity sha512-k0KL0aWZuBt2lrxrcASWDfwOLMnodeQjodT/1SxEQAXsHANgo6ZC/VEaSEHCXt7aSTZ4/4H5LKa+tBXmW7Vtvw==
 
-buttono@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/buttono/-/buttono-0.5.2.tgz#4620ab88ccc8a1a9407b63bba1427e17a1a2f728"
-  integrity sha512-jb3+Obz0v+dRRB5L0dpNqXuVdc09TjwLD1jaHEBnzy2qYyjExE6KwVukTS7WztcaUiMMPrWgpBjh5eg0YhZZ6w==
-
 bytes@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
