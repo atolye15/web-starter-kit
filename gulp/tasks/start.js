@@ -1,9 +1,9 @@
 import { watch, series } from 'gulp';
 import browserSyncBase from 'browser-sync';
 
-import configs, { browserSyncOptions } from '../../configs';
+import configs from '../../configs';
 import skippable from '../utils/skippable';
-import { isProduction } from '../utils/env';
+import { isProduction, envPath } from '../utils/env';
 import html from './html';
 import styles from './styles';
 import scripts from './scripts';
@@ -19,7 +19,17 @@ function reload(cb) {
 }
 
 function start() {
-  browserSync.init(browserSyncOptions);
+  // See the following link for more options
+  // https://www.browsersync.io/docs/options
+  browserSync.init({
+    notify: false,
+    logPrefix: 'WSK',
+    server: [`${envPath}`],
+    port: process.env.PORT,
+    ghostMode: false,
+    browser: process.env.BROWSER,
+  });
+
   process.env.WATCHING = true;
 
   watch(
