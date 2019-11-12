@@ -8,25 +8,6 @@ export const paths = {
   },
 };
 
-export const browserSyncOptions = {
-  notify: false,
-  // Customize the Browsersync console logging prefix
-  logPrefix: 'WSK',
-  // Proxy an EXISTING vhost. Browsersync will wrap your vhost with a proxy URL to view your site
-  // proxy: 'localhost/web-starter-kit/',
-  // Disable open automatically when Browsersync starts.
-  open: false,
-  // Allow scroll syncing across breakpoints
-  // scrollElementMapping: ['main', '.mdl-layout'],
-  // Run as an https by uncommenting 'https: true'
-  // Note: this uses an unsigned certificate which on first access
-  //       will present a certificate warning in the browser.
-  // https: true,
-  server: [`${paths.dist}`],
-  port: 3003,
-  ghostMode: false,
-};
-
 export default {
   source: ['src/'],
   destination: `${paths.dist}`,

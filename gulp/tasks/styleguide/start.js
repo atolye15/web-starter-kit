@@ -1,8 +1,8 @@
 import { watch, series } from 'gulp';
 import browserSyncBase from 'browser-sync';
 
-import { browserSyncOptions } from '../../../kss/configs';
 import configs from '../../../configs';
+import { paths } from '../../../kss/configs';
 
 import styles from './styles';
 import scripts from './scripts';
@@ -19,7 +19,17 @@ function reload(cb) {
 }
 
 function start() {
-  browserSync.init(browserSyncOptions);
+  // See the following link for more options
+  // https://www.browsersync.io/docs/options
+  browserSync.init({
+    notify: false,
+    logPrefix: 'WSK',
+    server: [`${paths.dist}`],
+    port: process.env.STYLEGUIDE_PORT,
+    browser: process.env.BROWSER,
+    ghostMode: false,
+  });
+
   process.env.WATCHING = true;
 
   watch([`${configs.paths.src}/**/*.twig`], { cwd: './' }, series(generate, reload));
