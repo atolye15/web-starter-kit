@@ -38,7 +38,7 @@ function start() {
     series(html, skippable(isProduction && configs.uncssActive, styles), reload),
   );
 
-  watch([`${configs.paths.src}/img/icons/*.svg`], series(sprite, html, reload));
+  watch(`${configs.paths.src}/icons/*.svg`, series(sprite, html, reload));
 
   watch([`${configs.paths.src}/**/*.scss`], { cwd: './' }, series(styles, reload));
 
@@ -46,10 +46,7 @@ function start() {
 
   watch([`${configs.paths.src}/**/*.js`], { cwd: './' }, series(scripts, reload));
 
-  watch(
-    [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
-    series(syncImages, reload),
-  );
+  watch(`${configs.paths.src}/img/**/*`, series(syncImages, reload));
 }
 
 export default series(build, start);

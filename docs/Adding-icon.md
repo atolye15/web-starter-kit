@@ -2,7 +2,7 @@
 
 Web Starter Kit uses SVG sprites for icons.
 
-After completing SVG icon optimizations, place your icon with `.svg` extension into `src/img/icons` folder. Gulp will perform the necessary processes.
+After completing SVG icon optimizations, place your icon with `.svg` extension into `src/icons` folder. Gulp will perform the necessary processes.
 
 ## Creating component file
 
@@ -12,7 +12,7 @@ After completing SVG icon optimizations, place your icon with `.svg` extension i
 //
 // Icons
 //
-// Icons: src/img/icons
+// Icons: src/icons
 //
 // Markup:
 // <svg class="{{ html_classes('c-icon', class) }}">

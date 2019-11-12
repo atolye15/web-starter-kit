@@ -34,7 +34,7 @@ function start() {
 
   watch([`${configs.paths.src}/**/*.twig`], { cwd: './' }, series(generate, reload));
 
-  watch([`${configs.paths.src}/img/icons/*.svg`], series(sprite, generate, reload));
+  watch(`${configs.paths.src}/icons/*.svg`, series(sprite, generate, reload));
 
   watch([`${configs.paths.src}/**/*.scss`], { cwd: './' }, series(styles, generate, reload));
 
@@ -42,10 +42,7 @@ function start() {
 
   watch([`${configs.paths.src}/**/*.js`], { cwd: './' }, series(scripts, generate, reload));
 
-  watch(
-    [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
-    series(syncImages, reload),
-  );
+  watch(`${configs.paths.src}/img/**/*`, series(syncImages, reload));
 }
 
 export default series(build, start);

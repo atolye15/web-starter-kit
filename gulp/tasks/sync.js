@@ -21,7 +21,7 @@ export function syncImages() {
     .src('dummy.ext', { allowEmpty: true })
     .pipe(
       dirSync(`${configs.paths.src}/img`, `${envPath}/${configs.paths.assets.img}`, {
-        ignore: ['.gitkeep', 'icons'],
+        ignore: ['.gitkeep'],
         nodelete: 'sprite.svg',
       }),
     )

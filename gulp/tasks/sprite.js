@@ -10,7 +10,7 @@ import errorHandler from '../utils/errorHandler';
 
 export default function sprite() {
   return gulp
-    .src(`${configs.paths.src}/img/icons/**/*.svg`)
+    .src(`${configs.paths.src}/icons/**/*.svg`)
     .pipe(rename({ prefix: 'icon-' }))
     .pipe(svgstore({ inlineSvg: true }))
     .pipe(

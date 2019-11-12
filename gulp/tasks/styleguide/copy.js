@@ -5,7 +5,7 @@ import configs from '../../../configs';
 
 export function copyImages() {
   return gulp
-    .src([`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`])
+    .src(`${configs.paths.src}/img/**/*`)
     .pipe(gulp.dest(`${paths.dist}/${paths.assets.images}`));
 }
 
