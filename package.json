@@ -15,6 +15,8 @@
     "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "eslint": "^6.6.0",
     "gulp": "^4.0.2",
     "gulp-directory-sync": "^1.2.4",
@@ -25,7 +27,6 @@
     "gulp-twig": "^1.2.0",
     "kss": "3.0.0-beta.25",
     "lazypipe": "^1.0.2",
-    "minimist": "^1.2.0",
     "node-notifier": "^6.0.0",
     "postcss-flexbugs-fixes": "^4.1.0",
     "prettier": "^1.19.1",
@@ -51,8 +52,8 @@
     "format": "yarn format:js && yarn format:css",
     "format:js": "prettier --write \"src/**/*.js\"",
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
-    "build": "gulp build --env production",
-    "start": "gulp start",
+    "build": "NODE_ENV=production gulp build",
+    "start": "NODE_ENV=development gulp start",
     "styleguide": "gulp styleguide"
   },
   "dependencies": {}
