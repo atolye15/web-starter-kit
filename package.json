@@ -54,7 +54,7 @@
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "build": "NODE_ENV=production gulp build",
     "start": "NODE_ENV=development gulp start",
-    "styleguide": "gulp styleguide"
+    "styleguide": "NODE_ENV=development gulp styleguide"
   },
   "dependencies": {}
 }
