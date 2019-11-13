@@ -1,8 +1,7 @@
 import { watch, series } from 'gulp';
 import browserSyncBase from 'browser-sync';
 
-import configs from '../../../configs';
-import { paths } from '../../../kss/configs';
+import paths from '../../../config/paths';
 
 import styles from './styles';
 import scripts from './scripts';
@@ -24,7 +23,7 @@ function start() {
   browserSync.init({
     notify: false,
     logPrefix: 'WSK',
-    server: [`${paths.dist}`],
+    server: [`${paths.styleguide.dist}`],
     port: process.env.STYLEGUIDE_PORT,
     browser: process.env.BROWSER,
     ghostMode: false,
@@ -32,20 +31,17 @@ function start() {
 
   process.env.WATCHING = true;
 
-  watch([`${configs.paths.src}/**/*.twig`], { cwd: './' }, series(generate, reload));
+  watch(`${paths.src}/**/*.twig`, { cwd: './' }, series(generate, reload));
 
-  watch([`${configs.paths.src}/img/icons/*.svg`], series(sprite, generate, reload));
+  watch(`${paths.icons}/**/*.svg`, series(sprite, generate, reload));
 
-  watch([`${configs.paths.src}/**/*.scss`], { cwd: './' }, series(styles, generate, reload));
+  watch(`${paths.src}/**/*.scss`, { cwd: './' }, series(styles, generate, reload));
 
-  watch([`${configs.paths.src}/fonts/**/*`], series(syncFonts, reload));
+  watch(`${paths.fonts}/**/*`, series(syncFonts, reload));
 
-  watch([`${configs.paths.src}/**/*.js`], { cwd: './' }, series(scripts, generate, reload));
+  watch(`${paths.src}/**/*.js`, { cwd: './' }, series(scripts, generate, reload));
 
-  watch(
-    [`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/icons/**`],
-    series(syncImages, reload),
-  );
+  watch(`${paths.img}/**/*`, series(syncImages, reload));
 }
 
 export default series(build, start);

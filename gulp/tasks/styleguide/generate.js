@@ -1,8 +1,8 @@
 import kss from 'kss';
 
+import namespaces from '../../../config/namespaces';
+import kssOptions from '../../../config/kss';
 import spriteStore from '../../utils/spriteStore';
-import { namespaces } from '../../../configs';
-import kssOptions from '../../../kss/configs';
 import errorHandler from '../../utils/errorHandler';
 
 const namespacesForKss = Object.keys(namespaces).reduce((accumulator, currentValue) => {

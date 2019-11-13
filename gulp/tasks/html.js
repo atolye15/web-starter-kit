@@ -2,8 +2,9 @@ import gulp from 'gulp';
 import twig from 'gulp-twig';
 import rename from 'gulp-rename';
 
-import configs, { namespaces } from '../../configs';
-import { envPath } from '../utils/env';
+import appConfig from '../../config/app';
+import namespaces from '../../config/namespaces';
+import { envPath } from '../../config/env';
 import errorHandler from '../utils/errorHandler';
 import spriteStore from '../utils/spriteStore';
 import twigFunctions from '../../twig/functions';
@@ -31,7 +32,7 @@ function flattenFilePath(filePath) {
 
 export default function html() {
   return gulp
-    .src(configs.entry.pages)
+    .src(appConfig.entry.pages)
     .pipe(
       twig({
         functions: normalizeTwigFunction(twigFunctions),

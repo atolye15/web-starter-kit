@@ -2,13 +2,9 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 
-import configs from '../../configs';
+import paths from './paths';
 
-const { NODE_ENV } = process.env;
-
-if (!NODE_ENV) {
-  throw new Error('The NODE_ENV environment variable is required but was not specified.');
-}
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const dotenvFiles = [
   `.env.${NODE_ENV}.local`,
@@ -25,6 +21,6 @@ dotenvFiles.forEach(dotenvFile => {
 
 export const isProduction = NODE_ENV === 'production';
 
-export const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+export const envPath = isProduction ? paths.dist : paths.dev;
 
 export default NODE_ENV;

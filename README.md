@@ -109,7 +109,7 @@ root
 ├── src/                  # Files for development are located here. These files are processed by Gulp and /dev and /dist will be created
 │     ├── fonts/          # Font files needed for the project should be placed here to be compiled.
 │     ├── img/            # Image files needed for the project should be placed here.
-│       └── icons/        # SVG files needed for the project should be placed here to be compiled.
+│     ├── icons/          # SVG files needed for the project should be placed here to be compiled.
 │     ├── js/             # Javascript files used in the project should be placed here to be compiled.
 │     ├── scss/           # Scss files are located in this folder.
 │       ├── abstracts/

@@ -1,6 +1,4 @@
 import gulp from 'gulp';
-import fs from 'fs';
-import path from 'path';
 import lazypipe from 'lazypipe';
 import postcss from 'gulp-postcss';
 import uncss from 'uncss';
@@ -11,44 +9,22 @@ import mqpacker from 'css-mqpacker';
 import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
 
-import configs, { uncssOptions } from '../../configs';
-import { isProduction, envPath } from '../utils/env';
+import appConfig from '../../config/app';
+import paths from '../../config/paths';
+import uncssOptions from '../../config/uncss';
+import { isProduction, envPath } from '../../config/env';
 import noop from '../utils/noop';
 import errorHandler from '../utils/errorHandler';
-
-function inlineCssImporter(url, prev) {
-  if (!url.endsWith('.css')) {
-    return { file: url };
-  }
-
-  const resolvedPath = path.resolve(path.dirname(prev), url);
-
-  if (!fs.existsSync(resolvedPath)) {
-    return new Error(`Could not find url: ${url}`);
-  }
-
-  const contents = fs.readFileSync(resolvedPath, 'utf-8');
-
-  return { contents };
-}
+import inlineCssImporter from '../utils/inlineCssImporter';
 
 export default function styles(cb) {
   const stylesMinChannel = lazypipe()
-    .pipe(
-      postcss,
-      [
-        configs.uncssActive ? uncss.postcssPlugin(uncssOptions) : () => {},
-        cssnano({ discardComments: { removeAll: true } }),
-      ],
-    )
-    .pipe(
-      rename,
-      { suffix: '.min' },
-    )
-    .pipe(
-      gulp.dest,
-      `${envPath}/${configs.paths.assets.css}`,
-    );
+    .pipe(postcss, [
+      appConfig.uncssActive ? uncss.postcssPlugin(uncssOptions) : () => {},
+      cssnano({ discardComments: { removeAll: true } }),
+    ])
+    .pipe(rename, { suffix: '.min' })
+    .pipe(gulp.dest, `${envPath}/${paths.assets.css}`);
 
   /**
    * Warning:
@@ -58,7 +34,7 @@ export default function styles(cb) {
    */
 
   return gulp
-    .src(configs.entry.styles, { sourcemaps: true })
+    .src(appConfig.entry.styles, { sourcemaps: true })
     .pipe(sass({ precision: 10, importer: inlineCssImporter }).on('error', errorHandler))
     .pipe(
       postcss([
@@ -69,7 +45,7 @@ export default function styles(cb) {
     )
 
     .pipe(
-      gulp.dest(`${envPath}/${configs.paths.assets.css}`, {
+      gulp.dest(`${envPath}/${paths.assets.css}`, {
         sourcemaps: isProduction ? false : '.',
       }),
     )

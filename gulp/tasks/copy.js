@@ -1,22 +1,19 @@
 import gulp, { parallel } from 'gulp';
-import configs from '../../configs';
-import { envPath } from '../utils/env';
+
+import paths from '../../config/paths';
+import { envPath } from '../../config/env';
 
 export function copyImages() {
-  return gulp
-    .src([`${configs.paths.src}/img/**/*`, `!${configs.paths.src}/img/{icons,icons/**}`])
-    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.img}`));
+  return gulp.src(`${paths.img}/**/*`).pipe(gulp.dest(`${envPath}/${paths.assets.img}`));
 }
 
 export function copyFonts() {
-  return gulp
-    .src(`${configs.paths.src}/fonts/**/*`)
-    .pipe(gulp.dest(`${envPath}/${configs.paths.assets.fonts}`));
+  return gulp.src(`${paths.fonts}/**/*`).pipe(gulp.dest(`${envPath}/${paths.assets.fonts}`));
 }
 
 export function copyPublic() {
   return gulp
-    .src([`public/**/*`, '!public/.gitkeep'], { dot: true })
+    .src([`${paths.public}/**/*`, `!${paths.public}/.gitkeep`], { dot: true })
     .pipe(gulp.dest(`${envPath}/`));
 }
 

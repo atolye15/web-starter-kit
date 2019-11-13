@@ -3,7 +3,6 @@
   "css.validate": false,
   "scss.validate": false,
   "editor.formatOnSave": true,
-  "prettier.stylelintIntegration": true,
   "path-intellisense.mappings": {
     "@components": "${workspaceRoot}/src/scss/components",
     "@objects": "${workspaceRoot}/src/scss/objects",

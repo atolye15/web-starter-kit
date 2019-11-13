@@ -1,9 +1,9 @@
 import { rollup } from 'rollup';
 import errorHandler from '../../utils/errorHandler';
 
-import rollupOptions from '../../../kss/rollup.config';
+import rollupOptionsStyleguide from '../../../config/rollup.config.styleguide';
 
-const { output: rollupOutputOptions, ...rollupInputOptions } = rollupOptions;
+const { output: rollupOutputOptions, ...rollupInputOptions } = rollupOptionsStyleguide;
 
 export default function scripts() {
   return rollup(rollupInputOptions)
