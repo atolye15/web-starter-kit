@@ -53,8 +53,8 @@
     "format:js": "prettier --write \"src/**/*.js\"",
     "format:css": "stylelint --fix --syntax scss \"src/**/*.scss\"",
     "build": "NODE_ENV=production gulp build",
-    "start": "NODE_ENV=development gulp start",
-    "styleguide": "NODE_ENV=development gulp styleguide"
+    "start": "gulp start",
+    "styleguide": "gulp styleguide"
   },
   "dependencies": {}
 }

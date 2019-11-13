@@ -4,11 +4,7 @@ import dotenvExpand from 'dotenv-expand';
 
 import paths from './paths';
 
-const { NODE_ENV } = process.env;
-
-if (!NODE_ENV) {
-  throw new Error('The NODE_ENV environment variable is required but was not specified.');
-}
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const dotenvFiles = [
   `.env.${NODE_ENV}.local`,
