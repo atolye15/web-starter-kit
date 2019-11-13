@@ -8,7 +8,12 @@ import { isProduction, envPath } from '../config/env';
 export default [
   {
     name: 'html_classes',
-    func: (...args) => cx(...args),
+    func: (...args) =>
+      cx(...args)
+        // remove "_keys" which added by Twig
+        .split(' ')
+        .filter(k => k !== '_keys')
+        .join(' '),
   },
   {
     name: 'html_attributes',
