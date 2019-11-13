@@ -1,37 +1,38 @@
-/* eslint-disable camelcase, import/no-extraneous-dependencies */
 import fs from 'fs';
 import path from 'path';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import cx from 'classnames';
 
 import { isProduction, envPath } from '../config/env';
 
-function html_classes(...args) {
-  return cx(...args);
-}
-
-function html_attributes(obj) {
-  return Object.keys(obj)
-    .filter(k => k !== '_keys') // remove "_keys" property which added by Twig
-    .reduce((acc, cur) => {
-      if (typeof obj[cur] === 'boolean') {
-        return obj[cur] ? `${acc} ${cur}` : `${acc}`;
-      }
-      return `${acc} ${cur}="${obj[cur]}"`;
-    }, '')
-    .trim();
-}
-
-function asset(file) {
-  return path.resolve(__dirname, `/${envPath}/`, file);
-}
-
-function is_file_exists(filePath) {
-  return fs.existsSync(path.resolve(__dirname, path.dirname(this.path), filePath));
-}
-
-function is_production() {
-  return isProduction;
-}
-
-export default { html_classes, html_attributes, asset, is_file_exists, is_production };
-/* eslint-enable */
+export default [
+  {
+    name: 'html_classes',
+    func: (...args) => cx(...args),
+  },
+  {
+    name: 'html_attributes',
+    func: obj =>
+      Object.keys(obj)
+        .filter(k => k !== '_keys') // remove "_keys" property which added by Twig
+        .reduce((acc, cur) => {
+          if (typeof obj[cur] === 'boolean') {
+            return obj[cur] ? `${acc} ${cur}` : `${acc}`;
+          }
+          return `${acc} ${cur}="${obj[cur]}"`;
+        }, '')
+        .trim(),
+  },
+  {
+    name: 'asset',
+    func: file => path.resolve(__dirname, `/${envPath}/`, file),
+  },
+  {
+    name: 'is_file_exists',
+    func: filePath => fs.existsSync(path.resolve(__dirname, path.dirname(this.path), filePath)),
+  },
+  {
+    name: 'is_production',
+    func: () => isProduction,
+  },
+];
