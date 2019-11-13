@@ -14,10 +14,10 @@
     eslint-plugin-jest "^22.4.1"
     eslint-plugin-prettier "^3.1.0"
 
-"@atolye15/kss-node-twig-builder@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@atolye15/kss-node-twig-builder/-/kss-node-twig-builder-1.1.1.tgz#7f2effd3729f531928bb9e2d912d08b5742a081c"
-  integrity sha512-gg/0wit/AwhgRPXbwQoUhq0ne0ZZJbhZla1Y2VUI+UusOyT66t7e5vt2nviSvZ3Th/+qutXLGSwVWFsnSywSIA==
+"@atolye15/kss-node-twig-builder@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@atolye15/kss-node-twig-builder/-/kss-node-twig-builder-1.2.0.tgz#bea4c2c75064ee0693fe4fef63c819d22738cab2"
+  integrity sha512-oPtmzd82+cA0hGda60uKmwED2HttEXkbYmdjCWZbDThv1kbZ/o7/3hE6ydNjuLWQYxW5WzvW0XiM89gyXRSR4Q==
 
 "@atolye15/stylelint-config@^1.3.0":
   version "1.3.0"

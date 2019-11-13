@@ -7,17 +7,7 @@ import namespaces from '../../config/namespaces';
 import { envPath } from '../../config/env';
 import errorHandler from '../utils/errorHandler';
 import spriteStore from '../utils/spriteStore';
-import twigFunctions from '../../twig/functions';
-
-function normalizeTwigFunction(functions) {
-  return Object.keys(functions).reduce((accumulator, currentValue) => {
-    accumulator.push({
-      name: currentValue,
-      func: functions[currentValue],
-    });
-    return accumulator;
-  }, []);
-}
+import functions from '../../twig/functions';
 
 function flattenFilePath(filePath) {
   if (filePath.dirname === '.') {
@@ -35,7 +25,7 @@ export default function html() {
     .src(appConfig.entry.pages)
     .pipe(
       twig({
-        functions: normalizeTwigFunction(twigFunctions),
+        functions,
         namespaces,
         data: {
           svgSprite: spriteStore.getSprite(),

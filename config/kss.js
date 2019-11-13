@@ -14,4 +14,14 @@ export default {
   homepage: '../../README.md',
   title: 'Atölye Style Guide',
   namespace: [],
+  // This following option is a special option for `@atolye15/kss-node-twig-builder`
+  // May not work with other builders
+  // Example:
+  // [
+  //   {
+  //     name: 'function_name',
+  //     func: () => {}
+  //   }
+  // ]
+  functions: [],
 };
