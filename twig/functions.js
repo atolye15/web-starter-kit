@@ -3,10 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import cx from 'classnames';
 
-import { isProduction } from '../gulp/utils/env';
-import configs from '../configs';
-
-const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+import { isProduction, envPath } from '../config/env';
 
 function html_classes(...args) {
   return cx(...args);

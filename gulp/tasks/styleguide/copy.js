@@ -1,18 +1,15 @@
 import gulp, { parallel } from 'gulp';
 
-import { paths } from '../../../kss/configs';
-import configs from '../../../configs';
+import paths from '../../../config/paths';
 
 export function copyImages() {
-  return gulp
-    .src(`${configs.paths.src}/img/**/*`)
-    .pipe(gulp.dest(`${paths.dist}/${paths.assets.images}`));
+  return gulp.src(`${paths.img}/**/*`).pipe(gulp.dest(`${paths.dist}/${paths.assets.images}`));
 }
 
 export function copyFonts() {
   return gulp
-    .src(`${configs.paths.src}/fonts/**/*`)
-    .pipe(gulp.dest(`${paths.dist}/${paths.assets.fonts}`));
+    .src(`${paths.fonts}/**/*`)
+    .pipe(gulp.dest(`${paths.styleguide.dist}/${paths.styleguide.assets.fonts}`));
 }
 
 export default parallel(copyImages, copyFonts);

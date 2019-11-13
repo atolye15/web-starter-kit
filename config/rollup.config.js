@@ -1,16 +1,18 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import { terser } from 'rollup-plugin-terser';
 
-import configs from '../configs';
-import { paths } from './configs';
+import appConfig from './app';
+import paths from './paths';
+import { isProduction, envPath } from './env';
 
 export default {
-  input: configs.entry.scripts,
+  input: appConfig.entry.scripts,
   output: {
-    file: `${paths.dist}/${paths.assets.scripts}/app.js`,
+    file: `${envPath}/${paths.assets.js}/app${isProduction ? '.min' : ''}.js`,
     format: 'iife', // immediately-invoked function expression — suitable for <script> tags
-    sourcemap: true,
+    sourcemap: !isProduction,
     name: 'App',
   },
   plugins: [
@@ -19,5 +21,6 @@ export default {
     babel({
       exclude: 'node_modules/**', // only transpile our source code
     }),
+    isProduction && terser(),
   ],
 };

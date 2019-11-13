@@ -2,7 +2,7 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 
-import configs from '../../configs';
+import paths from './paths';
 
 const { NODE_ENV } = process.env;
 
@@ -25,6 +25,6 @@ dotenvFiles.forEach(dotenvFile => {
 
 export const isProduction = NODE_ENV === 'production';
 
-export const envPath = isProduction ? configs.paths.dist : configs.paths.dev;
+export const envPath = isProduction ? paths.dist : paths.dev;
 
 export default NODE_ENV;

@@ -2,6 +2,7 @@ import { series, parallel } from 'gulp';
 
 import notifier from '../utils/notifier';
 import { successLogger } from '../utils/logger';
+
 import { clearDist } from './clear';
 import html from './html';
 import scripts from './scripts';

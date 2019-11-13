@@ -1,8 +1,8 @@
 import path from 'path';
-
 import baseNotifier from 'node-notifier';
-import configs from '../../configs';
-import { isProduction } from './env';
+
+import appConfig from '../../config/app';
+import { isProduction } from '../../config/env';
 
 function notifier(message, cb = () => {}) {
   if (isProduction) {
@@ -17,7 +17,7 @@ function notifier(message, cb = () => {}) {
     return baseNotifier.notify(
       {
         ...defaultOptions,
-        title: configs.info.name,
+        title: appConfig.info.name,
         icon: path.join(__dirname, `../assets/gulp.png`),
         message,
       },
@@ -28,7 +28,7 @@ function notifier(message, cb = () => {}) {
   return baseNotifier.notify(
     {
       ...defaultOptions,
-      title: `${message.type === 'error' ? 'Error ' : ''}${configs.info.name}`,
+      title: `${message.type === 'error' ? 'Error ' : ''}${appConfig.info.name}`,
       icon: path.join(__dirname, `../assets/gulp${message.type === 'error' ? '-error' : ''}.png`),
       ...message,
     },

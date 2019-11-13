@@ -1,5 +1,5 @@
 import { rollup } from 'rollup';
-import rollupOptions from '../../rollup.config';
+import rollupOptions from '../../config/rollup.config';
 
 import errorHandler from '../utils/errorHandler';
 
