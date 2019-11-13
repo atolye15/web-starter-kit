@@ -2,7 +2,7 @@ export default {
   src: 'src',
   dev: 'dev',
   img: 'src/img',
-  icons: 'src/img/icons',
+  icons: 'src/icons',
   fonts: 'src/fonts',
   dist: 'dist',
   public: 'public',
