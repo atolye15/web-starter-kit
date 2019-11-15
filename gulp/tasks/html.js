@@ -31,6 +31,9 @@ export default function html() {
           svgSprite: spriteStore.getSprite(),
         },
         onError: errorHandler,
+        twigParameters: {
+          strict_variables: true,
+        },
       }),
     )
     .pipe(
