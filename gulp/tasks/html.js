@@ -26,13 +26,13 @@ export default function html() {
     .pipe(
       twig({
         functions,
-        namespaces,
         data: {
           svgSprite: spriteStore.getSprite(),
         },
         onError: errorHandler,
         twigParameters: {
           strict_variables: true,
+          namespaces,
         },
       }),
     )
