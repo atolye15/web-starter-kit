@@ -4,8 +4,8 @@
   "scss.validate": false,
   "editor.formatOnSave": true,
   "path-intellisense.mappings": {
-    "@components": "${workspaceRoot}/src/scss/components",
-    "@objects": "${workspaceRoot}/src/scss/objects",
-    "@partials": "${workspaceRoot}/src/twig/partials"
+    "@components": "${workspaceRoot}/src/components",
+    "@objects": "${workspaceRoot}/src/objects",
+    "@templates": "${workspaceRoot}/src/templates"
   }
 }
