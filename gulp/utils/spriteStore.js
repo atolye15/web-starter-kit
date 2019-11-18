@@ -2,7 +2,9 @@ class SpriteStore {
   constructor() {
     if (!SpriteStore.instance) {
       SpriteStore.instance = this;
-      this.data = {};
+      this.data = {
+        sprite: '',
+      };
     }
 
     return SpriteStore.instance;
