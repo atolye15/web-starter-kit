@@ -1,9 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import cx from 'classnames';
 
-import { isProduction, envPath } from '../config/env';
+import { isProduction } from '../config/env';
 
 export default [
   {
@@ -27,14 +24,6 @@ export default [
           return `${acc} ${cur}="${obj[cur]}"`;
         }, '')
         .trim(),
-  },
-  {
-    name: 'asset',
-    func: file => path.resolve(__dirname, `/${envPath}/`, file),
-  },
-  {
-    name: 'is_file_exists',
-    func: filePath => fs.existsSync(path.resolve(__dirname, path.dirname(this.path), filePath)),
   },
   {
     name: 'is_production',
