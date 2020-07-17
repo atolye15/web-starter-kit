@@ -2,7 +2,7 @@
   "recommendations": [
     "guillaumedoutriaux.name-that-color", // Name That Colors
     "esbenp.prettier-vscode", // Prettier
-    "shinnn.stylelint", // Stylelint
+    "stylelint.vscode-stylelint", // Stylelint
     "dbaeumer.vscode-eslint", // Eslint
     "mblode.twig-language-2", // Twig Language
     "naumovs.color-highlight", // Color Highlight
