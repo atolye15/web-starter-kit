@@ -37,7 +37,7 @@ function start() {
   watch(
     [`${paths.src}/**/*.twig`],
     { cwd: './' },
-    series(html, skippable(isProduction && appConfig.uncssActive, styles), reload),
+    series(html, skippable(isProduction && appConfig.removeUnusedCSS, styles), reload),
   );
 
   watch(`${paths.icons}/**/*.svg`, series(sprite, html, reload));

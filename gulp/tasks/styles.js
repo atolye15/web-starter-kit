@@ -1,17 +1,17 @@
 import gulp from 'gulp';
 import lazypipe from 'lazypipe';
 import postcss from 'gulp-postcss';
-import uncss from 'uncss';
 import rename from 'gulp-rename';
 import sass from 'gulp-sass';
 import autoprefixer from 'autoprefixer';
 import mqpacker from 'css-mqpacker';
 import flexBugsFixes from 'postcss-flexbugs-fixes';
 import cssnano from 'cssnano';
+import purgecss from '@fullhuman/postcss-purgecss';
 
 import appConfig from '../../config/app';
 import paths from '../../config/paths';
-import uncssOptions from '../../config/uncss';
+import purgecssConfig from '../../config/purgecss.config';
 import { isProduction, envPath } from '../../config/env';
 import noop from '../utils/noop';
 import errorHandler from '../utils/errorHandler';
@@ -20,7 +20,7 @@ import inlineCssImporter from '../utils/inlineCssImporter';
 export default function styles(cb) {
   const stylesMinChannel = lazypipe()
     .pipe(postcss, [
-      appConfig.uncssActive ? uncss.postcssPlugin(uncssOptions) : () => {},
+      appConfig.removeUnusedCSS ? purgecss(purgecssConfig) : () => {},
       cssnano({ discardComments: { removeAll: true } }),
     ])
     .pipe(rename, { suffix: '.min' })
