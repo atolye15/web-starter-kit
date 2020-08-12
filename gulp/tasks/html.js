@@ -39,7 +39,7 @@ export default function html() {
       }),
     )
     .pipe(
-      rename(filePath =>
+      rename((filePath) =>
         flattenFilePath(
           // Here we use Object.assign instead of object spread operator(...) because
           // we should not lose the object reference. Otherwise, rename will not work correctly

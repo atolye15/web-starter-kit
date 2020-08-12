@@ -1,5 +1,5 @@
 import through from 'through2';
 
-export default function() {
+export default function () {
   return through.obj();
 }
