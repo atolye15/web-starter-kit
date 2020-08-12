@@ -13,7 +13,7 @@ const dotenvFiles = [
   '.env',
 ].filter(Boolean);
 
-dotenvFiles.forEach(dotenvFile => {
+dotenvFiles.forEach((dotenvFile) => {
   if (fs.existsSync(dotenvFile)) {
     dotenvExpand(dotenv.config({ path: dotenvFile }));
   }

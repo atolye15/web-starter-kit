@@ -5,7 +5,7 @@ const appConfig = {
     name: 'Project Name',
     version: '0.1.0',
   },
-  uncssActive: true,
+  removeUnusedCSS: true,
   spriteFileBaseName: 'sprite',
   entry: {
     styles: [`${paths.src}/app.scss`],

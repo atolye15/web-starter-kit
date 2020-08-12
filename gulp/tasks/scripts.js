@@ -7,6 +7,6 @@ const { output: rollupOutputOptions, ...rollupInputOptions } = rollupOptions;
 
 export default function scripts() {
   return rollup(rollupInputOptions)
-    .then(bundle => bundle.write(rollupOutputOptions))
+    .then((bundle) => bundle.write(rollupOutputOptions))
     .catch(errorHandler);
 }

@@ -1,4 +1,4 @@
-export default function(condition, fn) {
+export default function (condition, fn) {
   if (condition) {
     return fn;
   }
