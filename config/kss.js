@@ -11,7 +11,7 @@ export default {
   js: [`${paths.styleguide.assets.scripts}/app.js`],
   verbose: false,
   builder: 'node_modules/@atolye15/kss-node-twig-builder',
-  homepage: '../../README.md',
+  homepage: 'README.md',
   title: 'Atölye Style Guide',
   namespace: [],
   // This following option is a special option for `@atolye15/kss-node-twig-builder`
