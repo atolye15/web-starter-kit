@@ -15,7 +15,9 @@ function flattenFilePath(filePath) {
   }
 
   return Object.assign(filePath, {
-    basename: `${filePath.dirname.split('/').join('-')}-${filePath.basename}`,
+    basename: `${filePath.dirname.split('/').join('-')}${
+      filePath.basename === 'index' ? '' : `-${filePath.basename}`
+    }`,
     dirname: '.',
   });
 }
