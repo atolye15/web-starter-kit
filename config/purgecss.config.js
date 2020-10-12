@@ -5,6 +5,6 @@ export default {
   keyframes: true,
   variables: true,
   whitelistPatterns: [/is-[\S]*/g, /has-[\S]*/g],
-  // Compare class names including '@', '%' and '\'
-  defaultExtractor: (content) => content.match(/[a-z-_\\@%0-9]+/g) || [],
+  // Allow to use special characters in class names like `@, :, %`
+  defaultExtractor: (content) => content.match(/[\w-/:%@]+(?<!:)/g) || [],
 };
