@@ -4,7 +4,7 @@ export default {
   content: [`${paths.dist}/*.html`],
   keyframes: true,
   variables: true,
-  whitelistPatterns: [/^is|has-/],
+  whitelistPatterns: [/is-[\S]*/g, /has-[\S]*/g],
   extractors: [
     {
       extractor: (content) => {
