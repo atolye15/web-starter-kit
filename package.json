@@ -28,7 +28,7 @@
     "gulp-twig": "atolye15/gulp-twig#v1.3.1",
     "kss": "3.0.1",
     "lazypipe": "^1.0.2",
-    "node-notifier": "^7.0.2",
+    "node-notifier": "^8.0.1",
     "postcss-flexbugs-fixes": "^4.2.1",
     "prettier": "^2.0.5",
     "rollup": "^2.23.1",
