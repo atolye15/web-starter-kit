@@ -26,7 +26,7 @@
     "gulp-sass": "^4.1.0",
     "gulp-svgstore": "^7.0.1",
     "gulp-twig": "atolye15/gulp-twig#v1.3.1",
-    "kss": "3.0.1",
+    "kss": "3.0.0",
     "lazypipe": "^1.0.2",
     "node-notifier": "^7.0.2",
     "postcss-flexbugs-fixes": "^4.2.1",
